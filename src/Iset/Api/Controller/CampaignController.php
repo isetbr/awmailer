@@ -18,7 +18,7 @@ class CampaignController implements ControllerProviderInterface
         return $this->register();
     }
     
-    private function register()
+    public function register()
     {
         $container = $this->_app['controllers_factory'];
         
@@ -43,12 +43,12 @@ class CampaignController implements ControllerProviderInterface
         });
         
         # Remove a campaign
-        $container->delete('/{idcampaign', function ($idcampaign) {
+        $container->delete('/{idcampaign}', function ($idcampaign) {
         	return 'Remove a campaign';
         });
         
         # Get current queue list from a campaign
-        $container->get('/{idcampaing}/queue', function ($idcampaign) {
+        $container->get('/{idcampaing}/queue', function ($idcampaing) {
         	return 'Queue list of an campaign';
         });
         

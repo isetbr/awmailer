@@ -42,7 +42,7 @@ class App
 			    $data = json_decode($request->getContent(), true);
 			    $request->request->replace(is_array($data) ? $data : array());
 			} else {
-			    return new Response(null,Response::HTTP_BAD_REQUEST);
+			    //return new Response(null,Response::HTTP_BAD_REQUEST);
 			}
 		});
 		

@@ -18,7 +18,7 @@ class IpAddressController implements ControllerProviderInterface
     	return $this->register();
     }
     
-    private function register()
+    public function register()
     {
     	$container = $this->_app['controllers_factory'];
     	

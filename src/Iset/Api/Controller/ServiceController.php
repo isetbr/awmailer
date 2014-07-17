@@ -18,7 +18,7 @@ class ServiceController implements ControllerProviderInterface
     	return $this->register();
     }
     
-    private function register()
+    public function register()
     {
     	$container = $this->_app['controllers_factory'];
     	
@@ -28,7 +28,7 @@ class ServiceController implements ControllerProviderInterface
     	});
     	
     	# Create a service
-    	$containger->post('/', function (){
+    	$container->post('/', function (){
     		return 'Create a service';
     	});
     	

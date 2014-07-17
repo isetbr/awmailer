@@ -8,7 +8,7 @@ use Silex\ControllerProviderInterface as SilexControllerProviderInterface;
 interface ControllerProviderInterface extends SilexControllerProviderInterface
 {
     
-    private function register();
+    public function register();
     
     public static function factory(Application &$app);
 }
