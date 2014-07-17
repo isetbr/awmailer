@@ -1,0 +1,12 @@
+{
+    "require": {
+        "silex/silex": "~1.2",
+	"zendframework/zend-config": "2.3.*",
+	"doctrine/dbal": "2.2.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "": "src/"
+        }
+    }
+}
