@@ -12,7 +12,7 @@ class ServiceController implements ControllerProviderInterface
     
     public function __construct(){}
     
-    public function connect(Application &$app)
+    public function connect(Application $app)
     {
     	$this->_app = $app;
     	return $this->register();
@@ -50,7 +50,7 @@ class ServiceController implements ControllerProviderInterface
     	return $container;
     }
     
-    public static function factory(Application $app)
+    public static function factory(Application &$app)
     {
     	$instance = new self();
     	return $instance->connect($app);
