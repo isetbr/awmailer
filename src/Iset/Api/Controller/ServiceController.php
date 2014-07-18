@@ -63,6 +63,81 @@ class ServiceController implements ControllerProviderInterface
         }
     }
     
+    public function getOne($key)
+    {
+        # Getting provider
+        $gateway = $this->getTableGateway();
+        
+        $service = $gateway->getService($key);
+        
+        if ($service) {
+            $response = $service->asArray();
+            unset($response['id']);
+            unset($response['token']);
+            return $this->_app->json($response,Response::HTTP_OK);
+        } else {
+            $response = array('success'=>0,'error'=>'Service not found');
+            return $this->_app->json($response,Response::HTTP_OK);
+        }
+    }
+    
+    public function update($key)
+    {
+        # Getting provider
+        $request = $this->getRequest();
+        $gateway = $this->getTableGateway();
+        
+        # Getting service from gateway
+        $service = $gateway->getService($key);
+        
+        if ($service) {
+            # Getting request params
+            $name = $request->request->get('name');
+            $key  = $request->request->get('key');
+            
+            $service->name = (!empty($name) && !is_null($name)) ? $name : $service->name;
+            $service->key  = (!empty($key) && !is_null($key)) ? $key : $service->key;
+            
+            $result = $service->save();
+            if ($result === true) {
+                $response = array('success'=>1,'name'=>$service->name,'key'=>$service->key);
+                return $this->_app->json($response,Response::HTTP_OK);
+            } elseif (is_array($result)) {
+                $response = array_merge(array('success'=>0),$result);
+                return $this->_app->json($response,Response::HTTP_OK);
+            } else {
+                $response = array('success'=>0,'error'=>'Unknow error');
+                return $this->_app->json($response,Response::HTTP_INTERNAL_SERVER_ERROR);
+            }
+        } else {
+            $response = array('success'=>0,'error'=>'Service not found');
+            return $this->_app->json($response,Response::HTTP_OK);
+        }
+    }
+    
+    public function remove($key)
+    {
+        # Getting provider
+        $gateway = $this->getTableGateway();
+        
+        # Getting service from gateway
+        $service = $gateway->getService($key);
+        
+        if ($service) {
+            $result = $service->delete();
+            if ($result) {
+                $response = array('success'=>1);
+                return $this->_app->json($response,Response::HTTP_OK);
+            } else {
+                $response = array('success'=>0,'error'=>'Unknow error');
+                return $this->_app->json($response,Response::HTTP_INTERNAL_SERVER_ERROR);
+            }
+        } else {
+            $response = array('success'=>0,'error'=>'Service not found');
+            return $this->_app->json($response,Response::HTTP_OK);
+        }
+    }
+    
     public function getRequest()
     {
         return $this->_app['request'];
@@ -99,17 +174,17 @@ class ServiceController implements ControllerProviderInterface
     	
     	# Get details about service
     	$container->get('/{key}', function ($key){
-    		return 'Get service details';
+    		return $this->getOne($key);
     	});
     	
     	# Update a service
     	$container->put('/{key}', function ($key){
-    		return 'Update a service';
+    		return $this->update($key);
     	});
     	
     	# Remove a service
     	$container->delete('/{key}', function ($key){
-    		return 'Delete a service';
+    		return $this->remove($key);
     	});
     	
     	return $container;

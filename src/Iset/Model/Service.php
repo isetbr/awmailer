@@ -35,7 +35,7 @@ class Service implements ModelInterface
     
     public function exchangeArray(array $data)
     {
-        $this->id    = (!empty($data['idservice'])) ? $data['idservice'] : null;
+        $this->id    = (!empty($data['idservice'])) ? (int)$data['idservice'] : null;
         $this->name  = (!empty($data['name'])) ? $data['name'] : null;
         $this->key   = (!empty($data['key'])) ? $data['key'] : null;
         $this->token = (!empty($data['token'])) ? $data['token'] : null;
@@ -80,8 +80,6 @@ class Service implements ModelInterface
             } else {
                 return array('error'=>'Service token cannot be regenerated.');
             }
-        } else {
-            return array('error'=>'Invalid service token');
         }
         
         return true;
@@ -90,7 +88,7 @@ class Service implements ModelInterface
     public function save()
     {
     	$response = $this->gateway->saveService($this);
-    	if (!is_null($this->id)) {
+    	if (!is_null($this->id) && !is_array($response)) {
     	    return true;
     	} else {
     	    return $response;
@@ -99,7 +97,13 @@ class Service implements ModelInterface
     
     public function delete()
     {
-    	
+    	$response = $this->gateway->deleteService($this);
+    	if ($response) {
+    	    unset($this);
+    	    return true;
+    	} else {
+    	    return false;
+    	}
     }
     
     private function generateServiceToken()

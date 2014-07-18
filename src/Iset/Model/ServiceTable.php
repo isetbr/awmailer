@@ -27,7 +27,20 @@ class ServiceTable extends TableGatewayAbstract
     	return $stack;
     }
     
-    public function getService($key){}
+    public function getService($key)
+    {
+        # Retrieving data from database
+    	$query = "SELECT * FROM `" . self::TABLE_NAME . "` WHERE `key`=?";
+    	$result = $this->tableGateway->fetchAssoc($query,array($key));
+    	
+    	# Verifying result
+    	if ($result) {
+    	    $service = new Service($this);
+    	    return $service->exchangeArray($result);
+    	} else {
+    	    return false;
+    	}
+    }
     
     public function saveService(Service &$service)
     {
@@ -61,11 +74,47 @@ class ServiceTable extends TableGatewayAbstract
     	        }
     	    } else {
     	        # UPDATE
+    	        # Verifying if key was available
+    	        $query = "SELECT * FROM `" . self::TABLE_NAME . "` WHERE `key`=? AND `idservice`!=?";
+    	        $result = $this->tableGateway->fetchAll($query,array($service->key,$service->id));
+    	        
+    	        # Verifying result
+    	        if (count($result) == 0) {
+    	            # Mouting query
+    	            $query = "UPDATE `" . self::TABLE_NAME . "` SET `name`=?,`key`=? WHERE `idservice`=?";
+    	            $data = array($service->name,$service->key,$service->id);
+    	            
+    	            # Updating 
+    	            $result = $this->tableGateway->executeUpdate($query,$data);
+    	            
+    	            # Verifying result
+    	            if ($result == 1) {
+    	                return $service;
+    	            } elseif($result == 0) {
+    	            	return array('error'=>'No changes');
+    	            } else {
+    	                return array('error'=>'An error ocourred at try to update data in database');
+    	            }
+    	        } else {
+    	            return array('error'=>'The service key is already in use, please try another');
+    	        }
     	    }
     	} else {
     	    return array('error'=>'Invalid service, see details for more information','details'=>$result['error']);
     	}
     }
     
-    public function deleteService(Service $service){}
+    public function deleteService(Service &$service)
+    {
+    	# Mounting and executing query
+    	$query = "DELETE FROM `" . self::TABLE_NAME . "` WHERE `idservice`=?";
+    	$result = $this->tableGateway->executeUpdate($query,array($service->id));
+    	
+    	# Verifying result
+    	if ($result == 1) {
+    	    return true;
+    	} else {
+    	    return false;
+    	}
+    }
 }
