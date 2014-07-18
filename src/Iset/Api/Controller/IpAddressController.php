@@ -12,6 +12,13 @@ class IpAddressController implements ControllerProviderInterface
     
     public function __construct(){}
     
+    public function getRequest()
+    {
+        return $this->_app['request'];
+    }
+    
+    public function getTableGateway(){}
+    
     public function connect(Application $app)
     {
     	$this->_app = $app;

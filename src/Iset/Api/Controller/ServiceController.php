@@ -4,13 +4,78 @@ namespace Iset\Api\Controller;
 
 use Silex\Application;
 use Iset\Silex\ControllerProviderInterface;
+use Symfony\Component\HttpFoundation\Response;
+use Iset\Model\Service;
+use Iset\Model\ServiceTable;
 
 class ServiceController implements ControllerProviderInterface
 {
     
     protected $_app = null;
     
+    protected $gateway = null;
+    
     public function __construct(){}
+    
+    public function create()
+    {
+        # Getting provider
+        $request = $this->getRequest();
+        $service = new Service($this->getTableGateway());
+        
+        $service->name = $request->request->get('name');
+        $service->key  = $request->request->get('key');
+        
+        $result = $service->save();
+        
+        if ($result === true) {
+            $response = array('success'=>1,'key'=>$service->key,'token'=>$service->getToken());
+            return $this->_app->json($response,Response::HTTP_CREATED);
+        } elseif (is_array($result)) {
+            $response = array_merge(array('success'=>0),$result);
+            return $this->_app->json($response,Response::HTTP_OK);
+        } else {
+            $response = array('success'=>0,'error'=>'Unknow error');
+            return $this->_app->json($response,Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+    
+    public function getAll()
+    {
+        # Getting provider
+        $gateway = $this->getTableGateway();
+        
+        $services = $gateway->fetchAll();
+        
+        if (count($services) > 0) {
+            $response = array();
+            
+            foreach ($services as $service) {
+                $data = $service->asArray();
+                unset($data['id']);
+                unset($data['token']);
+                $response[] = $data;
+            }
+            
+            return $this->_app->json($response,Response::HTTP_OK);
+        } else {
+            return new Response(null,Response::HTTP_NO_CONTENT);
+        }
+    }
+    
+    public function getRequest()
+    {
+        return $this->_app['request'];
+    }
+    
+    public function getTableGateway()
+    {
+        if (is_null($this->gateway)) {
+            $this->gateway = new ServiceTable($this->_app);
+        }
+        
+        return $this->gateway;
+    }
     
     public function connect(Application $app)
     {
@@ -24,12 +89,12 @@ class ServiceController implements ControllerProviderInterface
     	
     	# Retrieve all services
     	$container->get('/', function (){
-    		return 'Retrive all services';
+    		return $this->getAll();
     	});
     	
     	# Create a service
     	$container->post('/', function (){
-    		return 'Create a service';
+    		return $this->create();
     	});
     	
     	# Get details about service

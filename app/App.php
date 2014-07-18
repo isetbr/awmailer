@@ -25,7 +25,7 @@ class App
 		$kernel['public_path']      = $kernel['root_path'] . 'web/';
 		
 		## Setting environment configs
-		$kernel['debug']            = false;
+		$kernel['debug']            = true;
 		$kernel['base_url']         = 'http://m4a1.localhost/';
 		
 		## Registering helpers
@@ -37,12 +37,12 @@ class App
 		));
 		
 		# Register controllers
-		$kernel->mount('/api', new ApiController())->before(function (Request $request) {
+		$kernel->mount('/api', new ApiController())->before(function (Request $request) use ($kernel) {
 			if (0 === strpos($request->headers->get('Content-Type'), 'application/json')) {
 			    $data = json_decode($request->getContent(), true);
 			    $request->request->replace(is_array($data) ? $data : array());
 			} else {
-			    //return new Response(null,Response::HTTP_BAD_REQUEST);
+			    return $kernel->abort(Response::HTTP_BAD_REQUEST);
 			}
 		});
 		
