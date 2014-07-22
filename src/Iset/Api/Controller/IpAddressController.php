@@ -5,6 +5,7 @@ namespace Iset\Api\Controller;
 use Silex\Application;
 use Iset\Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Iset\Api\Auth\IpAddress as AuthIpAddress;
 use Iset\Model\IpAddress;
 use Iset\Model\IpAddressTable;
 
@@ -131,6 +132,13 @@ class IpAddressController implements ControllerProviderInterface
     
     public static function factory(Application &$app)
     {
+        # Temporary
+        # Locking IpAddress
+        if (!AuthIpAddress::authenticate($app)) {
+            $response = new Response(null,Response::HTTP_FORBIDDEN);
+            $response->send();
+        }
+        
     	$instance = new self();
     	return $instance->connect($app);
     }

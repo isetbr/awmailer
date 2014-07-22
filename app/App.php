@@ -31,20 +31,40 @@ class App
 		## Registering helpers
 		$kernel['config_reader']    = new ConfigReader();
 		
+		# Registering application configuration
+		$kernel['application_config'] = $kernel['config_reader']->fromFile($kernel['config_path'] . 'application.ini');
+		
 		# Register providers
 		$kernel->register(new Silex\Provider\DoctrineServiceProvider(), array(
             'db.options'=>$kernel['config_reader']->fromFile($kernel['config_path'] . 'database.ini')['mysql']
 		));
+		$kernel->register(new Silex\Provider\SessionServiceProvider());
 		
 		# Register controllers
-		$kernel->mount('/api', new ApiController())->before(function (Request $request) use ($kernel) {
-			if (0 === strpos($request->headers->get('Content-Type'), 'application/json')) {
-			    $data = json_decode($request->getContent(), true);
-			    $request->request->replace(is_array($data) ? $data : array());
-			} else {
-			    return $kernel->abort(Response::HTTP_BAD_REQUEST);
-			}
-		});
+		$kernel->mount('/api', new ApiController())
+		       ->before(function (Request $request) use ($kernel) {
+		           # Validating request content-type
+			       if (0 === strpos($request->headers->get('Content-Type'), 'application/json')) {
+			           $data = json_decode($request->getContent(), true);
+			           $request->request->replace(is_array($data) ? $data : array());
+			       } else {
+			           return $kernel->abort(Response::HTTP_BAD_REQUEST);
+			       }
+			       
+			       # Getting authentication headers
+			       $auth_service_key = $request->headers->get($kernel['application_config']['api']['auth_header']['service_key']);
+			       $auth_token       = $request->headers->get($kernel['application_config']['api']['auth_header']['token']);
+			       $auth_ip_address  = $_SERVER['REMOTE_ADDR'];
+			       
+			       # Creating session with auth headers
+			       $kernel['session']->set('Auth-Service-Key',$auth_service_key);
+			       $kernel['session']->set('Auth-Token',$auth_token);
+			       $kernel['session']->set('Auth-IpAddress',$auth_ip_address);
+		       });
+		       /*->before(function (Request $request) use ($kernel) {
+		           # Parsing authentication data
+		           var_dump($request);die;
+		       }, AppKernel::LATE_EVENT);*/
 		
 		return $kernel;
 	}

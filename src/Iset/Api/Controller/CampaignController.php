@@ -5,6 +5,8 @@ namespace Iset\Api\Controller;
 use Silex\Application;
 use Iset\Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Iset\Api\Auth\IpAddress as AuthIpAddress;
+use Iset\Api\Auth\Service as AuthService;
 use Iset\Model\Campaign;
 use Iset\Model\CampaignTable;
 use Iset\Model\ServiceTable;
@@ -50,7 +52,7 @@ class CampaignController implements ControllerProviderInterface
     	
     	# Initializing service 
     	$serviceTable = new ServiceTable($this->_app);
-    	$service = $serviceTable->getService($request->headers->get('service_key'));
+    	$service = $serviceTable->getService($request->headers->get('Service-Key'));
     	
     	# Validating service return
     	if (!$service) {
@@ -283,6 +285,13 @@ class CampaignController implements ControllerProviderInterface
     
     public static function factory(Application &$app)
     {
+        # Temporary
+        # Locking IpAddress and service
+        if (!AuthIpAddress::authenticate($app) || !AuthService::authenticate($app)) {
+            $response = new Response(null,Response::HTTP_FORBIDDEN);
+            $response->send();
+        }
+        
         $instance = new self();
         return $instance->connect($app);
     }
