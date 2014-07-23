@@ -52,7 +52,7 @@ class CampaignController implements ControllerProviderInterface
     	
     	# Initializing service 
     	$serviceTable = new ServiceTable($this->_app);
-    	$service = $serviceTable->getService($request->headers->get('Service-Key'));
+    	$service = $serviceTable->getService($request->headers->get('Auth-Service-Key'));
     	
     	# Validating service return
     	if (!$service) {
