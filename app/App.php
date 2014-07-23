@@ -39,6 +39,13 @@ class App
             'db.options'=>$kernel['config_reader']->fromFile($kernel['config_path'] . 'database.ini')['mysql']
 		));
 		$kernel->register(new Silex\Provider\SessionServiceProvider());
+		$kernel->register(new SilexExtension\MongoDbExtension(), array(
+			'mongodb.connection'=>array(
+			    'server'=>$kernel['config_reader']->fromFile($kernel['config_path'] . 'database.ini')['mongodb']['dsn'],
+			    'options'=>array(),
+			    'eventmanager'=>function ($eventmanager) {}
+		    ),
+		));
 		
 		# Register controllers
 		$kernel->mount('/api', new ApiController())
