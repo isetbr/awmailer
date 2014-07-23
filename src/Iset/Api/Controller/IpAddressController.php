@@ -20,6 +20,8 @@ class IpAddressController implements ControllerProviderInterface
     
     public function getAll()
     {
+        $this->lock();
+        
         # Getting providers
         $gateway = $this->getTableGateway();
         
@@ -31,7 +33,8 @@ class IpAddressController implements ControllerProviderInterface
             $response = array();
             
             foreach ($results as $ipaddress) {
-                $response[] = $ipaddress->asArray();
+                $ipaddress = $ipaddress->asArray();
+                $response[] = $ipaddress['ipaddress'];
             }
             
             return $this->_app->json($response,Response::HTTP_OK);
@@ -42,6 +45,8 @@ class IpAddressController implements ControllerProviderInterface
     
     public function allow()
     {
+        $this->lock();
+        
         # Getting providers
         $request = $this->getRequest();
         $ipaddress = new IpAddress($this->getTableGateway());
@@ -64,6 +69,8 @@ class IpAddressController implements ControllerProviderInterface
     
     public function remove($ipaddress)
     {
+        $this->lock();
+        
         # Getting providers
         $gateway = $this->getTableGateway();
         
@@ -130,15 +137,19 @@ class IpAddressController implements ControllerProviderInterface
     	return $container;
     }
     
-    public static function factory(Application &$app)
+    public function lock()
     {
         # Temporary
         # Locking IpAddress
-        if (!AuthIpAddress::authenticate($app)) {
+        if (!AuthIpAddress::authenticate($this->_app)) {
             $response = new Response(null,Response::HTTP_FORBIDDEN);
             $response->send();
+            die();
         }
-        
+    }
+    
+    public static function factory(Application &$app)
+    {
     	$instance = new self();
     	return $instance->connect($app);
     }

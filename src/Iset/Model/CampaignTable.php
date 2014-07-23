@@ -51,7 +51,7 @@ class CampaignTable extends TableGatewayAbstract
     	    if (is_null($campaign->id)) {
     	        # INSERT
     	        # Mounting query
-    	        $query = "INSERT INTO `" . self::TABLE_NAME . "` (`idservice`,`total_queue`,`sent`,`fail`,`progress`,`status`,`subject`,`body`,`headers`,`date`,`external`)  VALUES (?,?,?,?,?,?)";
+    	        $query = "INSERT INTO `" . self::TABLE_NAME . "` (`idservice`,`total_queue`,`sent`,`fail`,`progress`,`status`,`subject`,`body`,`headers`,`date`,`external`)  VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 	            $data = array(
 	                $campaign->service,
 	                $campaign->total,

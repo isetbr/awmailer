@@ -22,11 +22,15 @@ class CampaignController implements ControllerProviderInterface
     
     public function getAll()
     {
+        $this->lock();
+        
     	return $this->_app->abort(Response::HTTP_NOT_IMPLEMENTED);
     }
     
     public function getOne($idcampaign)
     {
+        $this->lock();
+        
         # Getting providers
         $gateway = $this->getTableGateway();
         
@@ -46,6 +50,8 @@ class CampaignController implements ControllerProviderInterface
     
     public function create()
     {
+        $this->lock();
+        
     	# Getting providers
     	$request = $this->getRequest();
     	$campaign = new Campaign($this->getTableGateway());
@@ -85,6 +91,8 @@ class CampaignController implements ControllerProviderInterface
     
     public function update($idcampaign)
     {
+        $this->lock();
+        
         # Getting providers
         $request = $this->getRequest();
         $gateway = $this->getTableGateway();
@@ -138,6 +146,8 @@ class CampaignController implements ControllerProviderInterface
     
     public function remove($idcampaign)
     {
+        $this->lock();
+        
         # Getting providers
         $gateway = $this->getTableGateway();
         
@@ -165,6 +175,8 @@ class CampaignController implements ControllerProviderInterface
     
     public function changeStatusCampaign($idcampaign, $status = Campaign::STATUS_DEFAULT)
     {
+        $this->lock();
+        
         # Getting providers
         $gateway = $this->getTableGateway();
         
@@ -283,15 +295,19 @@ class CampaignController implements ControllerProviderInterface
         return $container;
     }
     
-    public static function factory(Application &$app)
+    public function lock()
     {
         # Temporary
         # Locking IpAddress and service
-        if (!AuthIpAddress::authenticate($app) || !AuthService::authenticate($app)) {
+        if (!AuthIpAddress::authenticate($this->_app) || !AuthService::authenticate($this->_app)) {
             $response = new Response(null,Response::HTTP_FORBIDDEN);
             $response->send();
+            die();
         }
-        
+    }
+    
+    public static function factory(Application &$app)
+    {
         $instance = new self();
         return $instance->connect($app);
     }

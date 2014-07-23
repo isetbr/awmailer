@@ -43,6 +43,8 @@ class ServiceController implements ControllerProviderInterface
     
     public function getAll()
     {
+        $this->lock();
+        
         # Getting provider
         $gateway = $this->getTableGateway();
         
@@ -66,6 +68,8 @@ class ServiceController implements ControllerProviderInterface
     
     public function getOne($key)
     {
+        $this->lock();
+        
         # Getting provider
         $gateway = $this->getTableGateway();
         
@@ -84,6 +88,8 @@ class ServiceController implements ControllerProviderInterface
     
     public function update($key)
     {
+        $this->lock();
+        
         # Getting provider
         $request = $this->getRequest();
         $gateway = $this->getTableGateway();
@@ -118,6 +124,8 @@ class ServiceController implements ControllerProviderInterface
     
     public function remove($key)
     {
+        $this->lock();
+        
         # Getting provider
         $gateway = $this->getTableGateway();
         
@@ -191,15 +199,19 @@ class ServiceController implements ControllerProviderInterface
     	return $container;
     }
     
-    public static function factory(Application &$app)
+    public function lock()
     {
         # Temporary
         # Locking IpAddress
-        if (!AuthIpAddress::authenticate($app)) {
+        if (!AuthIpAddress::authenticate($this->_app)) {
             $response = new Response(null,Response::HTTP_FORBIDDEN);
             $response->send();
+            die();
         }
-        
+    }
+    
+    public static function factory(Application &$app)
+    {
         # Initializing instance
     	$instance = new self();
     	return $instance->connect($app);

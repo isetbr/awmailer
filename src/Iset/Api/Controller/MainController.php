@@ -3,7 +3,6 @@
 namespace Iset\Api\Controller;
 
 use Silex\Application;
-//use Iset\Silex\ControllerProviderInterface;
 use Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Iset\Api\Auth\IpAddress as AuthIpAddress;

@@ -68,10 +68,11 @@ class App
 			       $kernel['session']->set('Auth-Token',$auth_token);
 			       $kernel['session']->set('Auth-IpAddress',$auth_ip_address);
 		       });
-		       /*->before(function (Request $request) use ($kernel) {
-		           # Parsing authentication data
-		           var_dump($request);die;
-		       }, AppKernel::LATE_EVENT);*/
+		
+		# Cleaning api session
+		$kernel->finish(function (Request $request, Response $response) use ($kernel) {
+			$kernel['session']->clear();
+		});
 		
 		return $kernel;
 	}

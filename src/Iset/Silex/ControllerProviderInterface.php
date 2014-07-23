@@ -14,5 +14,7 @@ interface ControllerProviderInterface extends SilexControllerProviderInterface
     
     public function register();
     
+    public function lock();
+    
     public static function factory(Application &$app);
 }
