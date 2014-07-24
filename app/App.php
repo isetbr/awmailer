@@ -21,14 +21,12 @@ class App
 		# Loading application configuration
 		$reader = new ConfigReader();
 		$kernel['config'] = $reader->fromFile($kernel['root_path'] . 'app/config/application.ini');
-		var_dump($kernel['config']);die;
 		
 		# Configuring application
 		$kernel['base_url'] = $kernel['config']['general']['base_url'];
 		$kernel['debug']    = ((int)$kernel['config']['general']['debug'] == 1) ? true : false;
 		foreach ($kernel['config']['paths'] as $key => $value) {
 		    $path = $kernel['root_path'] . $value;
-		    $kernel['config']['paths'][$key] = $path;
 		    $kernel[$key.'_path'] = $path;
 		}
 		
