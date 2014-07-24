@@ -27,7 +27,7 @@ class CampaignController implements ControllerProviderInterface
     	return $this->_app->abort(Response::HTTP_NOT_IMPLEMENTED);
     }
     
-    public function getOne($idcampaign)
+    public function getOne($key)
     {
         $this->lock();
         
@@ -35,7 +35,7 @@ class CampaignController implements ControllerProviderInterface
         $gateway = $this->getTableGateway();
         
         # Fetching campaing details
-        $campaign = $gateway->getCampaign($idcampaign);
+        $campaign = $gateway->getCampaignByKey($key);
         
         # Verifying result
         if ($campaign) {
@@ -78,7 +78,7 @@ class CampaignController implements ControllerProviderInterface
     	
     	# Verifying result
     	if ($result === true) {
-    	    $response = array('success'=>1,'campaign'=>(int)$campaign->id);
+    	    $response = array('success'=>1,'campaign'=>$campaign->getCampaignKey());
     	    return $this->_app->json($response,Response::HTTP_CREATED);
     	} elseif (is_array($result)) {
     	    $response = array_merge(array('success'=>0),$result);
@@ -89,7 +89,7 @@ class CampaignController implements ControllerProviderInterface
     	}
     }
     
-    public function update($idcampaign)
+    public function update($key)
     {
         $this->lock();
         
@@ -98,7 +98,7 @@ class CampaignController implements ControllerProviderInterface
         $gateway = $this->getTableGateway();
         
         # Getting campaign
-        $campaign = $gateway->getCampaign($idcampaign);
+        $campaign = $gateway->getCampaignByKey($key);
         
         # Verifying result
         if ($campaign) {
@@ -129,7 +129,7 @@ class CampaignController implements ControllerProviderInterface
             
             # Verifying result
             if ($result === true) {
-                $response = array('success'=>1,'campaign'=>(int)$campaign->id);
+                $response = array('success'=>1,'campaign'=>$campaign->getCampaignKey());
                 return $this->_app->json($response,Response::HTTP_OK);
             } elseif (is_array($result)) {
                 $response = array_merge(array('success'=>0),$result);
@@ -144,7 +144,7 @@ class CampaignController implements ControllerProviderInterface
         }
     }
     
-    public function remove($idcampaign)
+    public function remove($key)
     {
         $this->lock();
         
@@ -152,7 +152,7 @@ class CampaignController implements ControllerProviderInterface
         $gateway = $this->getTableGateway();
         
         # Getting campaign
-        $campaign = $gateway->getCampaign($idcampaign);
+        $campaign = $gateway->getCampaignByKey($key);
         
         # Verifying result
         if ($campaign) {
@@ -173,20 +173,15 @@ class CampaignController implements ControllerProviderInterface
         }
     }
     
-    public function changeStatusCampaign($idcampaign, $status = Campaign::STATUS_DEFAULT)
+    public function changeStatusCampaign($key, $status = Campaign::STATUS_DEFAULT)
     {
         $this->lock();
         
         # Getting providers
         $gateway = $this->getTableGateway();
         
-        # Treatmenting params
-        if (is_null($status)) {
-            $status = Campaign::STATUS_DEFAULT;
-        }
-        
         # Getting campaign
-        $campaign = $gateway->getCampaign($idcampaign);
+        $campaign = $gateway->getCampaignByKey($key);
         
         # Verifying result
         if ($campaign) {
@@ -243,53 +238,53 @@ class CampaignController implements ControllerProviderInterface
         });
         
         # Get details from an campaign
-        $container->get('/{idcampaign}', function ($idcampaign) {
-        	return $this->getOne($idcampaign);
+        $container->get('/{key}', function ($key) {
+        	return $this->getOne($key);
         });
         
         # Update a campaign
-        $container->put('/{idcampaign}', function ($idcampaign) {
-        	return $this->update($idcampaign);
+        $container->put('/{key}', function ($key) {
+        	return $this->update($key);
         });
         
         # Remove a campaign
-        $container->delete('/{idcampaign}', function ($idcampaign) {
-        	return $this->remove($idcampaign);
+        $container->delete('/{key}', function ($key) {
+        	return $this->remove($key);
         });
         
         # Get current queue list from a campaign
-        $container->get('/{idcampaing}/queue', function ($idcampaing) {
+        $container->get('/{key}/queue', function ($key) {
         	return $this->_app->abort(Response::HTTP_NOT_IMPLEMENTED);
         });
         
         # Add destinations to an queue list from campaign
-        $container->put('/{idcampaign}/queue', function ($idcampaign) {
+        $container->put('/{key}/queue', function ($key) {
         	return $this->_app->abort(Response::HTTP_NOT_IMPLEMENTED);
         });
         
         # Remove destinations from an queue list
-        $container->delete('/{idcampaign}/queue', function ($idcampaign) {
+        $container->delete('/{key}/queue', function ($key) {
         	return $this->_app->abort(Response::HTTP_NOT_IMPLEMENTED);
         });
         
         # Start process
-        $container->post('/{idcampaign}/start', function ($idcampaign) {
-        	return $this->changeStatusCampaign($idcampaign, Campaign::STATUS_START);
+        $container->post('/{key}/start', function ($key) {
+        	return $this->changeStatusCampaign($key, Campaign::STATUS_START);
         });
         
         # Pause process
-        $container->post('/{idcampaign}/pause', function ($idcampaign) {
-        	return $this->changeStatusCampaign($idcampaign, Campaign::STATUS_PAUSE);
+        $container->post('/{key}/pause', function ($key) {
+        	return $this->changeStatusCampaign($key, Campaign::STATUS_PAUSE);
         });
         
         # Stop process
-        $container->post('/{idcampaign}/stop', function ($idcampaign) {
-        	return $this->changeStatusCampaign($idcampaign, Campaign::STATUS_STOP);
+        $container->post('/{key}/stop', function ($key) {
+        	return $this->changeStatusCampaign($key, Campaign::STATUS_STOP);
         });
         
         # Reset status
-        $container->post('/{idcampaign}/reset', function ($idcampaign) {
-        	return $this->changeStatusCampaign($idcampaign);
+        $container->post('/{idcampaign}/reset', function ($key) {
+        	return $this->changeStatusCampaign($key);
         });
         
         return $container;

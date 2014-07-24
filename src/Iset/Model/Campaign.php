@@ -18,6 +18,8 @@ class Campaign implements ModelInterface
     
     public $service = null;
     
+    private $key = null;
+    
     public $total = 0;
     
     public $sent = 0;
@@ -51,6 +53,11 @@ class Campaign implements ModelInterface
         return $this;
     }
     
+    public function getCampaignKey()
+    {
+        return $this->key;
+    }
+    
     public function getHeadersAsString()
     {
         return json_encode($this->headers);
@@ -60,6 +67,7 @@ class Campaign implements ModelInterface
     {
         $this->id = (!empty($data['idcampaign'])) ? $data['idcampaign'] : null;
         $this->service = (!empty($data['idservice'])) ? $data['idservice'] : null;
+        $this->key = (!empty($data['key'])) ? $data['key'] : null;
         $this->total = (!empty($data['total_queue'])) ? (int)$data['total_queue'] : 0;
         $this->sent = (!empty($data['sent'])) ? (int)$data['sent'] : 0;
         $this->fail = (!empty($data['fail'])) ? (int)$data['fail'] : 0;
@@ -80,6 +88,7 @@ class Campaign implements ModelInterface
     	$data = array(
     		'id'=>$this->id,
     	    'service'=>$this->service,
+    	    'key'=>$this->key,
     	    'total'=>$this->total,
     	    'sent'=>$this->sent,
     	    'fail'=>$this->fail,
@@ -98,6 +107,12 @@ class Campaign implements ModelInterface
     
     public function validate()
     {
+        # Generate key for campaign
+        if (is_null($this->id) && is_null($this->key)) {
+            $factor = '#'.$this->service.'?'.rand(1111,9999).'#'.time();
+            $this->key = hash("ripemd128",bin2hex($factor));
+        }
+        
     	return true;
     }
     

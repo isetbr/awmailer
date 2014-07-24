@@ -42,6 +42,21 @@ class CampaignTable extends TableGatewayAbstract
     	}
     }
     
+    public function getCampaignByKey($key)
+    {
+        # Retrieving data from database
+        $query = "SELECT * FROM `" . self::TABLE_NAME . "` WHERE `key`=?";
+        $result = $this->tableGateway->fetchAssoc($query,array($key));
+         
+        # Verifying result
+        if ($result) {
+            $campaign = new Campaign($this);
+            return $campaign->exchangeArray($result);
+        } else {
+            return false;
+        }
+    }
+    
     public function saveCampaign(Campaign &$campaign)
     {
         # Validating service
@@ -51,9 +66,10 @@ class CampaignTable extends TableGatewayAbstract
     	    if (is_null($campaign->id)) {
     	        # INSERT
     	        # Mounting query
-    	        $query = "INSERT INTO `" . self::TABLE_NAME . "` (`idservice`,`total_queue`,`sent`,`fail`,`progress`,`status`,`subject`,`body`,`headers`,`date`,`external`)  VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+    	        $query = "INSERT INTO `" . self::TABLE_NAME . "` (`idservice`,`key`,`total_queue`,`sent`,`fail`,`progress`,`status`,`subject`,`body`,`headers`,`date`,`external`)  VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
 	            $data = array(
 	                $campaign->service,
+	                $campaign->getCampaignKey(),
 	                $campaign->total,
 	                $campaign->sent,
 	                $campaign->fail,
@@ -81,6 +97,7 @@ class CampaignTable extends TableGatewayAbstract
     	        # Mouting query
     	        $query = "UPDATE `" . self::TABLE_NAME . "` SET
     	            `idservice`=?,
+    	            `key`=?,
     	            `total_queue`=?,
     	            `sent`=?,
     	            `fail`=?,
@@ -94,6 +111,7 @@ class CampaignTable extends TableGatewayAbstract
     	            WHERE `idcampaign`=?";
     	        $data = array(
     	            $campaign->service,
+    	            $campaign->getCampaignKey(),
     	            $campaign->total,
     	            $campaign->sent,
     	            $campaign->fail,

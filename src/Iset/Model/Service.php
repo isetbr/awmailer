@@ -108,6 +108,6 @@ class Service implements ModelInterface
     
     private function generateServiceToken()
     {
-        $this->token = hash('whirlpool',$this->key . '?' .rand(111111111,999999999));
+        $this->token = hash('ripemd320',bin2hex($this->key.'?'.rand(111111,999999).'#'.time()));
     }
 }
