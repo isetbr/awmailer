@@ -10,6 +10,7 @@ use Iset\Api\Auth\Service as AuthService;
 use Iset\Model\Campaign;
 use Iset\Model\CampaignTable;
 use Iset\Model\ServiceTable;
+use Iset\Model\QueueCollection;
 
 class CampaignController implements ControllerProviderInterface
 {
@@ -17,6 +18,8 @@ class CampaignController implements ControllerProviderInterface
     protected $_app = null;
     
     protected $gateway = null;
+    
+    protected $collection = null;
     
     public function __construct(){}
     
@@ -173,6 +176,101 @@ class CampaignController implements ControllerProviderInterface
         }
     }
     
+    public function getQueue($key)
+    {
+        $this->lock();
+        
+        # Getting Collection
+        $collection = $this->getCollection();
+        
+        # Retrieving data from db
+        $result = $collection->fetch($key);
+        
+        # Verifying results found
+        if (count($result) > 0) {
+            return $this->_app->json($result,Response::HTTP_OK);
+        } else {
+            return new Response(null,Response::HTTP_NO_CONTENT);
+        }
+    }
+    
+    public function changeQueue($key)
+    {
+        # Retrieving header for select correct method
+        # because the HTTP DELETE method doesn't allow
+        # a request body, the use the put method using
+        # a header for select the insertion or deletion
+        #
+        # XGH Process Certified
+        $request = $this->getRequest();
+        $delete = (int)$request->headers->get('Perform-Delete');
+        
+        # Verifying delete header
+        if ($delete == 0) {
+            return $this->fillQueue($key);
+        } else {
+            return $this->clearQueue($key);
+        }
+    }
+    
+    public function fillQueue($key)
+    {
+        $this->lock();
+        
+        # Getting Providers
+        $request = $this->getRequest();
+        $collection = $this->getCollection();
+        
+        # Getting stack of emails
+        $stack = $request->request->get('stack');
+        $queue = array();
+        
+        # Loop into stack for create queue
+        foreach ($stack as $email) {
+            $queue[] = array('campaign'=>$key,'email'=>$email);
+        }
+        
+        # Inserting queue in collection
+        $result = $collection->saveStack($queue);
+        
+        # Verifying result
+        if ($result) {
+            $response = array('success'=>1);
+            return $this->_app->json($response,Response::HTTP_CREATED);
+        } else {
+            $response = array('success'=>0,'error'=>'Unknow error');
+            return $this->_app->json($response,Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+    
+    public function clearQueue($key)
+    {
+        $this->lock();
+        
+        # Getting providers
+        $request = $this->getRequest();
+        $collection = $this->getCollection();
+        
+        # Getting stack from request
+        $stack = $request->request->get('stack');
+        $error = 0;
+        
+        # Loop into stack to remove all emails
+        foreach ($stack as $email) {
+            $result = $collection->remove($key,$email);
+            if (!$result) $error++;
+        }
+        
+        # Verifying for errors
+        if ($error == 0) {
+            $response = array('success'=>1);
+            return $this->_app->json($response,Response::HTTP_OK);
+        } else {
+            $response = array('success'=>0,'error'=>'Unknow error');
+            return $this->_app->json($response,Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+    
     public function changeStatusCampaign($key, $status = Campaign::STATUS_DEFAULT)
     {
         $this->lock();
@@ -217,6 +315,15 @@ class CampaignController implements ControllerProviderInterface
     	return $this->gateway;
     }
     
+    public function getCollection()
+    {
+        if (is_null($this->collection)) {
+            $this->collection = new QueueCollection($this->_app);
+        }
+        
+        return $this->collection;
+    }
+    
     public function connect(Application $app)
     {
         $this->_app = $app;
@@ -254,18 +361,18 @@ class CampaignController implements ControllerProviderInterface
         
         # Get current queue list from a campaign
         $container->get('/{key}/queue', function ($key) {
-        	return $this->_app->abort(Response::HTTP_NOT_IMPLEMENTED);
+        	return $this->getQueue($key);
         });
         
-        # Add destinations to an queue list from campaign
+        # Add or remove destinations of queue list from campaign
         $container->put('/{key}/queue', function ($key) {
-        	return $this->_app->abort(Response::HTTP_NOT_IMPLEMENTED);
+        	return $this->changeQueue($key);
         });
         
         # Remove destinations from an queue list
-        $container->delete('/{key}/queue', function ($key) {
-        	return $this->_app->abort(Response::HTTP_NOT_IMPLEMENTED);
-        });
+//         $container->delete('/{key}/queue', function ($key) {
+//         	return $this->clearQueue($key);
+//         });
         
         # Start process
         $container->post('/{key}/start', function ($key) {
@@ -283,7 +390,7 @@ class CampaignController implements ControllerProviderInterface
         });
         
         # Reset status
-        $container->post('/{idcampaign}/reset', function ($key) {
+        $container->post('/{key}/reset', function ($key) {
         	return $this->changeStatusCampaign($key);
         });
         
