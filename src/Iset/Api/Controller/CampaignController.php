@@ -176,6 +176,37 @@ class CampaignController implements ControllerProviderInterface
         }
     }
     
+    public function getStatus($key)
+    {
+        $this->lock();
+        
+        # Getting providers
+        $gateway = $this->getTableGateway();
+        
+        # Fetching campaing details
+        $campaign = $gateway->getCampaignByKey($key);
+        
+        # Verifying result
+        if ($campaign) {
+            $data = $campaign->asArray();
+            $response = array(
+            	'id'=>$data['id'],
+                'key'=>$data['key'],
+                'total'=>$data['total'],
+                'sent'=>$data['sent'],
+                'fail'=>$data['fail'],
+                'progress'=>$data['progress'],
+                'status'=>$data['status'],
+                'external'=>$data['external'],
+                'pid'=>$data['pid'],
+            );
+            return $this->_app->json($response,Response::HTTP_OK);
+        } else {
+            $response = array('success'=>0,'error'=>'Campaign not found');
+            return $this->_app->json($response,Response::HTTP_OK);
+        }
+    }
+    
     public function getQueue($key)
     {
         $this->lock();
@@ -359,6 +390,11 @@ class CampaignController implements ControllerProviderInterface
         	return $this->remove($key);
         });
         
+        # Get the status of campaign
+        $container->get('/{key}/status', function ($key) {
+        	return $this->getStatus($key);
+        });
+        
         # Get current queue list from a campaign
         $container->get('/{key}/queue', function ($key) {
         	return $this->getQueue($key);
@@ -368,11 +404,6 @@ class CampaignController implements ControllerProviderInterface
         $container->put('/{key}/queue', function ($key) {
         	return $this->changeQueue($key);
         });
-        
-        # Remove destinations from an queue list
-//         $container->delete('/{key}/queue', function ($key) {
-//         	return $this->clearQueue($key);
-//         });
         
         # Start process
         $container->post('/{key}/start', function ($key) {
