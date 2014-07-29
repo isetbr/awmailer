@@ -20,11 +20,27 @@ class CampaignTable extends TableGatewayAbstract
     	$stack = array();
     	
     	foreach ($result as $row) {
-    	    $campaign = new Campaign();
+    	    $campaign = new Campaign($this);
     	    $stack[] = $campaign->exchangeArray($row);
     	}
     	
     	return $stack;
+    }
+    
+    public function getCampaignsByStatus($status = Campaign::STATUS_DEFAULT)
+    {
+        # Retrieving data from database
+        $query = "SELECT * FROM `" . self::TABLE_NAME . "` WHERE `status`=?";
+        $result = $this->tableGateway->fetchAll($query,array($status));
+        
+        # Stack for store result
+        $stack = array();
+        foreach ($result as $row) {
+            $campaign = new Campaign($this);
+            $stack[] = $campaign->exchangeArray($row);
+        }
+        
+        return $stack;
     }
     
     public function getCampaign($idcampaign)
@@ -66,7 +82,7 @@ class CampaignTable extends TableGatewayAbstract
     	    if (is_null($campaign->id)) {
     	        # INSERT
     	        # Mounting query
-    	        $query = "INSERT INTO `" . self::TABLE_NAME . "` (`idservice`,`key`,`total_queue`,`sent`,`fail`,`progress`,`status`,`subject`,`body`,`headers`,`date`,`external`)  VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+    	        $query = "INSERT INTO `" . self::TABLE_NAME . "` (`idservice`,`key`,`total_queue`,`sent`,`fail`,`progress`,`status`,`subject`,`body`,`headers`,`date`,`external`,`pid`)  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	            $data = array(
 	                $campaign->service,
 	                $campaign->getCampaignKey(),
@@ -79,7 +95,8 @@ class CampaignTable extends TableGatewayAbstract
 	                $campaign->body,
 	                $campaign->getHeadersAsString(),
 	                date("Y-m-d"),
-	                $campaign->external
+	                $campaign->external,
+	                $campaign->pid,
 	            );
     	        
 	            # Inserting
@@ -107,7 +124,8 @@ class CampaignTable extends TableGatewayAbstract
     	            `body`=?,
     	            `headers`=?,
     	            `date`=?,
-    	            `external`=? 
+    	            `external`=?,
+    	            `pid`=? 
     	            WHERE `idcampaign`=?";
     	        $data = array(
     	            $campaign->service,
@@ -122,6 +140,7 @@ class CampaignTable extends TableGatewayAbstract
     	            $campaign->getHeadersAsString(),
     	            date("Y-m-d"),
     	            $campaign->external,
+    	            $campaign->pid,
     	            $campaign->id
     	        );
     	        

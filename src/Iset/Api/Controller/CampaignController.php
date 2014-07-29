@@ -250,7 +250,15 @@ class CampaignController implements ControllerProviderInterface
         
         # Getting Providers
         $request = $this->getRequest();
+        $gateway = $this->getTableGateway();
         $collection = $this->getCollection();
+        
+        # Getting campaign
+        $campaign = $gateway->getCampaignByKey($key);
+        if (!$campaign) {
+            $response = array('success'=>0,'error'=>'Campaign not found');
+            return $this->_app->json($response,Response::HTTP_OK);
+        }
         
         # Getting stack of emails
         $stack = $request->request->get('stack');
@@ -266,6 +274,10 @@ class CampaignController implements ControllerProviderInterface
         
         # Verifying result
         if ($result) {
+            # Updating total 
+            $campaign->total = $campaign->total + count($queue);
+            $campaign->save();
+            
             $response = array('success'=>1);
             return $this->_app->json($response,Response::HTTP_CREATED);
         } else {
@@ -280,7 +292,15 @@ class CampaignController implements ControllerProviderInterface
         
         # Getting providers
         $request = $this->getRequest();
+        $gateway = $this->getTableGateway();
         $collection = $this->getCollection();
+        
+        # Getting campaign
+        $campaign = $gateway->getCampaignByKey($key);
+        if (!$campaign) {
+            $response = array('success'=>0,'error'=>'Campaign not found');
+            return $this->_app->json($response,Response::HTTP_OK);
+        }
         
         # Getting stack from request
         $stack = $request->request->get('stack');
@@ -294,6 +314,10 @@ class CampaignController implements ControllerProviderInterface
         
         # Verifying for errors
         if ($error == 0) {
+            # Updating campaign total
+            $campaign->total = $campaign->total - count($stack);
+            $campaign->save();
+            
             $response = array('success'=>1);
             return $this->_app->json($response,Response::HTTP_OK);
         } else {
