@@ -370,9 +370,9 @@ class CampaignController implements ControllerProviderInterface
         
         # Verifying result
         if ($campaign) {
-            if (!is_null($campaign->pid) && posix_getpgid((int)$campaign->pid) != false) {
+            /*if (!is_null($campaign->pid) && posix_getpgid((int)$campaign->pid) != false) {
                 exec("kill " . $campaign->pid);
-            }
+            }*/
             
             # Changing status of campaign
             $this->changeStatusCampaign($key,Campaign::STATUS_PAUSE);
@@ -396,9 +396,9 @@ class CampaignController implements ControllerProviderInterface
     
         # Verifying result
         if ($campaign) {
-            if (!is_null($campaign->pid) && posix_getpgid((int)$campaign->pid) != false) {
+            /*if (!is_null($campaign->pid) && posix_getpgid((int)$campaign->pid) != false) {
                 exec("kill " . $campaign->pid);
-            }
+            }*/
         
             # Changing status of campaign
             $this->changeStatusCampaign($key,Campaign::STATUS_STOP);

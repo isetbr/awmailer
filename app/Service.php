@@ -142,6 +142,7 @@ $campaignCache = array(
     'fail'=>$campaign->fail,
     'progress'=>$campaign->progress,
     'pid'=>$campaign->pid,
+    'status'=>$campaign->status,
     'success'=>array(),
     'errors'=>array(),
 );

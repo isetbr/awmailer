@@ -75,8 +75,22 @@ while (true) {
         # Verifying if campaign is in cache
         $result = $cache->hasItem($campaignKey);
         if ($result) {
+            # Locking process
+            lock($campaignKey);
+            
             # Getting data from cache
             $data = json_decode($cache->getItem($campaignKey),true);
+            
+            # Verifying if status has changed
+            if ($campaign->status != Campaign::STATUS_START) {
+                if (!is_null($campaign->pid) && posix_getpgid((int)$campaign->pid) != false) {
+                    $command = "kill " . $campaign->pid;
+                    exec($command);
+                    $campaign->pid = null;
+                    $campaign->save();
+                    continue;
+                }
+            }
             
             # Control var
             $update = false;
@@ -94,9 +108,6 @@ while (true) {
             
             # Verify to update
             if ($update) {
-                # Locking process
-                lock($campaignKey);
-                
                 # Updating campaign statuses
                 $campaign->sent = $data['sent'];
                 $campaign->fail = $data['fail'];
@@ -115,7 +126,6 @@ while (true) {
                 $cache->setItem($campaignKey . "_previous", json_encode($data));
                 
                 # Unlocking file
-                unlock($campaignKey);
                 print_ln("Campaign " . $campaignKey);
                 var_dump($data);
                 print_ln();
@@ -138,6 +148,9 @@ while (true) {
                 print_ln();
                 separate();
             }
+            
+            # Unlockign process
+            unlock($campaignKey);
         } else {
             # Verifying if process is started and not running yet
             if ($campaign->status == Campaign::STATUS_START && is_null($campaign->pid)) {
