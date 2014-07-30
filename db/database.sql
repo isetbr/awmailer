@@ -25,6 +25,7 @@ DROP TABLE IF EXISTS `campaign`;
 CREATE TABLE `campaign` (
   `idcampaign` int(11) NOT NULL AUTO_INCREMENT,
   `idservice` int(11) DEFAULT NULL,
+  `key` varchar(128) NOT NULL,
   `total_queue` int(11) DEFAULT '0',
   `sent` int(11) DEFAULT '0',
   `fail` int(11) DEFAULT '0',
@@ -83,7 +84,7 @@ CREATE TABLE `service` (
   `idservice` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   `key` varchar(45) NOT NULL,
-  `token` char(128) NOT NULL,
+  `token` char(80) NOT NULL,
   PRIMARY KEY (`idservice`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -106,4 +107,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-07-22 15:24:24
+-- Dump completed on 2014-07-30 17:14:14
