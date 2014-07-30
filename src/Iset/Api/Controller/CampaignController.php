@@ -326,6 +326,90 @@ class CampaignController implements ControllerProviderInterface
         }
     }
     
+    public function startCampaign($key) 
+    {
+        $this->lock();
+        
+        # Getting providers
+        $gateway = $this->getTableGateway();
+        
+        # Getting campaign
+        $campaign = $gateway->getCampaignByKey($key);
+        
+        # Verifying result
+        if ($campaign) {
+            # Changing status of campaign
+            $this->changeStatusCampaign($key,Campaign::STATUS_START);
+            
+            # Starting mail service
+//             $command = "m4a1 " . $campaign->getCampaignKey();
+//             //$output = shell_exec("m4a1 " . $campaign->getCampaignKey());
+//             //$output = system($command);
+//             //exec($command,$output);
+//             //var_dump($output);
+//             //passthru($command);
+//             //passthru("m4a1");
+//             die();
+            
+            return new Response(null,Response::HTTP_NO_CONTENT);
+        } else {
+            $response = array('success'=>0,'error'=>'Campaign not found');
+            return $this->_app->json($response,Response::HTTP_OK);
+        }
+    }
+    
+    public function pauseCampaign($key)
+    {
+        $this->lock();
+        
+        # Getting providers
+        $gateway = $this->getTableGateway();
+        
+        # Getting campaign
+        $campaign = $gateway->getCampaignByKey($key);
+        
+        # Verifying result
+        if ($campaign) {
+            if (!is_null($campaign->pid) && posix_getpgid((int)$campaign->pid) != false) {
+                exec("kill " . $campaign->pid);
+            }
+            
+            # Changing status of campaign
+            $this->changeStatusCampaign($key,Campaign::STATUS_PAUSE);
+        
+            return new Response(null,Response::HTTP_NO_CONTENT);
+        } else {
+            $response = array('success'=>0,'error'=>'Campaign not found');
+            return $this->_app->json($response,Response::HTTP_OK);
+        }
+    }
+    
+    public function stopCampaign($key)
+    {
+        $this->lock();
+    
+        # Getting providers
+        $gateway = $this->getTableGateway();
+    
+        # Getting campaign
+        $campaign = $gateway->getCampaignByKey($key);
+    
+        # Verifying result
+        if ($campaign) {
+            if (!is_null($campaign->pid) && posix_getpgid((int)$campaign->pid) != false) {
+                exec("kill " . $campaign->pid);
+            }
+        
+            # Changing status of campaign
+            $this->changeStatusCampaign($key,Campaign::STATUS_STOP);
+        
+            return new Response(null,Response::HTTP_NO_CONTENT);
+        } else {
+            $response = array('success'=>0,'error'=>'Campaign not found');
+            return $this->_app->json($response,Response::HTTP_OK);
+        }
+    }
+    
     public function changeStatusCampaign($key, $status = Campaign::STATUS_DEFAULT)
     {
         $this->lock();
@@ -346,13 +430,16 @@ class CampaignController implements ControllerProviderInterface
             
             # Verifying result
             if ($result === true) {
-                return new Response(null,Response::HTTP_NO_CONTENT);
+                //return new Response(null,Response::HTTP_NO_CONTENT);
+                return true;
             } else {
-                return $this->_app->abort(Response::HTTP_INTERNAL_SERVER_ERROR);
+                //return $this->_app->abort(Response::HTTP_INTERNAL_SERVER_ERROR);
+                return false;
             }
         } else {
-            $response = array('success'=>0,'error'=>'Campaign not found');
-            return $this->_app->json($response,Response::HTTP_OK);
+            //$response = array('success'=>0,'error'=>'Campaign not found');
+            //return $this->_app->json($response,Response::HTTP_OK);
+            return false;
         }
     }
     
@@ -431,17 +518,17 @@ class CampaignController implements ControllerProviderInterface
         
         # Start process
         $container->post('/{key}/start', function ($key) {
-        	return $this->changeStatusCampaign($key, Campaign::STATUS_START);
+        	return $this->startCampaign($key);
         });
         
         # Pause process
         $container->post('/{key}/pause', function ($key) {
-        	return $this->changeStatusCampaign($key, Campaign::STATUS_PAUSE);
+        	return $this->pauseCampaign($key);
         });
         
         # Stop process
         $container->post('/{key}/stop', function ($key) {
-        	return $this->changeStatusCampaign($key, Campaign::STATUS_STOP);
+        	return $this->stopCampaign($key);
         });
         
         # Reset status

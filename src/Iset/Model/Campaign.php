@@ -13,6 +13,7 @@ class Campaign implements ModelInterface
     const STATUS_START   = 1;
     const STATUS_PAUSE   = 2;
     const STATUS_STOP    = 3;
+    const STATUS_DONE    = 4;
     
     public $id = null;
     

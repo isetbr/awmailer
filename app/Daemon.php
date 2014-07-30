@@ -55,8 +55,8 @@ $gateway = new CampaignTable($app);
 $collection = new QueueCollection($app);
 
 # Forking process 
-/*$pid = pcntl_fork();
-if ($pid) { exit(); }*/
+$pid = pcntl_fork();
+if ($pid) { exit(); }
 
 # Initializing control vars
 $max_repeats = 10;
@@ -64,7 +64,7 @@ $repeated = array();
 
 # Starting daemon
 while (true) {
-    # Getting campaigns
+    # Getting active and paused campaigns
     $campaignsActive = $gateway->getCampaignsByStatus(Campaign::STATUS_START);
     $campaignsPaused = $gateway->getCampaignsByStatus(Campaign::STATUS_PAUSE);
     $campaigns = array_merge($campaignsActive,$campaignsPaused);
@@ -127,6 +127,8 @@ while (true) {
                 $repeated[$campaignKey]++;
                 
                 if ($repeated[$campaignKey] > $max_repeats) {
+                    $campaign->pid = null;
+                    $campaign->save();
                     $cache->removeItem($campaignKey);
                     $cache->removeItem($campaignKey . "_previous");
                 }
@@ -135,6 +137,16 @@ while (true) {
                 print_ln("REPEATED");
                 print_ln();
                 separate();
+            }
+        } else {
+            # Verifying if process is started and not running yet
+            if ($campaign->status == Campaign::STATUS_START && is_null($campaign->pid)) {
+                $child = pcntl_fork();
+                if ($child) {
+                    continue;
+                }
+                $command = "m4a1 " . $campaignKey;
+                exec($command);
             }
         }
     }

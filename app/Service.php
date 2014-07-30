@@ -4,14 +4,17 @@
 require_once dirname(__FILE__) . '/../vendor/autoload.php';
 require_once dirname(__FILE__) . '/../app/App.php';
 
+# Loading resources
+use Iset\Model\Campaign;
+
 # Helpers
 # Print a line in terminal
 function print_ln ($text = null, $break = true) { 
-    echo $text . (($break) ? PHP_EOL : ''); 
+    #echo $text . (($break) ? PHP_EOL : ''); 
 }
 # Separator
 function separate() { 
-    echo "##########################################################" . PHP_EOL; 
+    #echo "##########################################################" . PHP_EOL; 
 }
 # Lock campaign
 function lock($key) {
@@ -41,7 +44,9 @@ separate();
 
 # Initializing Daemon
 print_ln(PHP_EOL . "Defining process title... ",false);
-define("PROCESS_TITLE",(@cli_set_process_title("m4a1")) ? 'm4a1' : 'php');
+define("PROCESS_TITLE",'m4a1');
+//setproctitle(PROCESS_TITLE);
+//setthreadtitle(PROCESS_TITLE);
 print_ln("OK!");
 
 print_ln("Initializing components...");
@@ -54,9 +59,9 @@ print_ln("OK!");
 # Initializing cache component
 print_ln("=> Zend Cache... ",false);
 $cache = Zend\Cache\StorageFactory::factory(array(
-	'adapter'=>'filesystem',
+    'adapter'=>'filesystem',
     'plugins'=>array(
-	   'exception_handler' => array('throw_exceptions'=>false),
+       'exception_handler' => array('throw_exceptions'=>false),
     ),
 ));
 $cache->setOptions(array('cache_dir'=>$app['cache_path']));
@@ -132,13 +137,13 @@ $campaign->save();
 
 # Initializing campaign cache
 $campaignCache = array(
-	'total'=>$campaign->total,
-	'sent'=>$campaign->sent,
-	'fail'=>$campaign->fail,
-	'progress'=>$campaign->progress,
-	'pid'=>$campaign->pid,
-	'success'=>array(),
-	'errors'=>array(),
+    'total'=>$campaign->total,
+    'sent'=>$campaign->sent,
+    'fail'=>$campaign->fail,
+    'progress'=>$campaign->progress,
+    'pid'=>$campaign->pid,
+    'success'=>array(),
+    'errors'=>array(),
 );
 
 # Writing campaign in cache
@@ -189,3 +194,7 @@ foreach ($queue as $email) {
     # Writing in cache
     $cache->setItem($campaignKey, json_encode($campaignCache));
 }
+
+$campaign->pid = null;
+$campaign->status = Campaign::STATUS_DONE;
+$campaign->save();
