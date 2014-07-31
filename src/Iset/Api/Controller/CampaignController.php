@@ -207,6 +207,47 @@ class CampaignController implements ControllerProviderInterface
         }
     }
     
+    public function getMultipleStatus()
+    {
+        $this->lock();
+        
+        # Getting providers
+        $request = $this->getRequest();
+        $gateway = $this->getTableGateway();
+    	
+        # Getting request params
+        $campaigns = $request->request->get('campaigns');
+        
+        # Initializing stack array for store results
+        $stack = array();
+        
+        # Loop into campaigns for get status
+        foreach ($campaigns as $key) {
+            # Getting data from database
+            $campaign = $gateway->getCampaignByKey($key);
+            
+            # Verifying if campaign was found
+            if ($campaign) {
+                $stack[$key] = array(
+                    'result'=>1,
+                	'id'=>$campaign->id,
+                    'key'=>$campaign->getCampaignKey(),
+                    'total'=>$campaign->total,
+                    'sent'=>$campaign->sent,
+                    'fail'=>$campaign->fail,
+                    'progress'=>$campaign->progress,
+                    'status'=>$campaign->status,
+                    'external'=>$campaign->external,
+                    'pid'=>$campaign->pid,
+                );
+            } else {
+                $stack[$key] = array('result'=>0,'error'=>'Campaign not found');
+            }
+        }
+        
+        return $this->_app->json($stack,Response::HTTP_OK);
+    }
+    
     public function getQueue($key)
     {
         $this->lock();
@@ -341,16 +382,6 @@ class CampaignController implements ControllerProviderInterface
             # Changing status of campaign
             $this->changeStatusCampaign($key,Campaign::STATUS_START);
             
-            # Starting mail service
-//             $command = "m4a1 " . $campaign->getCampaignKey();
-//             //$output = shell_exec("m4a1 " . $campaign->getCampaignKey());
-//             //$output = system($command);
-//             //exec($command,$output);
-//             //var_dump($output);
-//             //passthru($command);
-//             //passthru("m4a1");
-//             die();
-            
             return new Response(null,Response::HTTP_NO_CONTENT);
         } else {
             $response = array('success'=>0,'error'=>'Campaign not found');
@@ -370,10 +401,6 @@ class CampaignController implements ControllerProviderInterface
         
         # Verifying result
         if ($campaign) {
-            /*if (!is_null($campaign->pid) && posix_getpgid((int)$campaign->pid) != false) {
-                exec("kill " . $campaign->pid);
-            }*/
-            
             # Changing status of campaign
             $this->changeStatusCampaign($key,Campaign::STATUS_PAUSE);
         
@@ -534,6 +561,11 @@ class CampaignController implements ControllerProviderInterface
         # Reset status
         $container->post('/{key}/reset', function ($key) {
         	return $this->changeStatusCampaign($key);
+        });
+        
+        # Get status from multiple campaigns
+        $container->post('/status', function() {
+        	return $this->getMultipleStatus();
         });
         
         return $container;
