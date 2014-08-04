@@ -70,11 +70,21 @@ class CampaignController implements ControllerProviderInterface
     	}
     	
     	# Getting request params
-    	$campaign->service  = (int)$service->id;
-    	$campaign->subject  = $request->request->get('subject');
-    	$campaign->body     = $request->request->get('body');
-    	$campaign->headers  = $request->request->get('headers');
-    	$campaign->external = $request->request->get('external');
+    	$subject      = $request->request->get('subject');
+    	$body         = $request->request->get('body');
+    	$headers      = $request->request->get('headers');
+    	$user_vars    = $request->request->get('user_vars');
+    	$user_headers = $request->request->get('user_headers');
+    	$external     = $request->request->get('external');
+    	
+    	# Setting params on object
+    	$campaign->service      = (int)$service->id;
+    	$campaign->subject      = (!is_null($subject)) ? $subject : null;
+    	$campaign->body         = (!is_null($body)) ? $body : null;
+    	$campaign->headers      = (!is_null($headers)) ? $headers : null;
+    	$campaign->user_vars    = (!is_null($user_vars)) ? $user_vars : 0;
+    	$campaign->user_headers = (!is_null($user_headers)) ? $user_headers : 0;
+    	$campaign->external     = (!is_null($external)) ? $external : null;
     	
     	# Saving campaign
     	$result = $campaign->save();
@@ -106,15 +116,19 @@ class CampaignController implements ControllerProviderInterface
         # Verifying result
         if ($campaign) {
             # Getting request params
-            $subject  = $request->request->get('subject');
-            $body     = $request->request->get('body');
-            $headers  = $request->request->get('headers');
-            $external = $request->request->get('external');
+            $subject      = $request->request->get('subject');
+            $body         = $request->request->get('body');
+            $headers      = $request->request->get('headers');
+            $user_vars    = $request->request->get('user_vars');
+            $user_headers = $request->request->get('user_headers');
+            $external     = $request->request->get('external');
             
             # Setting updates in campaign
-            $campaign->subject = (!empty($subject)) ? $subject : $campaign->subject;
-            $campaign->body    = (!empty($body)) ? $body : $campaign->body;
-            $campaign->external = (!empty($external)) ? $external : $campaign->external;
+            $campaign->subject      = (!empty($subject)) ? $subject : $campaign->subject;
+            $campaign->body         = (!empty($body)) ? $body : $campaign->body;
+            $campaign->user_vars    = (!empty($user_vars)) ? $user_vars : $campaign->user_vars;
+            $campaign->user_headers = (!empty($user_headers)) ? $user_headers : $campaign->user_headers;
+            $campaign->external     = (!empty($external)) ? $external : $campaign->external;
             
             # Setting and cleaning headers
             if (is_array($headers)) {
@@ -305,9 +319,21 @@ class CampaignController implements ControllerProviderInterface
         $stack = $request->request->get('stack');
         $queue = array();
         
-        # Loop into stack for create queue
-        foreach ($stack as $email) {
-            $queue[] = array('campaign'=>$key,'email'=>$email);
+        # Verifying if campaign has user_vars or user_headers
+        if ($campaign->user_vars == 1 || $campaign->user_headers == 1) {
+            foreach ($stack as $row) {
+                $queue[] = array(
+                    'campaign'=>$key,
+                    'email'=>$row['email'],
+                    'vars'=>(!is_null($row['vars'])) ? $row['vars'] : array(),
+                    'headers'=>(!is_null($row['headers'])) ? $row['headers'] : array(),
+                );
+            }
+        } else {
+            # Loop into stack for create simple queue
+            foreach ($stack as $email) {
+                $queue[] = array('campaign'=>$key,'email'=>$email);
+            }
         }
         
         # Inserting queue in collection

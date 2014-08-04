@@ -37,6 +37,10 @@ class Campaign implements ModelInterface
     
     public $headers = array();
     
+    public $user_vars = 0;
+    
+    public $user_headers = 0;
+    
     public $date = null;
     
     public $external = null;
@@ -77,6 +81,8 @@ class Campaign implements ModelInterface
         $this->subject = (!empty($data['subject'])) ? $data['subject'] : null;
         $this->body = (!empty($data['body'])) ? $data['body'] : null;
         $this->headers = (!empty($data['headers']) && is_string($data['headers'])) ? json_decode($data['headers'],true) : array();
+        $this->user_vars = (!empty($data['user_vars'])) ? (int)$data['user_vars'] : 0;
+        $this->user_headers = (!empty($data['user_headers'])) ? (int)$data['user_headers'] : 0;
         $this->date = (!empty($data['date'])) ? $data['date'] : date("Y-m-d");
         $this->external = (!empty($data['external'])) ? $data['external'] : null;
         $this->pid = (!empty($data['pid'])) ? $data['pid'] : null;
@@ -98,6 +104,8 @@ class Campaign implements ModelInterface
     	    'subject'=>$this->subject,
     	    'body'=>$this->body,
     	    'headers'=>$this->headers,
+    	    'user_vars'=>$this->user_vars,
+    	    'user_headers'=>$this->user_headers,
     	    'date'=>$this->date,
     	    'external'=>$this->external,
     	    'pid'=>$this->pid,

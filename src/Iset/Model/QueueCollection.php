@@ -29,7 +29,13 @@ class QueueCollection extends CollectionAbstract
         # Treatmenting result
         $stack = array();
         foreach ($result as $id => $row) {
-            $stack[] = $row['email'];
+            # Verifying if is a custom queue
+            if (isset($row['vars']) || isset($row['headers'])) {
+                $stack[] = array('email'=>$row['email'],'vars'=>$row['vars'],'headers'=>$row['headers']);
+            } else {
+                # Or simple queue
+                $stack[] = $row['email'];
+            }
         }
         
         return $stack;

@@ -156,7 +156,8 @@ if (!$result) {
 # Preparing content
 $subject = $campaign->subject;
 $message = $campaign->body;
-$headers = implode("\r\n", $campaign->headers);
+$headers = $campaign->headers;
+#$headers = implode("\r\n", $campaign->headers);
 
 # Initializing control vars
 # Progress
@@ -164,9 +165,34 @@ $factor = ceil((($campaign->total - ($campaign->sent + $campaign->fail)) / 100))
 $counter = 0;
 
 # Starting queue
-foreach ($queue as $email) {
+foreach ($queue as $row) {
+    # Verifying if is a custom queue
+    if ($campaign->user_vars == 1  || $campaign->user_headers == 1) {
+        # Getting destination email
+        $destination_email = $row['email'];
+        $parsed_body = $message;
+        
+        # Verifying if has vars to parse body
+        if (is_array($row['vars'])) {
+            foreach ($row['vars'] as $key => $value) {
+                $parsed_body = str_replace('%%' . $key . '%%', $value, $parsed_body);
+            }
+        }
+        
+        # Verifying if has custom headers
+        if (is_array($row['headers'])) {
+            $parsed_headers = array_merge($headers,$row['headers']);
+            $parsed_headers = implode("\r\n",$parsed_headers);
+        }
+    } else {
+        # Simple queue
+        $destination_email = $row;
+        $parsed_body = $message;
+        $parsed_headers = implode("\r\n",$parsed_headers);
+    }
+    
     # Sending mail
-    $result = mail($email,$subject,$message,$headers);
+    $result = mail($destination_email,$subject,$parsed_body,$parsed_headers);
     //$result = true;
     $counter++;
     

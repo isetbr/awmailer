@@ -82,7 +82,7 @@ class CampaignTable extends TableGatewayAbstract
     	    if (is_null($campaign->id)) {
     	        # INSERT
     	        # Mounting query
-    	        $query = "INSERT INTO `" . self::TABLE_NAME . "` (`idservice`,`key`,`total_queue`,`sent`,`fail`,`progress`,`status`,`subject`,`body`,`headers`,`date`,`external`,`pid`)  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    	        $query = "INSERT INTO `" . self::TABLE_NAME . "` (`idservice`,`key`,`total_queue`,`sent`,`fail`,`progress`,`status`,`subject`,`body`,`headers`,`user_vars`,`user_headers`,`date`,`external`,`pid`)  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	            $data = array(
 	                $campaign->service,
 	                $campaign->getCampaignKey(),
@@ -94,6 +94,8 @@ class CampaignTable extends TableGatewayAbstract
 	                $campaign->subject,
 	                $campaign->body,
 	                $campaign->getHeadersAsString(),
+	                $campaign->user_vars,
+	                $campaign->user_headers,
 	                date("Y-m-d"),
 	                $campaign->external,
 	                $campaign->pid,
@@ -123,6 +125,8 @@ class CampaignTable extends TableGatewayAbstract
     	            `subject`=?,
     	            `body`=?,
     	            `headers`=?,
+    	            `user_vars`=?,
+    	            `user_headers`=?,
     	            `date`=?,
     	            `external`=?,
     	            `pid`=? 
@@ -138,6 +142,8 @@ class CampaignTable extends TableGatewayAbstract
     	            $campaign->subject,
     	            $campaign->body,
     	            $campaign->getHeadersAsString(),
+    	            $campaign->user_vars,
+    	            $campaign->user_headers,
     	            date("Y-m-d"),
     	            $campaign->external,
     	            $campaign->pid,
