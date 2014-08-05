@@ -306,7 +306,7 @@ class CampaignController implements ControllerProviderInterface
             # Verifying if campaign was found
             if ($campaign) {
                 $stack[$key] = array(
-                    'result'=>1,
+                    'success'=>1,
                 	'id'=>$campaign->id,
                     'key'=>$campaign->getCampaignKey(),
                     'total'=>$campaign->total,
@@ -318,7 +318,7 @@ class CampaignController implements ControllerProviderInterface
                     'pid'=>$campaign->pid,
                 );
             } else {
-                $stack[$key] = array('result'=>0,'error'=>'Campaign not found');
+                $stack[$key] = array('success'=>0,'error'=>'Campaign not found');
             }
         }
         

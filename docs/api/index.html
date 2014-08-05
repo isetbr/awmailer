@@ -1,0 +1,2439 @@
+<!doctype html>
+<!--[if lt IE 7 ]> <html class="no-js ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="no-js ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="no-js ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>M4A1 Mailer API—by apiary.io</title>
+    <meta name="description" content="a place where APIs are kept">
+  <meta name="author" content="apiary.io">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+  <link rel="shortcut icon" href="https://apiary.a.ssl.fastly.net/assets/icons/favicon-aa8fc5808796304b.ico">
+  <link rel="apple-touch-icon-precomposed" href="https://apiary.a.ssl.fastly.net/assets/icons/apple-touch-icon-precomposed-16cb9301e5cd0912.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://apiary.a.ssl.fastly.net/assets/icons/apple-touch-icon-72x72-precomposed-88b45e069ad376bd.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://apiary.a.ssl.fastly.net/assets/icons/apple-touch-icon-114x114-precomposed-166416e5d92f4c45.png">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://apiary.a.ssl.fastly.net/assets/icons/apple-touch-icon-144x144-precomposed-54504235b83a48b2.png">
+
+  <link rel="stylesheet" href="https://apiary.a.ssl.fastly.net/assets/css/normalize-c1a6015040ef1201.css">
+  <link rel="stylesheet" href="https://apiary.a.ssl.fastly.net/assets/css/font-awesome-b2431b0e6805305e.css" media="screen, presentation, print" />
+  <link rel="stylesheet" href="https://apiary.a.ssl.fastly.net/assets/css/docs-3a1d90c987ec07b8.css" media="screen, presentation" />
+  <link rel="stylesheet" href="https://apiary.a.ssl.fastly.net/assets/css/head-foot-977ede17d28757e5.css" media="screen, presentation" />
+  <link rel="stylesheet" href="https://apiary.a.ssl.fastly.net/assets/css/multi-ab9a0afd6c12f594.css" media="screen, presentation" />
+
+  <link rel="stylesheet" href="https://apiary.a.ssl.fastly.net/assets/css/sign-in-sign-up-fa7f0d87430e8def.css" media="screen, presentation" />
+
+  <link rel="stylesheet" href="https://apiary.a.ssl.fastly.net/assets/css/print-6eee3ab0ca0df503.css" media="print" />
+
+  <link rel="stylesheet" href="https://apiary.a.ssl.fastly.net/assets/js/libs/prism/prism-1eef7208dd36cbe3.css" media="screen, presentation" />
+  <script src="https://apiary.a.ssl.fastly.net/assets/js/libs/prism/prism-f6f3c65d1dee7d0a.js" data-manual></script>
+
+  <script src="https://apiary.a.ssl.fastly.net/assets/js/libs/jquery-1.8.3-a1bb2f1ddad0f568.js"></script>
+
+</head>
+
+<body class="themeDark">
+
+<div id="container">
+
+
+  
+
+<header class="fullSize"><div class="apiaryMenu"><div class="wholeMenu menuRow">
+
+  <div role="banner" class="apiaryLogo menuCell"><a class="absFg" title="Apiary Ltd." href="http://apiary.io/"><span class="visuallyhidden">Apiary</span></a></div>
+
+    <hgroup class="menuCell apiNameCell">
+    <div class="apiSwitchName">
+      <div class="apiSwitcher">
+                          <div class="apiLines vIcoHover">
+        <h1 class="apiName oneLiner" title="M4A1 Mailer API"><span class="ellipsis">M4A1 Mailer API</span></h1>
+            </div>
+        </div>
+    </div>
+  </hgroup>
+  
+<!-- shared for unknown-guest / logged-in user -->
+
+  <nav class="apiMenu menuCell">    <ul class="apiMenuList apiMenuTexts">
+      <li class="apiMenuItem">
+        <a id="docLink" href="index.html" class="selected">Documentation</a>
+      </li>
+      <li class="apiMenuItem">
+                  <a id="trafficLink" href="traffic/index.html">Traffic Inspector</a>
+              </li>
+                </ul>
+  </nav>
+
+  
+
+  <div class="menuCell flexibleSpace"></div>
+
+      <div class="secondaryNav menuCell dualLine">
+      <div class="switcherToggle">
+        <h2 class="poweredByApiary">Apiary Powered Documentation</h2>
+        <p class="headSignInLinks">
+          <a href="https://login.apiary.io/login?redirect=http://docs.m4a1.apiary.io/">Sign in</a> with Apiary account
+        </p>
+      </div>
+    </div>
+  
+</div></header>
+
+
+
+
+<div id="documentationContainer">
+
+    <div id="rightColumn">
+            <div id="endpoints">
+        <ul>
+                      <p class="title">API</p>
+            <input type="text" name="real-api" value="http://m4a1.devsdmf.net/api/" readonly="readonly" id="real-api" tabindex="1">
+                                              <p class="title">Mock Server</p>
+              <input type="text" name="mock-api" value="http://m4a1.apiary-mock.com" readonly="readonly" id="mock-api" tabindex="2">
+              <p>Use this URL to access a mockup of the API server. Your traffic will be recorded and compared to the documentation. You'll find your traffic analysis in the <a href="traffic/index.html">inspector</a> or directly here in the documentation, right next to each resource.</p>
+                              </ul>
+      </div>
+    </div>
+
+<script>window.docResources = {};</script>
+
+<div id="leftColumn">
+  <h1 id="apiHeadline">M4A1 Mailer API</h1>
+
+  <div class="details"><p>M4A1 is a <em>API service</em> to send massive mail campaigns from <em>iSET</em> services.</p>
+
+<p>To use this API you must perform HTTP request on following methods described below, all HTTP call&#39;s must be specified a <em>Content-Type</em> header with value <em>application/json</em>, not specifying this method returns a Bad Request response and nothing is processed.</p>
+
+<p>All values such as service keys, tokens, campaign keys, ip addresses used in each <em>requests, responses and headers</em> in following methods are examples, when you use this API new values will be generated and returned in calls, not forget to replace this values on next requests.</p>
+
+<p>For all API calls, your ip address must be previous allowed in API, for the campaign methods, you will need an service key and token.</p></div>
+        
+    <div class="chapterWrapper">
+      
+                                            <div class="sameResourceGroup">
+        
+                  <h2 class="nameResource">Services</h2>                  
+                  <h3 class="nameMethod">Retrieve all Services</h3>
+        
+        <section class="resource noActivity">
+          <hgroup>
+            <h1 class="methodGet"><span>GET</span></h1>
+            <h2>/api/service/</h2>
+            <a class="resourcePermalink" href="#get-%2Fapi%2Fservice%2F" name="get-%2Fapi%2Fservice%2F"><span> </span></a>
+            <div class="toggle"></div>
+                          <div class="commentsCount">
+                <a href="#" class="commentsCountLink">Add Comment</a>
+              </div>
+                      </hgroup>
+
+                              <div class="content">
+            <nav class="switch">
+              <ul>
+                <a href="#example" class="active"><li><span>Example</span></li></a>
+                                  <a href="#debugger"><li><span>Debugger</span></li></a>
+                                                  <a href="#social"><li><span>Comments</span></li></a>
+                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
+                              </ul>
+            </nav>
+            <section class="example">
+                            <nav class="language">
+                <form name="languageSwitcher">
+                  <p>Show code sample</p>
+                  <select>
+                                          <option value="raw">none (raw data)</option>
+                                          <option value="curl">curl</option>
+                                          <option value="csharp">C#</option>
+                                          <option value="javascript">javascript</option>
+                                          <option value="nodejs">node.js</option>
+                                          <option value="python">python</option>
+                                          <option value="php">php</option>
+                                          <option value="ruby">ruby</option>
+                                          <option value="vb">Visual Basic</option>
+                                          <option value="objc">Objective-C</option>
+                                          <option value="swift">Swift</option>
+                                          <option value="groovy">Groovy</option>
+                                      </select>
+                </form>
+              </nav>
+                            <section class="code" id="generatedResourceCodeS1E1">                                                                            
+<span id="requestExampleIdS1E1req0" class="hidden"></span>
+<script>
+window.docResources["generatedResourceCodeS1E1"] = (window.docResources["generatedResourceCodeS1E1"] || []).concat({
+  "exampleId": "S1E1req0",
+  "url": "/api/service/",
+  "method": "GET",
+  "contentType": "application/json",
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": ""
+});
+</script>
+                                                                                                <p class="ioDesc">Response</p>
+                    <section class="outgoingCall rawResponse">
+                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
+Content-Type: application/json</code></pre>
+                      <pre class="outgoing"><code class="language-javascript">[{
+  &#34;name&#34;: &#34;iMarketing&#34;, &#34;key&#34;: &#34;imkt&#34;
+},
+{
+  &#34;name&#34;: &#34;iShopping&#34;, &#34;key&#34;: &#34;ishp&#34;
+},
+{
+  &#34;name&#34;: &#34;iChat&#34;, &#34;key&#34;:&#34;icht&#34;
+}]</code></pre>
+                    </section>
+                                                                                    </section>
+            </section>
+                          <section class="debugger" data-resource-signature="GET /api/service/"></section>
+                            <section class="social">
+                <nav class="switch"></nav>
+
+                <section class="newPost">
+                  <form action="/discussion/53e141ece339e902000007b8" method="post">
+                     <textarea placeholder="Start a new thread…" name="comment"></textarea>
+                     <div class="postControl">
+                       <div class="postTools">
+                         <input class="button blue big" type="submit" value="Submit">
+                         <a class="cancel" href="#"><i class="icon-remove"></i> Cancel</a>
+                       </div>
+                     </div>
+                     <input type="hidden" name="url" value="/api/service/">
+                     <input type="hidden" name="method" value="GET" >
+                  </form>
+                </section>
+
+                                <section class="all" name="thread">
+                                  </section>
+                              </section>
+              
+              <section class="tryit">
+                <form name="jsRunExample">
+                  <span class="ajaxLoader block jsEmptyTryit"></span>
+                </form>
+              </section>
+                      </div>
+
+          
+        </section>                      
+        
+                  <h3 class="nameMethod">Create a Service</h3>
+        
+        <section class="resource noActivity">
+          <hgroup>
+            <h1 class="methodPost"><span>POST</span></h1>
+            <h2>/api/service/</h2>
+            <a class="resourcePermalink" href="#post-%2Fapi%2Fservice%2F" name="post-%2Fapi%2Fservice%2F"><span> </span></a>
+            <div class="toggle"></div>
+                          <div class="commentsCount">
+                <a href="#" class="commentsCountLink">Add Comment</a>
+              </div>
+                      </hgroup>
+
+                              <div class="content">
+            <nav class="switch">
+              <ul>
+                <a href="#example" class="active"><li><span>Example</span></li></a>
+                                  <a href="#debugger"><li><span>Debugger</span></li></a>
+                                                  <a href="#social"><li><span>Comments</span></li></a>
+                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
+                              </ul>
+            </nav>
+            <section class="example">
+                            <nav class="language">
+                <form name="languageSwitcher">
+                  <p>Show code sample</p>
+                  <select>
+                                          <option value="raw">none (raw data)</option>
+                                          <option value="curl">curl</option>
+                                          <option value="csharp">C#</option>
+                                          <option value="javascript">javascript</option>
+                                          <option value="nodejs">node.js</option>
+                                          <option value="python">python</option>
+                                          <option value="php">php</option>
+                                          <option value="ruby">ruby</option>
+                                          <option value="vb">Visual Basic</option>
+                                          <option value="objc">Objective-C</option>
+                                          <option value="swift">Swift</option>
+                                          <option value="groovy">Groovy</option>
+                                      </select>
+                </form>
+              </nav>
+                            <section class="code" id="generatedResourceCodeS1E2">                                                                            
+<span id="requestExampleIdS1E2req0" class="hidden"></span>
+<script>
+window.docResources["generatedResourceCodeS1E2"] = (window.docResources["generatedResourceCodeS1E2"] || []).concat({
+  "exampleId": "S1E2req0",
+  "url": "/api/service/",
+  "method": "POST",
+  "contentType": "application/json",
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": "{ \"name\": \"iMarketing\", \"key\": \"imkt\" }"
+});
+</script>
+                                                                                                <p class="ioDesc">Response</p>
+                    <section class="outgoingCall rawResponse">
+                      <pre class="outgoing outgoingHeaders"><code>201 (Created)
+Content-Type: application/json</code></pre>
+                      <pre class="outgoing"><code class="language-javascript">{ 
+  &#34;success&#34;: 1, 
+  &#34;key&#34;: &#34;imkt&#34;, 
+  &#34;token&#34;: &#34;07fe5ae62bd4f329964f74ffa5a09f22cc11a4cab7931d4fb1bc911915b6293929069abeb177f21b&#34; 
+}</code></pre>
+                    </section>
+                                                                                    </section>
+            </section>
+                          <section class="debugger" data-resource-signature="POST /api/service/"></section>
+                            <section class="social">
+                <nav class="switch"></nav>
+
+                <section class="newPost">
+                  <form action="/discussion/53e141ece339e902000007b8" method="post">
+                     <textarea placeholder="Start a new thread…" name="comment"></textarea>
+                     <div class="postControl">
+                       <div class="postTools">
+                         <input class="button blue big" type="submit" value="Submit">
+                         <a class="cancel" href="#"><i class="icon-remove"></i> Cancel</a>
+                       </div>
+                     </div>
+                     <input type="hidden" name="url" value="/api/service/">
+                     <input type="hidden" name="method" value="POST" >
+                  </form>
+                </section>
+
+                                <section class="all" name="thread">
+                                  </section>
+                              </section>
+              
+              <section class="tryit">
+                <form name="jsRunExample">
+                  <span class="ajaxLoader block jsEmptyTryit"></span>
+                </form>
+              </section>
+                      </div>
+
+          
+        </section>              </div>                  <div class="sameResourceGroup">
+        
+                  <h2 class="nameResource">Service</h2>                  
+                  <h3 class="nameMethod">Get a Service</h3>
+        
+        <section class="resource noActivity">
+          <hgroup>
+            <h1 class="methodGet"><span>GET</span></h1>
+            <h2>/api/service/{key}</h2>
+            <a class="resourcePermalink" href="#get-%2Fapi%2Fservice%2F%7Bkey%7D" name="get-%2Fapi%2Fservice%2F%7Bkey%7D"><span> </span></a>
+            <div class="toggle"></div>
+                          <div class="commentsCount">
+                <a href="#" class="commentsCountLink">Add Comment</a>
+              </div>
+                      </hgroup>
+
+                              <div class="content">
+            <nav class="switch">
+              <ul>
+                <a href="#example" class="active"><li><span>Example</span></li></a>
+                                  <a href="#debugger"><li><span>Debugger</span></li></a>
+                                                  <a href="#social"><li><span>Comments</span></li></a>
+                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
+                              </ul>
+            </nav>
+            <section class="example">
+                            <nav class="language">
+                <form name="languageSwitcher">
+                  <p>Show code sample</p>
+                  <select>
+                                          <option value="raw">none (raw data)</option>
+                                          <option value="curl">curl</option>
+                                          <option value="csharp">C#</option>
+                                          <option value="javascript">javascript</option>
+                                          <option value="nodejs">node.js</option>
+                                          <option value="python">python</option>
+                                          <option value="php">php</option>
+                                          <option value="ruby">ruby</option>
+                                          <option value="vb">Visual Basic</option>
+                                          <option value="objc">Objective-C</option>
+                                          <option value="swift">Swift</option>
+                                          <option value="groovy">Groovy</option>
+                                      </select>
+                </form>
+              </nav>
+                            <section class="code" id="generatedResourceCodeS1E3">                                                                            
+<span id="requestExampleIdS1E3req0" class="hidden"></span>
+<script>
+window.docResources["generatedResourceCodeS1E3"] = (window.docResources["generatedResourceCodeS1E3"] || []).concat({
+  "exampleId": "S1E3req0",
+  "url": "/api/service/{key}",
+  "method": "GET",
+  "contentType": "application/json",
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": ""
+});
+</script>
+                                                                                                <p class="ioDesc">Response</p>
+                    <section class="outgoingCall rawResponse">
+                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
+Content-Type: application/json</code></pre>
+                      <pre class="outgoing"><code class="language-javascript">{
+  &#34;name&#34;: &#34;iMarketing&#34;,
+  &#34;key&#34;: &#34;imkt&#34;
+}</code></pre>
+                    </section>
+                                                                                    </section>
+            </section>
+                          <section class="debugger" data-resource-signature="GET /api/service/{key}"></section>
+                            <section class="social">
+                <nav class="switch"></nav>
+
+                <section class="newPost">
+                  <form action="/discussion/53e141ece339e902000007b8" method="post">
+                     <textarea placeholder="Start a new thread…" name="comment"></textarea>
+                     <div class="postControl">
+                       <div class="postTools">
+                         <input class="button blue big" type="submit" value="Submit">
+                         <a class="cancel" href="#"><i class="icon-remove"></i> Cancel</a>
+                       </div>
+                     </div>
+                     <input type="hidden" name="url" value="/api/service/{key}">
+                     <input type="hidden" name="method" value="GET" >
+                  </form>
+                </section>
+
+                                <section class="all" name="thread">
+                                  </section>
+                              </section>
+              
+              <section class="tryit">
+                <form name="jsRunExample">
+                  <span class="ajaxLoader block jsEmptyTryit"></span>
+                </form>
+              </section>
+                      </div>
+
+          
+        </section>                      
+        
+                  <h3 class="nameMethod">Update a Service</h3>
+        
+        <section class="resource noActivity">
+          <hgroup>
+            <h1 class="methodPost"><span>PUT</span></h1>
+            <h2>/api/service/{key}</h2>
+            <a class="resourcePermalink" href="#put-%2Fapi%2Fservice%2F%7Bkey%7D" name="put-%2Fapi%2Fservice%2F%7Bkey%7D"><span> </span></a>
+            <div class="toggle"></div>
+                          <div class="commentsCount">
+                <a href="#" class="commentsCountLink">Add Comment</a>
+              </div>
+                      </hgroup>
+
+                              <div class="content">
+            <nav class="switch">
+              <ul>
+                <a href="#example" class="active"><li><span>Example</span></li></a>
+                                  <a href="#debugger"><li><span>Debugger</span></li></a>
+                                                  <a href="#social"><li><span>Comments</span></li></a>
+                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
+                              </ul>
+            </nav>
+            <section class="example">
+                            <nav class="language">
+                <form name="languageSwitcher">
+                  <p>Show code sample</p>
+                  <select>
+                                          <option value="raw">none (raw data)</option>
+                                          <option value="curl">curl</option>
+                                          <option value="csharp">C#</option>
+                                          <option value="javascript">javascript</option>
+                                          <option value="nodejs">node.js</option>
+                                          <option value="python">python</option>
+                                          <option value="php">php</option>
+                                          <option value="ruby">ruby</option>
+                                          <option value="vb">Visual Basic</option>
+                                          <option value="objc">Objective-C</option>
+                                          <option value="swift">Swift</option>
+                                          <option value="groovy">Groovy</option>
+                                      </select>
+                </form>
+              </nav>
+                            <section class="code" id="generatedResourceCodeS1E4">                                                                            
+<span id="requestExampleIdS1E4req0" class="hidden"></span>
+<script>
+window.docResources["generatedResourceCodeS1E4"] = (window.docResources["generatedResourceCodeS1E4"] || []).concat({
+  "exampleId": "S1E4req0",
+  "url": "/api/service/{key}",
+  "method": "PUT",
+  "contentType": "application/json",
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": ""
+});
+</script>
+                                                                                                <p class="ioDesc">Response</p>
+                    <section class="outgoingCall rawResponse">
+                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
+Content-Type: application/json</code></pre>
+                      <pre class="outgoing"><code class="language-javascript">{
+  &#34;success&#34;: 1,
+  &#34;name&#34;: &#34;iMarketing&#34;,
+  &#34;key&#34;: &#34;imkt&#34;
+}</code></pre>
+                    </section>
+                                                                                    </section>
+            </section>
+                          <section class="debugger" data-resource-signature="PUT /api/service/{key}"></section>
+                            <section class="social">
+                <nav class="switch"></nav>
+
+                <section class="newPost">
+                  <form action="/discussion/53e141ece339e902000007b8" method="post">
+                     <textarea placeholder="Start a new thread…" name="comment"></textarea>
+                     <div class="postControl">
+                       <div class="postTools">
+                         <input class="button blue big" type="submit" value="Submit">
+                         <a class="cancel" href="#"><i class="icon-remove"></i> Cancel</a>
+                       </div>
+                     </div>
+                     <input type="hidden" name="url" value="/api/service/{key}">
+                     <input type="hidden" name="method" value="PUT" >
+                  </form>
+                </section>
+
+                                <section class="all" name="thread">
+                                  </section>
+                              </section>
+              
+              <section class="tryit">
+                <form name="jsRunExample">
+                  <span class="ajaxLoader block jsEmptyTryit"></span>
+                </form>
+              </section>
+                      </div>
+
+          
+        </section>                      
+        
+                  <h3 class="nameMethod">Remove a Service</h3>
+        
+        <section class="resource noActivity">
+          <hgroup>
+            <h1 class="methodPost"><span>DELETE</span></h1>
+            <h2>/api/service/{key}</h2>
+            <a class="resourcePermalink" href="#delete-%2Fapi%2Fservice%2F%7Bkey%7D" name="delete-%2Fapi%2Fservice%2F%7Bkey%7D"><span> </span></a>
+            <div class="toggle"></div>
+                          <div class="commentsCount">
+                <a href="#" class="commentsCountLink">Add Comment</a>
+              </div>
+                      </hgroup>
+
+                              <div class="content">
+            <nav class="switch">
+              <ul>
+                <a href="#example" class="active"><li><span>Example</span></li></a>
+                                  <a href="#debugger"><li><span>Debugger</span></li></a>
+                                                  <a href="#social"><li><span>Comments</span></li></a>
+                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
+                              </ul>
+            </nav>
+            <section class="example">
+                            <nav class="language">
+                <form name="languageSwitcher">
+                  <p>Show code sample</p>
+                  <select>
+                                          <option value="raw">none (raw data)</option>
+                                          <option value="curl">curl</option>
+                                          <option value="csharp">C#</option>
+                                          <option value="javascript">javascript</option>
+                                          <option value="nodejs">node.js</option>
+                                          <option value="python">python</option>
+                                          <option value="php">php</option>
+                                          <option value="ruby">ruby</option>
+                                          <option value="vb">Visual Basic</option>
+                                          <option value="objc">Objective-C</option>
+                                          <option value="swift">Swift</option>
+                                          <option value="groovy">Groovy</option>
+                                      </select>
+                </form>
+              </nav>
+                            <section class="code" id="generatedResourceCodeS1E5">                                                                            
+<span id="requestExampleIdS1E5req0" class="hidden"></span>
+<script>
+window.docResources["generatedResourceCodeS1E5"] = (window.docResources["generatedResourceCodeS1E5"] || []).concat({
+  "exampleId": "S1E5req0",
+  "url": "/api/service/{key}",
+  "method": "DELETE",
+  "contentType": "application/json",
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": ""
+});
+</script>
+                                                                                                <p class="ioDesc">Response</p>
+                    <section class="outgoingCall rawResponse">
+                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
+Content-Type: application/json</code></pre>
+                      <pre class="outgoing"><code class="language-javascript">{
+  &#34;success&#34;: 1
+}</code></pre>
+                    </section>
+                                                                                    </section>
+            </section>
+                          <section class="debugger" data-resource-signature="DELETE /api/service/{key}"></section>
+                            <section class="social">
+                <nav class="switch"></nav>
+
+                <section class="newPost">
+                  <form action="/discussion/53e141ece339e902000007b8" method="post">
+                     <textarea placeholder="Start a new thread…" name="comment"></textarea>
+                     <div class="postControl">
+                       <div class="postTools">
+                         <input class="button blue big" type="submit" value="Submit">
+                         <a class="cancel" href="#"><i class="icon-remove"></i> Cancel</a>
+                       </div>
+                     </div>
+                     <input type="hidden" name="url" value="/api/service/{key}">
+                     <input type="hidden" name="method" value="DELETE" >
+                  </form>
+                </section>
+
+                                <section class="all" name="thread">
+                                  </section>
+                              </section>
+              
+              <section class="tryit">
+                <form name="jsRunExample">
+                  <span class="ajaxLoader block jsEmptyTryit"></span>
+                </form>
+              </section>
+                      </div>
+
+          
+        </section>              </div>                  <div class="sameResourceGroup">
+        
+                  <h2 class="nameResource">Ip Addresses</h2>                  
+                  <h3 class="nameMethod">Retrieve all ip addresses</h3>
+        
+        <section class="resource noActivity">
+          <hgroup>
+            <h1 class="methodGet"><span>GET</span></h1>
+            <h2>/api/ipaddress/</h2>
+            <a class="resourcePermalink" href="#get-%2Fapi%2Fipaddress%2F" name="get-%2Fapi%2Fipaddress%2F"><span> </span></a>
+            <div class="toggle"></div>
+                          <div class="commentsCount">
+                <a href="#" class="commentsCountLink">Add Comment</a>
+              </div>
+                      </hgroup>
+
+                              <div class="content">
+            <nav class="switch">
+              <ul>
+                <a href="#example" class="active"><li><span>Example</span></li></a>
+                                  <a href="#debugger"><li><span>Debugger</span></li></a>
+                                                  <a href="#social"><li><span>Comments</span></li></a>
+                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
+                              </ul>
+            </nav>
+            <section class="example">
+                            <nav class="language">
+                <form name="languageSwitcher">
+                  <p>Show code sample</p>
+                  <select>
+                                          <option value="raw">none (raw data)</option>
+                                          <option value="curl">curl</option>
+                                          <option value="csharp">C#</option>
+                                          <option value="javascript">javascript</option>
+                                          <option value="nodejs">node.js</option>
+                                          <option value="python">python</option>
+                                          <option value="php">php</option>
+                                          <option value="ruby">ruby</option>
+                                          <option value="vb">Visual Basic</option>
+                                          <option value="objc">Objective-C</option>
+                                          <option value="swift">Swift</option>
+                                          <option value="groovy">Groovy</option>
+                                      </select>
+                </form>
+              </nav>
+                            <section class="code" id="generatedResourceCodeS1E6">                                                                            
+<span id="requestExampleIdS1E6req0" class="hidden"></span>
+<script>
+window.docResources["generatedResourceCodeS1E6"] = (window.docResources["generatedResourceCodeS1E6"] || []).concat({
+  "exampleId": "S1E6req0",
+  "url": "/api/ipaddress/",
+  "method": "GET",
+  "contentType": "application/json",
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": ""
+});
+</script>
+                                                                                                <p class="ioDesc">Response</p>
+                    <section class="outgoingCall rawResponse">
+                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
+Content-Type: application/json</code></pre>
+                      <pre class="outgoing"><code class="language-javascript">[
+  &#34;192.168.0.1&#34;,
+  &#34;192.168.0.2&#34;,
+  &#34;192.168.0.3&#34;
+]</code></pre>
+                    </section>
+                                                                                    </section>
+            </section>
+                          <section class="debugger" data-resource-signature="GET /api/ipaddress/"></section>
+                            <section class="social">
+                <nav class="switch"></nav>
+
+                <section class="newPost">
+                  <form action="/discussion/53e141ece339e902000007b8" method="post">
+                     <textarea placeholder="Start a new thread…" name="comment"></textarea>
+                     <div class="postControl">
+                       <div class="postTools">
+                         <input class="button blue big" type="submit" value="Submit">
+                         <a class="cancel" href="#"><i class="icon-remove"></i> Cancel</a>
+                       </div>
+                     </div>
+                     <input type="hidden" name="url" value="/api/ipaddress/">
+                     <input type="hidden" name="method" value="GET" >
+                  </form>
+                </section>
+
+                                <section class="all" name="thread">
+                                  </section>
+                              </section>
+              
+              <section class="tryit">
+                <form name="jsRunExample">
+                  <span class="ajaxLoader block jsEmptyTryit"></span>
+                </form>
+              </section>
+                      </div>
+
+          
+        </section>                      
+        
+                  <h3 class="nameMethod">Allow new ip address</h3>
+        
+        <section class="resource noActivity">
+          <hgroup>
+            <h1 class="methodPost"><span>POST</span></h1>
+            <h2>/api/ipaddress/</h2>
+            <a class="resourcePermalink" href="#post-%2Fapi%2Fipaddress%2F" name="post-%2Fapi%2Fipaddress%2F"><span> </span></a>
+            <div class="toggle"></div>
+                          <div class="commentsCount">
+                <a href="#" class="commentsCountLink">Add Comment</a>
+              </div>
+                      </hgroup>
+
+                              <div class="content">
+            <nav class="switch">
+              <ul>
+                <a href="#example" class="active"><li><span>Example</span></li></a>
+                                  <a href="#debugger"><li><span>Debugger</span></li></a>
+                                                  <a href="#social"><li><span>Comments</span></li></a>
+                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
+                              </ul>
+            </nav>
+            <section class="example">
+                            <nav class="language">
+                <form name="languageSwitcher">
+                  <p>Show code sample</p>
+                  <select>
+                                          <option value="raw">none (raw data)</option>
+                                          <option value="curl">curl</option>
+                                          <option value="csharp">C#</option>
+                                          <option value="javascript">javascript</option>
+                                          <option value="nodejs">node.js</option>
+                                          <option value="python">python</option>
+                                          <option value="php">php</option>
+                                          <option value="ruby">ruby</option>
+                                          <option value="vb">Visual Basic</option>
+                                          <option value="objc">Objective-C</option>
+                                          <option value="swift">Swift</option>
+                                          <option value="groovy">Groovy</option>
+                                      </select>
+                </form>
+              </nav>
+                            <section class="code" id="generatedResourceCodeS1E7">                                                                            
+<span id="requestExampleIdS1E7req0" class="hidden"></span>
+<script>
+window.docResources["generatedResourceCodeS1E7"] = (window.docResources["generatedResourceCodeS1E7"] || []).concat({
+  "exampleId": "S1E7req0",
+  "url": "/api/ipaddress/",
+  "method": "POST",
+  "contentType": "application/json",
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": "{ \"ipaddress\": \"192.168.0.1\" }"
+});
+</script>
+                                                                                                <p class="ioDesc">Response</p>
+                    <section class="outgoingCall rawResponse">
+                      <pre class="outgoing outgoingHeaders"><code>201 (Created)
+Content-Type: application/json</code></pre>
+                      <pre class="outgoing"><code class="language-javascript">{
+  &#34;success&#34;: 1
+}</code></pre>
+                    </section>
+                                                                                    </section>
+            </section>
+                          <section class="debugger" data-resource-signature="POST /api/ipaddress/"></section>
+                            <section class="social">
+                <nav class="switch"></nav>
+
+                <section class="newPost">
+                  <form action="/discussion/53e141ece339e902000007b8" method="post">
+                     <textarea placeholder="Start a new thread…" name="comment"></textarea>
+                     <div class="postControl">
+                       <div class="postTools">
+                         <input class="button blue big" type="submit" value="Submit">
+                         <a class="cancel" href="#"><i class="icon-remove"></i> Cancel</a>
+                       </div>
+                     </div>
+                     <input type="hidden" name="url" value="/api/ipaddress/">
+                     <input type="hidden" name="method" value="POST" >
+                  </form>
+                </section>
+
+                                <section class="all" name="thread">
+                                  </section>
+                              </section>
+              
+              <section class="tryit">
+                <form name="jsRunExample">
+                  <span class="ajaxLoader block jsEmptyTryit"></span>
+                </form>
+              </section>
+                      </div>
+
+          
+        </section>              </div>                  <div class="sameResourceGroup">
+        
+                  <h2 class="nameResource">Ip Address</h2>                  
+                  <h3 class="nameMethod">Remove an ip address</h3>
+        
+        <section class="resource noActivity">
+          <hgroup>
+            <h1 class="methodPost"><span>DELETE</span></h1>
+            <h2>/api/ipaddress/{ipaddress}</h2>
+            <a class="resourcePermalink" href="#delete-%2Fapi%2Fipaddress%2F%7Bipaddress%7D" name="delete-%2Fapi%2Fipaddress%2F%7Bipaddress%7D"><span> </span></a>
+            <div class="toggle"></div>
+                          <div class="commentsCount">
+                <a href="#" class="commentsCountLink">Add Comment</a>
+              </div>
+                      </hgroup>
+
+                              <div class="content">
+            <nav class="switch">
+              <ul>
+                <a href="#example" class="active"><li><span>Example</span></li></a>
+                                  <a href="#debugger"><li><span>Debugger</span></li></a>
+                                                  <a href="#social"><li><span>Comments</span></li></a>
+                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
+                              </ul>
+            </nav>
+            <section class="example">
+                            <nav class="language">
+                <form name="languageSwitcher">
+                  <p>Show code sample</p>
+                  <select>
+                                          <option value="raw">none (raw data)</option>
+                                          <option value="curl">curl</option>
+                                          <option value="csharp">C#</option>
+                                          <option value="javascript">javascript</option>
+                                          <option value="nodejs">node.js</option>
+                                          <option value="python">python</option>
+                                          <option value="php">php</option>
+                                          <option value="ruby">ruby</option>
+                                          <option value="vb">Visual Basic</option>
+                                          <option value="objc">Objective-C</option>
+                                          <option value="swift">Swift</option>
+                                          <option value="groovy">Groovy</option>
+                                      </select>
+                </form>
+              </nav>
+                            <section class="code" id="generatedResourceCodeS1E8">                                                                            
+<span id="requestExampleIdS1E8req0" class="hidden"></span>
+<script>
+window.docResources["generatedResourceCodeS1E8"] = (window.docResources["generatedResourceCodeS1E8"] || []).concat({
+  "exampleId": "S1E8req0",
+  "url": "/api/ipaddress/{ipaddress}",
+  "method": "DELETE",
+  "contentType": "application/json",
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": ""
+});
+</script>
+                                                                                                <p class="ioDesc">Response</p>
+                    <section class="outgoingCall rawResponse">
+                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
+Content-Type: application/json</code></pre>
+                      <pre class="outgoing"><code class="language-javascript">{
+  &#34;success&#34;: 1
+}</code></pre>
+                    </section>
+                                                                                    </section>
+            </section>
+                          <section class="debugger" data-resource-signature="DELETE /api/ipaddress/{ipaddress}"></section>
+                            <section class="social">
+                <nav class="switch"></nav>
+
+                <section class="newPost">
+                  <form action="/discussion/53e141ece339e902000007b8" method="post">
+                     <textarea placeholder="Start a new thread…" name="comment"></textarea>
+                     <div class="postControl">
+                       <div class="postTools">
+                         <input class="button blue big" type="submit" value="Submit">
+                         <a class="cancel" href="#"><i class="icon-remove"></i> Cancel</a>
+                       </div>
+                     </div>
+                     <input type="hidden" name="url" value="/api/ipaddress/{ipaddress}">
+                     <input type="hidden" name="method" value="DELETE" >
+                  </form>
+                </section>
+
+                                <section class="all" name="thread">
+                                  </section>
+                              </section>
+              
+              <section class="tryit">
+                <form name="jsRunExample">
+                  <span class="ajaxLoader block jsEmptyTryit"></span>
+                </form>
+              </section>
+                      </div>
+
+          
+        </section>              </div>                  <div class="sameResourceGroup">
+        
+                  <h2 class="nameResource">Campaigns</h2>                  
+                  <h3 class="nameMethod">Get Campaigns</h3>
+        
+        <section class="resource noActivity">
+          <hgroup>
+            <h1 class="methodGet"><span>GET</span></h1>
+            <h2>/api/campaign/</h2>
+            <a class="resourcePermalink" href="#get-%2Fapi%2Fcampaign%2F" name="get-%2Fapi%2Fcampaign%2F"><span> </span></a>
+            <div class="toggle"></div>
+                          <div class="commentsCount">
+                <a href="#" class="commentsCountLink">Add Comment</a>
+              </div>
+                      </hgroup>
+
+                              <div class="content">
+            <nav class="switch">
+              <ul>
+                <a href="#example" class="active"><li><span>Example</span></li></a>
+                                  <a href="#debugger"><li><span>Debugger</span></li></a>
+                                                  <a href="#social"><li><span>Comments</span></li></a>
+                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
+                              </ul>
+            </nav>
+            <section class="example">
+                            <nav class="language">
+                <form name="languageSwitcher">
+                  <p>Show code sample</p>
+                  <select>
+                                          <option value="raw">none (raw data)</option>
+                                          <option value="curl">curl</option>
+                                          <option value="csharp">C#</option>
+                                          <option value="javascript">javascript</option>
+                                          <option value="nodejs">node.js</option>
+                                          <option value="python">python</option>
+                                          <option value="php">php</option>
+                                          <option value="ruby">ruby</option>
+                                          <option value="vb">Visual Basic</option>
+                                          <option value="objc">Objective-C</option>
+                                          <option value="swift">Swift</option>
+                                          <option value="groovy">Groovy</option>
+                                      </select>
+                </form>
+              </nav>
+                            <section class="code" id="generatedResourceCodeS1E9">                                                                            
+<span id="requestExampleIdS1E9req0" class="hidden"></span>
+<script>
+window.docResources["generatedResourceCodeS1E9"] = (window.docResources["generatedResourceCodeS1E9"] || []).concat({
+  "exampleId": "S1E9req0",
+  "url": "/api/campaign/",
+  "method": "GET",
+  "headers": {},
+  "body": ""
+});
+</script>
+                                                                                                <p class="ioDesc">Response</p>
+                    <section class="outgoingCall rawResponse">
+                      <pre class="outgoing outgoingHeaders"><code>501 (Not Implemented)</code></pre>
+                      <pre class="outgoing"><code class=""></code></pre>
+                    </section>
+                                                                                    </section>
+            </section>
+                          <section class="debugger" data-resource-signature="GET /api/campaign/"></section>
+                            <section class="social">
+                <nav class="switch"></nav>
+
+                <section class="newPost">
+                  <form action="/discussion/53e141ece339e902000007b8" method="post">
+                     <textarea placeholder="Start a new thread…" name="comment"></textarea>
+                     <div class="postControl">
+                       <div class="postTools">
+                         <input class="button blue big" type="submit" value="Submit">
+                         <a class="cancel" href="#"><i class="icon-remove"></i> Cancel</a>
+                       </div>
+                     </div>
+                     <input type="hidden" name="url" value="/api/campaign/">
+                     <input type="hidden" name="method" value="GET" >
+                  </form>
+                </section>
+
+                                <section class="all" name="thread">
+                                  </section>
+                              </section>
+              
+              <section class="tryit">
+                <form name="jsRunExample">
+                  <span class="ajaxLoader block jsEmptyTryit"></span>
+                </form>
+              </section>
+                      </div>
+
+          
+        </section>                      
+        
+                  <h3 class="nameMethod">Create a Campaign</h3>
+        
+        <section class="resource noActivity">
+          <hgroup>
+            <h1 class="methodPost"><span>POST</span></h1>
+            <h2>/api/campaign/</h2>
+            <a class="resourcePermalink" href="#post-%2Fapi%2Fcampaign%2F" name="post-%2Fapi%2Fcampaign%2F"><span> </span></a>
+            <div class="toggle"></div>
+                          <div class="commentsCount">
+                <a href="#" class="commentsCountLink">Add Comment</a>
+              </div>
+                      </hgroup>
+
+                              <div class="content">
+            <nav class="switch">
+              <ul>
+                <a href="#example" class="active"><li><span>Example</span></li></a>
+                                  <a href="#debugger"><li><span>Debugger</span></li></a>
+                                                  <a href="#social"><li><span>Comments</span></li></a>
+                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
+                              </ul>
+            </nav>
+            <section class="example">
+                            <nav class="language">
+                <form name="languageSwitcher">
+                  <p>Show code sample</p>
+                  <select>
+                                          <option value="raw">none (raw data)</option>
+                                          <option value="curl">curl</option>
+                                          <option value="csharp">C#</option>
+                                          <option value="javascript">javascript</option>
+                                          <option value="nodejs">node.js</option>
+                                          <option value="python">python</option>
+                                          <option value="php">php</option>
+                                          <option value="ruby">ruby</option>
+                                          <option value="vb">Visual Basic</option>
+                                          <option value="objc">Objective-C</option>
+                                          <option value="swift">Swift</option>
+                                          <option value="groovy">Groovy</option>
+                                      </select>
+                </form>
+              </nav>
+                            <section class="code" id="generatedResourceCodeS1E10">                                                                            
+<span id="requestExampleIdS1E10req0" class="hidden"></span>
+<script>
+window.docResources["generatedResourceCodeS1E10"] = (window.docResources["generatedResourceCodeS1E10"] || []).concat({
+  "exampleId": "S1E10req0",
+  "url": "/api/campaign/",
+  "method": "POST",
+  "contentType": "application/json",
+  "headers": {
+    "Content-Type": "application/json",
+    "Auth-Service-Key": "imkt",
+    "Auth-Token": "07fe5ae62bd4f329964f74ffa5a09f22cc11a4cab7931d4fb1bc911915b6293929069abeb177f21b"
+  },
+  "body": "{\n  \"subject\": \"The subject of mail\",\n  \"body\": \"The body of email\",\n  \"headers\": {\n    \"Content-Type\": \"text/html\",\n    \"Bounce-Mail\": \"mybounce@domain.com\"\n  },\n  \"user_vars\": 1,\n  \"user_headers\": 1,\n  \"external\": 123\n}"
+});
+</script>
+                                                                                                <p class="ioDesc">Response</p>
+                    <section class="outgoingCall rawResponse">
+                      <pre class="outgoing outgoingHeaders"><code>201 (Created)
+Content-Type: application/json</code></pre>
+                      <pre class="outgoing"><code class="language-javascript">{
+  &#34;success&#34;: 1,
+  &#34;campaign&#34;: &#34;45ad434daaf7bf22e45c8938fb745b45&#34;
+}</code></pre>
+                    </section>
+                                                                                    </section>
+            </section>
+                          <section class="debugger" data-resource-signature="POST /api/campaign/"></section>
+                            <section class="social">
+                <nav class="switch"></nav>
+
+                <section class="newPost">
+                  <form action="/discussion/53e141ece339e902000007b8" method="post">
+                     <textarea placeholder="Start a new thread…" name="comment"></textarea>
+                     <div class="postControl">
+                       <div class="postTools">
+                         <input class="button blue big" type="submit" value="Submit">
+                         <a class="cancel" href="#"><i class="icon-remove"></i> Cancel</a>
+                       </div>
+                     </div>
+                     <input type="hidden" name="url" value="/api/campaign/">
+                     <input type="hidden" name="method" value="POST" >
+                  </form>
+                </section>
+
+                                <section class="all" name="thread">
+                                  </section>
+                              </section>
+              
+              <section class="tryit">
+                <form name="jsRunExample">
+                  <span class="ajaxLoader block jsEmptyTryit"></span>
+                </form>
+              </section>
+                      </div>
+
+          
+        </section>              </div>                  <div class="sameResourceGroup">
+        
+                  <h2 class="nameResource">Campaigns</h2>                  
+                  <h3 class="nameMethod">Get statuses of multiple campaigns</h3>
+        
+        <section class="resource noActivity">
+          <hgroup>
+            <h1 class="methodPost"><span>POST</span></h1>
+            <h2>/api/campaign/status</h2>
+            <a class="resourcePermalink" href="#post-%2Fapi%2Fcampaign%2Fstatus" name="post-%2Fapi%2Fcampaign%2Fstatus"><span> </span></a>
+            <div class="toggle"></div>
+                          <div class="commentsCount">
+                <a href="#" class="commentsCountLink">Add Comment</a>
+              </div>
+                      </hgroup>
+
+                              <div class="content">
+            <nav class="switch">
+              <ul>
+                <a href="#example" class="active"><li><span>Example</span></li></a>
+                                  <a href="#debugger"><li><span>Debugger</span></li></a>
+                                                  <a href="#social"><li><span>Comments</span></li></a>
+                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
+                              </ul>
+            </nav>
+            <section class="example">
+                            <nav class="language">
+                <form name="languageSwitcher">
+                  <p>Show code sample</p>
+                  <select>
+                                          <option value="raw">none (raw data)</option>
+                                          <option value="curl">curl</option>
+                                          <option value="csharp">C#</option>
+                                          <option value="javascript">javascript</option>
+                                          <option value="nodejs">node.js</option>
+                                          <option value="python">python</option>
+                                          <option value="php">php</option>
+                                          <option value="ruby">ruby</option>
+                                          <option value="vb">Visual Basic</option>
+                                          <option value="objc">Objective-C</option>
+                                          <option value="swift">Swift</option>
+                                          <option value="groovy">Groovy</option>
+                                      </select>
+                </form>
+              </nav>
+                            <section class="code" id="generatedResourceCodeS1E11">                                                                            
+<span id="requestExampleIdS1E11req0" class="hidden"></span>
+<script>
+window.docResources["generatedResourceCodeS1E11"] = (window.docResources["generatedResourceCodeS1E11"] || []).concat({
+  "exampleId": "S1E11req0",
+  "url": "/api/campaign/status",
+  "method": "POST",
+  "contentType": "application/json",
+  "headers": {
+    "Content-Type": "application/json",
+    "Auth-Service-Key": "imkt",
+    "Auth-Token": "07fe5ae62bd4f329964f74ffa5a09f22cc11a4cab7931d4fb1bc911915b6293929069abeb177f21b"
+  },
+  "body": "{\n  \"campaigns\": [\n    \"45ad434daaf7bf22e45c8938fb745b45\",\n    \"18923n13n9dw7qwhnjbabsd1lmvz1823\"\n  ]\n}"
+});
+</script>
+                                                                                                <p class="ioDesc">Response</p>
+                    <section class="outgoingCall rawResponse">
+                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
+Content-Type: application/json</code></pre>
+                      <pre class="outgoing"><code class="language-javascript">{
+  &#34;45ad434daaf7bf22e45c8938fb745b45&#34;: {
+    &#34;success&#34;: 1,
+    &#34;id&#34; : &#34;1&#34;,
+    &#34;key&#34; : &#34;45ad434daaf7bf22e45c8938fb745b45&#34;,
+    &#34;total&#34; : 0,
+    &#34;sent&#34; : 0,
+    &#34;fail&#34; : 0,
+    &#34;progress&#34; : 0,
+    &#34;status&#34; : 0,
+    &#34;external&#34; : &#34;123&#34;,
+    &#34;pid&#34; : null
+  },
+  &#34;18923n13n9dw7qwhnjbabsd1lmvz1823&#34;: {
+    &#34;success&#34;: 0,
+    &#34;error&#34;: &#34;Campaign not found&#34;
+  }
+}</code></pre>
+                    </section>
+                                                                                    </section>
+            </section>
+                          <section class="debugger" data-resource-signature="POST /api/campaign/status"></section>
+                            <section class="social">
+                <nav class="switch"></nav>
+
+                <section class="newPost">
+                  <form action="/discussion/53e141ece339e902000007b8" method="post">
+                     <textarea placeholder="Start a new thread…" name="comment"></textarea>
+                     <div class="postControl">
+                       <div class="postTools">
+                         <input class="button blue big" type="submit" value="Submit">
+                         <a class="cancel" href="#"><i class="icon-remove"></i> Cancel</a>
+                       </div>
+                     </div>
+                     <input type="hidden" name="url" value="/api/campaign/status">
+                     <input type="hidden" name="method" value="POST" >
+                  </form>
+                </section>
+
+                                <section class="all" name="thread">
+                                  </section>
+                              </section>
+              
+              <section class="tryit">
+                <form name="jsRunExample">
+                  <span class="ajaxLoader block jsEmptyTryit"></span>
+                </form>
+              </section>
+                      </div>
+
+          
+        </section>              </div>                  <div class="sameResourceGroup">
+        
+                  <h2 class="nameResource">Campaign</h2>                  
+                  <h3 class="nameMethod">Get details of an Campaign</h3>
+        
+        <section class="resource noActivity">
+          <hgroup>
+            <h1 class="methodGet"><span>GET</span></h1>
+            <h2>/api/campaign/{key}</h2>
+            <a class="resourcePermalink" href="#get-%2Fapi%2Fcampaign%2F%7Bkey%7D" name="get-%2Fapi%2Fcampaign%2F%7Bkey%7D"><span> </span></a>
+            <div class="toggle"></div>
+                          <div class="commentsCount">
+                <a href="#" class="commentsCountLink">Add Comment</a>
+              </div>
+                      </hgroup>
+
+                              <div class="content">
+            <nav class="switch">
+              <ul>
+                <a href="#example" class="active"><li><span>Example</span></li></a>
+                                  <a href="#debugger"><li><span>Debugger</span></li></a>
+                                                  <a href="#social"><li><span>Comments</span></li></a>
+                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
+                              </ul>
+            </nav>
+            <section class="example">
+                            <nav class="language">
+                <form name="languageSwitcher">
+                  <p>Show code sample</p>
+                  <select>
+                                          <option value="raw">none (raw data)</option>
+                                          <option value="curl">curl</option>
+                                          <option value="csharp">C#</option>
+                                          <option value="javascript">javascript</option>
+                                          <option value="nodejs">node.js</option>
+                                          <option value="python">python</option>
+                                          <option value="php">php</option>
+                                          <option value="ruby">ruby</option>
+                                          <option value="vb">Visual Basic</option>
+                                          <option value="objc">Objective-C</option>
+                                          <option value="swift">Swift</option>
+                                          <option value="groovy">Groovy</option>
+                                      </select>
+                </form>
+              </nav>
+                            <section class="code" id="generatedResourceCodeS1E12">                                                                            
+<span id="requestExampleIdS1E12req0" class="hidden"></span>
+<script>
+window.docResources["generatedResourceCodeS1E12"] = (window.docResources["generatedResourceCodeS1E12"] || []).concat({
+  "exampleId": "S1E12req0",
+  "url": "/api/campaign/{key}",
+  "method": "GET",
+  "contentType": "application/json",
+  "headers": {
+    "Content-Type": "application/json",
+    "Auth-Service-Key": "imkt",
+    "Auth-Token": "07fe5ae62bd4f329964f74ffa5a09f22cc11a4cab7931d4fb1bc911915b6293929069abeb177f21b"
+  },
+  "body": ""
+});
+</script>
+                                                                                                <p class="ioDesc">Response</p>
+                    <section class="outgoingCall rawResponse">
+                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
+Content-Type: application/json</code></pre>
+                      <pre class="outgoing"><code class="language-javascript">{
+  &#34;id&#34;: &#34;1&#34;,
+  &#34;key&#34;: &#34;45ad434daaf7bf22e45c8938fb745b45&#34;,
+  &#34;total&#34;: 0,
+  &#34;sent&#34;: 0,
+  &#34;fail&#34;: 0,
+  &#34;progress&#34;: 0,
+  &#34;status&#34;: 0,
+  &#34;subject&#34;: &#34;The subject of email&#34;,
+  &#34;body&#34;: &#34;The body of email&#34;,
+  &#34;headers&#34;: {
+    &#34;Content-Type&#34;: &#34;text/html&#34;,
+    &#34;Bounce-Mail&#34;: &#34;mybounce@domain.com&#34;
+  },
+  &#34;user_vars&#34;: 1,
+  &#34;user_headers&#34;: 1,
+  &#34;date&#34;: &#34;2014-08-05&#34;,
+  &#34;external&#34;: &#34;123&#34;,
+  &#34;pid&#34;: null,
+}</code></pre>
+                    </section>
+                                                                                    </section>
+            </section>
+                          <section class="debugger" data-resource-signature="GET /api/campaign/{key}"></section>
+                            <section class="social">
+                <nav class="switch"></nav>
+
+                <section class="newPost">
+                  <form action="/discussion/53e141ece339e902000007b8" method="post">
+                     <textarea placeholder="Start a new thread…" name="comment"></textarea>
+                     <div class="postControl">
+                       <div class="postTools">
+                         <input class="button blue big" type="submit" value="Submit">
+                         <a class="cancel" href="#"><i class="icon-remove"></i> Cancel</a>
+                       </div>
+                     </div>
+                     <input type="hidden" name="url" value="/api/campaign/{key}">
+                     <input type="hidden" name="method" value="GET" >
+                  </form>
+                </section>
+
+                                <section class="all" name="thread">
+                                  </section>
+                              </section>
+              
+              <section class="tryit">
+                <form name="jsRunExample">
+                  <span class="ajaxLoader block jsEmptyTryit"></span>
+                </form>
+              </section>
+                      </div>
+
+          
+        </section>                      
+        
+                  <h3 class="nameMethod">Update a Campaign</h3>
+        
+        <section class="resource noActivity">
+          <hgroup>
+            <h1 class="methodPost"><span>PUT</span></h1>
+            <h2>/api/campaign/{key}</h2>
+            <a class="resourcePermalink" href="#put-%2Fapi%2Fcampaign%2F%7Bkey%7D" name="put-%2Fapi%2Fcampaign%2F%7Bkey%7D"><span> </span></a>
+            <div class="toggle"></div>
+                          <div class="commentsCount">
+                <a href="#" class="commentsCountLink">Add Comment</a>
+              </div>
+                      </hgroup>
+
+                              <div class="content">
+            <nav class="switch">
+              <ul>
+                <a href="#example" class="active"><li><span>Example</span></li></a>
+                                  <a href="#debugger"><li><span>Debugger</span></li></a>
+                                                  <a href="#social"><li><span>Comments</span></li></a>
+                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
+                              </ul>
+            </nav>
+            <section class="example">
+                            <nav class="language">
+                <form name="languageSwitcher">
+                  <p>Show code sample</p>
+                  <select>
+                                          <option value="raw">none (raw data)</option>
+                                          <option value="curl">curl</option>
+                                          <option value="csharp">C#</option>
+                                          <option value="javascript">javascript</option>
+                                          <option value="nodejs">node.js</option>
+                                          <option value="python">python</option>
+                                          <option value="php">php</option>
+                                          <option value="ruby">ruby</option>
+                                          <option value="vb">Visual Basic</option>
+                                          <option value="objc">Objective-C</option>
+                                          <option value="swift">Swift</option>
+                                          <option value="groovy">Groovy</option>
+                                      </select>
+                </form>
+              </nav>
+                            <section class="code" id="generatedResourceCodeS1E13">                                                                            
+<span id="requestExampleIdS1E13req0" class="hidden"></span>
+<script>
+window.docResources["generatedResourceCodeS1E13"] = (window.docResources["generatedResourceCodeS1E13"] || []).concat({
+  "exampleId": "S1E13req0",
+  "url": "/api/campaign/{key}",
+  "method": "PUT",
+  "contentType": "application/json",
+  "headers": {
+    "Content-Type": "application/json",
+    "Auth-Service-Key": "imkt",
+    "Auth-Token": "07fe5ae62bd4f329964f74ffa5a09f22cc11a4cab7931d4fb1bc911915b6293929069abeb177f21b"
+  },
+  "body": "{\n  \"subject\": \"The subject of mail\",\n  \"body\": \"The body of email\",\n  \"headers\": {\n    \"Content-Type\": \"text/html\",\n    \"Bounce-Mail\": null\n  },\n  \"user_vars\": 0,\n  \"user_headers\": 0,\n  \"external\": 456\n}"
+});
+</script>
+                                                                                                <p class="ioDesc">Response</p>
+                    <section class="outgoingCall rawResponse">
+                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
+Content-Type: application/json</code></pre>
+                      <pre class="outgoing"><code class="language-javascript">{
+  &#34;success&#34;: 1,
+  &#34;campaign&#34;: &#34;45ad434daaf7bf22e45c8938fb745b45&#34;
+}</code></pre>
+                    </section>
+                                                                                    </section>
+            </section>
+                          <section class="debugger" data-resource-signature="PUT /api/campaign/{key}"></section>
+                            <section class="social">
+                <nav class="switch"></nav>
+
+                <section class="newPost">
+                  <form action="/discussion/53e141ece339e902000007b8" method="post">
+                     <textarea placeholder="Start a new thread…" name="comment"></textarea>
+                     <div class="postControl">
+                       <div class="postTools">
+                         <input class="button blue big" type="submit" value="Submit">
+                         <a class="cancel" href="#"><i class="icon-remove"></i> Cancel</a>
+                       </div>
+                     </div>
+                     <input type="hidden" name="url" value="/api/campaign/{key}">
+                     <input type="hidden" name="method" value="PUT" >
+                  </form>
+                </section>
+
+                                <section class="all" name="thread">
+                                  </section>
+                              </section>
+              
+              <section class="tryit">
+                <form name="jsRunExample">
+                  <span class="ajaxLoader block jsEmptyTryit"></span>
+                </form>
+              </section>
+                      </div>
+
+          
+        </section>                      
+        
+                  <h3 class="nameMethod">Remove an Campaign</h3>
+        
+        <section class="resource noActivity">
+          <hgroup>
+            <h1 class="methodPost"><span>DELETE</span></h1>
+            <h2>/api/campaign/{key}</h2>
+            <a class="resourcePermalink" href="#delete-%2Fapi%2Fcampaign%2F%7Bkey%7D" name="delete-%2Fapi%2Fcampaign%2F%7Bkey%7D"><span> </span></a>
+            <div class="toggle"></div>
+                          <div class="commentsCount">
+                <a href="#" class="commentsCountLink">Add Comment</a>
+              </div>
+                      </hgroup>
+
+                              <div class="content">
+            <nav class="switch">
+              <ul>
+                <a href="#example" class="active"><li><span>Example</span></li></a>
+                                  <a href="#debugger"><li><span>Debugger</span></li></a>
+                                                  <a href="#social"><li><span>Comments</span></li></a>
+                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
+                              </ul>
+            </nav>
+            <section class="example">
+                            <nav class="language">
+                <form name="languageSwitcher">
+                  <p>Show code sample</p>
+                  <select>
+                                          <option value="raw">none (raw data)</option>
+                                          <option value="curl">curl</option>
+                                          <option value="csharp">C#</option>
+                                          <option value="javascript">javascript</option>
+                                          <option value="nodejs">node.js</option>
+                                          <option value="python">python</option>
+                                          <option value="php">php</option>
+                                          <option value="ruby">ruby</option>
+                                          <option value="vb">Visual Basic</option>
+                                          <option value="objc">Objective-C</option>
+                                          <option value="swift">Swift</option>
+                                          <option value="groovy">Groovy</option>
+                                      </select>
+                </form>
+              </nav>
+                            <section class="code" id="generatedResourceCodeS1E14">                                                                            
+<span id="requestExampleIdS1E14req0" class="hidden"></span>
+<script>
+window.docResources["generatedResourceCodeS1E14"] = (window.docResources["generatedResourceCodeS1E14"] || []).concat({
+  "exampleId": "S1E14req0",
+  "url": "/api/campaign/{key}",
+  "method": "DELETE",
+  "contentType": "application/json",
+  "headers": {
+    "Content-Type": "application/json",
+    "Auth-Service-Key": "imkt",
+    "Auth-Token": "07fe5ae62bd4f329964f74ffa5a09f22cc11a4cab7931d4fb1bc911915b6293929069abeb177f21b"
+  },
+  "body": ""
+});
+</script>
+                                                                                                <p class="ioDesc">Response</p>
+                    <section class="outgoingCall rawResponse">
+                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
+Content-Type: application/json</code></pre>
+                      <pre class="outgoing"><code class="language-javascript">{
+  &#34;success&#34;: 1
+}</code></pre>
+                    </section>
+                                                                                    </section>
+            </section>
+                          <section class="debugger" data-resource-signature="DELETE /api/campaign/{key}"></section>
+                            <section class="social">
+                <nav class="switch"></nav>
+
+                <section class="newPost">
+                  <form action="/discussion/53e141ece339e902000007b8" method="post">
+                     <textarea placeholder="Start a new thread…" name="comment"></textarea>
+                     <div class="postControl">
+                       <div class="postTools">
+                         <input class="button blue big" type="submit" value="Submit">
+                         <a class="cancel" href="#"><i class="icon-remove"></i> Cancel</a>
+                       </div>
+                     </div>
+                     <input type="hidden" name="url" value="/api/campaign/{key}">
+                     <input type="hidden" name="method" value="DELETE" >
+                  </form>
+                </section>
+
+                                <section class="all" name="thread">
+                                  </section>
+                              </section>
+              
+              <section class="tryit">
+                <form name="jsRunExample">
+                  <span class="ajaxLoader block jsEmptyTryit"></span>
+                </form>
+              </section>
+                      </div>
+
+          
+        </section>              </div>                  <div class="sameResourceGroup">
+        
+                  <h2 class="nameResource">Campaign Statuses</h2>                  
+                  <h3 class="nameMethod">Get Campaign status</h3>
+        
+        <section class="resource noActivity">
+          <hgroup>
+            <h1 class="methodGet"><span>GET</span></h1>
+            <h2>/api/campaign/{key}/status</h2>
+            <a class="resourcePermalink" href="#get-%2Fapi%2Fcampaign%2F%7Bkey%7D%2Fstatus" name="get-%2Fapi%2Fcampaign%2F%7Bkey%7D%2Fstatus"><span> </span></a>
+            <div class="toggle"></div>
+                          <div class="commentsCount">
+                <a href="#" class="commentsCountLink">Add Comment</a>
+              </div>
+                      </hgroup>
+
+                              <div class="content">
+            <nav class="switch">
+              <ul>
+                <a href="#example" class="active"><li><span>Example</span></li></a>
+                                  <a href="#debugger"><li><span>Debugger</span></li></a>
+                                                  <a href="#social"><li><span>Comments</span></li></a>
+                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
+                              </ul>
+            </nav>
+            <section class="example">
+                            <nav class="language">
+                <form name="languageSwitcher">
+                  <p>Show code sample</p>
+                  <select>
+                                          <option value="raw">none (raw data)</option>
+                                          <option value="curl">curl</option>
+                                          <option value="csharp">C#</option>
+                                          <option value="javascript">javascript</option>
+                                          <option value="nodejs">node.js</option>
+                                          <option value="python">python</option>
+                                          <option value="php">php</option>
+                                          <option value="ruby">ruby</option>
+                                          <option value="vb">Visual Basic</option>
+                                          <option value="objc">Objective-C</option>
+                                          <option value="swift">Swift</option>
+                                          <option value="groovy">Groovy</option>
+                                      </select>
+                </form>
+              </nav>
+                            <section class="code" id="generatedResourceCodeS1E15">                                                                            
+<span id="requestExampleIdS1E15req0" class="hidden"></span>
+<script>
+window.docResources["generatedResourceCodeS1E15"] = (window.docResources["generatedResourceCodeS1E15"] || []).concat({
+  "exampleId": "S1E15req0",
+  "url": "/api/campaign/{key}/status",
+  "method": "GET",
+  "contentType": "application/json",
+  "headers": {
+    "Content-Type": "application/json",
+    "Auth-Service-Key": "imkt",
+    "Auth-Token": "07fe5ae62bd4f329964f74ffa5a09f22cc11a4cab7931d4fb1bc911915b6293929069abeb177f21b"
+  },
+  "body": ""
+});
+</script>
+                                                                                                <p class="ioDesc">Response</p>
+                    <section class="outgoingCall rawResponse">
+                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
+Content-Type: application/json</code></pre>
+                      <pre class="outgoing"><code class="language-javascript">{
+  &#34;id&#34; : &#34;1&#34;,
+  &#34;key&#34; : &#34;45ad434daaf7bf22e45c8938fb745b45&#34;,
+  &#34;total&#34; : 0,
+  &#34;sent&#34; : 0,
+  &#34;fail&#34; : 0,
+  &#34;progress&#34; : 0,
+  &#34;status&#34; : 0,
+  &#34;external&#34; : &#34;123&#34;,
+  &#34;pid&#34; : null
+}</code></pre>
+                    </section>
+                                                                                    </section>
+            </section>
+                          <section class="debugger" data-resource-signature="GET /api/campaign/{key}/status"></section>
+                            <section class="social">
+                <nav class="switch"></nav>
+
+                <section class="newPost">
+                  <form action="/discussion/53e141ece339e902000007b8" method="post">
+                     <textarea placeholder="Start a new thread…" name="comment"></textarea>
+                     <div class="postControl">
+                       <div class="postTools">
+                         <input class="button blue big" type="submit" value="Submit">
+                         <a class="cancel" href="#"><i class="icon-remove"></i> Cancel</a>
+                       </div>
+                     </div>
+                     <input type="hidden" name="url" value="/api/campaign/{key}/status">
+                     <input type="hidden" name="method" value="GET" >
+                  </form>
+                </section>
+
+                                <section class="all" name="thread">
+                                  </section>
+                              </section>
+              
+              <section class="tryit">
+                <form name="jsRunExample">
+                  <span class="ajaxLoader block jsEmptyTryit"></span>
+                </form>
+              </section>
+                      </div>
+
+          
+        </section>              </div>                  <div class="sameResourceGroup">
+        
+                  <h2 class="nameResource">Campaign Queue</h2>                  
+                  <h3 class="nameMethod">Get eMails from queue</h3>
+        
+        <section class="resource noActivity">
+          <hgroup>
+            <h1 class="methodGet"><span>GET</span></h1>
+            <h2>/api/campaign/{key}/queue</h2>
+            <a class="resourcePermalink" href="#get-%2Fapi%2Fcampaign%2F%7Bkey%7D%2Fqueue" name="get-%2Fapi%2Fcampaign%2F%7Bkey%7D%2Fqueue"><span> </span></a>
+            <div class="toggle"></div>
+                          <div class="commentsCount">
+                <a href="#" class="commentsCountLink">Add Comment</a>
+              </div>
+                      </hgroup>
+
+                              <div class="content">
+            <nav class="switch">
+              <ul>
+                <a href="#example" class="active"><li><span>Example</span></li></a>
+                                  <a href="#debugger"><li><span>Debugger</span></li></a>
+                                                  <a href="#social"><li><span>Comments</span></li></a>
+                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
+                              </ul>
+            </nav>
+            <section class="example">
+                            <nav class="language">
+                <form name="languageSwitcher">
+                  <p>Show code sample</p>
+                  <select>
+                                          <option value="raw">none (raw data)</option>
+                                          <option value="curl">curl</option>
+                                          <option value="csharp">C#</option>
+                                          <option value="javascript">javascript</option>
+                                          <option value="nodejs">node.js</option>
+                                          <option value="python">python</option>
+                                          <option value="php">php</option>
+                                          <option value="ruby">ruby</option>
+                                          <option value="vb">Visual Basic</option>
+                                          <option value="objc">Objective-C</option>
+                                          <option value="swift">Swift</option>
+                                          <option value="groovy">Groovy</option>
+                                      </select>
+                </form>
+              </nav>
+                            <section class="code" id="generatedResourceCodeS1E16">                                                                            
+<span id="requestExampleIdS1E16req0" class="hidden"></span>
+<script>
+window.docResources["generatedResourceCodeS1E16"] = (window.docResources["generatedResourceCodeS1E16"] || []).concat({
+  "exampleId": "S1E16req0",
+  "url": "/api/campaign/{key}/queue",
+  "method": "GET",
+  "contentType": "application/json",
+  "headers": {
+    "Content-Type": "application/json",
+    "Auth-Service-Key": "imkt",
+    "Auth-Token": "07fe5ae62bd4f329964f74ffa5a09f22cc11a4cab7931d4fb1bc911915b6293929069abeb177f21b"
+  },
+  "body": ""
+});
+</script>
+                                                                                                <p class="ioDesc">Response</p>
+                    <section class="outgoingCall rawResponse">
+                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
+Content-Type: application/json</code></pre>
+                      <pre class="outgoing"><code class="language-javascript"># Custom Queue
+[
+  {
+    &#34;email&#34; : &#34;person1@domain.com&#34;,
+    &#34;vars&#34; : {
+      &#34;MyVar2&#34; : &#34;My Value 2&#34;,
+      &#34;MyVar&#34; : &#34;My Value&#34;
+    },
+    &#34;headers&#34; : {
+      &#34;Custom-Header&#34; : &#34;Custom-Value&#34;,
+      &#34;Custom-Header2&#34; : &#34;Custom Value 2&#34;
+    }
+  },
+  {
+    &#34;email&#34; : &#34;person2@domain.com&#34;,
+    &#34;vars&#34; : {
+      &#34;MyVar2&#34; : &#34;My Value 2&#34;,
+      &#34;MyVar&#34; : &#34;My Value&#34;
+    },
+    &#34;headers&#34; : {
+      &#34;Custom-Header&#34; : &#34;Custom-Value&#34;,
+      &#34;Custom-Header2&#34; : &#34;Custom Value 2&#34;
+    }
+  },
+  {
+    &#34;email&#34; : &#34;person3@domain.com&#34;,
+    &#34;vars&#34; : {
+      &#34;MyVar2&#34; : &#34;My Value 2&#34;,
+      &#34;MyVar&#34; : &#34;My Value&#34;
+    },
+    &#34;headers&#34; : {
+      &#34;Custom-Header&#34; : &#34;Custom-Value&#34;,
+      &#34;Custom-Header2&#34; : &#34;Custom Value 2&#34;
+    }
+  }
+]</code></pre>
+                    </section>
+                                                                                    </section>
+            </section>
+                          <section class="debugger" data-resource-signature="GET /api/campaign/{key}/queue"></section>
+                            <section class="social">
+                <nav class="switch"></nav>
+
+                <section class="newPost">
+                  <form action="/discussion/53e141ece339e902000007b8" method="post">
+                     <textarea placeholder="Start a new thread…" name="comment"></textarea>
+                     <div class="postControl">
+                       <div class="postTools">
+                         <input class="button blue big" type="submit" value="Submit">
+                         <a class="cancel" href="#"><i class="icon-remove"></i> Cancel</a>
+                       </div>
+                     </div>
+                     <input type="hidden" name="url" value="/api/campaign/{key}/queue">
+                     <input type="hidden" name="method" value="GET" >
+                  </form>
+                </section>
+
+                                <section class="all" name="thread">
+                                  </section>
+                              </section>
+              
+              <section class="tryit">
+                <form name="jsRunExample">
+                  <span class="ajaxLoader block jsEmptyTryit"></span>
+                </form>
+              </section>
+                      </div>
+
+          
+        </section>                      
+        
+                  <h3 class="nameMethod">Insert eMails in queue</h3>
+        
+        <section class="resource noActivity">
+          <hgroup>
+            <h1 class="methodPost"><span>PUT</span></h1>
+            <h2>/api/campaign/{key}/queue</h2>
+            <a class="resourcePermalink" href="#put-%2Fapi%2Fcampaign%2F%7Bkey%7D%2Fqueue" name="put-%2Fapi%2Fcampaign%2F%7Bkey%7D%2Fqueue"><span> </span></a>
+            <div class="toggle"></div>
+                          <div class="commentsCount">
+                <a href="#" class="commentsCountLink">Add Comment</a>
+              </div>
+                      </hgroup>
+
+                              <div class="content">
+            <nav class="switch">
+              <ul>
+                <a href="#example" class="active"><li><span>Example</span></li></a>
+                                  <a href="#debugger"><li><span>Debugger</span></li></a>
+                                                  <a href="#social"><li><span>Comments</span></li></a>
+                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
+                              </ul>
+            </nav>
+            <section class="example">
+                            <nav class="language">
+                <form name="languageSwitcher">
+                  <p>Show code sample</p>
+                  <select>
+                                          <option value="raw">none (raw data)</option>
+                                          <option value="curl">curl</option>
+                                          <option value="csharp">C#</option>
+                                          <option value="javascript">javascript</option>
+                                          <option value="nodejs">node.js</option>
+                                          <option value="python">python</option>
+                                          <option value="php">php</option>
+                                          <option value="ruby">ruby</option>
+                                          <option value="vb">Visual Basic</option>
+                                          <option value="objc">Objective-C</option>
+                                          <option value="swift">Swift</option>
+                                          <option value="groovy">Groovy</option>
+                                      </select>
+                </form>
+              </nav>
+                            <section class="code" id="generatedResourceCodeS1E17">                                                                            
+<span id="requestExampleIdS1E17req0" class="hidden"></span>
+<script>
+window.docResources["generatedResourceCodeS1E17"] = (window.docResources["generatedResourceCodeS1E17"] || []).concat({
+  "exampleId": "S1E17req0",
+  "url": "/api/campaign/{key}/queue",
+  "method": "PUT",
+  "contentType": "application/json",
+  "headers": {
+    "Content-Type": "application/json",
+    "Auth-Service-Key": "imkt",
+    "Auth-Token": "07fe5ae62bd4f329964f74ffa5a09f22cc11a4cab7931d4fb1bc911915b6293929069abeb177f21b"
+  },
+  "body": "# Custom Queue\n{\n  \"stack\":[\n    {\n      \"email\":\"person1@domain.com\",\n      \"vars\":{\n        \"MyVar\":\"My Value\",\n        \"MyVar2\":\"My Value 2\"\n      },\n      \"headers\":{\n        \"Custom-Header\":\"Custom-Value\",\n        \"Custom-Header2\":\"Custom Value 2\"\n      }\n    },\n    {\n      \"email\":\"person2@domain.com\",\n      \"vars\":{\n        \"MyVar\":\"My Value\",\n        \"MyVar2\":\"My Value 2\"\n      },\n      \"headers\":{\n        \"Custom-Header\":\"Custom-Value\",\n        \"Custom-Header2\":\"Custom Value 2\"\n      }\n    },\n    {\n      \"email\":\"person3@domain.com\",\n      \"vars\":{\n        \"MyVar\":\"My Value\",\n        \"MyVar2\":\"My Value 2\"\n      },\n      \"headers\":{\n        \"Custom-Header\":\"Custom-Value\",\n        \"Custom-Header2\":\"Custom Value 2\"\n      }\n    }\n  ]\n}"
+});
+</script>
+                                                                                                <p class="ioDesc">Response</p>
+                    <section class="outgoingCall rawResponse">
+                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
+Content-Type: application/json</code></pre>
+                      <pre class="outgoing"><code class="language-javascript">{
+  &#34;success&#34;: 1
+}</code></pre>
+                    </section>
+                                                                                    </section>
+            </section>
+                          <section class="debugger" data-resource-signature="PUT /api/campaign/{key}/queue"></section>
+                            <section class="social">
+                <nav class="switch"></nav>
+
+                <section class="newPost">
+                  <form action="/discussion/53e141ece339e902000007b8" method="post">
+                     <textarea placeholder="Start a new thread…" name="comment"></textarea>
+                     <div class="postControl">
+                       <div class="postTools">
+                         <input class="button blue big" type="submit" value="Submit">
+                         <a class="cancel" href="#"><i class="icon-remove"></i> Cancel</a>
+                       </div>
+                     </div>
+                     <input type="hidden" name="url" value="/api/campaign/{key}/queue">
+                     <input type="hidden" name="method" value="PUT" >
+                  </form>
+                </section>
+
+                                <section class="all" name="thread">
+                                  </section>
+                              </section>
+              
+              <section class="tryit">
+                <form name="jsRunExample">
+                  <span class="ajaxLoader block jsEmptyTryit"></span>
+                </form>
+              </section>
+                      </div>
+
+          
+        </section>                      
+        
+                  <h3 class="nameMethod">Remove eMails from queue</h3>
+        
+        <section class="resource noActivity">
+          <hgroup>
+            <h1 class="methodPost"><span>PUT</span></h1>
+            <h2>/api/campaign/{key}/queue</h2>
+            <a class="resourcePermalink" href="#put-%2Fapi%2Fcampaign%2F%7Bkey%7D%2Fqueue" name="put-%2Fapi%2Fcampaign%2F%7Bkey%7D%2Fqueue"><span> </span></a>
+            <div class="toggle"></div>
+                          <div class="commentsCount">
+                <a href="#" class="commentsCountLink">Add Comment</a>
+              </div>
+                      </hgroup>
+
+                              <div class="content">
+            <nav class="switch">
+              <ul>
+                <a href="#example" class="active"><li><span>Example</span></li></a>
+                                  <a href="#debugger"><li><span>Debugger</span></li></a>
+                                                  <a href="#social"><li><span>Comments</span></li></a>
+                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
+                              </ul>
+            </nav>
+            <section class="example">
+                            <nav class="language">
+                <form name="languageSwitcher">
+                  <p>Show code sample</p>
+                  <select>
+                                          <option value="raw">none (raw data)</option>
+                                          <option value="curl">curl</option>
+                                          <option value="csharp">C#</option>
+                                          <option value="javascript">javascript</option>
+                                          <option value="nodejs">node.js</option>
+                                          <option value="python">python</option>
+                                          <option value="php">php</option>
+                                          <option value="ruby">ruby</option>
+                                          <option value="vb">Visual Basic</option>
+                                          <option value="objc">Objective-C</option>
+                                          <option value="swift">Swift</option>
+                                          <option value="groovy">Groovy</option>
+                                      </select>
+                </form>
+              </nav>
+                            <section class="code" id="generatedResourceCodeS1E18">                                                                            
+<span id="requestExampleIdS1E18req0" class="hidden"></span>
+<script>
+window.docResources["generatedResourceCodeS1E18"] = (window.docResources["generatedResourceCodeS1E18"] || []).concat({
+  "exampleId": "S1E18req0",
+  "url": "/api/campaign/{key}/queue",
+  "method": "PUT",
+  "contentType": "application/json",
+  "headers": {
+    "Content-Type": "application/json",
+    "Auth-Service-Key": "imkt",
+    "Auth-Token": "07fe5ae62bd4f329964f74ffa5a09f22cc11a4cab7931d4fb1bc911915b6293929069abeb177f21b",
+    "Perform-Delete": "1"
+  },
+  "body": "{\n  \"stack\": [\n    \"person1@domain.com\",\n    \"person2@domain.com\",\n    \"person3@domain.com\",\n  ]\n}"
+});
+</script>
+                                                                                                <p class="ioDesc">Response</p>
+                    <section class="outgoingCall rawResponse">
+                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
+Content-Type: application/json</code></pre>
+                      <pre class="outgoing"><code class="language-javascript">{
+  &#34;success&#34;: 1
+}</code></pre>
+                    </section>
+                                                                                    </section>
+            </section>
+                          <section class="debugger" data-resource-signature="PUT /api/campaign/{key}/queue"></section>
+                            <section class="social">
+                <nav class="switch"></nav>
+
+                <section class="newPost">
+                  <form action="/discussion/53e141ece339e902000007b8" method="post">
+                     <textarea placeholder="Start a new thread…" name="comment"></textarea>
+                     <div class="postControl">
+                       <div class="postTools">
+                         <input class="button blue big" type="submit" value="Submit">
+                         <a class="cancel" href="#"><i class="icon-remove"></i> Cancel</a>
+                       </div>
+                     </div>
+                     <input type="hidden" name="url" value="/api/campaign/{key}/queue">
+                     <input type="hidden" name="method" value="PUT" >
+                  </form>
+                </section>
+
+                                <section class="all" name="thread">
+                                  </section>
+                              </section>
+              
+              <section class="tryit">
+                <form name="jsRunExample">
+                  <span class="ajaxLoader block jsEmptyTryit"></span>
+                </form>
+              </section>
+                      </div>
+
+          
+        </section>              </div>                  <div class="sameResourceGroup">
+        
+                  <h2 class="nameResource">Campaign Process</h2>                  
+                  <h3 class="nameMethod">Starting Service</h3>
+        
+        <section class="resource noActivity">
+          <hgroup>
+            <h1 class="methodPost"><span>POST</span></h1>
+            <h2>/api/campaign/{key}/start</h2>
+            <a class="resourcePermalink" href="#post-%2Fapi%2Fcampaign%2F%7Bkey%7D%2Fstart" name="post-%2Fapi%2Fcampaign%2F%7Bkey%7D%2Fstart"><span> </span></a>
+            <div class="toggle"></div>
+                          <div class="commentsCount">
+                <a href="#" class="commentsCountLink">Add Comment</a>
+              </div>
+                      </hgroup>
+
+                              <div class="content">
+            <nav class="switch">
+              <ul>
+                <a href="#example" class="active"><li><span>Example</span></li></a>
+                                  <a href="#debugger"><li><span>Debugger</span></li></a>
+                                                  <a href="#social"><li><span>Comments</span></li></a>
+                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
+                              </ul>
+            </nav>
+            <section class="example">
+                            <nav class="language">
+                <form name="languageSwitcher">
+                  <p>Show code sample</p>
+                  <select>
+                                          <option value="raw">none (raw data)</option>
+                                          <option value="curl">curl</option>
+                                          <option value="csharp">C#</option>
+                                          <option value="javascript">javascript</option>
+                                          <option value="nodejs">node.js</option>
+                                          <option value="python">python</option>
+                                          <option value="php">php</option>
+                                          <option value="ruby">ruby</option>
+                                          <option value="vb">Visual Basic</option>
+                                          <option value="objc">Objective-C</option>
+                                          <option value="swift">Swift</option>
+                                          <option value="groovy">Groovy</option>
+                                      </select>
+                </form>
+              </nav>
+                            <section class="code" id="generatedResourceCodeS1E19">                                                                            
+<span id="requestExampleIdS1E19req0" class="hidden"></span>
+<script>
+window.docResources["generatedResourceCodeS1E19"] = (window.docResources["generatedResourceCodeS1E19"] || []).concat({
+  "exampleId": "S1E19req0",
+  "url": "/api/campaign/{key}/start",
+  "method": "POST",
+  "contentType": "application/json",
+  "headers": {
+    "Content-Type": "application/json",
+    "Auth-Service-Key": "imkt",
+    "Auth-Token": "07fe5ae62bd4f329964f74ffa5a09f22cc11a4cab7931d4fb1bc911915b6293929069abeb177f21b"
+  },
+  "body": ""
+});
+</script>
+                                                                                                <p class="ioDesc">Response</p>
+                    <section class="outgoingCall rawResponse">
+                      <pre class="outgoing outgoingHeaders"><code>204 (No Content)</code></pre>
+                      <pre class="outgoing"><code class=""></code></pre>
+                    </section>
+                                                                                    </section>
+            </section>
+                          <section class="debugger" data-resource-signature="POST /api/campaign/{key}/start"></section>
+                            <section class="social">
+                <nav class="switch"></nav>
+
+                <section class="newPost">
+                  <form action="/discussion/53e141ece339e902000007b8" method="post">
+                     <textarea placeholder="Start a new thread…" name="comment"></textarea>
+                     <div class="postControl">
+                       <div class="postTools">
+                         <input class="button blue big" type="submit" value="Submit">
+                         <a class="cancel" href="#"><i class="icon-remove"></i> Cancel</a>
+                       </div>
+                     </div>
+                     <input type="hidden" name="url" value="/api/campaign/{key}/start">
+                     <input type="hidden" name="method" value="POST" >
+                  </form>
+                </section>
+
+                                <section class="all" name="thread">
+                                  </section>
+                              </section>
+              
+              <section class="tryit">
+                <form name="jsRunExample">
+                  <span class="ajaxLoader block jsEmptyTryit"></span>
+                </form>
+              </section>
+                      </div>
+
+          
+        </section>              </div>                  <div class="sameResourceGroup">
+        
+                  <h2 class="nameResource">Campaign Process</h2>                  
+                  <h3 class="nameMethod">Pause Service</h3>
+        
+        <section class="resource noActivity">
+          <hgroup>
+            <h1 class="methodPost"><span>POST</span></h1>
+            <h2>/api/campaign/{key}/pause</h2>
+            <a class="resourcePermalink" href="#post-%2Fapi%2Fcampaign%2F%7Bkey%7D%2Fpause" name="post-%2Fapi%2Fcampaign%2F%7Bkey%7D%2Fpause"><span> </span></a>
+            <div class="toggle"></div>
+                          <div class="commentsCount">
+                <a href="#" class="commentsCountLink">Add Comment</a>
+              </div>
+                      </hgroup>
+
+                              <div class="content">
+            <nav class="switch">
+              <ul>
+                <a href="#example" class="active"><li><span>Example</span></li></a>
+                                  <a href="#debugger"><li><span>Debugger</span></li></a>
+                                                  <a href="#social"><li><span>Comments</span></li></a>
+                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
+                              </ul>
+            </nav>
+            <section class="example">
+                            <nav class="language">
+                <form name="languageSwitcher">
+                  <p>Show code sample</p>
+                  <select>
+                                          <option value="raw">none (raw data)</option>
+                                          <option value="curl">curl</option>
+                                          <option value="csharp">C#</option>
+                                          <option value="javascript">javascript</option>
+                                          <option value="nodejs">node.js</option>
+                                          <option value="python">python</option>
+                                          <option value="php">php</option>
+                                          <option value="ruby">ruby</option>
+                                          <option value="vb">Visual Basic</option>
+                                          <option value="objc">Objective-C</option>
+                                          <option value="swift">Swift</option>
+                                          <option value="groovy">Groovy</option>
+                                      </select>
+                </form>
+              </nav>
+                            <section class="code" id="generatedResourceCodeS1E20">                                                                            
+<span id="requestExampleIdS1E20req0" class="hidden"></span>
+<script>
+window.docResources["generatedResourceCodeS1E20"] = (window.docResources["generatedResourceCodeS1E20"] || []).concat({
+  "exampleId": "S1E20req0",
+  "url": "/api/campaign/{key}/pause",
+  "method": "POST",
+  "contentType": "application/json",
+  "headers": {
+    "Content-Type": "application/json",
+    "Auth-Service-Key": "imkt",
+    "Auth-Token": "07fe5ae62bd4f329964f74ffa5a09f22cc11a4cab7931d4fb1bc911915b6293929069abeb177f21b"
+  },
+  "body": ""
+});
+</script>
+                                                                                                <p class="ioDesc">Response</p>
+                    <section class="outgoingCall rawResponse">
+                      <pre class="outgoing outgoingHeaders"><code>204 (No Content)</code></pre>
+                      <pre class="outgoing"><code class=""></code></pre>
+                    </section>
+                                                                                    </section>
+            </section>
+                          <section class="debugger" data-resource-signature="POST /api/campaign/{key}/pause"></section>
+                            <section class="social">
+                <nav class="switch"></nav>
+
+                <section class="newPost">
+                  <form action="/discussion/53e141ece339e902000007b8" method="post">
+                     <textarea placeholder="Start a new thread…" name="comment"></textarea>
+                     <div class="postControl">
+                       <div class="postTools">
+                         <input class="button blue big" type="submit" value="Submit">
+                         <a class="cancel" href="#"><i class="icon-remove"></i> Cancel</a>
+                       </div>
+                     </div>
+                     <input type="hidden" name="url" value="/api/campaign/{key}/pause">
+                     <input type="hidden" name="method" value="POST" >
+                  </form>
+                </section>
+
+                                <section class="all" name="thread">
+                                  </section>
+                              </section>
+              
+              <section class="tryit">
+                <form name="jsRunExample">
+                  <span class="ajaxLoader block jsEmptyTryit"></span>
+                </form>
+              </section>
+                      </div>
+
+          
+        </section>              </div>                  <div class="sameResourceGroup">
+        
+                  <h2 class="nameResource">Campaign Process</h2>                  
+                  <h3 class="nameMethod">Stop Service</h3>
+        
+        <section class="resource noActivity">
+          <hgroup>
+            <h1 class="methodPost"><span>POST</span></h1>
+            <h2>/api/campaign/{key}/stop</h2>
+            <a class="resourcePermalink" href="#post-%2Fapi%2Fcampaign%2F%7Bkey%7D%2Fstop" name="post-%2Fapi%2Fcampaign%2F%7Bkey%7D%2Fstop"><span> </span></a>
+            <div class="toggle"></div>
+                          <div class="commentsCount">
+                <a href="#" class="commentsCountLink">Add Comment</a>
+              </div>
+                      </hgroup>
+
+                              <div class="content">
+            <nav class="switch">
+              <ul>
+                <a href="#example" class="active"><li><span>Example</span></li></a>
+                                  <a href="#debugger"><li><span>Debugger</span></li></a>
+                                                  <a href="#social"><li><span>Comments</span></li></a>
+                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
+                              </ul>
+            </nav>
+            <section class="example">
+                            <nav class="language">
+                <form name="languageSwitcher">
+                  <p>Show code sample</p>
+                  <select>
+                                          <option value="raw">none (raw data)</option>
+                                          <option value="curl">curl</option>
+                                          <option value="csharp">C#</option>
+                                          <option value="javascript">javascript</option>
+                                          <option value="nodejs">node.js</option>
+                                          <option value="python">python</option>
+                                          <option value="php">php</option>
+                                          <option value="ruby">ruby</option>
+                                          <option value="vb">Visual Basic</option>
+                                          <option value="objc">Objective-C</option>
+                                          <option value="swift">Swift</option>
+                                          <option value="groovy">Groovy</option>
+                                      </select>
+                </form>
+              </nav>
+                            <section class="code" id="generatedResourceCodeS1E21">                                                                            
+<span id="requestExampleIdS1E21req0" class="hidden"></span>
+<script>
+window.docResources["generatedResourceCodeS1E21"] = (window.docResources["generatedResourceCodeS1E21"] || []).concat({
+  "exampleId": "S1E21req0",
+  "url": "/api/campaign/{key}/stop",
+  "method": "POST",
+  "contentType": "application/json",
+  "headers": {
+    "Content-Type": "application/json",
+    "Auth-Service-Key": "imkt",
+    "Auth-Token": "07fe5ae62bd4f329964f74ffa5a09f22cc11a4cab7931d4fb1bc911915b6293929069abeb177f21b"
+  },
+  "body": ""
+});
+</script>
+                                                                                                <p class="ioDesc">Response</p>
+                    <section class="outgoingCall rawResponse">
+                      <pre class="outgoing outgoingHeaders"><code>204 (No Content)</code></pre>
+                      <pre class="outgoing"><code class=""></code></pre>
+                    </section>
+                                                                                    </section>
+            </section>
+                          <section class="debugger" data-resource-signature="POST /api/campaign/{key}/stop"></section>
+                            <section class="social">
+                <nav class="switch"></nav>
+
+                <section class="newPost">
+                  <form action="/discussion/53e141ece339e902000007b8" method="post">
+                     <textarea placeholder="Start a new thread…" name="comment"></textarea>
+                     <div class="postControl">
+                       <div class="postTools">
+                         <input class="button blue big" type="submit" value="Submit">
+                         <a class="cancel" href="#"><i class="icon-remove"></i> Cancel</a>
+                       </div>
+                     </div>
+                     <input type="hidden" name="url" value="/api/campaign/{key}/stop">
+                     <input type="hidden" name="method" value="POST" >
+                  </form>
+                </section>
+
+                                <section class="all" name="thread">
+                                  </section>
+                              </section>
+              
+              <section class="tryit">
+                <form name="jsRunExample">
+                  <span class="ajaxLoader block jsEmptyTryit"></span>
+                </form>
+              </section>
+                      </div>
+
+          </div>
+        </section>      
+          </div>
+  
+</div>
+
+</div>
+
+<div class="loginOverlay overlay smallerPanel" style="display:none" id="loginPicker">
+  <div class="closeLayer"></div>
+  <div class="panelShadow">
+    <div class="panelLegacy">
+      <a href="#"><span class="block close"></span></a>
+      <form action="https://login.apiary.io//api/login" method="post" accept-charset="utf-8">
+        <div class="discusion">
+          <h1>Identify Yourself</h1>
+          <p>To proceed, please use credentials from one of the following services.</p>
+          <ul class="overlayLoginList">
+            <a href="https://github.com/login/oauth/authorize?client_id=f739c33cbd5c32296a43&redirect_uri=https://login.apiary.io/github/login?discussion=1&redirect=http%253A%252F%252Fdocs.m4a1.apiary.io%252Flogin%252Fcallback" data-type="github"><li>GitHub<img src="https://apiary.a.ssl.fastly.net/assets/css/design/arrowOfTime-e204e0dbfdab5e33.png" width="12" height="20" /></li></a>
+            <a href="https://login.apiary.io/twitter/send_to_login?discussion=1&redirect=http://docs.m4a1.apiary.io/login/callback" data-type="twitter"><li>Twitter<img src="https://apiary.a.ssl.fastly.net/assets/css/design/arrowOfTime-e204e0dbfdab5e33.png" width="12" height="20" /></li></a>
+            <a href="#" data-type="apiary"><li>apiary.io<img src="https://apiary.a.ssl.fastly.net/assets/css/design/arrowOfTime-e204e0dbfdab5e33.png" width="12" height="20" /></li></a>
+          </ul>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div id="appLogin" style="display:none" class="loginOverlay overlay smallerPanel">
+  <div class="closeLayer"></div>
+  <div class="panelShadow">
+    <div class="panelLegacy">
+      <a href="#"><span class="block close"></span></a>
+      <form action="https://login.apiary.io/api/login?xhr_login=1" method="post" accept-charset="utf-8">
+        <img src="https://apiary.a.ssl.fastly.net/assets/css/design2/apiary-io-beta-logo-1x-7a5112f76ac0f4de.png" width="160" height="30" />
+        <ul id="loginUL">
+          <li>
+            <p><label for="username">Your e-mail</label></p>
+            <input class="textField" type="text" name="username" value="" id="username" tabindex="1" />
+          </li>
+          <li>
+            <p class="fieldDetails"><a href="https://login.apiary.io/password-recovery">Forgotten password</a></p>
+            <p><label for="password">Password</label></p>
+            <input class="textField" type="password" name="password" value="" id="password" tabindex="2" />
+          </li>
+        </ul>
+        <p><input class="button small yellow" type="submit" value="Sign In" tabindex="3" /></p>
+        <div class="adI">
+          <p>
+            Need an account?<br />
+            <a tabindex="4" href="https://login.apiary.io/register">Sign up now</a>.
+          </p>
+        </div>
+        <div class="clr"></div>
+      </form>
+    </div>
+  </div>
+</div>
+
+  
+</div>
+
+  <script>
+    window.config = {
+      "baseAjaxUrl": "http://docs.m4a1.apiary.io/"
+    };
+  </script>
+
+  <script>
+    window.jsLoginUrl    = "https://login.apiary.io/login?discussion=1&xhr_login=1";
+    window.jsLoggedIn    = false;
+    window.trafficSecret = "";
+    window.runExampleIframeUrl = "http://m4a1.apiary.io/___APIARY_INTERNAL___/docs/run-button";
+    window.tryItUrl    = "http://m4a1.apiary.io";
+    window.mockserverUrl    = "http://m4a1.apiary-mock.com";
+    window.loginUri      = "https://login.apiary.io/login";
+    window.baseDomain    = "apiary.io";
+    window.config.languages = {"raw":"none (raw data)","curl":"curl","csharp":"C#","javascript":"javascript","nodejs":"node.js","python":"python","php":"php","ruby":"ruby","vb":"Visual Basic","objc":"Objective-C","swift":"Swift","groovy":"Groovy"};
+    window.previewHelpers = window.previewHelpers || {};
+    window.previewHelpers.getContentTypeBrush = function (contentType) {
+    if ((contentType != null ? contentType.slice(-5) : void 0) === '+json') {
+      return 'language-javascript';
+    }
+    if ((contentType != null ? contentType.slice(-4) : void 0) === '+xml') {
+      return 'language-markup';
+    }
+    switch (contentType) {
+      case 'application/json':
+        return 'language-javascript';
+      case 'text/xml':
+        return 'language-markup';
+      case 'application/xml':
+        return 'language-markup';
+      default:
+        return '';
+    }
+  };
+    window.previewHelpers.apiUrl = window.previewHelpers.mockserverUrl = "http://m4a1.apiary-mock.com";
+
+    window['examplesBundle'] = window['examplesBundle'] || function(data) {
+      if (data && data.root) {
+        $.getScript('https://apiary.a.ssl.fastly.net/assets/js/libs/ect-812663b24498f44e.js', function () {
+          window.config.ectRender = window.ECT({ 'watch': false, 'cache': true, 'root': data.root, 'ext': '.html' });
+          var expandedResource = $('section.resource.expanded section.code');
+          if (expandedResource.length > 0) {
+            window.renderExampleCodes(expandedResource);
+          }
+        });
+      }
+    };
+  </script>
+  <!-- uriTemplates expand support -->
+  <script src="https://apiary.a.ssl.fastly.net/assets/js/libs/uritemplate-c6f8656d13255c83.js"></script>
+  <!-- render-preview helpers -->
+  <script src="https://apiary.a.ssl.fastly.net/assets/js/preview-58e5ffb27fbf290b.js"></script>
+  <!-- vitalize documentation -->
+  <script src="https://apiary.a.ssl.fastly.net/assets/js/docs-4c7d9c8ecd503824.js"></script>
+  <!-- templates in JSONP -->
+  <script src="https://apiary.a.ssl.fastly.net/assets/js/examples.compiled.templates-fe29ef42a5351924.js?callback=examplesBundle"></script>
+  <!-- inspect traffic w/ ease -->
+  <script src="https://apiary.a.ssl.fastly.net/assets/js/traffic-83f8d935b3a7b5b0.js" data-multipart-container='.resource .debugger[data-resource-signature="#{method} #{url}"]'></script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-18252923-1', 'apiary.io');
+  ga('send', 'pageview');
+
+</script>
+
+<script type="text/javascript">
+  /* <![CDATA[ */
+    var google_conversion_id = 977730005;
+    var google_custom_params = window.google_tag_params;
+    var google_remarketing_only = true;
+  /* ]]> */
+ (function(d, t) {
+  var g = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+  g.async = true;
+  g.src = ('https:' == location.protocol ? 'https://' : 'http://') + 'www.googleadservices.com/pagead/conversion.js';
+  s.parentNode.insertBefore(g, s);
+ })(document, 'script');
+</script>
+
+
+</body>
+</html>
+
+<!-- Localized -->
