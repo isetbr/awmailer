@@ -1,0 +1,2 @@
+#!/bin/sh
+phpdoc -t docs/source/ -d app/,src/ -i app/Daemon.php,app/Service.php,bin/*,db/*,docs/*,vendor/*,web/* --title M4A1 --template="clean" --force
