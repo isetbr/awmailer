@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.6.19, for osx10.7 (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.20, for osx10.7 (x86_64)
 --
 -- Host: localhost    Database: m4a1
 -- ------------------------------------------------------
--- Server version	5.6.19
+-- Server version	5.6.20
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -30,10 +30,12 @@ CREATE TABLE `campaign` (
   `sent` int(11) DEFAULT '0',
   `fail` int(11) DEFAULT '0',
   `progress` int(11) DEFAULT '0',
-  `status` int(11) DEFAULT '0',
+  `status` int(1) DEFAULT '0',
   `subject` varchar(250) NOT NULL,
   `body` text NOT NULL,
   `headers` varchar(512) DEFAULT NULL,
+  `user_vars` int(1) DEFAULT '0',
+  `user_headers` int(1) DEFAULT '0',
   `date` date DEFAULT NULL,
   `external` varchar(45) NOT NULL,
   `pid` int(11) DEFAULT NULL,
@@ -107,4 +109,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-07-30 17:14:14
+-- Dump completed on 2014-08-05 11:10:40
