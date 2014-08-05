@@ -5,11 +5,31 @@ namespace Iset\Model;
 use Iset\Silex\Db\TableGatewayAbstract;
 use Iset\Model\Campaign;
 
+/**
+ * Campaign Table Gateway
+ * 
+ * This is a table gateway provider for Campaign objects
+ * 
+ * @package Iset
+ * @subpackage Model
+ * @namespace Iset\Model
+ * @author Lucas Mendes de Freitas <devsdmf>
+ * @copyright M4A1 (c) iSET - Internet, Soluções e Tecnologia LTDA.
+ *
+ */
 class CampaignTable extends TableGatewayAbstract
 {
-    
+    /**
+     * The table name
+     * @var string
+     */
     const TABLE_NAME = 'campaign';
     
+    /**
+     * Fetch all campaigns from database
+     * 
+     * @return array
+     */
     public function fetchAll()
     {
         # Retrieving data from database
@@ -27,6 +47,12 @@ class CampaignTable extends TableGatewayAbstract
     	return $stack;
     }
     
+    /**
+     * Fetch campaigns by status
+     * 
+     * @param integer $status
+     * @return array
+     */
     public function getCampaignsByStatus($status = Campaign::STATUS_DEFAULT)
     {
         # Retrieving data from database
@@ -43,6 +69,12 @@ class CampaignTable extends TableGatewayAbstract
         return $stack;
     }
     
+    /**
+     * Get Campaign by ID
+     * 
+     * @param integer $idcampaign
+     * @return \Iset\Model\Campaign
+     */
     public function getCampaign($idcampaign)
     {
         # Retrieving data from database
@@ -58,6 +90,12 @@ class CampaignTable extends TableGatewayAbstract
     	}
     }
     
+    /**
+     * Get Campaign by Key
+     * 
+     * @param string $key
+     * @return \Iset\Model\Campaign
+     */
     public function getCampaignByKey($key)
     {
         # Retrieving data from database
@@ -73,6 +111,12 @@ class CampaignTable extends TableGatewayAbstract
         }
     }
     
+    /**
+     * Save an Campaign
+     * 
+     * @param Campaign $campaign
+     * @return mixed
+     */
     public function saveCampaign(Campaign &$campaign)
     {
         # Validating service
@@ -167,6 +211,12 @@ class CampaignTable extends TableGatewayAbstract
     	}
     }
     
+    /**
+     * Delete an Campaign
+     * 
+     * @param Campaign $campaign
+     * @return boolean
+     */
     public function deleteCampaign(Campaign &$campaign)
     {
     	# Mounting and executing query

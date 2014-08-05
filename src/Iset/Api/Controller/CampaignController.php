@@ -12,17 +12,46 @@ use Iset\Model\CampaignTable;
 use Iset\Model\ServiceTable;
 use Iset\Model\QueueCollection;
 
+/**
+ * Campaign Controller
+ * 
+ * This is a controller for campaign method in API.
+ * 
+ * @package Iset\Api
+ * @subpackage Controller
+ * @namespace Iset\Api\Controller
+ * @author Lucas Mendes de Freitas <devsdmf>
+ * @copyright M4A1 (c) iSET - Internet, Soluções e Tecnologia LTDA.
+ *
+ */
 class CampaignController implements ControllerProviderInterface
 {
-    
+    /**
+     * The instance of Application
+     * @var \Silex\Application
+     */
     protected $_app = null;
     
+    /**
+     * The instance of TableGateway
+     * @var \Iset\Model\CampaignTable
+     */
     protected $gateway = null;
     
+    /**
+     * The instance of Collection Gateway
+     * @var \Iset\Model\QueueCollection
+     */
     protected $collection = null;
     
+    /**
+     * The Constructor
+     */
     public function __construct(){}
     
+    /**
+     * Get all campaigns (not implemented yet)
+     */
     public function getAll()
     {
         $this->lock();
@@ -30,6 +59,12 @@ class CampaignController implements ControllerProviderInterface
     	return $this->_app->abort(Response::HTTP_NOT_IMPLEMENTED);
     }
     
+    /**
+     * Get one campaign
+     * 
+     * @param string $key
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
     public function getOne($key)
     {
         $this->lock();
@@ -51,6 +86,11 @@ class CampaignController implements ControllerProviderInterface
         }
     }
     
+    /**
+     * Create a new campaign 
+     * 
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
     public function create()
     {
         $this->lock();
@@ -102,6 +142,12 @@ class CampaignController implements ControllerProviderInterface
     	}
     }
     
+    /**
+     * Update an Campaign
+     * 
+     * @param string $key
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
     public function update($key)
     {
         $this->lock();
@@ -161,6 +207,12 @@ class CampaignController implements ControllerProviderInterface
         }
     }
     
+    /**
+     * Remove an Campaign
+     * 
+     * @param string $key
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
     public function remove($key)
     {
         $this->lock();
@@ -190,6 +242,12 @@ class CampaignController implements ControllerProviderInterface
         }
     }
     
+    /**
+     * Get the status of an Campaign
+     * 
+     * @param string $key
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
     public function getStatus($key)
     {
         $this->lock();
@@ -221,6 +279,11 @@ class CampaignController implements ControllerProviderInterface
         }
     }
     
+    /**
+     * Get status of multiple campaigns
+     * 
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
     public function getMultipleStatus()
     {
         $this->lock();
@@ -262,6 +325,12 @@ class CampaignController implements ControllerProviderInterface
         return $this->_app->json($stack,Response::HTTP_OK);
     }
     
+    /**
+     * Get queue from an campaign
+     * 
+     * @param string $key
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function getQueue($key)
     {
         $this->lock();
@@ -280,6 +349,12 @@ class CampaignController implements ControllerProviderInterface
         }
     }
     
+    /**
+     * Update a mail queue of an Campaign
+     *  
+     * @param string $key
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
     public function changeQueue($key)
     {
         # Retrieving header for select correct method
@@ -299,6 +374,12 @@ class CampaignController implements ControllerProviderInterface
         }
     }
     
+    /**
+     * Add more mails to a queue
+     * 
+     * @param string $key
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
     public function fillQueue($key)
     {
         $this->lock();
@@ -353,6 +434,12 @@ class CampaignController implements ControllerProviderInterface
         }
     }
     
+    /**
+     * Remove mails from a queue
+     * 
+     * @param string $key
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
     public function clearQueue($key)
     {
         $this->lock();
@@ -393,6 +480,12 @@ class CampaignController implements ControllerProviderInterface
         }
     }
     
+    /**
+     * Start campaign service
+     * 
+     * @param string $key
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function startCampaign($key) 
     {
         $this->lock();
@@ -415,6 +508,12 @@ class CampaignController implements ControllerProviderInterface
         }
     }
     
+    /**
+     * Pause service of campaign
+     * 
+     * @param string $key
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function pauseCampaign($key)
     {
         $this->lock();
@@ -437,6 +536,12 @@ class CampaignController implements ControllerProviderInterface
         }
     }
     
+    /**
+     * Stop campaign process
+     * 
+     * @param string $key
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function stopCampaign($key)
     {
         $this->lock();
@@ -449,10 +554,6 @@ class CampaignController implements ControllerProviderInterface
     
         # Verifying result
         if ($campaign) {
-            /*if (!is_null($campaign->pid) && posix_getpgid((int)$campaign->pid) != false) {
-                exec("kill " . $campaign->pid);
-            }*/
-        
             # Changing status of campaign
             $this->changeStatusCampaign($key,Campaign::STATUS_STOP);
         
@@ -463,6 +564,13 @@ class CampaignController implements ControllerProviderInterface
         }
     }
     
+    /**
+     * Update the status of an Campaign
+     * 
+     * @param string  $key
+     * @param integer $status
+     * @return boolean
+     */
     public function changeStatusCampaign($key, $status = Campaign::STATUS_DEFAULT)
     {
         $this->lock();
@@ -483,24 +591,32 @@ class CampaignController implements ControllerProviderInterface
             
             # Verifying result
             if ($result === true) {
-                //return new Response(null,Response::HTTP_NO_CONTENT);
                 return true;
             } else {
-                //return $this->_app->abort(Response::HTTP_INTERNAL_SERVER_ERROR);
                 return false;
             }
         } else {
-            //$response = array('success'=>0,'error'=>'Campaign not found');
-            //return $this->_app->json($response,Response::HTTP_OK);
             return false;
         }
     }
     
+    /**
+     * Get the Request
+     * 
+     * @see \Iset\Silex\ControllerProviderInterface::getRequest()
+     * @return \Symfony\Component\HttpFoundation\Request
+     */
     public function getRequest()
     {
         return $this->_app['request'];
     }
     
+    /**
+     * Get the table gateway instance
+     * 
+     * @see \Iset\Silex\ControllerProviderInterface::getTableGateway()
+     * @return \Iset\Model\CampaignTable
+     */
     public function getTableGateway()
     {
     	if (is_null($this->gateway)) {
@@ -510,6 +626,11 @@ class CampaignController implements ControllerProviderInterface
     	return $this->gateway;
     }
     
+    /**
+     * Get the collection gateway instance
+     * 
+     * @return \Iset\Model\QueueCollection
+     */
     public function getCollection()
     {
         if (is_null($this->collection)) {
@@ -519,12 +640,24 @@ class CampaignController implements ControllerProviderInterface
         return $this->collection;
     }
     
+    /**
+     * Returns routes to connect to the given application.
+     * 
+     * @see \Silex\ControllerProviderInterface::connect()
+     * @return \Silex\ControllerCollection
+     */
     public function connect(Application $app)
     {
         $this->_app = $app;
         return $this->register();
     }
     
+    /**
+     * Register all routes with the controller methods
+     * 
+     * @see \Iset\Silex\ControllerProviderInterface::register()
+     * @return \Silex\ControllerCollection
+     */
     public function register()
     {
         $container = $this->_app['controllers_factory'];
@@ -597,6 +730,11 @@ class CampaignController implements ControllerProviderInterface
         return $container;
     }
     
+    /**
+     * Perform a authentication process
+     * 
+     * @see \Iset\Silex\ControllerProviderInterface::lock()
+     */
     public function lock()
     {
         # Temporary
@@ -608,6 +746,12 @@ class CampaignController implements ControllerProviderInterface
         }
     }
     
+    /**
+     * Provides a configured instance of CampaignController
+     * 
+     * @param Application $app
+     * @return \Silex\ControllerCollection
+     */
     public static function factory(Application &$app)
     {
         $instance = new self();

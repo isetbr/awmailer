@@ -5,11 +5,31 @@ namespace Iset\Model;
 use Iset\Silex\Db\TableGatewayAbstract;
 use Iset\Model\Service;
 
+/**
+ * Service Table Gateway
+ *
+ * This is a table gateway provider for Service objects
+ *
+ * @package Iset
+ * @subpackage Model
+ * @namespace Iset\Model
+ * @author Lucas Mendes de Freitas <devsdmf>
+ * @copyright M4A1 (c) iSET - Internet, Soluções e Tecnologia LTDA.
+ *
+ */
 class ServiceTable extends TableGatewayAbstract
 {
-    
+    /**
+     * The table name
+     * @var string 
+     */
     const TABLE_NAME = 'service';
     
+    /**
+     * Fetch all services from database
+     * 
+     * @return array
+     */
     public function fetchAll()
     {
         # Retrieving data from database
@@ -27,6 +47,12 @@ class ServiceTable extends TableGatewayAbstract
     	return $stack;
     }
     
+    /**
+     * Fetch an service from database
+     * 
+     * @param string $key
+     * @return \Iset\Model\Service
+     */
     public function getService($key)
     {
         # Retrieving data from database
@@ -42,6 +68,12 @@ class ServiceTable extends TableGatewayAbstract
     	}
     }
     
+    /**
+     * Save an Service
+     * 
+     * @param Service $service
+     * @return mixed
+     */
     public function saveService(Service &$service)
     {
         # Validating service
@@ -104,6 +136,12 @@ class ServiceTable extends TableGatewayAbstract
     	}
     }
     
+    /**
+     * Delete an Service
+     * 
+     * @param Service $service
+     * @return boolean
+     */
     public function deleteService(Service &$service)
     {
     	# Mounting and executing query

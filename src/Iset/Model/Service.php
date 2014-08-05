@@ -6,19 +6,56 @@ use Iset\Silex\Model\ModelInterface;
 use Iset\Silex\Db\TableGatewayAbstract;
 use Iset\Model\ServiceTable;
 
+/**
+ * Service
+ *
+ * This is a object representation of an Service
+ *
+ * @package Iset
+ * @subpackage Model
+ * @namespace Iset\Model
+ * @author Lucas Mendes de Freitas <devsdmf>
+ * @copyright M4A1 (c) iSET - Internet, Soluções e Tecnologia LTDA.
+ *
+ */
 class Service implements ModelInterface
 {
-    
+    /**
+     * The ID of service
+     * @var integer
+     */
     public $id = null;
     
+    /**
+     * The name of service
+     * @var string 
+     */
     public $name = null;
     
+    /**
+     * The key of service
+     * @var string
+     */
     public $key = null;
     
+    /**
+     * The Token of service
+     * @var string
+     */
     private $token = null;
     
+    /**
+     * The instance of TableGateway
+     * @var \Iset\Silex\Db\TableGatewayAbstract
+     */
     private $gateway = null;
     
+    /**
+     * The Constructor
+     * 
+     * @param TableGatewayAbstract $gateway
+     * @return \Iset\Model\Service
+     */
     public function __construct(TableGatewayAbstract $gateway = null)
     {
     	if (!is_null($gateway)) {
@@ -28,11 +65,23 @@ class Service implements ModelInterface
     	return $this;
     }
     
+    /**
+     * Get the token of service
+     * 
+     * @return string
+     */
     public function getToken()
     {
         return $this->token;
     }
     
+    /**
+     * Fill object with an configured associative array
+     * 
+     * @param array $data
+     * @see \Iset\Silex\Model\ModelInterface::exchangeArray()
+     * @return \Iset\Model\Service
+     */
     public function exchangeArray(array $data)
     {
         $this->id    = (!empty($data['idservice'])) ? (int)$data['idservice'] : null;
@@ -43,6 +92,12 @@ class Service implements ModelInterface
         return $this;
     }
     
+    /**
+     * Get the array representation of object
+     * 
+     * @see \Iset\Silex\Model\ModelInterface::asArray()
+     * @return array
+     */
     public function asArray()
     {
     	$data = array(
@@ -55,6 +110,12 @@ class Service implements ModelInterface
     	return $data;
     }
     
+    /**
+     * Validate the Service
+     * 
+     * @see \Iset\Silex\Model\ModelInterface::validate()
+     * @return mixed
+     */
     public function validate()
     {
         # Validating service name
@@ -85,6 +146,12 @@ class Service implements ModelInterface
         return true;
     }
     
+    /**
+     * Save Service
+     * 
+     * @see \Iset\Silex\Model\ModelInterface::save()
+     * @return mixed
+     */
     public function save()
     {
     	$response = $this->gateway->saveService($this);
@@ -95,6 +162,12 @@ class Service implements ModelInterface
     	}
     }
     
+    /**
+     * Delete Service
+     * 
+     * @see \Iset\Silex\Model\ModelInterface::delete()
+     * @return mixed
+     */
     public function delete()
     {
     	$response = $this->gateway->deleteService($this);
@@ -106,6 +179,9 @@ class Service implements ModelInterface
     	}
     }
     
+    /**
+     * Generate a token for a new service
+     */
     private function generateServiceToken()
     {
         $this->token = hash('ripemd320',bin2hex($this->key.'?'.rand(111111,999999).'#'.time()));

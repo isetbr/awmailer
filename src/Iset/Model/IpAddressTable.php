@@ -5,11 +5,31 @@ namespace Iset\Model;
 use Iset\Silex\Db\TableGatewayAbstract;
 use Iset\Model\IpAddress;
 
+/**
+ * IpAddress Table Gateway
+ *
+ * This is a table gateway provider for IpAddress objects
+ *
+ * @package Iset
+ * @subpackage Model
+ * @namespace Iset\Model
+ * @author Lucas Mendes de Freitas <devsdmf>
+ * @copyright M4A1 (c) iSET - Internet, Soluções e Tecnologia LTDA.
+ *
+ */
 class IpAddressTable extends TableGatewayAbstract
 {
-    
+    /**
+     * The table name
+     * @var string
+     */
     const TABLE_NAME = 'ipaddress';
     
+    /**
+     * Fetch all ip addresses from database
+     * 
+     * @return array
+     */
     public function fetchAll()
     {
         # Retrieving data from database
@@ -27,6 +47,12 @@ class IpAddressTable extends TableGatewayAbstract
         return $stack;
     }
     
+    /**
+     * Fetch an IpAddress from database
+     * 
+     * @param string $ipaddress
+     * @return \Iset\Model\IpAddress
+     */
     public function getIpAddress($ipaddress)
     {
         # Retrieving data from database
@@ -42,6 +68,12 @@ class IpAddressTable extends TableGatewayAbstract
         }
     }
     
+    /**
+     * Save an IpAddress
+     * 
+     * @param IpAddress $ipaddress
+     * @return mixed
+     */
     public function saveIpAddress(IpAddress &$ipaddress)
     {
         # Validating Ip Address
@@ -72,6 +104,12 @@ class IpAddressTable extends TableGatewayAbstract
     	}
     }
     
+    /**
+     * Delete an IpAddress
+     * 
+     * @param IpAddress $ipaddress
+     * @return boolean
+     */
     public function deleteIpAddress(IpAddress &$ipaddress)
     {
         # Mounting and executing query

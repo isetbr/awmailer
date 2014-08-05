@@ -9,15 +9,41 @@ use Iset\Api\Auth\IpAddress as AuthIpAddress;
 use Iset\Model\IpAddress;
 use Iset\Model\IpAddressTable;
 
+/**
+ * IpAddress Controller
+ *
+ * This is a controller for ipaddress method in API.
+ *
+ * @package Iset\Api
+ * @subpackage Controller
+ * @namespace Iset\Api\Controller
+ * @author Lucas Mendes de Freitas <devsdmf>
+ * @copyright M4A1 (c) iSET - Internet, Soluções e Tecnologia LTDA.
+ *
+ */
 class IpAddressController implements ControllerProviderInterface
 {
-    
+    /**
+     * The instance of Application
+     * @var \Silex\Application
+     */
     protected $_app = null;
     
+    /**
+     * The instance of TableGateway
+     * @var \Iset\Model\IpAddressTable
+     */
     protected $gateway = null;
     
+    /**
+     * The Constructor
+     */
     public function __construct(){}
     
+    /**
+     * Get all ip addresses from database
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function getAll()
     {
         $this->lock();
@@ -43,6 +69,11 @@ class IpAddressController implements ControllerProviderInterface
         }
     }
     
+    /**
+     * Allow a new ip address to perform calls in API
+     * 
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
     public function allow()
     {
         $this->lock();
@@ -67,6 +98,12 @@ class IpAddressController implements ControllerProviderInterface
         }
     }
     
+    /**
+     * Remove an ip address from database
+     * 
+     * @param string $ipaddress
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
     public function remove($ipaddress)
     {
         $this->lock();
@@ -95,11 +132,23 @@ class IpAddressController implements ControllerProviderInterface
         }
     }
     
+    /**
+     * Get the Request
+     * 
+     * @see \Iset\Silex\ControllerProviderInterface::getRequest()
+     * @return \Symfony\Component\HttpFoundation\Request
+     */
     public function getRequest()
     {
         return $this->_app['request'];
     }
     
+    /**
+     * Get the table gateway instance
+     * 
+     * @see \Iset\Silex\ControllerProviderInterface::getTableGateway()
+     * @return \Iset\Model\IpAddressTable
+     */
     public function getTableGateway()
     {
     	if (is_null($this->gateway)) {
@@ -109,12 +158,24 @@ class IpAddressController implements ControllerProviderInterface
     	return $this->gateway;
     }
     
+    /**
+     * Returns routes to connect to the given application.
+     * 
+     * @see \Silex\ControllerProviderInterface::connect()
+     * @return \Silex\ControllerCollection
+     */
     public function connect(Application $app)
     {
     	$this->_app = $app;
     	return $this->register();
     }
     
+    /**
+     * Register all routes with the controller methods
+     * 
+     * @see \Iset\Silex\ControllerProviderInterface::register()
+     * @return \Silex\ControllerCollection
+     */
     public function register()
     {
     	$container = $this->_app['controllers_factory'];
@@ -137,6 +198,11 @@ class IpAddressController implements ControllerProviderInterface
     	return $container;
     }
     
+    /**
+     * Perform a authentication process
+     * 
+     * @see \Iset\Silex\ControllerProviderInterface::lock()
+     */
     public function lock()
     {
         # Temporary
@@ -148,6 +214,12 @@ class IpAddressController implements ControllerProviderInterface
         }
     }
     
+    /**
+     * Provides a configured instance of IpAddressController
+     * 
+     * @param Application $app
+     * @return \Silex\ControllerCollection
+     */
     public static function factory(Application &$app)
     {
     	$instance = new self();

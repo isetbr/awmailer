@@ -6,10 +6,28 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Zend\Config\Reader\Ini as ConfigReader;
 use Iset\Api\Controller\MainController as ApiController;
+use Silex\Application;
 
+/**
+ * App
+ * 
+ * This is a App class that configures a application environment,
+ * initialize service, controllers, routes and all libraries of 
+ * system to let application ready for bootstrapping.
+ * 
+ * @package App
+ * @author Lucas Mendes de Freitas <devsdmf>
+ * @copyright M4A1 (c) iSET - Internet, Soluções e Tecnologia LTDA.
+ *
+ */
 class App
 {
-	
+	/**
+	 * Configure the application instance
+	 * 
+	 * @static
+	 * @return Application
+	 */
 	public static function configure()
 	{
 		# Initializing Kernel

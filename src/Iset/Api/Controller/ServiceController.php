@@ -9,15 +9,42 @@ use Iset\Api\Auth\IpAddress as AuthIpAddress;
 use Iset\Model\Service;
 use Iset\Model\ServiceTable;
 
+/**
+ * Service Controller
+ *
+ * This is a controller for service method in API.
+ *
+ * @package Iset\Api
+ * @subpackage Controller
+ * @namespace Iset\Api\Controller
+ * @author Lucas Mendes de Freitas <devsdmf>
+ * @copyright M4A1 (c) iSET - Internet, Soluções e Tecnologia LTDA.
+ *
+ */
 class ServiceController implements ControllerProviderInterface
 {
-    
+    /**
+     * The instance of Application
+     * @var \Silex\Application
+     */
     protected $_app = null;
     
+    /**
+     * The instance of TableGateway
+     * @var \Iset\Model\ServiceTable
+     */
     protected $gateway = null;
     
+    /**
+     * The Constructor
+     */
     public function __construct(){}
     
+    /**
+     * Create a new service
+     * 
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
     public function create()
     {
         # Getting provider
@@ -41,6 +68,11 @@ class ServiceController implements ControllerProviderInterface
         }
     }
     
+    /**
+     * Get all services from database
+     * 
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function getAll()
     {
         $this->lock();
@@ -66,6 +98,12 @@ class ServiceController implements ControllerProviderInterface
         }
     }
     
+    /**
+     * Get a service
+     * 
+     * @param string $key
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
     public function getOne($key)
     {
         $this->lock();
@@ -86,6 +124,12 @@ class ServiceController implements ControllerProviderInterface
         }
     }
     
+    /**
+     * Update a service
+     * 
+     * @param string $key
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
     public function update($key)
     {
         $this->lock();
@@ -122,6 +166,12 @@ class ServiceController implements ControllerProviderInterface
         }
     }
     
+    /**
+     * Remove an service
+     * 
+     * @param string $key
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
     public function remove($key)
     {
         $this->lock();
@@ -147,11 +197,23 @@ class ServiceController implements ControllerProviderInterface
         }
     }
     
+    /**
+     * Get the Request
+     * 
+     * @see \Iset\Silex\ControllerProviderInterface::getRequest()
+     * @return \Symfony\Component\HttpFoundation\Request
+     */
     public function getRequest()
     {
         return $this->_app['request'];
     }
     
+    /**
+     * Get the table gateway instance
+     * 
+     * @see \Iset\Silex\ControllerProviderInterface::getTableGateway()
+     * @return \Iset\Model\ServiceTable
+     */
     public function getTableGateway()
     {
         if (is_null($this->gateway)) {
@@ -161,12 +223,24 @@ class ServiceController implements ControllerProviderInterface
         return $this->gateway;
     }
     
+    /**
+     * Returns routes to connect to the given application.
+     * 
+     * @see \Silex\ControllerProviderInterface::connect()
+     * @return \Silex\ControllerCollection
+     */
     public function connect(Application $app)
     {
     	$this->_app = $app;
     	return $this->register();
     }
     
+    /**
+     * Register all routes with the controller methods
+     * 
+     * @see \Iset\Silex\ControllerProviderInterface::register()
+     * @return \Silex\ControllerCollection
+     */
     public function register()
     {
     	$container = $this->_app['controllers_factory'];
@@ -199,6 +273,11 @@ class ServiceController implements ControllerProviderInterface
     	return $container;
     }
     
+    /**
+     * Perform a authentication process
+     * 
+     * @see \Iset\Silex\ControllerProviderInterface::lock()
+     */
     public function lock()
     {
         # Temporary
@@ -210,6 +289,12 @@ class ServiceController implements ControllerProviderInterface
         }
     }
     
+    /**
+     * Provides a configured instance of ServiceController
+     * 
+     * @param Application $app
+     * @return \Silex\ControllerCollection
+     */
     public static function factory(Application &$app)
     {
         # Initializing instance
