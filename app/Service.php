@@ -173,23 +173,30 @@ foreach ($queue as $row) {
         $parsed_body = $message;
         
         # Verifying if has vars to parse body
-        if (is_array($row['vars'])) {
+        if ($campaign->user_vars == 1 && is_array($row['vars'])) {
             foreach ($row['vars'] as $key => $value) {
                 $parsed_body = str_replace('%%' . $key . '%%', $value, $parsed_body);
             }
         }
         
         # Verifying if has custom headers
-        if (is_array($row['headers'])) {
+        if ($campaign->user_headers == 1 && is_array($row['headers'])) {
+            # Merge campaign headers with user headers
             $parsed_headers = array_merge($headers,$row['headers']);
-            $parsed_headers = implode("\r\n",$parsed_headers);
         }
     } else {
         # Simple queue
         $destination_email = $row;
         $parsed_body = $message;
-        $parsed_headers = implode("\r\n",$parsed_headers);
+        $parsed_headers = $parsed_headers;
     }
+    
+    # Loop into headers to parse the string
+    $temporary_headers = array();
+    foreach ($parsed_headers as $header_key => $header_value) {
+        $temporary_headers[] = $header_key . ': ' .$header_value; 
+    }
+    $parsed_headers = implode("\r\n",$temporary_headers);
     
     # Sending mail
     $result = mail($destination_email,$subject,$parsed_body,$parsed_headers);
