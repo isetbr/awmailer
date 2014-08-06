@@ -4,50 +4,20 @@
 require_once dirname(__FILE__) . '/../vendor/autoload.php';
 require_once dirname(__FILE__) . '/../app/App.php';
 
-# Helpers
-# Print a line in terminal
-function print_ln ($text = null, $break = true) { 
-    echo $text . (($break) ? PHP_EOL : ''); 
-}
-# Separator
-function separate() { 
-    echo "##########################################################" . PHP_EOL; 
-}
-# Lock campaign
-function lock($key) {
-    global $app;
-    $handle = fopen($app['cache_path'] . $key.".lock", "w");
-    fwrite($handle, time());
-    fclose($handle);
-}
-# Unlock campaign
-function unlock($key) {
-    global $app;
-    if (file_exists($app['cache_path'] . $key . ".lock")) {
-        unlink($app['cache_path'] . $key . ".lock");
-    }
-}
-# IsLocked campaign
-function is_locked($key) {
-    global $app;
-    return file_exists($app['cache_path'] . $key . ".lock");
-}
-
 # Loading resources
 use Iset\Model\Campaign;
 use Iset\Model\CampaignTable;
 use Iset\Model\QueueCollection;
 
+# Initializing Service
+define("PROCESS_TITLE",'m4a1d');
+@cli_set_process_title(PROCESS_TITLE);
+
 # Initialzing Silex Application
 $app = App::configure();
 
 # Initializing cache component
-$cache = Zend\Cache\StorageFactory::factory(array(
-    'adapter'=>'filesystem',
-    'plugins'=>array(
-        'exception_handler' => array('throw_exceptions'=>false),
-    ),
-));
+$cache = Zend\Cache\StorageFactory::factory($app['config']['cache']['zendcache']);
 $cache->setOptions(array('cache_dir'=>$app['cache_path']));
 
 # Initializing gateway
@@ -63,21 +33,20 @@ $max_repeats = 10;
 $repeated = array();
 
 # Starting daemon
-while (true) {
+while (true) {    
     # Getting active and paused campaigns
-    $campaignsActive = $gateway->getCampaignsByStatus(Campaign::STATUS_START);
-    $campaignsPaused = $gateway->getCampaignsByStatus(Campaign::STATUS_PAUSE);
-    $campaigns = array_merge($campaignsActive,$campaignsPaused);
+    $campaignsActive  = $gateway->getCampaignsByStatus(Campaign::STATUS_START);
+    $campaignsPaused  = $gateway->getCampaignsByStatus(Campaign::STATUS_PAUSE);
+    $campaignsStopped = $gateway->getCampaignsByStatus(Campaign::STATUS_STOP);
+    $campaignsDone    = $gateway->getCampaignsByStatus(Campaign::STATUS_DONE);
+    $campaigns = array_merge($campaignsActive,$campaignsPaused,$campaignsStopped);
     
     # Loop into results
     foreach ($campaigns as $campaign) {
         $campaignKey = $campaign->getCampaignKey();
         # Verifying if campaign is in cache
         $result = $cache->hasItem($campaignKey);
-        if ($result) {
-            # Locking process
-            lock($campaignKey);
-            
+        if ($result) {            
             # Getting data from cache
             $data = json_decode($cache->getItem($campaignKey),true);
             
@@ -86,14 +55,9 @@ while (true) {
                 if (!is_null($campaign->pid) && posix_getpgid((int)$campaign->pid) != false) {
                     $command = "kill " . $campaign->pid;
                     exec($command);
-                    $campaign->pid = null;
-                    $campaign->save();
                     continue;
                 }
             }
-            
-            # Control var
-            $update = false;
             
             # Verifying if has previous
             if ($cache->hasItem($campaignKey . '_previous')) {
@@ -101,70 +65,60 @@ while (true) {
                 $previous = json_decode($cache->getItem($campaignKey . '_previous'),true);
                 
                 # Verifying if is modified
-                $update = ($data != $previous) ? true : false;
-            } else {
-                $update = true;
-            }
-            
-            # Verify to update
-            if ($update) {
-                # Updating campaign statuses
-                $campaign->sent = $data['sent'];
-                $campaign->fail = $data['fail'];
-                $campaign->progress = $data['progress'];
-                $campaign->save();
-                
-                # Removing emails from queue
-                foreach ($data['success'] as $index => $email) {
-                    if ($collection->remove($campaignKey,$email)) {
-                        unset($data['success'][$index]);
+                if ($data == $previous) {
+                    # Verifying if repeated was set and increase counter
+                    if (!isset($repeated[$campaignKey])) {
+                        $repeated[$campaignKey] = 0;
                     }
-                }
-                
-                # Writing in cache
-                $cache->setItem($campaignKey, json_encode($data));
-                $cache->setItem($campaignKey . "_previous", json_encode($data));
-                
-                # Unlocking file
-                print_ln("Campaign " . $campaignKey);
-                var_dump($data);
-                print_ln();
-                separate();
-            } else {
-                if (!isset($repeated[$campaignKey])) {
+                    $repeated[$campaignKey]++;
+                    
+                    # Verifying if data was repeated at max loops
+                    if ($repeated[$campaignKey] > $max_repeats) {
+                        # Updating campaign statuses
+                        $campaign->sent = $data['sent'];
+                        $campaign->fail = $data['fail'];
+                        $campaign->progress = $data['progress'];
+                        $campaign->pid = null;
+                        
+                        $campaign->save();
+                        
+                        # Removing emails from queue
+                        foreach ($data['success'] as $index => $email) {
+                            if ($collection->remove($campaignKey,$email)) {
+                                unset($data['success'][$index]);
+                            }
+                        }
+                        
+                        # Cleaning cache
+                        $cache->removeItem($campaignKey);
+                        $cache->removeItem($campaignKey . "_previous");
+                    }
+                } else {
+                    # Set previous cache
+                    $cache->setItem($campaignKey . "_previous", json_encode($data));
+                    
+                    # Restarting counter of repeated cache
                     $repeated[$campaignKey] = 0;
                 }
-                $repeated[$campaignKey]++;
-                
-                if ($repeated[$campaignKey] > $max_repeats) {
-                    $campaign->pid = null;
-                    $campaign->save();
-                    $cache->removeItem($campaignKey);
-                    $cache->removeItem($campaignKey . "_previous");
-                }
-                
-                print_ln("Campaign " . $campaignKey);
-                print_ln("REPEATED");
-                print_ln();
-                separate();
+            } else {
+                # Set previous cache
+                $cache->setItem($campaignKey . "_previous", json_encode($data));
             }
-            
-            # Unlockign process
-            unlock($campaignKey);
         } else {
             # Verifying if process is started and not running yet
             if ($campaign->status == Campaign::STATUS_START && is_null($campaign->pid)) {
-                $child = pcntl_fork();
-                if ($child) {
-                    continue;
+                switch (pcntl_fork()) {
+                    case 0 :
+                        $args = array($campaignKey);
+                        pcntl_exec(dirname(__FILE__) . "/../bin/m4a1",$args);
+                        exit(0);
+                    default :
+                        break;
                 }
-                $command = "m4a1 " . $campaignKey;
-                exec($command);
             }
         }
     }
-    
-    print_ln("OK!");
-    
-    sleep(3);
+
+    # Waiting...
+    sleep(5);
 }
