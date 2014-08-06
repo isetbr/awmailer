@@ -15,8 +15,8 @@ define("PROCESS_TITLE",'m4a1');
 $app = App::configure();
 
 # Initializing cache component
-$cache = Zend\Cache\StorageFactory::factory($app['config']['cache']['zendcache']);
-$cache->setOptions(array('cache_dir'=>$app['cache_path']));
+/*$cache = Zend\Cache\StorageFactory::factory($app['config']['cache']['zendcache']);
+$cache->setOptions(array('cache_dir'=>$app['cache_path']));*/
 
 # Initializing Campaign table
 $campaignTable = new Iset\Model\CampaignTable($app);
@@ -40,7 +40,7 @@ if ($campaign) {
     }
     
     # Verify if campaign is in cache
-    if ($cache->hasItem($campaignKey)) {
+    if ($app['cache']->hasItem($campaignKey)) {
         # Error: Campaign in cache
         die();
     }
@@ -82,7 +82,7 @@ $campaignCache = array(
 );
 
 # Writing campaign in cache
-$result = $cache->setItem($campaignKey, json_encode($campaignCache));
+$result = $app['cache']->setItem($campaignKey, json_encode($campaignCache));
 if (!$result) {
     # Fail to start campaign cache 
     die();
@@ -138,9 +138,6 @@ foreach ($queue as $row) {
     # Increasing counter
     $counter++;
     
-    # Getting campaign cache
-    $campaignCache = json_decode($cache->getItem($campaignKey),true);
-    
     # Verifying result and increasing counter
     if ($result) {
         $campaignCache['sent']++;
@@ -154,16 +151,14 @@ foreach ($queue as $row) {
     if ($counter == $factor) {
         $counter = 0;
         $campaignCache['progress']++;
-        sleep(1);
     }
     
     # Writing in cache
-    $cache->setItem($campaignKey, json_encode($campaignCache));
+    $app['cache']->setItem($campaignKey, json_encode($campaignCache));
 }
 
-# Updating campaign
-$campaign->pid = null;
-if ($campaignCache['progress'] == 100) {
-    $campaign->status = Campaign::STATUS_DONE;
-}
-$campaign->save();
+# Setting flag to finish process
+$campaignCache['done'] = 1;
+
+# Writing in cache
+$app['cache']->setItem($campaignKey, json_encode($campaignCache));

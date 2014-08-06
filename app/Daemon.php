@@ -17,8 +17,8 @@ define("PROCESS_TITLE",'m4a1d');
 $app = App::configure();
 
 # Initializing cache component
-$cache = Zend\Cache\StorageFactory::factory($app['config']['cache']['zendcache']);
-$cache->setOptions(array('cache_dir'=>$app['cache_path']));
+/*$cache = Zend\Cache\StorageFactory::factory($app['config']['cache']['zendcache']);
+$cache->setOptions(array('cache_dir'=>$app['cache_path']));*/
 
 # Initializing gateway
 $gateway = new CampaignTable($app);
@@ -45,10 +45,10 @@ while (true) {
     foreach ($campaigns as $campaign) {
         $campaignKey = $campaign->getCampaignKey();
         # Verifying if campaign is in cache
-        $result = $cache->hasItem($campaignKey);
+        $result = $app['cache']->hasItem($campaignKey);
         if ($result) {            
             # Getting data from cache
-            $data = json_decode($cache->getItem($campaignKey),true);
+            $data = json_decode($app['cache']->getItem($campaignKey),true);
             
             # Verifying if status has changed
             if ($campaign->status != Campaign::STATUS_START) {
@@ -60,9 +60,9 @@ while (true) {
             }
             
             # Verifying if has previous
-            if ($cache->hasItem($campaignKey . '_previous')) {
+            if ($app['cache']->hasItem($campaignKey . '_previous')) {
                 # Getting previous
-                $previous = json_decode($cache->getItem($campaignKey . '_previous'),true);
+                $previous = json_decode($app['cache']->getItem($campaignKey . '_previous'),true);
                 
                 # Verifying if is modified
                 if ($data == $previous) {
@@ -73,13 +73,20 @@ while (true) {
                     $repeated[$campaignKey]++;
                     
                     # Verifying if data was repeated at max loops
-                    if ($repeated[$campaignKey] > $max_repeats) {
+                    if ($repeated[$campaignKey] > $max_repeats || (isset($data['done']) && $data['done'] == 1)) {
                         # Updating campaign statuses
                         $campaign->sent = $data['sent'];
                         $campaign->fail = $data['fail'];
                         $campaign->progress = $data['progress'];
                         $campaign->pid = null;
                         
+                        # Verifying if process is done
+                        if ($data['done'] == 1) {
+                            $campaign->status = Campaign::STATUS_DONE;
+                            $campaign->progress = 100;
+                        }
+                        
+                        # Saving campaign
                         $campaign->save();
                         
                         # Removing emails from queue
@@ -90,19 +97,19 @@ while (true) {
                         }
                         
                         # Cleaning cache
-                        $cache->removeItem($campaignKey);
-                        $cache->removeItem($campaignKey . "_previous");
+                        $app['cache']->removeItem($campaignKey);
+                        $app['cache']->removeItem($campaignKey . "_previous");
                     }
                 } else {
                     # Set previous cache
-                    $cache->setItem($campaignKey . "_previous", json_encode($data));
+                    $app['cache']->setItem($campaignKey . "_previous", json_encode($data));
                     
                     # Restarting counter of repeated cache
                     $repeated[$campaignKey] = 0;
                 }
             } else {
                 # Set previous cache
-                $cache->setItem($campaignKey . "_previous", json_encode($data));
+                $app['cache']->setItem($campaignKey . "_previous", json_encode($data));
             }
         } else {
             # Verifying if process is started and not running yet

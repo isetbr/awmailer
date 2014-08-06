@@ -60,6 +60,12 @@ class App
 			    'eventmanager'=>function ($eventmanager) {}
 		    ),
 		));
+		$kernel->register(new Iset\Silex\Provider\ZendCacheServiceProvider(),array(
+		    'cache.options'=>array(
+                'zendcache'=>$kernel['config']['cache']['zendcache'],
+		        'cache_dir'=>$kernel['cache_path'],
+		    ),
+		));
 		
 		# Register controllers
 		$kernel->mount('/api', new ApiController())

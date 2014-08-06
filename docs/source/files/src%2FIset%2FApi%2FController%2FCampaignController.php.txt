@@ -260,18 +260,39 @@ class CampaignController implements ControllerProviderInterface
         
         # Verifying result
         if ($campaign) {
-            $data = $campaign->asArray();
-            $response = array(
-            	'id'=>$data['id'],
-                'key'=>$data['key'],
-                'total'=>$data['total'],
-                'sent'=>$data['sent'],
-                'fail'=>$data['fail'],
-                'progress'=>$data['progress'],
-                'status'=>$data['status'],
-                'external'=>$data['external'],
-                'pid'=>$data['pid'],
-            );
+            # Verifying if campaign is in cache
+            if ($this->_app['cache']->hasItem($key)) {
+                # Getting data from cache
+                $data = json_decode($this->_app['cache']->getItem($key),true);
+                
+                # Mounting response
+                $response = array(
+                    'id'=>$campaign->id,
+                    'key'=>$campaign->getCampaignKey(),
+                    'total'=>$data['total'],
+                    'sent'=>$data['sent'],
+                    'fail'=>$data['fail'],
+                    'progress'=>$data['progress'],
+                    'status'=>$data['status'],
+                    'external'=>$campaign->external,
+                    'pid'=>$data['pid'],
+                    'cache'=>1,
+                );
+            } else {
+                # Mouting response
+                $response = array(
+                    'id'=>$campaign->id,
+                    'key'=>$campaign->getCampaignKey(),
+                    'total'=>$campaign->total,
+                    'sent'=>$campaign->sent,
+                    'fail'=>$campaign->fail,
+                    'progress'=>$campaign->progress,
+                    'status'=>$campaign->status,
+                    'external'=>$campaign->external,
+                    'pid'=>$campaign->pid,
+                );
+            }
+            
             return $this->_app->json($response,Response::HTTP_OK);
         } else {
             $response = array('success'=>0,'error'=>'Campaign not found');
@@ -305,20 +326,41 @@ class CampaignController implements ControllerProviderInterface
             
             # Verifying if campaign was found
             if ($campaign) {
-                $stack[$key] = array(
-                    'result'=>1,
-                	'id'=>$campaign->id,
-                    'key'=>$campaign->getCampaignKey(),
-                    'total'=>$campaign->total,
-                    'sent'=>$campaign->sent,
-                    'fail'=>$campaign->fail,
-                    'progress'=>$campaign->progress,
-                    'status'=>$campaign->status,
-                    'external'=>$campaign->external,
-                    'pid'=>$campaign->pid,
-                );
+                # Verifying if campaign is in cache
+                if ($this->_app['cache']->hasItem($key)) {
+                    # Getting data from cache
+                    $data = json_decode($this->_app['cache']->getItem($key),true);
+                    
+                    # From cache
+                    $stack[$key] = array(
+                        'id'=>$campaign->id,
+                        'key'=>$campaign->getCampaignKey(),
+                        'total'=>$data['total'],
+                        'sent'=>$data['sent'],
+                        'fail'=>$data['fail'],
+                        'progress'=>$data['progress'],
+                        'status'=>$data['status'],
+                        'external'=>$campaign->external,
+                        'pid'=>$data['pid'],
+                        'cache'=>1,
+                    );
+                } else {
+                    # From database
+                    $stack[$key] = array(
+                        'success'=>1,
+                        'id'=>$campaign->id,
+                        'key'=>$campaign->getCampaignKey(),
+                        'total'=>$campaign->total,
+                        'sent'=>$campaign->sent,
+                        'fail'=>$campaign->fail,
+                        'progress'=>$campaign->progress,
+                        'status'=>$campaign->status,
+                        'external'=>$campaign->external,
+                        'pid'=>$campaign->pid,
+                    );
+                }
             } else {
-                $stack[$key] = array('result'=>0,'error'=>'Campaign not found');
+                $stack[$key] = array('success'=>0,'error'=>'Campaign not found');
             }
         }
         

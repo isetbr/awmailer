@@ -21,55 +21,7 @@
     <script src="../js/jquery.smooth-scroll.js"></script>
     <script src="../js/prism.min.js"></script>
     <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
-        <script type="text/javascript">
-        function loadExternalCodeSnippets() {
-            Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
-                var src = pre.getAttribute('data-src');
-                var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
-                var language = 'php';
-
-                var code = document.createElement('code');
-                code.className = 'language-' + language;
-
-                pre.textContent = '';
-
-                code.textContent = 'Loading…';
-
-                pre.appendChild(code);
-
-                var xhr = new XMLHttpRequest();
-
-                xhr.open('GET', src, true);
-
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState == 4) {
-
-                        if (xhr.status < 400 && xhr.responseText) {
-                            code.textContent = xhr.responseText;
-
-                            Prism.highlightElement(code);
-                        }
-                        else if (xhr.status >= 400) {
-                            code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
-                        }
-                        else {
-                            code.textContent = '✖ Error: File does not exist or is empty';
-                        }
-                    }
-                };
-
-                xhr.send(null);
-            });
-        }
-
-        $(document).ready(function(){
-            loadExternalCodeSnippets();
-        });
-        $('#source-view').on('shown', function () {
-            loadExternalCodeSnippets();
-        })
-    </script>
-
+    
     <link rel="shortcut icon" href="../images/favicon.ico"/>
     <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
     <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
@@ -144,37 +96,37 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-993069875"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1027851099"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-993069875" class="accordion-body collapse in">
+            <div id="namespace-1027851099" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-574460074"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-469130305"></a>
                                 <a href="../namespaces/Iset.html" style="margin-left: 30px; padding-left: 0">Iset</a>
             </div>
-            <div id="namespace-574460074" class="accordion-body collapse ">
+            <div id="namespace-469130305" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1701933192"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1364577981"></a>
                                 <a href="../namespaces/Iset.Api.html" style="margin-left: 30px; padding-left: 0">Api</a>
             </div>
-            <div id="namespace-1701933192" class="accordion-body collapse ">
+            <div id="namespace-1364577981" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1269022743"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1728866951"></a>
                                 <a href="../namespaces/Iset.Api.Auth.html" style="margin-left: 30px; padding-left: 0">Auth</a>
             </div>
-            <div id="namespace-1269022743" class="accordion-body collapse ">
+            <div id="namespace-1728866951" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -190,10 +142,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-988818740"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1164502118"></a>
                                 <a href="../namespaces/Iset.Api.Controller.html" style="margin-left: 30px; padding-left: 0">Controller</a>
             </div>
-            <div id="namespace-988818740" class="accordion-body collapse ">
+            <div id="namespace-1164502118" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -219,10 +171,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-894842173"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-213514592"></a>
                                 <a href="../namespaces/Iset.Model.html" style="margin-left: 30px; padding-left: 0">Model</a>
             </div>
-            <div id="namespace-894842173" class="accordion-body collapse ">
+            <div id="namespace-213514592" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -243,19 +195,19 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-181932004"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1364111952"></a>
                                 <a href="../namespaces/Iset.Silex.html" style="margin-left: 30px; padding-left: 0">Silex</a>
             </div>
-            <div id="namespace-181932004" class="accordion-body collapse ">
+            <div id="namespace-1364111952" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-405515749"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-991148654"></a>
                                 <a href="../namespaces/Iset.Silex.Auth.html" style="margin-left: 30px; padding-left: 0">Auth</a>
             </div>
-            <div id="namespace-405515749" class="accordion-body collapse ">
+            <div id="namespace-991148654" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -270,10 +222,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1643362540"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-656775360"></a>
                                 <a href="../namespaces/Iset.Silex.Db.html" style="margin-left: 30px; padding-left: 0">Db</a>
             </div>
-            <div id="namespace-1643362540" class="accordion-body collapse ">
+            <div id="namespace-656775360" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -289,10 +241,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1947089937"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1931557402"></a>
                                 <a href="../namespaces/Iset.Silex.Model.html" style="margin-left: 30px; padding-left: 0">Model</a>
             </div>
-            <div id="namespace-1947089937" class="accordion-body collapse ">
+            <div id="namespace-1931557402" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -307,10 +259,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1801886215"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1603795026"></a>
                                 <a href="../namespaces/Iset.Silex.Mongo.html" style="margin-left: 30px; padding-left: 0">Mongo</a>
             </div>
-            <div id="namespace-1801886215" class="accordion-body collapse ">
+            <div id="namespace-1603795026" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -325,10 +277,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1155962552"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-919125149"></a>
                                 <a href="../namespaces/Iset.Silex.Provider.html" style="margin-left: 30px; padding-left: 0">Provider</a>
             </div>
-            <div id="namespace-1155962552" class="accordion-body collapse ">
+            <div id="namespace-919125149" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -372,38 +324,37 @@
     <section class="row-fluid">
         <div class="span10 offset2">
             <div class="row-fluid">
-                <div class="span8 content file">
+                <div class="span8 content namespace">
                     <nav>
-                                                                    </nav>
+                                                <a href="../namespaces/Iset.Silex.html">\Iset\Silex</a>
+                                            </nav>
+                    <h1><small>\Iset\Silex</small>Provider</h1>
 
-                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
-                    <h1><small>src/Iset/Model</small>Service.php</h1>
-                    <p><em></em></p>
                     
-
                     
                     
                                         <h2>Classes</h2>
                     <table class="table table-hover">
                                             <tr>
-                            <td><a href="../classes/Iset.Model.Service.html">Service</a></td>
-                            <td><em>Service</em></td>
+                            <td><a href="../classes/Iset.Silex.Provider.ZendCacheServiceProvider.html">ZendCacheServiceProvider</a></td>
+                            <td><em>Zend Cache Provider</em></td>
                         </tr>
                                         </table>
                                     </div>
 
                 <aside class="span4 detailsbar">
                     <dl>
-                                                    <dt>Package</dt>
-                            <dd><div class="namespace-wrapper">\Default</div></dd>
-                        
-                        
+                        <dt>Namespace hierarchy</dt>
+                        <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+                                    <div class="namespace-wrapper"><a href="../namespaces/default.html">\</a></div>
+                                                            
+                                    <div class="namespace-wrapper"><a href="../namespaces/Iset.html">\Iset</a></div>
+                                                            
+                                    <div class="namespace-wrapper"><a href="../namespaces/Iset.Silex.html">\Iset\Silex</a></div>
+                                                                                        <div class="namespace-wrapper">\Iset\Silex\Provider</div>
+                        </dd>
                     </dl>
-                    <h2>Tags</h2>
-                    <table class="table table-condensed">
-                                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                                            </table>
-
                 </aside>
             </div>
 
@@ -411,16 +362,6 @@
             
         </div>
     </section>
-
-    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="source-view-label"></h3>
-        </div>
-        <div class="modal-body">
-            <pre data-src="../files/src/Iset/Model/Service.php.txt" class="language-php line-numbers"></pre>
-        </div>
-    </div>
 
     <footer class="row-fluid">
         <section class="span10 offset2">
