@@ -11,14 +11,9 @@ use Iset\Model\QueueCollection;
 
 # Initializing Service
 define("PROCESS_TITLE",'m4a1d');
-@cli_set_process_title(PROCESS_TITLE);
 
 # Initialzing Silex Application
 $app = App::configure();
-
-# Initializing cache component
-/*$cache = Zend\Cache\StorageFactory::factory($app['config']['cache']['zendcache']);
-$cache->setOptions(array('cache_dir'=>$app['cache_path']));*/
 
 # Initializing gateway
 $gateway = new CampaignTable($app);
@@ -34,6 +29,9 @@ $repeated = array();
 
 # Starting daemon
 while (true) {    
+    # Starting connection with database 
+    $app['db']->connect();
+    
     # Getting active and paused campaigns
     $campaignsActive  = $gateway->getCampaignsByStatus(Campaign::STATUS_START);
     $campaignsPaused  = $gateway->getCampaignsByStatus(Campaign::STATUS_PAUSE);
@@ -125,6 +123,9 @@ while (true) {
             }
         }
     }
+    
+    # Closing connection with database
+    $app['db']->close();
 
     # Waiting...
     sleep(5);

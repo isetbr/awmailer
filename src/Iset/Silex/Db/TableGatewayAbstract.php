@@ -32,6 +32,6 @@ abstract class TableGatewayAbstract
      */
     public function __construct(Application &$app)
     {
-        $this->tableGateway = $app['db'];
+        $this->tableGateway = &$app['db'];
     }
 }

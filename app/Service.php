@@ -9,14 +9,9 @@ use Iset\Model\Campaign;
 
 # Initializing Service
 define("PROCESS_TITLE",'m4a1');
-@cli_set_process_title(PROCESS_TITLE);
 
 # Initializing Application
 $app = App::configure();
-
-# Initializing cache component
-/*$cache = Zend\Cache\StorageFactory::factory($app['config']['cache']['zendcache']);
-$cache->setOptions(array('cache_dir'=>$app['cache_path']));*/
 
 # Initializing Campaign table
 $campaignTable = new Iset\Model\CampaignTable($app);
@@ -61,6 +56,10 @@ if (count($queue) == 0) {
 # Forking process 
 $pid = pcntl_fork();
 if ($pid) { exit(); }
+
+# Re-init application
+$app['db']->close();
+$app['db']->connect();
 
 # Getting PID from child process
 $pid = getmypid();
