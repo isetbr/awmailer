@@ -377,11 +377,16 @@ class CampaignController implements ControllerProviderInterface
     {
         $this->lock();
         
-        # Getting Collection
+        # Getting Providers
         $collection = $this->getCollection();
+        $request    = $this->getRequest();
+        
+        # Getting limit/skip params
+        $limit = (int)$request->query->get('limit');
+        $skip  = (int)$request->query->get('skip'); 
         
         # Retrieving data from db
-        $result = $collection->fetch($key);
+        $result = $collection->fetch($key,null,$limit,$skip);
         
         # Verifying results found
         if (count($result) > 0) {

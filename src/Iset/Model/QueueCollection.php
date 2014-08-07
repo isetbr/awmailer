@@ -42,7 +42,7 @@ class QueueCollection extends CollectionAbstract
      * @param string $email
      * @return array
      */
-    public function fetch($key, $email = null)
+    public function fetch($key, $email = null, $limit = 0, $skip = 0)
     {
         # Mounting query
         $query = array('campaign'=>$key);
@@ -51,7 +51,20 @@ class QueueCollection extends CollectionAbstract
         }
         
         # Retrieving data from database
-        $result = $this->gateway->find($query)->toArray();
+        $result = $this->gateway->find($query);
+        
+        # Limiting results
+        if ($limit > 0) {
+            $result = $result->limit($limit);
+        }
+        
+        # Skipping results
+        if ($skip > 0) {
+            $result = $result->skip($skip);
+        }
+        
+        # Converting to associative array
+        $result = $result->toArray();
         
         # Treatmenting result
         $stack = array();
@@ -66,6 +79,18 @@ class QueueCollection extends CollectionAbstract
         }
         
         return $stack;
+    }
+    
+    public function hasQueue($key)
+    {
+        # Mouting query
+        $query = array('campaign'=>$key);
+        
+        # Retrieving data from database
+        $result = $this->gateway->count($query);
+        
+        # Verifying result 
+        return ($result > 0) ? true : false;
     }
     
     /**

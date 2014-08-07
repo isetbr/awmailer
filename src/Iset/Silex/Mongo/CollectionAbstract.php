@@ -33,6 +33,6 @@ abstract class CollectionAbstract
     public function __construct(Application &$app, $collection)
     {
         @$this->gateway = &$app['mongodb']->selectDatabase($app['config']['database']['mongo']['dbname'])
-                                         ->selectCollection($collection);
+                                          ->selectCollection($collection);
     }
 }

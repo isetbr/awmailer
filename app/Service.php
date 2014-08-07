@@ -7,11 +7,11 @@ require_once dirname(__FILE__) . '/../app/App.php';
 # Loading resources
 use Iset\Model\Campaign;
 
-# Initializing Service
-define("PROCESS_TITLE",'m4a1');
-
 # Initializing Application
 $app = App::configure();
+
+# Initializing Service
+define("PROCESS_TITLE",$app['config']['service']['name']);
 
 # Initializing Campaign table
 $campaignTable = new Iset\Model\CampaignTable($app);
@@ -24,6 +24,8 @@ if (isset($_SERVER['argv'][1])) {
     # Campaign not found
     die();
 }
+
+# Getting campaign
 $campaign = $campaignTable->getCampaignByKey($campaignKey);
 
 # Validaint campaign 
@@ -44,11 +46,8 @@ if ($campaign) {
     die();
 }
 
-# Getting queue
-$queue = $queueCollection->fetch($campaignKey);
-
-# Verifying if has emails to queue
-if (count($queue) == 0) {
+# Verifying if has emails in queue
+if (!$queueCollection->hasQueue($campaignKey)) {
     # Error: You don't have emails to queue
     die();
 }
@@ -97,63 +96,73 @@ $headers = $campaign->headers;
 $factor = ceil((($campaign->total - ($campaign->sent + $campaign->fail)) / 100));
 $counter = 0;
 
-# Starting queue
-foreach ($queue as $row) {
-    # Verifying if is a custom queue
-    if ($campaign->user_vars == 1  || $campaign->user_headers == 1) {
-        # Getting destination email
-        $destination_email = $row['email'];
-        $parsed_body = $message;
-        
-        # Verifying if has vars to parse body
-        if ($campaign->user_vars == 1 && is_array($row['vars'])) {
-            foreach ($row['vars'] as $key => $value) {
-                $parsed_body = str_replace('%%' . $key . '%%', $value, $parsed_body);
+# Queue package size
+$max_package_size = $app['config']['service']['queue']['max_package_size'];
+$skip  = 0;
+
+# Getting package
+while (count($queue = $queueCollection->fetch($campaignKey,null,$max_package_size,$skip)) > 0) {
+    # Starting queue
+    foreach ($queue as $row) {
+        # Verifying if is a custom queue
+        if ($campaign->user_vars == 1  || $campaign->user_headers == 1) {
+            # Getting destination email
+            $destination_email = $row['email'];
+            $parsed_body = $message;
+    
+            # Verifying if has vars to parse body
+            if ($campaign->user_vars == 1 && is_array($row['vars'])) {
+                foreach ($row['vars'] as $key => $value) {
+                    $parsed_body = str_replace('%%' . $key . '%%', $value, $parsed_body);
+                }
             }
+    
+            # Verifying if has custom headers
+            if ($campaign->user_headers == 1 && is_array($row['headers'])) {
+                # Merge campaign headers with user headers
+                $parsed_headers = array_merge($headers,$row['headers']);
+            }
+        } else {
+            # Simple queue
+            $destination_email = $row;
+            $parsed_body = $message;
+            $parsed_headers = $headers;
         }
-        
-        # Verifying if has custom headers
-        if ($campaign->user_headers == 1 && is_array($row['headers'])) {
-            # Merge campaign headers with user headers
-            $parsed_headers = array_merge($headers,$row['headers']);
+    
+        # Loop into headers to parse the string
+        $temporary_headers = array();
+        foreach ($parsed_headers as $header_key => $header_value) {
+            $temporary_headers[] = $header_key . ': ' .$header_value;
         }
-    } else {
-        # Simple queue
-        $destination_email = $row;
-        $parsed_body = $message;
-        $parsed_headers = $headers;
+        $parsed_headers = implode("\r\n",$temporary_headers);
+    
+        # Sending mail
+        $result = mail($destination_email,$subject,$parsed_body,$parsed_headers);
+
+        # Increasing counter
+        $counter++;
+
+        # Verifying result and increasing counter
+        if ($result) {
+            $campaignCache['sent']++;
+            $campaignCache['success'][] = $destination_email;
+        } else {
+            $campaignCache['fail']++;
+            $campaignCache['errors'][] = $destination_email;
+        }
+    
+        # Verifying if counter
+        if ($counter == $factor) {
+            $counter = 0;
+            $campaignCache['progress']++;
+        }
+    
+        # Writing in cache
+        $app['cache']->setItem($campaignKey, json_encode($campaignCache));
     }
     
-    # Loop into headers to parse the string
-    $temporary_headers = array();
-    foreach ($parsed_headers as $header_key => $header_value) {
-        $temporary_headers[] = $header_key . ': ' .$header_value; 
-    }
-    $parsed_headers = implode("\r\n",$temporary_headers);
-    
-    # Sending mail
-    $result = mail($destination_email,$subject,$parsed_body,$parsed_headers);
-    
-    # Increasing counter
-    $counter++;
-    
-    # Verifying result and increasing counter
-    if ($result) {
-        $campaignCache['sent']++;
-        $campaignCache['success'][] = $destination_email;
-    } else {
-        $campaignCache['fail']++;
-        $campaignCache['errors'][] = $destination_email;
-    }
-    
-    # Verifying if counter 
-    if ($counter == $factor) {
-        $counter = 0;
-        $campaignCache['progress']++;
-    }
-    
-    # Writing in cache
-    $app['cache']->setItem($campaignKey, json_encode($campaignCache));
+    # Increasing skip
+    $skip = $skip + $max_package_size;
 }
 
 # Setting flag to finish process
