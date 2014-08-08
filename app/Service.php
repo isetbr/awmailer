@@ -25,6 +25,9 @@ if (isset($_SERVER['argv'][1])) {
     die();
 }
 
+# Logging
+$app['monolog.service']->addInfo('Starting service',array('campaign'=>$campaignKey));
+
 # Getting campaign
 $campaign = $campaignTable->getCampaignByKey($campaignKey);
 
@@ -32,23 +35,23 @@ $campaign = $campaignTable->getCampaignByKey($campaignKey);
 if ($campaign) {
     # Verifying if campaign was runing
     if (!is_null($campaign->pid) && posix_getpgid((int)$campaign->pid) != false) {
-        # Campaign process already running in proccess
+        $app['monolog.service']->addError('Service stopped',array('campaign'=>$campaignKey,'reason'=>'Service already running'));
         die();
     }
     
     # Verify if campaign is in cache
     if ($app['cache']->hasItem($campaignKey)) {
-        # Error: Campaign in cache
+        $app['monolog.service']->addError('Service stopped',array('campaign'=>$campaignKey,'reason'=>'Campaign in cache'));
         die();
     }
 } else {
-    # Error: Campaign not found
+    $app['monolog.service']->addError('Service stopped',array('campaign'=>$campaignKey,'reason'=>'Campaign not found'));
     die();
 }
 
 # Verifying if has emails in queue
 if (!$queueCollection->hasQueue($campaignKey)) {
-    # Error: You don't have emails to queue
+    $app['monolog.service']->addError('Service stopped',array('campaign'=>$campaignKey,'reason'=>'Empty queue'));
     die();
 }
 
@@ -62,6 +65,9 @@ $app['db']->connect();
 
 # Getting PID from child process
 $pid = getmypid();
+
+# Logging
+$app['monolog.service']->addInfo('Service successfully started',array('campaign'=>$campaignKey,'PID'=>$pid));
 
 # Setting PID on campaign
 $campaign->pid = $pid;
@@ -82,7 +88,7 @@ $campaignCache = array(
 # Writing campaign in cache
 $result = $app['cache']->setItem($campaignKey, json_encode($campaignCache));
 if (!$result) {
-    # Fail to start campaign cache 
+    $app['monolog.service']->addError('Service crashed',array('campaign'=>$campaignKey,'reason'=>'Cannot initialize campaign cache')); 
     die();
 }
 
@@ -170,3 +176,6 @@ $campaignCache['done'] = 1;
 
 # Writing in cache
 $app['cache']->setItem($campaignKey, json_encode($campaignCache));
+
+# Logging
+$app['monolog.service']->addInfo('Service finished',array('campaign'=>$campaignKey));
