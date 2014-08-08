@@ -1,16 +1,17 @@
 {
-    "require": {
-        "silex/silex": "~1.2",
-	"doctrine/dbal": "2.2.*",
-	"doctrine/mongodb": "1.1.6",
-	"zendframework/zend-config": "2.3.*",
-	"zendframework/zend-validator": "2.3.*",
-        "zendframework/zend-cache": "2.3.*",
-	"fate/silex-extensions": "dev-master"
-    },
-    "autoload": {
-        "psr-0": {
-            "": "src/"
-        }
-    }
+	"require": {
+		"silex/silex": "~1.2",
+		"doctrine/dbal": "2.2.*",
+		"doctrine/mongodb": "1.1.6",
+		"zendframework/zend-config": "2.3.*",
+		"zendframework/zend-validator": "2.3.*",
+		"zendframework/zend-cache": "2.3.*",
+		"fate/silex-extensions": "dev-master",
+		"monolog/monolog": "1.10.0"
+	},
+	"autoload": {
+		"psr-0": {
+			"": "src/"
+		}
+	}
 }

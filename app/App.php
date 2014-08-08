@@ -2,11 +2,16 @@
 
 require_once __DIR__ . '/AppKernel.php';
 
+use Silex\Application;
+use Zend\Config\Reader\Ini as ConfigReader;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Zend\Config\Reader\Ini as ConfigReader;
+use Silex\Provider\DoctrineServiceProvider;
+use Silex\Provider\SessionServiceProvider;
+use SilexExtension\MongoDbExtension;
+use Iset\Silex\Provider\ZendCacheServiceProvider;
+use Monolog\Logger;
 use Iset\Api\Controller\MainController as ApiController;
-use Silex\Application;
 
 /**
  * App
@@ -49,10 +54,66 @@ class App
 		}
 		
 		# Register providers
+		# Log System
+		$kernel['monolog.factory'] = $kernel->protect(function ($name, array $options = array()) use ($kernel) {
+		    # Initializing logger
+		    $logger = new Logger($name);
+		    
+		    # Parsing handler
+		    switch ($options['handler']) {
+		        case 'StreamHandler' :
+		            # Getting options
+		            $stream = (!is_null($stream = $options['options']['stream'])) ? $kernel['log_path'] . $stream : null;
+		            $level = (!is_null($level = $options['options']['level'])) ? $level : Logger::DEBUG;
+		            
+		            # Bubble
+		            if (!is_null($bubble = $options['options']['bubble']) && $bubble == 0) {
+		                $bubble = false;
+		            } else {
+		                $bubble = true;
+		            }
+		            
+		            # File Permission
+		            if (!is_null($filepermission = $options['options']['filepermission'])) {
+		                $filepermission = (int)$filepermission;
+		            } else {
+		                $filepermission = 0644;
+		            }
+		            
+		            # Lock file
+		            if (!is_null($lockfile = $options['options']['lockfile']) && $lockfile == 1) {
+		                $lockfile = true;
+		            } else {
+		                $lockfile = false;
+		            }
+		            
+		            # Initializing handler
+		            $handler = new Monolog\Handler\StreamHandler($stream,$level,$bubble,$filepermission,$lockfile);
+		            break;
+		        default :
+		            return false;
+		            break;
+		    }
+		    
+		    # Setting handler and returning logger
+		    $logger->pushHandler($handler);
+		    return $logger;
+		});
+		foreach ($kernel['config']['log'] as $channel => $options) {
+		    $kernel['monolog.'.$channel] = $kernel->share(function ($kernel) use ($channel,$options) {
+		        return $kernel['monolog.factory']($channel,$options);
+		    });
+		}
+		
+		# Doctrine DBAL
 		$kernel->register(new Silex\Provider\DoctrineServiceProvider(), array(
             'db.options'=>$kernel['config']['database']['mysql']
 		));
+		
+		# Symfony Session
 		$kernel->register(new Silex\Provider\SessionServiceProvider());
+		
+		# Doctrine Mongodb
 		$kernel->register(new SilexExtension\MongoDbExtension(), array(
 			'mongodb.connection'=>array(
 			    'server'=>$kernel['config']['database']['mongo']['dsn'],
@@ -60,7 +121,9 @@ class App
 			    'eventmanager'=>function ($eventmanager) {}
 		    ),
 		));
-		$kernel->register(new Iset\Silex\Provider\ZendCacheServiceProvider(),array(
+		
+		# Zend Cache
+		$kernel->register(new Iset\Silex\Provider\ZendCacheServiceProvider(), array(
 		    'cache.options'=>array(
                 'zendcache'=>$kernel['config']['cache']['zendcache'],
 		        'cache_dir'=>$kernel['cache_path'],
