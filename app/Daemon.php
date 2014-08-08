@@ -14,14 +14,19 @@ define("PROCESS_TITLE",'m4a1d');
 
 # Initialzing Silex Application
 $app = App::configure();
+$app['monolog.daemon']->addInfo('Initializing Daemon');
+$app['monolog.daemon']->addInfo('Initializing application');
 
 # Initializing gateway
 $gateway = new CampaignTable($app);
 $collection = new QueueCollection($app);
+$app['monolog.daemon']->addInfo('Initializing gateways');
 
 # Forking process 
 $pid = pcntl_fork();
 if ($pid) { exit(); }
+
+$app['monolog.daemon']->addInfo('Daemon successfully started',array('PID'=>getmypid()));
 
 # Initializing control vars
 $max_repeats = 10;
@@ -39,6 +44,17 @@ while (true) {
     $campaignsDone    = $gateway->getCampaignsByStatus(Campaign::STATUS_DONE);
     $campaigns = array_merge($campaignsActive,$campaignsPaused,$campaignsStopped);
     
+    # Logging
+    $app['monolog.daemon']->addNotice(
+        'Found campaigns',
+        array(
+            'active'=>count($campaignsActive),
+            'paused'=>count($campaignsPaused),
+            'stopped'=>count($campaignsStopped),
+            'done'=>count($campaignsDone),
+        )
+    );
+    
     # Loop into results
     foreach ($campaigns as $campaign) {
         $campaignKey = $campaign->getCampaignKey();
@@ -53,6 +69,8 @@ while (true) {
                 if (!is_null($campaign->pid) && posix_getpgid((int)$campaign->pid) != false) {
                     $command = "kill " . $campaign->pid;
                     exec($command);
+                    # Logging
+                    $app['monolog.daemon']->addNotice('Killing process',array('campaign'=>$campaignKey,'PID'=>$campaign->pid));
                     continue;
                 }
             }
@@ -87,6 +105,9 @@ while (true) {
                         # Saving campaign
                         $campaign->save();
                         
+                        # Logging
+                        $app['monolog.daemon']->addNotice('Updating campaign',array('campaign'=>$campaignKey));
+                        
                         # Removing emails from queue
                         foreach ($data['success'] as $index => $email) {
                             if ($collection->remove($campaignKey,$email)) {
@@ -116,6 +137,7 @@ while (true) {
                     case 0 :
                         $args = array($campaignKey);
                         pcntl_exec(dirname(__FILE__) . "/../bin/m4a1",$args);
+                        $app['monolog.daemon']->addNotice('Starting process',array('campaign'=>$campaignKey,'PID'=>getmypid()));
                         exit(0);
                     default :
                         break;
