@@ -66,29 +66,8 @@ class App
 		            $stream = (!is_null($stream = $options['options']['stream'])) ? $kernel['log_path'] . $stream : null;
 		            $level = (!is_null($level = $options['options']['level'])) ? $level : Logger::DEBUG;
 		            
-		            # Bubble
-		            if (!is_null($bubble = $options['options']['bubble']) && $bubble == 0) {
-		                $bubble = false;
-		            } else {
-		                $bubble = true;
-		            }
-		            
-		            # File Permission
-		            if (!is_null($filepermission = $options['options']['filepermission'])) {
-		                $filepermission = (int)$filepermission;
-		            } else {
-		                $filepermission = 0644;
-		            }
-		            
-		            # Lock file
-		            if (!is_null($lockfile = $options['options']['lockfile']) && $lockfile == 1) {
-		                $lockfile = true;
-		            } else {
-		                $lockfile = false;
-		            }
-		            
 		            # Initializing handler
-		            $handler = new Monolog\Handler\StreamHandler($stream,$level,$bubble,$filepermission,$lockfile);
+		            $handler = new Monolog\Handler\StreamHandler($stream,$level,true,0777);
 		            break;
 		        default :
 		            return false;
@@ -99,11 +78,28 @@ class App
 		    $logger->pushHandler($handler);
 		    return $logger;
 		});
+		
+		# Loop into configuration to create instances of log channels
 		foreach ($kernel['config']['log'] as $channel => $options) {
 		    $kernel['monolog.'.$channel] = $kernel->share(function ($kernel) use ($channel,$options) {
 		        return $kernel['monolog.factory']($channel,$options);
 		    });
 		}
+		
+        # Creating container for log requests in api
+        $kernel['monolog.api.service'] = $kernel->protect(function (Request $request, Response $response) use ($kernel){
+            # Logging request
+            $log_data = array(
+                'method'=>$request->getMethod(),
+                'path'=>$request->get('_route'),
+                'status'=>$response->getStatusCode(),
+                'service-key'=>$kernel['session']->get($kernel['config']['api']['auth_session']['service']),
+                'token'=>$kernel['session']->get($kernel['config']['api']['auth_session']['token']),
+                'client-ip'=>$kernel['session']->get($kernel['config']['api']['auth_session']['ipaddress']),
+            );
+            
+            $kernel['monolog.api']->addInfo('API Call',$log_data);
+        });
 		
 		# Doctrine DBAL
 		$kernel->register(new Silex\Provider\DoctrineServiceProvider(), array(
@@ -138,7 +134,10 @@ class App
 			           $data = json_decode($request->getContent(), true);
 			           $request->request->replace(is_array($data) ? $data : array());
 			       } else {
-			           return $kernel->abort(Response::HTTP_BAD_REQUEST);
+			           $response = Response::create(null,Response::HTTP_BAD_REQUEST);
+			           $kernel['monolog.api.service']($request,$response);
+			           $response->send();
+			           return $kernel->terminate($request,$response);
 			       }
 			       
 			       # Getting authentication headers
@@ -152,8 +151,12 @@ class App
 			       $kernel['session']->set($kernel['config']['api']['auth_session']['ipaddress'],$auth_ip_address);
 		       });
 		
-		# Cleaning api session
+		# Finish application flow
 		$kernel->finish(function (Request $request, Response $response) use ($kernel) {
+		    # Logging request
+		    $kernel['monolog.api.service']($request,$response);
+		    
+		    # Cleaning session
 			$kernel['session']->remove($kernel['config']['api']['auth_session']['service']);
 			$kernel['session']->remove($kernel['config']['api']['auth_session']['token']);
 			$kernel['session']->remove($kernel['config']['api']['auth_session']['ipaddress']);
