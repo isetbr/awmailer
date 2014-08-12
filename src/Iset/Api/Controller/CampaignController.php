@@ -5,8 +5,6 @@ namespace Iset\Api\Controller;
 use Silex\Application;
 use Iset\Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\Response;
-use Iset\Api\Auth\IpAddress as AuthIpAddress;
-use Iset\Api\Auth\Service as AuthService;
 use Iset\Model\Campaign;
 use Iset\Model\CampaignTable;
 use Iset\Model\ServiceTable;
@@ -54,8 +52,6 @@ class CampaignController implements ControllerProviderInterface
      */
     public function getAll()
     {
-        $this->lock();
-        
     	return $this->_app->abort(Response::HTTP_NOT_IMPLEMENTED);
     }
     
@@ -67,8 +63,6 @@ class CampaignController implements ControllerProviderInterface
      */
     public function getOne($key)
     {
-        $this->lock();
-        
         # Getting providers
         $gateway = $this->getTableGateway();
         
@@ -93,8 +87,6 @@ class CampaignController implements ControllerProviderInterface
      */
     public function create()
     {
-        $this->lock();
-        
     	# Getting providers
     	$request = $this->getRequest();
     	$campaign = new Campaign($this->getTableGateway());
@@ -150,8 +142,6 @@ class CampaignController implements ControllerProviderInterface
      */
     public function update($key)
     {
-        $this->lock();
-        
         # Getting providers
         $request = $this->getRequest();
         $gateway = $this->getTableGateway();
@@ -215,8 +205,6 @@ class CampaignController implements ControllerProviderInterface
      */
     public function remove($key)
     {
-        $this->lock();
-        
         # Getting providers
         $gateway = $this->getTableGateway();
         
@@ -250,8 +238,6 @@ class CampaignController implements ControllerProviderInterface
      */
     public function getStatus($key)
     {
-        $this->lock();
-        
         # Getting providers
         $gateway = $this->getTableGateway();
         
@@ -307,8 +293,6 @@ class CampaignController implements ControllerProviderInterface
      */
     public function getMultipleStatus()
     {
-        $this->lock();
-        
         # Getting providers
         $request = $this->getRequest();
         $gateway = $this->getTableGateway();
@@ -375,8 +359,6 @@ class CampaignController implements ControllerProviderInterface
      */
     public function getQueue($key)
     {
-        $this->lock();
-        
         # Getting Providers
         $collection = $this->getCollection();
         $request    = $this->getRequest();
@@ -429,8 +411,6 @@ class CampaignController implements ControllerProviderInterface
      */
     public function fillQueue($key)
     {
-        $this->lock();
-        
         # Getting Providers
         $request = $this->getRequest();
         $gateway = $this->getTableGateway();
@@ -489,8 +469,6 @@ class CampaignController implements ControllerProviderInterface
      */
     public function clearQueue($key)
     {
-        $this->lock();
-        
         # Getting providers
         $request = $this->getRequest();
         $gateway = $this->getTableGateway();
@@ -535,8 +513,6 @@ class CampaignController implements ControllerProviderInterface
      */
     public function startCampaign($key) 
     {
-        $this->lock();
-        
         # Getting providers
         $gateway = $this->getTableGateway();
         
@@ -563,8 +539,6 @@ class CampaignController implements ControllerProviderInterface
      */
     public function pauseCampaign($key)
     {
-        $this->lock();
-        
         # Getting providers
         $gateway = $this->getTableGateway();
         
@@ -591,8 +565,6 @@ class CampaignController implements ControllerProviderInterface
      */
     public function stopCampaign($key)
     {
-        $this->lock();
-    
         # Getting providers
         $gateway = $this->getTableGateway();
     
@@ -620,8 +592,6 @@ class CampaignController implements ControllerProviderInterface
      */
     public function changeStatusCampaign($key, $status = Campaign::STATUS_DEFAULT)
     {
-        $this->lock();
-        
         # Getting providers
         $gateway = $this->getTableGateway();
         
@@ -696,6 +666,11 @@ class CampaignController implements ControllerProviderInterface
     public function connect(Application $app)
     {
         $this->_app = $app;
+        
+        # Performing authentication
+        $this->_app['auth.ipaddress']();
+        $this->_app['auth.service']();
+        
         return $this->register();
     }
     
@@ -775,22 +750,6 @@ class CampaignController implements ControllerProviderInterface
         });
         
         return $container;
-    }
-    
-    /**
-     * Perform a authentication process
-     * 
-     * @see \Iset\Silex\ControllerProviderInterface::lock()
-     */
-    public function lock()
-    {
-        # Temporary
-        # Locking IpAddress and service
-        if (!AuthIpAddress::authenticate($this->_app) || !AuthService::authenticate($this->_app)) {
-            $response = new Response(null,Response::HTTP_FORBIDDEN);
-            $response->send();
-            die();
-        }
     }
     
     /**

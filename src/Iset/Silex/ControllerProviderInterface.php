@@ -42,11 +42,6 @@ interface ControllerProviderInterface extends SilexControllerProviderInterface
     public function register();
     
     /**
-     * Method for verify the authentication of request (temporary)
-     */
-    public function lock();
-    
-    /**
      * Static Factory Method
      * 
      * This is a static method that provides a configured instance of Controller

@@ -11,6 +11,8 @@ use Silex\Provider\SessionServiceProvider;
 use SilexExtension\MongoDbExtension;
 use Iset\Silex\Provider\ZendCacheServiceProvider;
 use Monolog\Logger;
+use Iset\Api\Auth\IpAddress as AuthIpAddress;
+use Iset\Api\Auth\Service as AuthService;
 use Iset\Api\Controller\MainController as ApiController;
 
 /**
@@ -126,6 +128,47 @@ class App
 		    ),
 		));
 		
+		# Creating container to perform a authentication
+		$kernel['auth.ipaddress'] = $kernel->protect(function () use ($kernel) {
+		    # Initializing request object
+		    $request = Request::createFromGlobals();
+		    
+		    # Getting user IP address
+		    $ipaddress = $request->getClientIp();
+		    
+		    # Initializing authentication provider
+		    $auth = new AuthIpAddress($kernel);
+		    
+		    if (!$auth->validate($ipaddress)) {
+		        $request = Request::createFromGlobals();
+		        $response = Response::create(null,Response::HTTP_FORBIDDEN);
+		        $kernel['monolog.api.service']($request,$response);
+		        $response->send();
+		        $kernel->terminate($request,$response);
+		        die();
+		    }
+		});
+		$kernel['auth.service'] = $kernel->protect(function () use ($kernel) {
+		    # Initializing request object
+		    $request = Request::createFromGlobals();
+		    
+		    # Getting user auth headers
+		    $auth_service_key = $request->headers->get($kernel['config']['api']['auth_header']['service_key']);
+		    $auth_token       = $request->headers->get($kernel['config']['api']['auth_header']['token']);
+		    
+		     # Initializing authentication provider
+		    $auth = new AuthService($kernel);
+		    
+		    if (!$auth->validate($auth_service_key,$auth_token)) {
+		        $request = Request::createFromGlobals();
+		        $response = Response::create(null,Response::HTTP_FORBIDDEN);
+		        $kernel['monolog.api.service']($request,$response);
+		        $response->send();
+		        $kernel->terminate($request,$response);
+		        die();
+		    }
+		});
+		
 		# Register controllers
 		$kernel->mount('/api', new ApiController())
 		       ->before(function (Request $request) use ($kernel) {
@@ -137,29 +180,15 @@ class App
 			           $response = Response::create(null,Response::HTTP_BAD_REQUEST);
 			           $kernel['monolog.api.service']($request,$response);
 			           $response->send();
-			           return $kernel->terminate($request,$response);
+			           $kernel->terminate($request,$response);
+			           die();
 			       }
-			       
-			       # Getting authentication headers
-			       $auth_service_key = $request->headers->get($kernel['config']['api']['auth_header']['service_key']);
-			       $auth_token       = $request->headers->get($kernel['config']['api']['auth_header']['token']);
-			       $auth_ip_address  = $_SERVER['REMOTE_ADDR'];
-			       
-			       # Creating session with auth headers
-			       $kernel['session']->set($kernel['config']['api']['auth_session']['service'],$auth_service_key);
-			       $kernel['session']->set($kernel['config']['api']['auth_session']['token'],$auth_token);
-			       $kernel['session']->set($kernel['config']['api']['auth_session']['ipaddress'],$auth_ip_address);
 		       });
 		
 		# Finish application flow
 		$kernel->finish(function (Request $request, Response $response) use ($kernel) {
 		    # Logging request
 		    $kernel['monolog.api.service']($request,$response);
-		    
-		    # Cleaning session
-			$kernel['session']->remove($kernel['config']['api']['auth_session']['service']);
-			$kernel['session']->remove($kernel['config']['api']['auth_session']['token']);
-			$kernel['session']->remove($kernel['config']['api']['auth_session']['ipaddress']);
 		});
 		
 		return $kernel;

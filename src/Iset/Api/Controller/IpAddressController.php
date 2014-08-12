@@ -5,7 +5,6 @@ namespace Iset\Api\Controller;
 use Silex\Application;
 use Iset\Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\Response;
-use Iset\Api\Auth\IpAddress as AuthIpAddress;
 use Iset\Model\IpAddress;
 use Iset\Model\IpAddressTable;
 
@@ -46,8 +45,6 @@ class IpAddressController implements ControllerProviderInterface
      */
     public function getAll()
     {
-        $this->lock();
-        
         # Getting providers
         $gateway = $this->getTableGateway();
         
@@ -76,8 +73,6 @@ class IpAddressController implements ControllerProviderInterface
      */
     public function allow()
     {
-        $this->lock();
-        
         # Getting providers
         $request = $this->getRequest();
         $ipaddress = new IpAddress($this->getTableGateway());
@@ -106,8 +101,6 @@ class IpAddressController implements ControllerProviderInterface
      */
     public function remove($ipaddress)
     {
-        $this->lock();
-        
         # Getting providers
         $gateway = $this->getTableGateway();
         
@@ -167,6 +160,10 @@ class IpAddressController implements ControllerProviderInterface
     public function connect(Application $app)
     {
     	$this->_app = $app;
+    	
+    	# Performing authentication
+    	$this->_app['auth.ipaddress']();
+    	
     	return $this->register();
     }
     
@@ -196,22 +193,6 @@ class IpAddressController implements ControllerProviderInterface
     	});
     	
     	return $container;
-    }
-    
-    /**
-     * Perform a authentication process
-     * 
-     * @see \Iset\Silex\ControllerProviderInterface::lock()
-     */
-    public function lock()
-    {
-        # Temporary
-        # Locking IpAddress
-        if (!AuthIpAddress::authenticate($this->_app)) {
-            $response = new Response(null,Response::HTTP_FORBIDDEN);
-            $response->send();
-            die();
-        }
     }
     
     /**

@@ -3,6 +3,7 @@
 namespace Iset\Api\Auth;
 
 use Silex\Application;
+use Symfony\Component\HttpFoundation\Response;
 use Iset\Silex\Auth\AuthInterface;
 use Iset\Model\IpAddressTable;
 
@@ -18,7 +19,7 @@ use Iset\Model\IpAddressTable;
  * @copyright M4A1 (c) iSET - Internet, Soluções e Tecnologia LTDA.
  *
  */
-class IpAddress implements AuthInterface
+class IpAddress
 {
     /**
      * The instance of IpAddress model
@@ -48,29 +49,5 @@ class IpAddress implements AuthInterface
         # Getting IpAddress
         $result = $this->gateway->getIpAddress($ipaddress);
         return ($result) ? true : false;
-    }
-    
-    /**
-     * Authenticate
-     * 
-     * Perform a authentication using a static instance of IpAddress authentication provider
-     * 
-     * @static
-     * @param Application $app
-     * @see AuthInterface
-     * @return boolean
-     */
-    public static function authenticate(Application &$app)
-    {
-        # Getting IpAddress from session
-        $ipaddress = $app['session']->get('Auth-IpAddress');
-        
-        # Validating
-        if (!is_null($ipaddress)) {
-            $instance = new self($app);
-            return $instance->validate($ipaddress);
-        } else {
-            return false;
-        }
     }
 }

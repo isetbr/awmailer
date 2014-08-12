@@ -5,7 +5,6 @@ namespace Iset\Api\Controller;
 use Silex\Application;
 use Iset\Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\Response;
-use Iset\Api\Auth\IpAddress as AuthIpAddress;
 use Iset\Model\Service;
 use Iset\Model\ServiceTable;
 
@@ -75,8 +74,6 @@ class ServiceController implements ControllerProviderInterface
      */
     public function getAll()
     {
-        $this->lock();
-        
         # Getting provider
         $gateway = $this->getTableGateway();
         
@@ -106,8 +103,6 @@ class ServiceController implements ControllerProviderInterface
      */
     public function getOne($key)
     {
-        $this->lock();
-        
         # Getting provider
         $gateway = $this->getTableGateway();
         
@@ -132,8 +127,6 @@ class ServiceController implements ControllerProviderInterface
      */
     public function update($key)
     {
-        $this->lock();
-        
         # Getting provider
         $request = $this->getRequest();
         $gateway = $this->getTableGateway();
@@ -174,8 +167,6 @@ class ServiceController implements ControllerProviderInterface
      */
     public function remove($key)
     {
-        $this->lock();
-        
         # Getting provider
         $gateway = $this->getTableGateway();
         
@@ -232,6 +223,10 @@ class ServiceController implements ControllerProviderInterface
     public function connect(Application $app)
     {
     	$this->_app = $app;
+    	
+    	# Performing authentication
+    	$this->_app['auth.ipaddress']();
+    	
     	return $this->register();
     }
     
@@ -271,22 +266,6 @@ class ServiceController implements ControllerProviderInterface
     	});
     	
     	return $container;
-    }
-    
-    /**
-     * Perform a authentication process
-     * 
-     * @see \Iset\Silex\ControllerProviderInterface::lock()
-     */
-    public function lock()
-    {
-        # Temporary
-        # Locking IpAddress
-        if (!AuthIpAddress::authenticate($this->_app)) {
-            $response = new Response(null,Response::HTTP_FORBIDDEN);
-            $response->send();
-            die();
-        }
     }
     
     /**
