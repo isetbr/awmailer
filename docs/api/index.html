@@ -4,11 +4,10 @@
 <!--[if IE 8 ]>    <html class="no-js ie8" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    <title>M4A1 Mailer API—by apiary.io</title>
+    <title>M4A1 - The Awesome Mailer Service—by apiary.io</title>
     <meta name="description" content="a place where APIs are kept">
   <meta name="author" content="apiary.io">
 
@@ -44,44 +43,99 @@
 
 
   
-
+  
 <header class="fullSize"><div class="apiaryMenu"><div class="wholeMenu menuRow">
 
   <div role="banner" class="apiaryLogo menuCell"><a class="absFg" title="Apiary Ltd." href="http://apiary.io/"><span class="visuallyhidden">Apiary</span></a></div>
 
-    <hgroup class="menuCell apiNameCell">
+      <hgroup class="apiNameCell menuCell switcherWrap">
     <div class="apiSwitchName">
-      <div class="apiSwitcher">
-                          <div class="apiLines vIcoHover">
-        <h1 class="apiName oneLiner" title="M4A1 Mailer API"><span class="ellipsis">M4A1 Mailer API</span></h1>
-            </div>
-        </div>
+      <div class="apiSwitcher switcherToggle vIcoIn">
+                                                    <div class="apiLines vIcoHover">
+        <h1 class="apiName" title="M4A1 - The Awesome Mailer Service"><span class="ellipsis">M4A1 - The Awesome Mailer Service</span></h1>
+  <p class="apiOwner">Yours</p>          </div>
+          <div class="dropdownIcon vIco vArrow vLight2State"></div>
+      </div>
+      <div class="apiSwitcherLayer switcherLayer visuallyhidden">
+        <div class="createApiCell"><a class="createApi ajaxLink cacheable" href="http://docs.m4a1.apiary.io/create-api"><span class="plusSign vIco vPlusSquare vShineState"></span> Create New API</a></div>
+                  <div class="usersApisListFilter filterLayer">
+            <span class="magnifyGlass vIco vLoupe vLight2State"></span>
+            <input type="text" data-list="#allusersapilist &gt; li" class="usersApisListFilterInput filterInput" placeholder="Find an API…">
+          </div>
+                <ul class="usersApisList" id="allusersapilist">
+                                                                      <li class="apiListItem isSelected">
+                                      <a class="apiLines vIcoIn" href="http://docs.m4a1.apiary.io/">
+        <h1 class="apiName" title="M4A1 - The Awesome Mailer Service"><span class="ellipsis">M4A1 - The Awesome Mailer Service</span></h1>
+  <p class="apiOwner">Yours • m4a1</p>          </a>
+              </li>
+                                                            <li class="apiListItem">
+                                      <a class="apiLines vIcoIn" href="http://docs.devsdmf.apiary.io/">
+        <h1 class="apiName" title="Notes API"><span class="ellipsis">Notes API</span></h1>
+  <p class="apiOwner">Yours • devsdmf</p>          </a>
+              </li>
+                  </ul>
+      </div>
     </div>
   </hgroup>
-  
+
+
 <!-- shared for unknown-guest / logged-in user -->
 
   <nav class="apiMenu menuCell">    <ul class="apiMenuList apiMenuTexts">
       <li class="apiMenuItem">
-        <a id="docLink" href="index.html" class="selected">Documentation</a>
+        <a id="docLink" href="http://docs.m4a1.apiary.io/" class="selected">Documentation</a>
       </li>
       <li class="apiMenuItem">
-                  <a id="trafficLink" href="traffic/index.html">Traffic Inspector</a>
+                  <a id="trafficLink" href="http://docs.m4a1.apiary.io/traffic">Traffic Inspector</a>
               </li>
+              <li class="apiMenuItem">
+          <a id="editorLink" href="https://app.apiary.io/m4a1/editor">Editor</a>
+        </li>
                 </ul>
   </nav>
 
-  
+    <nav class="apiMenu menuCell">
+      <ul class="apiMenuList apiMenuIcons">
+        <li class="apiMenuItem">
+          <a id="peopleLink" class="mngPeople ajaxLink hint vIcoIn" data-hint="People" data-afterjs="initPeople" href="http://docs.m4a1.apiary.io/settings/people"><span class="vIco vPeople vDefaultState"><span class="visuallyhidden">People</span></span></a>
+          <a id="settingsLink" class="hint" data-hint="Settings" href="https://app.apiary.io/m4a1/settings"><span class="vIco vSliders vDefaultState"><span class="visuallyhidden">Settings</span></span></a>
+        </li>
+      </ul>
+    </nav>
+
+  <div class="menuCell menuHelp switcherWrap">
+    <span class="helpLinks switcherToggle hint vIcoIn" data-hint="Help"><span class="vIco vHelp vDefaultState"><span class="visuallyhidden">Help</span></span></span>
+    <span class="helpPopup switcherLayer visuallyhidden">
+      <a class="hideableHelpLink vIcoIn" target="_blank" href="http://stackoverflow.com/questions/tagged/apiblueprint?sort=newest"><span class="helpText"><span class="vIco vStackOverflow vDimmedState"></span> API Blueprint on Stack Overflow</span></a>
+      <a class="hideableHelpLink vIcoIn" target="_blank" href="http://support.apiary.io"><span class="helpText"><span class="vIco vBook vDimmedState"></span> Knowledge Base</span></a>
+      <a class="vIcoIn" id="Intercom" href="#" title="Contact Apiary Support"><span class="helpText"><span class="vIco vSpeech vDimmedState"></span> Contact Apiary Support</span></a>
+    </span>
+  </div>
 
   <div class="menuCell flexibleSpace"></div>
 
-      <div class="secondaryNav menuCell dualLine">
+          <div class="secondaryNav switcherWrap menuCell">
       <div class="switcherToggle">
-        <h2 class="poweredByApiary">Apiary Powered Documentation</h2>
-        <p class="headSignInLinks">
-          <a href="https://login.apiary.io/login?redirect=http://docs.m4a1.apiary.io/">Sign in</a> with Apiary account
-        </p>
-      </div>
+        Lucas                              <span class="gravatar"><img src="https://secure.gravatar.com/avatar/7a736764e6d6c830c049bdc2be34ec19?s=32&amp;d=https%3A%2F%2Fapiary.a.ssl.fastly.net%2Fassets%2Fimages%2Fdefault_user_avatar-8f601fa59d98081b.png" height="32" width="32" />
+</span>
+                        </div>
+      <nav class="switcherLayer secondaryNavLayer visuallyhidden">
+        <ul>
+                      <li class="secondaryNavItem"><a id="accountLink" class="accountLink vIcoIn" href="https://login.apiary.io/account">
+                              <i class="vIco vPerson vDimmedState"></i>
+                My Account
+                          </a></li>
+
+            
+                              <li class="secondaryNavItem"><a class="invitation vIcoIn ajaxLink" href="http://docs.m4a1.apiary.io/invite"><i class="vIco vAddMembers vDimmedState"></i> Invite Friends</a></li>
+              
+              
+              
+            
+                    <li class="secondaryNavItem"><a class="changelogLink vIcoIn" href="http://apiary.io/changelog"><i class="vIco vRadio vDimmedState"></i> What's new?</a></li>
+          <li class="secondaryNavItem"><form class="logoutForm" action="https://login.apiary.io/api/logout" method="POST"><button class="logoutBtn vIcoIn" type="submit"><i class="vIco vLogout vDimmedState"></i> Sign Out</button></form></li>
+        </ul>
+      </nav>
     </div>
   
 </div></header>
@@ -92,13 +146,23 @@
 <div id="documentationContainer">
 
     <div id="rightColumn">
+              <p class="title">Table of Contents</p>
+        <ul id="toc">
+                      <li><a href="#introduction">Introduction</a></li>
+                      <li><a href="#httprequestbasics">HTTP Request Basics</a></li>
+                      <li><a href="#authentication">Authentication</a></li>
+                      <li><a href="#services">Services</a></li>
+                      <li><a href="#ipaddresses">Ip Addresses</a></li>
+                      <li><a href="#campaigns">Campaigns</a></li>
+                      <li><a href="#changelog">Changelog</a></li>
+                  </ul>
             <div id="endpoints">
         <ul>
                       <p class="title">API</p>
-            <input type="text" name="real-api" value="http://m4a1.devsdmf.net/api/" readonly="readonly" id="real-api" tabindex="1">
+            <input type="text" name="real-api" value="http://m4a1.create4.us/api/" readonly="readonly" id="real-api" tabindex="1">
                                               <p class="title">Mock Server</p>
               <input type="text" name="mock-api" value="http://m4a1.apiary-mock.com" readonly="readonly" id="mock-api" tabindex="2">
-              <p>Use this URL to access a mockup of the API server. Your traffic will be recorded and compared to the documentation. You'll find your traffic analysis in the <a href="traffic/index.html">inspector</a> or directly here in the documentation, right next to each resource.</p>
+              <p>Use this URL to access a mockup of the API server. Your traffic will be recorded and compared to the documentation. You'll find your traffic analysis in the <a href="/traffic">inspector</a> or directly here in the documentation, right next to each resource.</p>
                               </ul>
       </div>
     </div>
@@ -106,41 +170,108 @@
 <script>window.docResources = {};</script>
 
 <div id="leftColumn">
-  <h1 id="apiHeadline">M4A1 Mailer API</h1>
+  <h1 id="apiHeadline">M4A1 - The Awesome Mailer Service</h1>
 
-  <div class="details"><p>M4A1 is a <em>API service</em> to send massive mail campaigns from <em>iSET</em> services.</p>
-
-<p>To use this API you must perform HTTP request on following methods described below, all HTTP call&#39;s must be specified a <em>Content-Type</em> header with value <em>application/json</em>, not specifying this method returns a Bad Request response and nothing is processed.</p>
-
-<p>All values such as service keys, tokens, campaign keys, ip addresses used in each <em>requests, responses and headers</em> in following methods are examples, when you use this API new values will be generated and returned in calls, not forget to replace this values on next requests.</p>
-
-<p>For all API calls, your ip address must be previous allowed in API, for the campaign methods, you will need an service key and token.</p></div>
-        
+  
+        <a name="introduction"></a>
     <div class="chapterWrapper">
+              <hgroup class="chapter">
+          <h1>Introduction</h1>          <div class="details"><p>The M4A1 is a software developed for provide a mail service which can be used by all services of iSET.
+The proposal of M4A1 is provide a mail tool that runs a daemon as a observer for new services to be triggered, this services runs natively on Linux servers independent of each others.</p>
+
+<p>This document covers the core resources you can use to manipulate your services inside the API that it&#39;s based on REST principles.</p>
+
+<blockquote>
+<p><strong>Attention:</strong> All values such as service keys, tokens, campaign keys, ip addresses used in each <em>requests, responses and headers</em> in the following methods are examples, when you use this API new values will be generated and returned to you, not forget to replace this values on next requests.</p>
+</blockquote></div>
+                  </hgroup>
       
-                                            <div class="sameResourceGroup">
+                  
+          </div>
+      <a name="httprequestbasics"></a>
+    <div class="chapterWrapper">
+              <hgroup class="chapter">
+          <h1>HTTP Request Basics</h1>          <div class="details"><h2>Allowed HTTP methods</h2>
+
+<ul>
+<li><code>GET</code>    - Used to get information about an object in API.</li>
+<li><code>POST</code>   - Used to create new objects in API and run processes.</li>
+<li><code>PUT</code>    - Used to update and object in API.</li>
+<li><code>DELETE</code> - Used to remove and object in API.</li>
+</ul>
+
+<h2>Typical Server Responses</h2>
+
+<ul>
+<li>200 <code>OK</code> - The request was successful (some API calls may return 201 instead).</li>
+<li>201 <code>Created</code> - The request was successful and a resource was created.</li>
+<li>204 <code>No Content</code> - The request was successful but there is no representation to return (that is, the response is empty).</li>
+<li>400 <code>Bad Request</code> - The request could not be understood or was missing required parameters.</li>
+<li>401 <code>Unauthorized</code> - Authentication failed or user does not have permissions for the requested operation.</li>
+<li>403 <code>Forbidden</code> - Access denied.</li>
+<li>404 <code>Not Found</code> - Resource was not found.</li>
+<li>405 <code>Method Not Allowed</code> - Requested method is not supported for the specified resource.</li>
+<li>429 <code>Too Many Requests</code> - Exceeded GoodData API limits. Pause requests, wait one minute, and try again. </li>
+<li>503 <code>Service Unavailable</code> - The service is temporary unavailable (e.g. scheduled Platform Maintenance). Try again later.</li>
+</ul>
+
+<blockquote>
+<p><strong>Note:</strong> M4A1 API works with json in requests and responses then, all HTTP calls must be include a header <em>Content-Type: application/json</em>, otherwise the API will return a HTTP 400 - Bad Request response.</p>
+</blockquote></div>
+                  </hgroup>
+      
+                  
+          </div>
+      <a name="authentication"></a>
+    <div class="chapterWrapper">
+              <hgroup class="chapter">
+          <h1>Authentication</h1>          <div class="details"><p><a id="authentication"></a></p>
+
+<h2>IP Address</h2>
+
+<p>The authentication system based on client IP address, verify in all HTTP calls the client IP address and validate it in API database which have a white list of IP addresses allowed to consume API, to allow a new IP address, see the <em>ipaddress</em> resource below.</p>
+
+<h2>Service-Key and Auth-Token</h2>
+
+<p>In some API methods you will have to send in you HTTP request headers two params that will authenticate and performr your request in the API.</p>
+
+<ul>
+<li><code>Auth-Service-Key</code> - Your service key provided on service registration moment.</li>
+<li><code>Auth-Token</code> - The token returned by API when you register a new service.</li>
+</ul>
+
+<p>If one of these headers are incorrect, the API will return a HTTP 403 - Forbbiden response.</p></div>
+                  </hgroup>
+      
+                  
+          </div>
+      <a name="services"></a>
+    <div class="chapterWrapper">
+              <hgroup class="chapter">
+          <h1>Services</h1>          <div class="details"><p><a id="services"></a></p>
+
+<p>A <em>service</em> in API is any application that will consume API resources and it need to are registered to get a authorization token that is required to consume some resources.</p></div>
+                  </hgroup>
+      
+                                  
         
-                  <h2 class="nameResource">Services</h2>                  
-                  <h3 class="nameMethod">Retrieve all Services</h3>
         
         <section class="resource noActivity">
           <hgroup>
             <h1 class="methodGet"><span>GET</span></h1>
-            <h2>/api/service/</h2>
-            <a class="resourcePermalink" href="#get-%2Fapi%2Fservice%2F" name="get-%2Fapi%2Fservice%2F"><span> </span></a>
+            <h2>/api/service</h2>
+            <a class="resourcePermalink" href="#get-%2Fapi%2Fservice" name="get-%2Fapi%2Fservice"><span> </span></a>
             <div class="toggle"></div>
-                          <div class="commentsCount">
-                <a href="#" class="commentsCountLink">Add Comment</a>
-              </div>
                       </hgroup>
 
-                              <div class="content">
+                                <article class="details">
+              <p>Retrieve all Services </p>                          </article>
+                    <div class="content">
             <nav class="switch">
               <ul>
                 <a href="#example" class="active"><li><span>Example</span></li></a>
                                   <a href="#debugger"><li><span>Debugger</span></li></a>
-                                                  <a href="#social"><li><span>Comments</span></li></a>
-                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
+                                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
                               </ul>
             </nav>
             <section class="example">
@@ -163,12 +294,12 @@
                                       </select>
                 </form>
               </nav>
-                            <section class="code" id="generatedResourceCodeS1E1">                                                                            
-<span id="requestExampleIdS1E1req0" class="hidden"></span>
+                            <section class="code" id="generatedResourceCodeS4E1">                                                                            
+<span id="requestExampleIdS4E1req0" class="hidden"></span>
 <script>
-window.docResources["generatedResourceCodeS1E1"] = (window.docResources["generatedResourceCodeS1E1"] || []).concat({
-  "exampleId": "S1E1req0",
-  "url": "/api/service/",
+window.docResources["generatedResourceCodeS4E1"] = (window.docResources["generatedResourceCodeS4E1"] || []).concat({
+  "exampleId": "S4E1req0",
+  "url": "/api/service",
   "method": "GET",
   "contentType": "application/json",
   "headers": {
@@ -179,41 +310,26 @@ window.docResources["generatedResourceCodeS1E1"] = (window.docResources["generat
 </script>
                                                                                                 <p class="ioDesc">Response</p>
                     <section class="outgoingCall rawResponse">
+                      <pre class="outgoing outgoingHeaders"><code>204 (No Content)</code></pre>
+                      <pre class="outgoing"><code class=""></code></pre>
+                    </section>
+                                                                              <p class="ioDesc">Response</p>
+                    <section class="outgoingCall rawResponse">
                       <pre class="outgoing outgoingHeaders"><code>200 (OK)
 Content-Type: application/json</code></pre>
                       <pre class="outgoing"><code class="language-javascript">[{
-  &#34;name&#34;: &#34;iMarketing&#34;, &#34;key&#34;: &#34;imkt&#34;
+  &#34;name&#34;: &#34;First Service&#34;, &#34;key&#34;: &#34;svc1&#34;
 },
 {
-  &#34;name&#34;: &#34;iShopping&#34;, &#34;key&#34;: &#34;ishp&#34;
+  &#34;name&#34;: &#34;Second Service&#34;, &#34;key&#34;: &#34;svc2&#34;
 },
 {
-  &#34;name&#34;: &#34;iChat&#34;, &#34;key&#34;:&#34;icht&#34;
+  &#34;name&#34;: &#34;Third Service&#34;, &#34;key&#34;:&#34;svc3&#34;
 }]</code></pre>
                     </section>
                                                                                     </section>
             </section>
-                          <section class="debugger" data-resource-signature="GET /api/service/"></section>
-                            <section class="social">
-                <nav class="switch"></nav>
-
-                <section class="newPost">
-                  <form action="/discussion/53e141ece339e902000007b8" method="post">
-                     <textarea placeholder="Start a new thread…" name="comment"></textarea>
-                     <div class="postControl">
-                       <div class="postTools">
-                         <input class="button blue big" type="submit" value="Submit">
-                         <a class="cancel" href="#"><i class="icon-remove"></i> Cancel</a>
-                       </div>
-                     </div>
-                     <input type="hidden" name="url" value="/api/service/">
-                     <input type="hidden" name="method" value="GET" >
-                  </form>
-                </section>
-
-                                <section class="all" name="thread">
-                                  </section>
-                              </section>
+                          <section class="debugger" data-resource-signature="GET /api/service"></section>
               
               <section class="tryit">
                 <form name="jsRunExample">
@@ -225,26 +341,47 @@ Content-Type: application/json</code></pre>
           
         </section>                      
         
-                  <h3 class="nameMethod">Create a Service</h3>
         
         <section class="resource noActivity">
           <hgroup>
             <h1 class="methodPost"><span>POST</span></h1>
-            <h2>/api/service/</h2>
-            <a class="resourcePermalink" href="#post-%2Fapi%2Fservice%2F" name="post-%2Fapi%2Fservice%2F"><span> </span></a>
+            <h2>/api/service</h2>
+            <a class="resourcePermalink" href="#post-%2Fapi%2Fservice" name="post-%2Fapi%2Fservice"><span> </span></a>
             <div class="toggle"></div>
-                          <div class="commentsCount">
-                <a href="#" class="commentsCountLink">Add Comment</a>
-              </div>
                       </hgroup>
 
-                              <div class="content">
+                                <article class="details">
+              <p>Create a new Service</p>                            <div class="paramsTableWrap"><table class="paramsTable">
+                <caption>Parameters</caption>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Details</th>
+                  </tr>
+                </thead>
+                <tbody>
+                                      <tr>
+                      <td>name</td>
+                      <td><p>The Service name</p>
+</td>
+                      <td>string, required<br>example: <samp>Service Name</samp>                                              </td>
+                    </tr>
+                                      <tr>
+                      <td>key</td>
+                      <td><p>The service key that will used to authenticate your HTTP requests</p>
+</td>
+                      <td>string, required<br>example: <samp>myservicekey</samp>                                              </td>
+                    </tr>
+                                  </tbody>
+              </table></div>
+                          </article>
+                    <div class="content">
             <nav class="switch">
               <ul>
                 <a href="#example" class="active"><li><span>Example</span></li></a>
                                   <a href="#debugger"><li><span>Debugger</span></li></a>
-                                                  <a href="#social"><li><span>Comments</span></li></a>
-                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
+                                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
                               </ul>
             </nav>
             <section class="example">
@@ -267,18 +404,22 @@ Content-Type: application/json</code></pre>
                                       </select>
                 </form>
               </nav>
-                            <section class="code" id="generatedResourceCodeS1E2">                                                                            
-<span id="requestExampleIdS1E2req0" class="hidden"></span>
+                            <section class="code" id="generatedResourceCodeS4E2">                                                                            
+<span id="requestExampleIdS4E2req0" class="hidden"></span>
 <script>
-window.docResources["generatedResourceCodeS1E2"] = (window.docResources["generatedResourceCodeS1E2"] || []).concat({
-  "exampleId": "S1E2req0",
-  "url": "/api/service/",
+window.docResources["generatedResourceCodeS4E2"] = (window.docResources["generatedResourceCodeS4E2"] || []).concat({
+  "exampleId": "S4E2req0",
+  "url": "/api/service",
   "method": "POST",
   "contentType": "application/json",
   "headers": {
     "Content-Type": "application/json"
   },
-  "body": "{ \"name\": \"iMarketing\", \"key\": \"imkt\" }"
+  "body": "{\n  \"name\": \"Service Name\",\n  \"key\": \"myservicekey\" \n}",
+  "parameters": {
+    "name": "Service Name",
+    "key": "myservicekey"
+  }
 });
 </script>
                                                                                                 <p class="ioDesc">Response</p>
@@ -287,33 +428,32 @@ window.docResources["generatedResourceCodeS1E2"] = (window.docResources["generat
 Content-Type: application/json</code></pre>
                       <pre class="outgoing"><code class="language-javascript">{ 
   &#34;success&#34;: 1, 
-  &#34;key&#34;: &#34;imkt&#34;, 
-  &#34;token&#34;: &#34;07fe5ae62bd4f329964f74ffa5a09f22cc11a4cab7931d4fb1bc911915b6293929069abeb177f21b&#34; 
+  &#34;key&#34;: &#34;myservicekey&#34;, 
+  &#34;token&#34;: &#34;MyServiceToken&#34; 
+}</code></pre>
+                    </section>
+                                                                              <p class="ioDesc">Response</p>
+                    <section class="outgoingCall rawResponse">
+                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
+Content-Type: application/json</code></pre>
+                      <pre class="outgoing"><code class="language-javascript">{
+  &#34;success&#34;: 0,
+  &#34;error&#34;: &#34;The error message&#34;,
+  &#34;details&#34;: &#34;The detailed information about error, present only if is a validation error&#34;
+}</code></pre>
+                    </section>
+                                                                              <p class="ioDesc">Response</p>
+                    <section class="outgoingCall rawResponse">
+                      <pre class="outgoing outgoingHeaders"><code>500 (Internal Server Error)
+Content-Type: application/json</code></pre>
+                      <pre class="outgoing"><code class="language-javascript">{
+  &#34;success&#34;: 0,
+  &#34;error&#34;: &#34;Unknow error&#34;
 }</code></pre>
                     </section>
                                                                                     </section>
             </section>
-                          <section class="debugger" data-resource-signature="POST /api/service/"></section>
-                            <section class="social">
-                <nav class="switch"></nav>
-
-                <section class="newPost">
-                  <form action="/discussion/53e141ece339e902000007b8" method="post">
-                     <textarea placeholder="Start a new thread…" name="comment"></textarea>
-                     <div class="postControl">
-                       <div class="postTools">
-                         <input class="button blue big" type="submit" value="Submit">
-                         <a class="cancel" href="#"><i class="icon-remove"></i> Cancel</a>
-                       </div>
-                     </div>
-                     <input type="hidden" name="url" value="/api/service/">
-                     <input type="hidden" name="method" value="POST" >
-                  </form>
-                </section>
-
-                                <section class="all" name="thread">
-                                  </section>
-                              </section>
+                          <section class="debugger" data-resource-signature="POST /api/service"></section>
               
               <section class="tryit">
                 <form name="jsRunExample">
@@ -323,10 +463,8 @@ Content-Type: application/json</code></pre>
                       </div>
 
           
-        </section>              </div>                  <div class="sameResourceGroup">
+        </section>                      
         
-                  <h2 class="nameResource">Service</h2>                  
-                  <h3 class="nameMethod">Get a Service</h3>
         
         <section class="resource noActivity">
           <hgroup>
@@ -334,18 +472,16 @@ Content-Type: application/json</code></pre>
             <h2>/api/service/{key}</h2>
             <a class="resourcePermalink" href="#get-%2Fapi%2Fservice%2F%7Bkey%7D" name="get-%2Fapi%2Fservice%2F%7Bkey%7D"><span> </span></a>
             <div class="toggle"></div>
-                          <div class="commentsCount">
-                <a href="#" class="commentsCountLink">Add Comment</a>
-              </div>
                       </hgroup>
 
-                              <div class="content">
+                                <article class="details">
+              <p>Get a Service</p>                          </article>
+                    <div class="content">
             <nav class="switch">
               <ul>
                 <a href="#example" class="active"><li><span>Example</span></li></a>
                                   <a href="#debugger"><li><span>Debugger</span></li></a>
-                                                  <a href="#social"><li><span>Comments</span></li></a>
-                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
+                                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
                               </ul>
             </nav>
             <section class="example">
@@ -368,11 +504,11 @@ Content-Type: application/json</code></pre>
                                       </select>
                 </form>
               </nav>
-                            <section class="code" id="generatedResourceCodeS1E3">                                                                            
-<span id="requestExampleIdS1E3req0" class="hidden"></span>
+                            <section class="code" id="generatedResourceCodeS4E3">                                                                            
+<span id="requestExampleIdS4E3req0" class="hidden"></span>
 <script>
-window.docResources["generatedResourceCodeS1E3"] = (window.docResources["generatedResourceCodeS1E3"] || []).concat({
-  "exampleId": "S1E3req0",
+window.docResources["generatedResourceCodeS4E3"] = (window.docResources["generatedResourceCodeS4E3"] || []).concat({
+  "exampleId": "S4E3req0",
   "url": "/api/service/{key}",
   "method": "GET",
   "contentType": "application/json",
@@ -387,33 +523,22 @@ window.docResources["generatedResourceCodeS1E3"] = (window.docResources["generat
                       <pre class="outgoing outgoingHeaders"><code>200 (OK)
 Content-Type: application/json</code></pre>
                       <pre class="outgoing"><code class="language-javascript">{
-  &#34;name&#34;: &#34;iMarketing&#34;,
-  &#34;key&#34;: &#34;imkt&#34;
+  &#34;name&#34;: &#34;First Service&#34;,
+  &#34;key&#34;: &#34;svc1&#34;
+}</code></pre>
+                    </section>
+                                                                              <p class="ioDesc">Response</p>
+                    <section class="outgoingCall rawResponse">
+                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
+Content-Type: application/json</code></pre>
+                      <pre class="outgoing"><code class="language-javascript">{
+  &#34;success&#34;: 0,
+  &#34;error&#34;: &#34;Service not found&#34;
 }</code></pre>
                     </section>
                                                                                     </section>
             </section>
                           <section class="debugger" data-resource-signature="GET /api/service/{key}"></section>
-                            <section class="social">
-                <nav class="switch"></nav>
-
-                <section class="newPost">
-                  <form action="/discussion/53e141ece339e902000007b8" method="post">
-                     <textarea placeholder="Start a new thread…" name="comment"></textarea>
-                     <div class="postControl">
-                       <div class="postTools">
-                         <input class="button blue big" type="submit" value="Submit">
-                         <a class="cancel" href="#"><i class="icon-remove"></i> Cancel</a>
-                       </div>
-                     </div>
-                     <input type="hidden" name="url" value="/api/service/{key}">
-                     <input type="hidden" name="method" value="GET" >
-                  </form>
-                </section>
-
-                                <section class="all" name="thread">
-                                  </section>
-                              </section>
               
               <section class="tryit">
                 <form name="jsRunExample">
@@ -425,7 +550,6 @@ Content-Type: application/json</code></pre>
           
         </section>                      
         
-                  <h3 class="nameMethod">Update a Service</h3>
         
         <section class="resource noActivity">
           <hgroup>
@@ -433,18 +557,40 @@ Content-Type: application/json</code></pre>
             <h2>/api/service/{key}</h2>
             <a class="resourcePermalink" href="#put-%2Fapi%2Fservice%2F%7Bkey%7D" name="put-%2Fapi%2Fservice%2F%7Bkey%7D"><span> </span></a>
             <div class="toggle"></div>
-                          <div class="commentsCount">
-                <a href="#" class="commentsCountLink">Add Comment</a>
-              </div>
                       </hgroup>
 
-                              <div class="content">
+                                <article class="details">
+              <p>Update a Service</p>                            <div class="paramsTableWrap"><table class="paramsTable">
+                <caption>Parameters</caption>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Details</th>
+                  </tr>
+                </thead>
+                <tbody>
+                                      <tr>
+                      <td>name</td>
+                      <td><p>The name of service</p>
+</td>
+                      <td>string, optional<br>example: <samp>Service Name</samp>                                              </td>
+                    </tr>
+                                      <tr>
+                      <td>key</td>
+                      <td><p>The service key that will used to authenticate your HTTP requests</p>
+</td>
+                      <td>string, optional<br>example: <samp>myservicekey</samp>                                              </td>
+                    </tr>
+                                  </tbody>
+              </table></div>
+                          </article>
+                    <div class="content">
             <nav class="switch">
               <ul>
                 <a href="#example" class="active"><li><span>Example</span></li></a>
                                   <a href="#debugger"><li><span>Debugger</span></li></a>
-                                                  <a href="#social"><li><span>Comments</span></li></a>
-                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
+                                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
                               </ul>
             </nav>
             <section class="example">
@@ -467,18 +613,22 @@ Content-Type: application/json</code></pre>
                                       </select>
                 </form>
               </nav>
-                            <section class="code" id="generatedResourceCodeS1E4">                                                                            
-<span id="requestExampleIdS1E4req0" class="hidden"></span>
+                            <section class="code" id="generatedResourceCodeS4E4">                                                                            
+<span id="requestExampleIdS4E4req0" class="hidden"></span>
 <script>
-window.docResources["generatedResourceCodeS1E4"] = (window.docResources["generatedResourceCodeS1E4"] || []).concat({
-  "exampleId": "S1E4req0",
+window.docResources["generatedResourceCodeS4E4"] = (window.docResources["generatedResourceCodeS4E4"] || []).concat({
+  "exampleId": "S4E4req0",
   "url": "/api/service/{key}",
   "method": "PUT",
   "contentType": "application/json",
   "headers": {
     "Content-Type": "application/json"
   },
-  "body": ""
+  "body": "{ \"name\": \"Service Name\", \"key\": \"myservicekey\" }",
+  "parameters": {
+    "name": "Service Name",
+    "key": "myservicekey"
+  }
 });
 </script>
                                                                                                 <p class="ioDesc">Response</p>
@@ -487,33 +637,32 @@ window.docResources["generatedResourceCodeS1E4"] = (window.docResources["generat
 Content-Type: application/json</code></pre>
                       <pre class="outgoing"><code class="language-javascript">{
   &#34;success&#34;: 1,
-  &#34;name&#34;: &#34;iMarketing&#34;,
-  &#34;key&#34;: &#34;imkt&#34;
+  &#34;name&#34;: &#34;Service Name&#34;,
+  &#34;key&#34;: &#34;myservicekey&#34;
+}</code></pre>
+                    </section>
+                                                                              <p class="ioDesc">Response</p>
+                    <section class="outgoingCall rawResponse">
+                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
+Content-Type: application/json</code></pre>
+                      <pre class="outgoing"><code class="language-javascript">{
+  &#34;success&#34;: 0,
+  &#34;error&#34;: &#34;The error message&#34;,
+  &#34;details&#34;: &#34;The detailed information about error, present only if is a validation error&#34;
+}</code></pre>
+                    </section>
+                                                                              <p class="ioDesc">Response</p>
+                    <section class="outgoingCall rawResponse">
+                      <pre class="outgoing outgoingHeaders"><code>500 (Internal Server Error)
+Content-Type: application/json</code></pre>
+                      <pre class="outgoing"><code class="language-javascript">{
+  &#34;success&#34;: 0,
+  &#34;error&#34;: &#34;Unknow error&#34;
 }</code></pre>
                     </section>
                                                                                     </section>
             </section>
                           <section class="debugger" data-resource-signature="PUT /api/service/{key}"></section>
-                            <section class="social">
-                <nav class="switch"></nav>
-
-                <section class="newPost">
-                  <form action="/discussion/53e141ece339e902000007b8" method="post">
-                     <textarea placeholder="Start a new thread…" name="comment"></textarea>
-                     <div class="postControl">
-                       <div class="postTools">
-                         <input class="button blue big" type="submit" value="Submit">
-                         <a class="cancel" href="#"><i class="icon-remove"></i> Cancel</a>
-                       </div>
-                     </div>
-                     <input type="hidden" name="url" value="/api/service/{key}">
-                     <input type="hidden" name="method" value="PUT" >
-                  </form>
-                </section>
-
-                                <section class="all" name="thread">
-                                  </section>
-                              </section>
               
               <section class="tryit">
                 <form name="jsRunExample">
@@ -525,7 +674,6 @@ Content-Type: application/json</code></pre>
           
         </section>                      
         
-                  <h3 class="nameMethod">Remove a Service</h3>
         
         <section class="resource noActivity">
           <hgroup>
@@ -533,18 +681,18 @@ Content-Type: application/json</code></pre>
             <h2>/api/service/{key}</h2>
             <a class="resourcePermalink" href="#delete-%2Fapi%2Fservice%2F%7Bkey%7D" name="delete-%2Fapi%2Fservice%2F%7Bkey%7D"><span> </span></a>
             <div class="toggle"></div>
-                          <div class="commentsCount">
-                <a href="#" class="commentsCountLink">Add Comment</a>
-              </div>
                       </hgroup>
 
-                              <div class="content">
+                                <article class="details">
+              <p>Remove a Service</p>
+
+<p><strong>Warning:</strong> This action <em>permanently</em> destroy all information about service and it actions from API database.</p>                          </article>
+                    <div class="content">
             <nav class="switch">
               <ul>
                 <a href="#example" class="active"><li><span>Example</span></li></a>
                                   <a href="#debugger"><li><span>Debugger</span></li></a>
-                                                  <a href="#social"><li><span>Comments</span></li></a>
-                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
+                                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
                               </ul>
             </nav>
             <section class="example">
@@ -567,11 +715,11 @@ Content-Type: application/json</code></pre>
                                       </select>
                 </form>
               </nav>
-                            <section class="code" id="generatedResourceCodeS1E5">                                                                            
-<span id="requestExampleIdS1E5req0" class="hidden"></span>
+                            <section class="code" id="generatedResourceCodeS4E5">                                                                            
+<span id="requestExampleIdS4E5req0" class="hidden"></span>
 <script>
-window.docResources["generatedResourceCodeS1E5"] = (window.docResources["generatedResourceCodeS1E5"] || []).concat({
-  "exampleId": "S1E5req0",
+window.docResources["generatedResourceCodeS4E5"] = (window.docResources["generatedResourceCodeS4E5"] || []).concat({
+  "exampleId": "S4E5req0",
   "url": "/api/service/{key}",
   "method": "DELETE",
   "contentType": "application/json",
@@ -589,29 +737,27 @@ Content-Type: application/json</code></pre>
   &#34;success&#34;: 1
 }</code></pre>
                     </section>
+                                                                              <p class="ioDesc">Response</p>
+                    <section class="outgoingCall rawResponse">
+                      <pre class="outgoing outgoingHeaders"><code>500 (Internal Server Error)
+Content-Type: application/json</code></pre>
+                      <pre class="outgoing"><code class="language-javascript">{
+  &#34;success&#34;: 0,
+  &#34;error&#34;: &#34;Unknow error&#34;
+}</code></pre>
+                    </section>
+                                                                              <p class="ioDesc">Response</p>
+                    <section class="outgoingCall rawResponse">
+                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
+Content-Type: application/json</code></pre>
+                      <pre class="outgoing"><code class="language-javascript">{
+  &#34;success&#34;: 0,
+  &#34;error&#34;: &#34;Service not found&#34;
+}</code></pre>
+                    </section>
                                                                                     </section>
             </section>
                           <section class="debugger" data-resource-signature="DELETE /api/service/{key}"></section>
-                            <section class="social">
-                <nav class="switch"></nav>
-
-                <section class="newPost">
-                  <form action="/discussion/53e141ece339e902000007b8" method="post">
-                     <textarea placeholder="Start a new thread…" name="comment"></textarea>
-                     <div class="postControl">
-                       <div class="postTools">
-                         <input class="button blue big" type="submit" value="Submit">
-                         <a class="cancel" href="#"><i class="icon-remove"></i> Cancel</a>
-                       </div>
-                     </div>
-                     <input type="hidden" name="url" value="/api/service/{key}">
-                     <input type="hidden" name="method" value="DELETE" >
-                  </form>
-                </section>
-
-                                <section class="all" name="thread">
-                                  </section>
-                              </section>
               
               <section class="tryit">
                 <form name="jsRunExample">
@@ -621,29 +767,32 @@ Content-Type: application/json</code></pre>
                       </div>
 
           
-        </section>              </div>                  <div class="sameResourceGroup">
+        </section>      
+          </div>
+      <a name="ipaddresses"></a>
+    <div class="chapterWrapper">
+              <hgroup class="chapter">
+          <h1>Ip Addresses</h1>                  </hgroup>
+      
+                                  
         
-                  <h2 class="nameResource">Ip Addresses</h2>                  
-                  <h3 class="nameMethod">Retrieve all ip addresses</h3>
         
         <section class="resource noActivity">
           <hgroup>
             <h1 class="methodGet"><span>GET</span></h1>
-            <h2>/api/ipaddress/</h2>
-            <a class="resourcePermalink" href="#get-%2Fapi%2Fipaddress%2F" name="get-%2Fapi%2Fipaddress%2F"><span> </span></a>
+            <h2>/api/ipaddress</h2>
+            <a class="resourcePermalink" href="#get-%2Fapi%2Fipaddress" name="get-%2Fapi%2Fipaddress"><span> </span></a>
             <div class="toggle"></div>
-                          <div class="commentsCount">
-                <a href="#" class="commentsCountLink">Add Comment</a>
-              </div>
                       </hgroup>
 
-                              <div class="content">
+                                <article class="details">
+              <p>Retrieve all allowed IP addresses</p>                          </article>
+                    <div class="content">
             <nav class="switch">
               <ul>
                 <a href="#example" class="active"><li><span>Example</span></li></a>
                                   <a href="#debugger"><li><span>Debugger</span></li></a>
-                                                  <a href="#social"><li><span>Comments</span></li></a>
-                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
+                                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
                               </ul>
             </nav>
             <section class="example">
@@ -666,12 +815,12 @@ Content-Type: application/json</code></pre>
                                       </select>
                 </form>
               </nav>
-                            <section class="code" id="generatedResourceCodeS1E6">                                                                            
-<span id="requestExampleIdS1E6req0" class="hidden"></span>
+                            <section class="code" id="generatedResourceCodeS5E1">                                                                            
+<span id="requestExampleIdS5E1req0" class="hidden"></span>
 <script>
-window.docResources["generatedResourceCodeS1E6"] = (window.docResources["generatedResourceCodeS1E6"] || []).concat({
-  "exampleId": "S1E6req0",
-  "url": "/api/ipaddress/",
+window.docResources["generatedResourceCodeS5E1"] = (window.docResources["generatedResourceCodeS5E1"] || []).concat({
+  "exampleId": "S5E1req0",
+  "url": "/api/ipaddress",
   "method": "GET",
   "contentType": "application/json",
   "headers": {
@@ -690,29 +839,14 @@ Content-Type: application/json</code></pre>
   &#34;192.168.0.3&#34;
 ]</code></pre>
                     </section>
+                                                                              <p class="ioDesc">Response</p>
+                    <section class="outgoingCall rawResponse">
+                      <pre class="outgoing outgoingHeaders"><code>204 (No Content)</code></pre>
+                      <pre class="outgoing"><code class=""></code></pre>
+                    </section>
                                                                                     </section>
             </section>
-                          <section class="debugger" data-resource-signature="GET /api/ipaddress/"></section>
-                            <section class="social">
-                <nav class="switch"></nav>
-
-                <section class="newPost">
-                  <form action="/discussion/53e141ece339e902000007b8" method="post">
-                     <textarea placeholder="Start a new thread…" name="comment"></textarea>
-                     <div class="postControl">
-                       <div class="postTools">
-                         <input class="button blue big" type="submit" value="Submit">
-                         <a class="cancel" href="#"><i class="icon-remove"></i> Cancel</a>
-                       </div>
-                     </div>
-                     <input type="hidden" name="url" value="/api/ipaddress/">
-                     <input type="hidden" name="method" value="GET" >
-                  </form>
-                </section>
-
-                                <section class="all" name="thread">
-                                  </section>
-                              </section>
+                          <section class="debugger" data-resource-signature="GET /api/ipaddress"></section>
               
               <section class="tryit">
                 <form name="jsRunExample">
@@ -724,26 +858,41 @@ Content-Type: application/json</code></pre>
           
         </section>                      
         
-                  <h3 class="nameMethod">Allow new ip address</h3>
         
         <section class="resource noActivity">
           <hgroup>
             <h1 class="methodPost"><span>POST</span></h1>
-            <h2>/api/ipaddress/</h2>
-            <a class="resourcePermalink" href="#post-%2Fapi%2Fipaddress%2F" name="post-%2Fapi%2Fipaddress%2F"><span> </span></a>
+            <h2>/api/ipaddress</h2>
+            <a class="resourcePermalink" href="#post-%2Fapi%2Fipaddress" name="post-%2Fapi%2Fipaddress"><span> </span></a>
             <div class="toggle"></div>
-                          <div class="commentsCount">
-                <a href="#" class="commentsCountLink">Add Comment</a>
-              </div>
                       </hgroup>
 
-                              <div class="content">
+                                <article class="details">
+              <p>Allow new IP address to consume API</p>                            <div class="paramsTableWrap"><table class="paramsTable">
+                <caption>Parameters</caption>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Details</th>
+                  </tr>
+                </thead>
+                <tbody>
+                                      <tr>
+                      <td>ipaddress</td>
+                      <td><p>The Ip address that you wish to allow</p>
+</td>
+                      <td>string, required<br>example: <samp>127.0.0.1</samp>                                              </td>
+                    </tr>
+                                  </tbody>
+              </table></div>
+                          </article>
+                    <div class="content">
             <nav class="switch">
               <ul>
                 <a href="#example" class="active"><li><span>Example</span></li></a>
                                   <a href="#debugger"><li><span>Debugger</span></li></a>
-                                                  <a href="#social"><li><span>Comments</span></li></a>
-                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
+                                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
                               </ul>
             </nav>
             <section class="example">
@@ -766,18 +915,21 @@ Content-Type: application/json</code></pre>
                                       </select>
                 </form>
               </nav>
-                            <section class="code" id="generatedResourceCodeS1E7">                                                                            
-<span id="requestExampleIdS1E7req0" class="hidden"></span>
+                            <section class="code" id="generatedResourceCodeS5E2">                                                                            
+<span id="requestExampleIdS5E2req0" class="hidden"></span>
 <script>
-window.docResources["generatedResourceCodeS1E7"] = (window.docResources["generatedResourceCodeS1E7"] || []).concat({
-  "exampleId": "S1E7req0",
-  "url": "/api/ipaddress/",
+window.docResources["generatedResourceCodeS5E2"] = (window.docResources["generatedResourceCodeS5E2"] || []).concat({
+  "exampleId": "S5E2req0",
+  "url": "/api/ipaddress",
   "method": "POST",
   "contentType": "application/json",
   "headers": {
     "Content-Type": "application/json"
   },
-  "body": "{ \"ipaddress\": \"192.168.0.1\" }"
+  "body": "{\n  \"ipaddress\": \"192.168.0.1\"\n}",
+  "parameters": {
+    "ipaddress": "127.0.0.1"
+  }
 });
 </script>
                                                                                                 <p class="ioDesc">Response</p>
@@ -788,29 +940,27 @@ Content-Type: application/json</code></pre>
   &#34;success&#34;: 1
 }</code></pre>
                     </section>
+                                                                              <p class="ioDesc">Response</p>
+                    <section class="outgoingCall rawResponse">
+                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
+Content-Type: application/json</code></pre>
+                      <pre class="outgoing"><code class="language-javascript">{
+  &#34;success&#34;: 0,
+  &#34;error&#34;: &#34;The error message&#34;
+}</code></pre>
+                    </section>
+                                                                              <p class="ioDesc">Response</p>
+                    <section class="outgoingCall rawResponse">
+                      <pre class="outgoing outgoingHeaders"><code>500 (Internal Server Error)
+Content-Type: application/json</code></pre>
+                      <pre class="outgoing"><code class="language-javascript">{
+  &#34;success&#34;: 0,
+  &#34;error&#34;: &#34;Unknow error&#34;
+}</code></pre>
+                    </section>
                                                                                     </section>
             </section>
-                          <section class="debugger" data-resource-signature="POST /api/ipaddress/"></section>
-                            <section class="social">
-                <nav class="switch"></nav>
-
-                <section class="newPost">
-                  <form action="/discussion/53e141ece339e902000007b8" method="post">
-                     <textarea placeholder="Start a new thread…" name="comment"></textarea>
-                     <div class="postControl">
-                       <div class="postTools">
-                         <input class="button blue big" type="submit" value="Submit">
-                         <a class="cancel" href="#"><i class="icon-remove"></i> Cancel</a>
-                       </div>
-                     </div>
-                     <input type="hidden" name="url" value="/api/ipaddress/">
-                     <input type="hidden" name="method" value="POST" >
-                  </form>
-                </section>
-
-                                <section class="all" name="thread">
-                                  </section>
-                              </section>
+                          <section class="debugger" data-resource-signature="POST /api/ipaddress"></section>
               
               <section class="tryit">
                 <form name="jsRunExample">
@@ -820,10 +970,8 @@ Content-Type: application/json</code></pre>
                       </div>
 
           
-        </section>              </div>                  <div class="sameResourceGroup">
+        </section>                      
         
-                  <h2 class="nameResource">Ip Address</h2>                  
-                  <h3 class="nameMethod">Remove an ip address</h3>
         
         <section class="resource noActivity">
           <hgroup>
@@ -831,18 +979,16 @@ Content-Type: application/json</code></pre>
             <h2>/api/ipaddress/{ipaddress}</h2>
             <a class="resourcePermalink" href="#delete-%2Fapi%2Fipaddress%2F%7Bipaddress%7D" name="delete-%2Fapi%2Fipaddress%2F%7Bipaddress%7D"><span> </span></a>
             <div class="toggle"></div>
-                          <div class="commentsCount">
-                <a href="#" class="commentsCountLink">Add Comment</a>
-              </div>
                       </hgroup>
 
-                              <div class="content">
+                                <article class="details">
+              <p>Revoke access from an IP address</p>                          </article>
+                    <div class="content">
             <nav class="switch">
               <ul>
                 <a href="#example" class="active"><li><span>Example</span></li></a>
                                   <a href="#debugger"><li><span>Debugger</span></li></a>
-                                                  <a href="#social"><li><span>Comments</span></li></a>
-                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
+                                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
                               </ul>
             </nav>
             <section class="example">
@@ -865,11 +1011,11 @@ Content-Type: application/json</code></pre>
                                       </select>
                 </form>
               </nav>
-                            <section class="code" id="generatedResourceCodeS1E8">                                                                            
-<span id="requestExampleIdS1E8req0" class="hidden"></span>
+                            <section class="code" id="generatedResourceCodeS5E3">                                                                            
+<span id="requestExampleIdS5E3req0" class="hidden"></span>
 <script>
-window.docResources["generatedResourceCodeS1E8"] = (window.docResources["generatedResourceCodeS1E8"] || []).concat({
-  "exampleId": "S1E8req0",
+window.docResources["generatedResourceCodeS5E3"] = (window.docResources["generatedResourceCodeS5E3"] || []).concat({
+  "exampleId": "S5E3req0",
   "url": "/api/ipaddress/{ipaddress}",
   "method": "DELETE",
   "contentType": "application/json",
@@ -887,29 +1033,27 @@ Content-Type: application/json</code></pre>
   &#34;success&#34;: 1
 }</code></pre>
                     </section>
+                                                                              <p class="ioDesc">Response</p>
+                    <section class="outgoingCall rawResponse">
+                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
+Content-Type: application/json</code></pre>
+                      <pre class="outgoing"><code class="language-javascript">{
+  &#34;success&#34;: 0,
+  &#34;error&#34;: &#34;Ip address not found&#34;
+}</code></pre>
+                    </section>
+                                                                              <p class="ioDesc">Response</p>
+                    <section class="outgoingCall rawResponse">
+                      <pre class="outgoing outgoingHeaders"><code>500 (Internal Server Error)
+Content-Type: application/json</code></pre>
+                      <pre class="outgoing"><code class="language-javascript">{
+ &#34;success&#34;: 0,
+ &#34;error&#34;: &#34;Unknow error&#34;
+}</code></pre>
+                    </section>
                                                                                     </section>
             </section>
                           <section class="debugger" data-resource-signature="DELETE /api/ipaddress/{ipaddress}"></section>
-                            <section class="social">
-                <nav class="switch"></nav>
-
-                <section class="newPost">
-                  <form action="/discussion/53e141ece339e902000007b8" method="post">
-                     <textarea placeholder="Start a new thread…" name="comment"></textarea>
-                     <div class="postControl">
-                       <div class="postTools">
-                         <input class="button blue big" type="submit" value="Submit">
-                         <a class="cancel" href="#"><i class="icon-remove"></i> Cancel</a>
-                       </div>
-                     </div>
-                     <input type="hidden" name="url" value="/api/ipaddress/{ipaddress}">
-                     <input type="hidden" name="method" value="DELETE" >
-                  </form>
-                </section>
-
-                                <section class="all" name="thread">
-                                  </section>
-                              </section>
               
               <section class="tryit">
                 <form name="jsRunExample">
@@ -919,29 +1063,32 @@ Content-Type: application/json</code></pre>
                       </div>
 
           
-        </section>              </div>                  <div class="sameResourceGroup">
+        </section>      
+          </div>
+      <a name="campaigns"></a>
+    <div class="chapterWrapper">
+              <hgroup class="chapter">
+          <h1>Campaigns</h1>                  </hgroup>
+      
+                                  
         
-                  <h2 class="nameResource">Campaigns</h2>                  
-                  <h3 class="nameMethod">Get Campaigns</h3>
         
         <section class="resource noActivity">
           <hgroup>
             <h1 class="methodGet"><span>GET</span></h1>
-            <h2>/api/campaign/</h2>
-            <a class="resourcePermalink" href="#get-%2Fapi%2Fcampaign%2F" name="get-%2Fapi%2Fcampaign%2F"><span> </span></a>
+            <h2>/api/campaign</h2>
+            <a class="resourcePermalink" href="#get-%2Fapi%2Fcampaign" name="get-%2Fapi%2Fcampaign"><span> </span></a>
             <div class="toggle"></div>
-                          <div class="commentsCount">
-                <a href="#" class="commentsCountLink">Add Comment</a>
-              </div>
                       </hgroup>
 
-                              <div class="content">
+                                <article class="details">
+              <p>Retrieve all campaigns</p>                          </article>
+                    <div class="content">
             <nav class="switch">
               <ul>
                 <a href="#example" class="active"><li><span>Example</span></li></a>
                                   <a href="#debugger"><li><span>Debugger</span></li></a>
-                                                  <a href="#social"><li><span>Comments</span></li></a>
-                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
+                                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
                               </ul>
             </nav>
             <section class="example">
@@ -964,14 +1111,17 @@ Content-Type: application/json</code></pre>
                                       </select>
                 </form>
               </nav>
-                            <section class="code" id="generatedResourceCodeS1E9">                                                                            
-<span id="requestExampleIdS1E9req0" class="hidden"></span>
+                            <section class="code" id="generatedResourceCodeS6E1">                                                                            
+<span id="requestExampleIdS6E1req0" class="hidden"></span>
 <script>
-window.docResources["generatedResourceCodeS1E9"] = (window.docResources["generatedResourceCodeS1E9"] || []).concat({
-  "exampleId": "S1E9req0",
-  "url": "/api/campaign/",
+window.docResources["generatedResourceCodeS6E1"] = (window.docResources["generatedResourceCodeS6E1"] || []).concat({
+  "exampleId": "S6E1req0",
+  "url": "/api/campaign",
   "method": "GET",
-  "headers": {},
+  "contentType": "application/json",
+  "headers": {
+    "Content-Type": "application/json"
+  },
   "body": ""
 });
 </script>
@@ -982,27 +1132,7 @@ window.docResources["generatedResourceCodeS1E9"] = (window.docResources["generat
                     </section>
                                                                                     </section>
             </section>
-                          <section class="debugger" data-resource-signature="GET /api/campaign/"></section>
-                            <section class="social">
-                <nav class="switch"></nav>
-
-                <section class="newPost">
-                  <form action="/discussion/53e141ece339e902000007b8" method="post">
-                     <textarea placeholder="Start a new thread…" name="comment"></textarea>
-                     <div class="postControl">
-                       <div class="postTools">
-                         <input class="button blue big" type="submit" value="Submit">
-                         <a class="cancel" href="#"><i class="icon-remove"></i> Cancel</a>
-                       </div>
-                     </div>
-                     <input type="hidden" name="url" value="/api/campaign/">
-                     <input type="hidden" name="method" value="GET" >
-                  </form>
-                </section>
-
-                                <section class="all" name="thread">
-                                  </section>
-                              </section>
+                          <section class="debugger" data-resource-signature="GET /api/campaign"></section>
               
               <section class="tryit">
                 <form name="jsRunExample">
@@ -1014,26 +1144,71 @@ window.docResources["generatedResourceCodeS1E9"] = (window.docResources["generat
           
         </section>                      
         
-                  <h3 class="nameMethod">Create a Campaign</h3>
         
         <section class="resource noActivity">
           <hgroup>
             <h1 class="methodPost"><span>POST</span></h1>
-            <h2>/api/campaign/</h2>
-            <a class="resourcePermalink" href="#post-%2Fapi%2Fcampaign%2F" name="post-%2Fapi%2Fcampaign%2F"><span> </span></a>
+            <h2>/api/campaign</h2>
+            <a class="resourcePermalink" href="#post-%2Fapi%2Fcampaign" name="post-%2Fapi%2Fcampaign"><span> </span></a>
             <div class="toggle"></div>
-                          <div class="commentsCount">
-                <a href="#" class="commentsCountLink">Add Comment</a>
-              </div>
                       </hgroup>
 
-                              <div class="content">
+                                <article class="details">
+              <p>Create a new campaign</p>                            <div class="paramsTableWrap"><table class="paramsTable">
+                <caption>Parameters</caption>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Details</th>
+                  </tr>
+                </thead>
+                <tbody>
+                                      <tr>
+                      <td>subject</td>
+                      <td><p>The campaigns subject</p>
+</td>
+                      <td>string, required                                              </td>
+                    </tr>
+                                      <tr>
+                      <td>body</td>
+                      <td><p>The body of email</p>
+</td>
+                      <td>string, required                                              </td>
+                    </tr>
+                                      <tr>
+                      <td>headers</td>
+                      <td><p>The headers to send in each all emails</p>
+</td>
+                      <td>array, required                                              </td>
+                    </tr>
+                                      <tr>
+                      <td>user_vars</td>
+                      <td><p>Flag for parse queue with body variables</p>
+</td>
+                      <td>integer, optional                                              </td>
+                    </tr>
+                                      <tr>
+                      <td>user_headers</td>
+                      <td><p>Flag for set custom headers by each destination</p>
+</td>
+                      <td>integer, optional                                              </td>
+                    </tr>
+                                      <tr>
+                      <td>external</td>
+                      <td><p>The identification of this campaign in client application.</p>
+</td>
+                      <td>integer, required                                              </td>
+                    </tr>
+                                  </tbody>
+              </table></div>
+                          </article>
+                    <div class="content">
             <nav class="switch">
               <ul>
                 <a href="#example" class="active"><li><span>Example</span></li></a>
                                   <a href="#debugger"><li><span>Debugger</span></li></a>
-                                                  <a href="#social"><li><span>Comments</span></li></a>
-                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
+                                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
                               </ul>
             </nav>
             <section class="example">
@@ -1056,18 +1231,18 @@ window.docResources["generatedResourceCodeS1E9"] = (window.docResources["generat
                                       </select>
                 </form>
               </nav>
-                            <section class="code" id="generatedResourceCodeS1E10">                                                                            
-<span id="requestExampleIdS1E10req0" class="hidden"></span>
+                            <section class="code" id="generatedResourceCodeS6E2">                                                                            
+<span id="requestExampleIdS6E2req0" class="hidden"></span>
 <script>
-window.docResources["generatedResourceCodeS1E10"] = (window.docResources["generatedResourceCodeS1E10"] || []).concat({
-  "exampleId": "S1E10req0",
-  "url": "/api/campaign/",
+window.docResources["generatedResourceCodeS6E2"] = (window.docResources["generatedResourceCodeS6E2"] || []).concat({
+  "exampleId": "S6E2req0",
+  "url": "/api/campaign",
   "method": "POST",
   "contentType": "application/json",
   "headers": {
     "Content-Type": "application/json",
-    "Auth-Service-Key": "imkt",
-    "Auth-Token": "07fe5ae62bd4f329964f74ffa5a09f22cc11a4cab7931d4fb1bc911915b6293929069abeb177f21b"
+    "Auth-Service-Key": "myservicekey",
+    "Auth-Token": "MyServiceToken"
   },
   "body": "{\n  \"subject\": \"The subject of mail\",\n  \"body\": \"The body of email\",\n  \"headers\": {\n    \"Content-Type\": \"text/html\",\n    \"Bounce-Mail\": \"mybounce@domain.com\"\n  },\n  \"user_vars\": 1,\n  \"user_headers\": 1,\n  \"external\": 123\n}"
 });
@@ -1081,145 +1256,28 @@ Content-Type: application/json</code></pre>
   &#34;campaign&#34;: &#34;45ad434daaf7bf22e45c8938fb745b45&#34;
 }</code></pre>
                     </section>
-                                                                                    </section>
-            </section>
-                          <section class="debugger" data-resource-signature="POST /api/campaign/"></section>
-                            <section class="social">
-                <nav class="switch"></nav>
-
-                <section class="newPost">
-                  <form action="/discussion/53e141ece339e902000007b8" method="post">
-                     <textarea placeholder="Start a new thread…" name="comment"></textarea>
-                     <div class="postControl">
-                       <div class="postTools">
-                         <input class="button blue big" type="submit" value="Submit">
-                         <a class="cancel" href="#"><i class="icon-remove"></i> Cancel</a>
-                       </div>
-                     </div>
-                     <input type="hidden" name="url" value="/api/campaign/">
-                     <input type="hidden" name="method" value="POST" >
-                  </form>
-                </section>
-
-                                <section class="all" name="thread">
-                                  </section>
-                              </section>
-              
-              <section class="tryit">
-                <form name="jsRunExample">
-                  <span class="ajaxLoader block jsEmptyTryit"></span>
-                </form>
-              </section>
-                      </div>
-
-          
-        </section>              </div>                  <div class="sameResourceGroup">
-        
-                  <h2 class="nameResource">Campaigns</h2>                  
-                  <h3 class="nameMethod">Get statuses of multiple campaigns</h3>
-        
-        <section class="resource noActivity">
-          <hgroup>
-            <h1 class="methodPost"><span>POST</span></h1>
-            <h2>/api/campaign/status</h2>
-            <a class="resourcePermalink" href="#post-%2Fapi%2Fcampaign%2Fstatus" name="post-%2Fapi%2Fcampaign%2Fstatus"><span> </span></a>
-            <div class="toggle"></div>
-                          <div class="commentsCount">
-                <a href="#" class="commentsCountLink">Add Comment</a>
-              </div>
-                      </hgroup>
-
-                              <div class="content">
-            <nav class="switch">
-              <ul>
-                <a href="#example" class="active"><li><span>Example</span></li></a>
-                                  <a href="#debugger"><li><span>Debugger</span></li></a>
-                                                  <a href="#social"><li><span>Comments</span></li></a>
-                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
-                              </ul>
-            </nav>
-            <section class="example">
-                            <nav class="language">
-                <form name="languageSwitcher">
-                  <p>Show code sample</p>
-                  <select>
-                                          <option value="raw">none (raw data)</option>
-                                          <option value="curl">curl</option>
-                                          <option value="csharp">C#</option>
-                                          <option value="javascript">javascript</option>
-                                          <option value="nodejs">node.js</option>
-                                          <option value="python">python</option>
-                                          <option value="php">php</option>
-                                          <option value="ruby">ruby</option>
-                                          <option value="vb">Visual Basic</option>
-                                          <option value="objc">Objective-C</option>
-                                          <option value="swift">Swift</option>
-                                          <option value="groovy">Groovy</option>
-                                      </select>
-                </form>
-              </nav>
-                            <section class="code" id="generatedResourceCodeS1E11">                                                                            
-<span id="requestExampleIdS1E11req0" class="hidden"></span>
-<script>
-window.docResources["generatedResourceCodeS1E11"] = (window.docResources["generatedResourceCodeS1E11"] || []).concat({
-  "exampleId": "S1E11req0",
-  "url": "/api/campaign/status",
-  "method": "POST",
-  "contentType": "application/json",
-  "headers": {
-    "Content-Type": "application/json",
-    "Auth-Service-Key": "imkt",
-    "Auth-Token": "07fe5ae62bd4f329964f74ffa5a09f22cc11a4cab7931d4fb1bc911915b6293929069abeb177f21b"
-  },
-  "body": "{\n  \"campaigns\": [\n    \"45ad434daaf7bf22e45c8938fb745b45\",\n    \"18923n13n9dw7qwhnjbabsd1lmvz1823\"\n  ]\n}"
-});
-</script>
-                                                                                                <p class="ioDesc">Response</p>
+                                                                              <p class="ioDesc">Response</p>
                     <section class="outgoingCall rawResponse">
                       <pre class="outgoing outgoingHeaders"><code>200 (OK)
 Content-Type: application/json</code></pre>
                       <pre class="outgoing"><code class="language-javascript">{
-  &#34;45ad434daaf7bf22e45c8938fb745b45&#34;: {
-    &#34;success&#34;: 1,
-    &#34;id&#34; : &#34;1&#34;,
-    &#34;key&#34; : &#34;45ad434daaf7bf22e45c8938fb745b45&#34;,
-    &#34;total&#34; : 0,
-    &#34;sent&#34; : 0,
-    &#34;fail&#34; : 0,
-    &#34;progress&#34; : 0,
-    &#34;status&#34; : 0,
-    &#34;external&#34; : &#34;123&#34;,
-    &#34;pid&#34; : null
-  },
-  &#34;18923n13n9dw7qwhnjbabsd1lmvz1823&#34;: {
-    &#34;success&#34;: 0,
-    &#34;error&#34;: &#34;Campaign not found&#34;
-  }
+  &#34;success&#34;: 0,
+  &#34;error&#34;: &#34;The error message&#34;,
+  &#34;details&#34;: &#34;The detailed error message, present if occured a validation error&#34;
+}</code></pre>
+                    </section>
+                                                                              <p class="ioDesc">Response</p>
+                    <section class="outgoingCall rawResponse">
+                      <pre class="outgoing outgoingHeaders"><code>500 (Internal Server Error)
+Content-Type: application/json</code></pre>
+                      <pre class="outgoing"><code class="language-javascript">{
+  &#34;success&#34;: 0,
+  &#34;error&#34;: &#34;Unknow error&#34;
 }</code></pre>
                     </section>
                                                                                     </section>
             </section>
-                          <section class="debugger" data-resource-signature="POST /api/campaign/status"></section>
-                            <section class="social">
-                <nav class="switch"></nav>
-
-                <section class="newPost">
-                  <form action="/discussion/53e141ece339e902000007b8" method="post">
-                     <textarea placeholder="Start a new thread…" name="comment"></textarea>
-                     <div class="postControl">
-                       <div class="postTools">
-                         <input class="button blue big" type="submit" value="Submit">
-                         <a class="cancel" href="#"><i class="icon-remove"></i> Cancel</a>
-                       </div>
-                     </div>
-                     <input type="hidden" name="url" value="/api/campaign/status">
-                     <input type="hidden" name="method" value="POST" >
-                  </form>
-                </section>
-
-                                <section class="all" name="thread">
-                                  </section>
-                              </section>
+                          <section class="debugger" data-resource-signature="POST /api/campaign"></section>
               
               <section class="tryit">
                 <form name="jsRunExample">
@@ -1229,10 +1287,8 @@ Content-Type: application/json</code></pre>
                       </div>
 
           
-        </section>              </div>                  <div class="sameResourceGroup">
+        </section>                      
         
-                  <h2 class="nameResource">Campaign</h2>                  
-                  <h3 class="nameMethod">Get details of an Campaign</h3>
         
         <section class="resource noActivity">
           <hgroup>
@@ -1240,18 +1296,16 @@ Content-Type: application/json</code></pre>
             <h2>/api/campaign/{key}</h2>
             <a class="resourcePermalink" href="#get-%2Fapi%2Fcampaign%2F%7Bkey%7D" name="get-%2Fapi%2Fcampaign%2F%7Bkey%7D"><span> </span></a>
             <div class="toggle"></div>
-                          <div class="commentsCount">
-                <a href="#" class="commentsCountLink">Add Comment</a>
-              </div>
                       </hgroup>
 
-                              <div class="content">
+                                <article class="details">
+              <p>Get details of an campaign</p>                          </article>
+                    <div class="content">
             <nav class="switch">
               <ul>
                 <a href="#example" class="active"><li><span>Example</span></li></a>
                                   <a href="#debugger"><li><span>Debugger</span></li></a>
-                                                  <a href="#social"><li><span>Comments</span></li></a>
-                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
+                                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
                               </ul>
             </nav>
             <section class="example">
@@ -1274,18 +1328,18 @@ Content-Type: application/json</code></pre>
                                       </select>
                 </form>
               </nav>
-                            <section class="code" id="generatedResourceCodeS1E12">                                                                            
-<span id="requestExampleIdS1E12req0" class="hidden"></span>
+                            <section class="code" id="generatedResourceCodeS6E3">                                                                            
+<span id="requestExampleIdS6E3req0" class="hidden"></span>
 <script>
-window.docResources["generatedResourceCodeS1E12"] = (window.docResources["generatedResourceCodeS1E12"] || []).concat({
-  "exampleId": "S1E12req0",
+window.docResources["generatedResourceCodeS6E3"] = (window.docResources["generatedResourceCodeS6E3"] || []).concat({
+  "exampleId": "S6E3req0",
   "url": "/api/campaign/{key}",
   "method": "GET",
   "contentType": "application/json",
   "headers": {
     "Content-Type": "application/json",
-    "Auth-Service-Key": "imkt",
-    "Auth-Token": "07fe5ae62bd4f329964f74ffa5a09f22cc11a4cab7931d4fb1bc911915b6293929069abeb177f21b"
+    "Auth-Service-Key": "myservicekey",
+    "Auth-Token": "MyServiceToken"
   },
   "body": ""
 });
@@ -1315,29 +1369,18 @@ Content-Type: application/json</code></pre>
   &#34;pid&#34;: null,
 }</code></pre>
                     </section>
+                                                                              <p class="ioDesc">Response</p>
+                    <section class="outgoingCall rawResponse">
+                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
+Content-Type: application/json</code></pre>
+                      <pre class="outgoing"><code class="language-javascript">{
+  &#34;success&#34;: 0,
+  &#34;error&#34;: &#34;Campaign not found&#34;
+}</code></pre>
+                    </section>
                                                                                     </section>
             </section>
                           <section class="debugger" data-resource-signature="GET /api/campaign/{key}"></section>
-                            <section class="social">
-                <nav class="switch"></nav>
-
-                <section class="newPost">
-                  <form action="/discussion/53e141ece339e902000007b8" method="post">
-                     <textarea placeholder="Start a new thread…" name="comment"></textarea>
-                     <div class="postControl">
-                       <div class="postTools">
-                         <input class="button blue big" type="submit" value="Submit">
-                         <a class="cancel" href="#"><i class="icon-remove"></i> Cancel</a>
-                       </div>
-                     </div>
-                     <input type="hidden" name="url" value="/api/campaign/{key}">
-                     <input type="hidden" name="method" value="GET" >
-                  </form>
-                </section>
-
-                                <section class="all" name="thread">
-                                  </section>
-                              </section>
               
               <section class="tryit">
                 <form name="jsRunExample">
@@ -1349,7 +1392,6 @@ Content-Type: application/json</code></pre>
           
         </section>                      
         
-                  <h3 class="nameMethod">Update a Campaign</h3>
         
         <section class="resource noActivity">
           <hgroup>
@@ -1357,18 +1399,64 @@ Content-Type: application/json</code></pre>
             <h2>/api/campaign/{key}</h2>
             <a class="resourcePermalink" href="#put-%2Fapi%2Fcampaign%2F%7Bkey%7D" name="put-%2Fapi%2Fcampaign%2F%7Bkey%7D"><span> </span></a>
             <div class="toggle"></div>
-                          <div class="commentsCount">
-                <a href="#" class="commentsCountLink">Add Comment</a>
-              </div>
                       </hgroup>
 
-                              <div class="content">
+                                <article class="details">
+              <p>Update an campaign</p>                            <div class="paramsTableWrap"><table class="paramsTable">
+                <caption>Parameters</caption>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Details</th>
+                  </tr>
+                </thead>
+                <tbody>
+                                      <tr>
+                      <td>subject</td>
+                      <td><p>The campaigns subject</p>
+</td>
+                      <td>string, required                                              </td>
+                    </tr>
+                                      <tr>
+                      <td>body</td>
+                      <td><p>The body of email</p>
+</td>
+                      <td>string, required                                              </td>
+                    </tr>
+                                      <tr>
+                      <td>headers</td>
+                      <td><p>The headers to send in each all emails</p>
+</td>
+                      <td>array, required                                              </td>
+                    </tr>
+                                      <tr>
+                      <td>user_vars</td>
+                      <td><p>Flag for parse queue with body variables</p>
+</td>
+                      <td>integer, optional                                              </td>
+                    </tr>
+                                      <tr>
+                      <td>user_headers</td>
+                      <td><p>Flag for set custom headers by each destination</p>
+</td>
+                      <td>integer, optional                                              </td>
+                    </tr>
+                                      <tr>
+                      <td>external</td>
+                      <td><p>The identification of this campaign in client application.</p>
+</td>
+                      <td>integer, required                                              </td>
+                    </tr>
+                                  </tbody>
+              </table></div>
+                          </article>
+                    <div class="content">
             <nav class="switch">
               <ul>
                 <a href="#example" class="active"><li><span>Example</span></li></a>
                                   <a href="#debugger"><li><span>Debugger</span></li></a>
-                                                  <a href="#social"><li><span>Comments</span></li></a>
-                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
+                                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
                               </ul>
             </nav>
             <section class="example">
@@ -1391,18 +1479,18 @@ Content-Type: application/json</code></pre>
                                       </select>
                 </form>
               </nav>
-                            <section class="code" id="generatedResourceCodeS1E13">                                                                            
-<span id="requestExampleIdS1E13req0" class="hidden"></span>
+                            <section class="code" id="generatedResourceCodeS6E4">                                                                            
+<span id="requestExampleIdS6E4req0" class="hidden"></span>
 <script>
-window.docResources["generatedResourceCodeS1E13"] = (window.docResources["generatedResourceCodeS1E13"] || []).concat({
-  "exampleId": "S1E13req0",
+window.docResources["generatedResourceCodeS6E4"] = (window.docResources["generatedResourceCodeS6E4"] || []).concat({
+  "exampleId": "S6E4req0",
   "url": "/api/campaign/{key}",
   "method": "PUT",
   "contentType": "application/json",
   "headers": {
     "Content-Type": "application/json",
-    "Auth-Service-Key": "imkt",
-    "Auth-Token": "07fe5ae62bd4f329964f74ffa5a09f22cc11a4cab7931d4fb1bc911915b6293929069abeb177f21b"
+    "Auth-Service-Key": "myservicekey",
+    "Auth-Token": "MyServiceToken"
   },
   "body": "{\n  \"subject\": \"The subject of mail\",\n  \"body\": \"The body of email\",\n  \"headers\": {\n    \"Content-Type\": \"text/html\",\n    \"Bounce-Mail\": null\n  },\n  \"user_vars\": 0,\n  \"user_headers\": 0,\n  \"external\": 456\n}"
 });
@@ -1416,29 +1504,28 @@ Content-Type: application/json</code></pre>
   &#34;campaign&#34;: &#34;45ad434daaf7bf22e45c8938fb745b45&#34;
 }</code></pre>
                     </section>
+                                                                              <p class="ioDesc">Response</p>
+                    <section class="outgoingCall rawResponse">
+                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
+Content-Type: application/json</code></pre>
+                      <pre class="outgoing"><code class="language-javascript">{
+  &#34;success&#34;: 0,
+  &#34;error&#34;: &#34;The error message&#34;,
+  &#34;details&#34;: &#34;The detailed information about error, present if occured a validation error&#34;
+}</code></pre>
+                    </section>
+                                                                              <p class="ioDesc">Response</p>
+                    <section class="outgoingCall rawResponse">
+                      <pre class="outgoing outgoingHeaders"><code>500 (Internal Server Error)
+Content-Type: application/json</code></pre>
+                      <pre class="outgoing"><code class="language-javascript">{
+  &#34;success&#34;: 0,
+  &#34;error&#34;: &#34;Unknow error&#34;
+}</code></pre>
+                    </section>
                                                                                     </section>
             </section>
                           <section class="debugger" data-resource-signature="PUT /api/campaign/{key}"></section>
-                            <section class="social">
-                <nav class="switch"></nav>
-
-                <section class="newPost">
-                  <form action="/discussion/53e141ece339e902000007b8" method="post">
-                     <textarea placeholder="Start a new thread…" name="comment"></textarea>
-                     <div class="postControl">
-                       <div class="postTools">
-                         <input class="button blue big" type="submit" value="Submit">
-                         <a class="cancel" href="#"><i class="icon-remove"></i> Cancel</a>
-                       </div>
-                     </div>
-                     <input type="hidden" name="url" value="/api/campaign/{key}">
-                     <input type="hidden" name="method" value="PUT" >
-                  </form>
-                </section>
-
-                                <section class="all" name="thread">
-                                  </section>
-                              </section>
               
               <section class="tryit">
                 <form name="jsRunExample">
@@ -1450,7 +1537,6 @@ Content-Type: application/json</code></pre>
           
         </section>                      
         
-                  <h3 class="nameMethod">Remove an Campaign</h3>
         
         <section class="resource noActivity">
           <hgroup>
@@ -1458,18 +1544,16 @@ Content-Type: application/json</code></pre>
             <h2>/api/campaign/{key}</h2>
             <a class="resourcePermalink" href="#delete-%2Fapi%2Fcampaign%2F%7Bkey%7D" name="delete-%2Fapi%2Fcampaign%2F%7Bkey%7D"><span> </span></a>
             <div class="toggle"></div>
-                          <div class="commentsCount">
-                <a href="#" class="commentsCountLink">Add Comment</a>
-              </div>
                       </hgroup>
 
-                              <div class="content">
+                                <article class="details">
+              <p>Remove an campaign</p>                          </article>
+                    <div class="content">
             <nav class="switch">
               <ul>
                 <a href="#example" class="active"><li><span>Example</span></li></a>
                                   <a href="#debugger"><li><span>Debugger</span></li></a>
-                                                  <a href="#social"><li><span>Comments</span></li></a>
-                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
+                                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
                               </ul>
             </nav>
             <section class="example">
@@ -1492,18 +1576,18 @@ Content-Type: application/json</code></pre>
                                       </select>
                 </form>
               </nav>
-                            <section class="code" id="generatedResourceCodeS1E14">                                                                            
-<span id="requestExampleIdS1E14req0" class="hidden"></span>
+                            <section class="code" id="generatedResourceCodeS6E5">                                                                            
+<span id="requestExampleIdS6E5req0" class="hidden"></span>
 <script>
-window.docResources["generatedResourceCodeS1E14"] = (window.docResources["generatedResourceCodeS1E14"] || []).concat({
-  "exampleId": "S1E14req0",
+window.docResources["generatedResourceCodeS6E5"] = (window.docResources["generatedResourceCodeS6E5"] || []).concat({
+  "exampleId": "S6E5req0",
   "url": "/api/campaign/{key}",
   "method": "DELETE",
   "contentType": "application/json",
   "headers": {
     "Content-Type": "application/json",
-    "Auth-Service-Key": "imkt",
-    "Auth-Token": "07fe5ae62bd4f329964f74ffa5a09f22cc11a4cab7931d4fb1bc911915b6293929069abeb177f21b"
+    "Auth-Service-Key": "myservicetoken",
+    "Auth-Token": "MyServiceToken"
   },
   "body": ""
 });
@@ -1519,26 +1603,6 @@ Content-Type: application/json</code></pre>
                                                                                     </section>
             </section>
                           <section class="debugger" data-resource-signature="DELETE /api/campaign/{key}"></section>
-                            <section class="social">
-                <nav class="switch"></nav>
-
-                <section class="newPost">
-                  <form action="/discussion/53e141ece339e902000007b8" method="post">
-                     <textarea placeholder="Start a new thread…" name="comment"></textarea>
-                     <div class="postControl">
-                       <div class="postTools">
-                         <input class="button blue big" type="submit" value="Submit">
-                         <a class="cancel" href="#"><i class="icon-remove"></i> Cancel</a>
-                       </div>
-                     </div>
-                     <input type="hidden" name="url" value="/api/campaign/{key}">
-                     <input type="hidden" name="method" value="DELETE" >
-                  </form>
-                </section>
-
-                                <section class="all" name="thread">
-                                  </section>
-                              </section>
               
               <section class="tryit">
                 <form name="jsRunExample">
@@ -1548,10 +1612,8 @@ Content-Type: application/json</code></pre>
                       </div>
 
           
-        </section>              </div>                  <div class="sameResourceGroup">
+        </section>                      
         
-                  <h2 class="nameResource">Campaign Statuses</h2>                  
-                  <h3 class="nameMethod">Get Campaign status</h3>
         
         <section class="resource noActivity">
           <hgroup>
@@ -1559,18 +1621,16 @@ Content-Type: application/json</code></pre>
             <h2>/api/campaign/{key}/status</h2>
             <a class="resourcePermalink" href="#get-%2Fapi%2Fcampaign%2F%7Bkey%7D%2Fstatus" name="get-%2Fapi%2Fcampaign%2F%7Bkey%7D%2Fstatus"><span> </span></a>
             <div class="toggle"></div>
-                          <div class="commentsCount">
-                <a href="#" class="commentsCountLink">Add Comment</a>
-              </div>
                       </hgroup>
 
-                              <div class="content">
+                                <article class="details">
+              <p>Get the status information of an campaign</p>                          </article>
+                    <div class="content">
             <nav class="switch">
               <ul>
                 <a href="#example" class="active"><li><span>Example</span></li></a>
                                   <a href="#debugger"><li><span>Debugger</span></li></a>
-                                                  <a href="#social"><li><span>Comments</span></li></a>
-                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
+                                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
                               </ul>
             </nav>
             <section class="example">
@@ -1593,18 +1653,18 @@ Content-Type: application/json</code></pre>
                                       </select>
                 </form>
               </nav>
-                            <section class="code" id="generatedResourceCodeS1E15">                                                                            
-<span id="requestExampleIdS1E15req0" class="hidden"></span>
+                            <section class="code" id="generatedResourceCodeS6E6">                                                                            
+<span id="requestExampleIdS6E6req0" class="hidden"></span>
 <script>
-window.docResources["generatedResourceCodeS1E15"] = (window.docResources["generatedResourceCodeS1E15"] || []).concat({
-  "exampleId": "S1E15req0",
+window.docResources["generatedResourceCodeS6E6"] = (window.docResources["generatedResourceCodeS6E6"] || []).concat({
+  "exampleId": "S6E6req0",
   "url": "/api/campaign/{key}/status",
   "method": "GET",
   "contentType": "application/json",
   "headers": {
     "Content-Type": "application/json",
-    "Auth-Service-Key": "imkt",
-    "Auth-Token": "07fe5ae62bd4f329964f74ffa5a09f22cc11a4cab7931d4fb1bc911915b6293929069abeb177f21b"
+    "Auth-Service-Key": "myservicekey",
+    "Auth-Token": "MyServiceToken"
   },
   "body": ""
 });
@@ -1622,32 +1682,22 @@ Content-Type: application/json</code></pre>
   &#34;progress&#34; : 0,
   &#34;status&#34; : 0,
   &#34;external&#34; : &#34;123&#34;,
-  &#34;pid&#34; : null
+  &#34;pid&#34; : null,
+  &#34;cache&#34;: 1
+}</code></pre>
+                    </section>
+                                                                              <p class="ioDesc">Response</p>
+                    <section class="outgoingCall rawResponse">
+                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
+Content-Type: application/json</code></pre>
+                      <pre class="outgoing"><code class="language-javascript">{
+  &#34;success&#34;: 0,
+  &#34;error&#34;: &#34;Campaign not found&#34;
 }</code></pre>
                     </section>
                                                                                     </section>
             </section>
                           <section class="debugger" data-resource-signature="GET /api/campaign/{key}/status"></section>
-                            <section class="social">
-                <nav class="switch"></nav>
-
-                <section class="newPost">
-                  <form action="/discussion/53e141ece339e902000007b8" method="post">
-                     <textarea placeholder="Start a new thread…" name="comment"></textarea>
-                     <div class="postControl">
-                       <div class="postTools">
-                         <input class="button blue big" type="submit" value="Submit">
-                         <a class="cancel" href="#"><i class="icon-remove"></i> Cancel</a>
-                       </div>
-                     </div>
-                     <input type="hidden" name="url" value="/api/campaign/{key}/status">
-                     <input type="hidden" name="method" value="GET" >
-                  </form>
-                </section>
-
-                                <section class="all" name="thread">
-                                  </section>
-                              </section>
               
               <section class="tryit">
                 <form name="jsRunExample">
@@ -1657,10 +1707,8 @@ Content-Type: application/json</code></pre>
                       </div>
 
           
-        </section>              </div>                  <div class="sameResourceGroup">
+        </section>                      
         
-                  <h2 class="nameResource">Campaign Queue</h2>                  
-                  <h3 class="nameMethod">Get eMails from queue</h3>
         
         <section class="resource noActivity">
           <hgroup>
@@ -1668,18 +1716,16 @@ Content-Type: application/json</code></pre>
             <h2>/api/campaign/{key}/queue</h2>
             <a class="resourcePermalink" href="#get-%2Fapi%2Fcampaign%2F%7Bkey%7D%2Fqueue" name="get-%2Fapi%2Fcampaign%2F%7Bkey%7D%2Fqueue"><span> </span></a>
             <div class="toggle"></div>
-                          <div class="commentsCount">
-                <a href="#" class="commentsCountLink">Add Comment</a>
-              </div>
                       </hgroup>
 
-                              <div class="content">
+                                <article class="details">
+              <p>Retrieve the current email queue of an campaign</p>                          </article>
+                    <div class="content">
             <nav class="switch">
               <ul>
                 <a href="#example" class="active"><li><span>Example</span></li></a>
                                   <a href="#debugger"><li><span>Debugger</span></li></a>
-                                                  <a href="#social"><li><span>Comments</span></li></a>
-                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
+                                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
                               </ul>
             </nav>
             <section class="example">
@@ -1702,18 +1748,18 @@ Content-Type: application/json</code></pre>
                                       </select>
                 </form>
               </nav>
-                            <section class="code" id="generatedResourceCodeS1E16">                                                                            
-<span id="requestExampleIdS1E16req0" class="hidden"></span>
+                            <section class="code" id="generatedResourceCodeS6E7">                                                                            
+<span id="requestExampleIdS6E7req0" class="hidden"></span>
 <script>
-window.docResources["generatedResourceCodeS1E16"] = (window.docResources["generatedResourceCodeS1E16"] || []).concat({
-  "exampleId": "S1E16req0",
+window.docResources["generatedResourceCodeS6E7"] = (window.docResources["generatedResourceCodeS6E7"] || []).concat({
+  "exampleId": "S6E7req0",
   "url": "/api/campaign/{key}/queue",
   "method": "GET",
   "contentType": "application/json",
   "headers": {
     "Content-Type": "application/json",
-    "Auth-Service-Key": "imkt",
-    "Auth-Token": "07fe5ae62bd4f329964f74ffa5a09f22cc11a4cab7931d4fb1bc911915b6293929069abeb177f21b"
+    "Auth-Service-Key": "myservicekey",
+    "Auth-Token": "MyServiceToken"
   },
   "body": ""
 });
@@ -1722,8 +1768,13 @@ window.docResources["generatedResourceCodeS1E16"] = (window.docResources["genera
                     <section class="outgoingCall rawResponse">
                       <pre class="outgoing outgoingHeaders"><code>200 (OK)
 Content-Type: application/json</code></pre>
-                      <pre class="outgoing"><code class="language-javascript"># Custom Queue
-[
+                      <pre class="outgoing"><code class="language-javascript">[&#34;person1@domain.com&#34;,&#34;person2@domain.com&#34;,&#34;person3@domain.com&#34;]</code></pre>
+                    </section>
+                                                                              <p class="ioDesc">Response</p>
+                    <section class="outgoingCall rawResponse">
+                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
+Content-Type: application/json</code></pre>
+                      <pre class="outgoing"><code class="language-javascript">[
   {
     &#34;email&#34; : &#34;person1@domain.com&#34;,
     &#34;vars&#34; : {
@@ -1762,26 +1813,6 @@ Content-Type: application/json</code></pre>
                                                                                     </section>
             </section>
                           <section class="debugger" data-resource-signature="GET /api/campaign/{key}/queue"></section>
-                            <section class="social">
-                <nav class="switch"></nav>
-
-                <section class="newPost">
-                  <form action="/discussion/53e141ece339e902000007b8" method="post">
-                     <textarea placeholder="Start a new thread…" name="comment"></textarea>
-                     <div class="postControl">
-                       <div class="postTools">
-                         <input class="button blue big" type="submit" value="Submit">
-                         <a class="cancel" href="#"><i class="icon-remove"></i> Cancel</a>
-                       </div>
-                     </div>
-                     <input type="hidden" name="url" value="/api/campaign/{key}/queue">
-                     <input type="hidden" name="method" value="GET" >
-                  </form>
-                </section>
-
-                                <section class="all" name="thread">
-                                  </section>
-                              </section>
               
               <section class="tryit">
                 <form name="jsRunExample">
@@ -1793,7 +1824,6 @@ Content-Type: application/json</code></pre>
           
         </section>                      
         
-                  <h3 class="nameMethod">Insert eMails in queue</h3>
         
         <section class="resource noActivity">
           <hgroup>
@@ -1801,18 +1831,34 @@ Content-Type: application/json</code></pre>
             <h2>/api/campaign/{key}/queue</h2>
             <a class="resourcePermalink" href="#put-%2Fapi%2Fcampaign%2F%7Bkey%7D%2Fqueue" name="put-%2Fapi%2Fcampaign%2F%7Bkey%7D%2Fqueue"><span> </span></a>
             <div class="toggle"></div>
-                          <div class="commentsCount">
-                <a href="#" class="commentsCountLink">Add Comment</a>
-              </div>
                       </hgroup>
 
-                              <div class="content">
+                                <article class="details">
+              <p>Update an campaign queue</p>                            <div class="paramsTableWrap"><table class="paramsTable">
+                <caption>Parameters</caption>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Details</th>
+                  </tr>
+                </thead>
+                <tbody>
+                                      <tr>
+                      <td>Perform-Delete</td>
+                      <td><p>A flag to set the operation, to include a stack of emails in queue or remove a stack of emails from it.<br /><br />This flag must be sent as a request header.</p>
+</td>
+                      <td>integer, optional                                              </td>
+                    </tr>
+                                  </tbody>
+              </table></div>
+                          </article>
+                    <div class="content">
             <nav class="switch">
               <ul>
                 <a href="#example" class="active"><li><span>Example</span></li></a>
                                   <a href="#debugger"><li><span>Debugger</span></li></a>
-                                                  <a href="#social"><li><span>Comments</span></li></a>
-                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
+                                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
                               </ul>
             </nav>
             <section class="example">
@@ -1835,20 +1881,21 @@ Content-Type: application/json</code></pre>
                                       </select>
                 </form>
               </nav>
-                            <section class="code" id="generatedResourceCodeS1E17">                                                                            
-<span id="requestExampleIdS1E17req0" class="hidden"></span>
+                            <section class="code" id="generatedResourceCodeS6E8">                                                                            
+<span id="requestExampleIdS6E8req0" class="hidden"></span>
 <script>
-window.docResources["generatedResourceCodeS1E17"] = (window.docResources["generatedResourceCodeS1E17"] || []).concat({
-  "exampleId": "S1E17req0",
+window.docResources["generatedResourceCodeS6E8"] = (window.docResources["generatedResourceCodeS6E8"] || []).concat({
+  "exampleId": "S6E8req0",
   "url": "/api/campaign/{key}/queue",
   "method": "PUT",
   "contentType": "application/json",
   "headers": {
     "Content-Type": "application/json",
-    "Auth-Service-Key": "imkt",
-    "Auth-Token": "07fe5ae62bd4f329964f74ffa5a09f22cc11a4cab7931d4fb1bc911915b6293929069abeb177f21b"
+    "Auth-Service-Key": "myservicekey",
+    "Auth-Token": "MyServiceToken",
+    "Perform-Delete": "0"
   },
-  "body": "# Custom Queue\n{\n  \"stack\":[\n    {\n      \"email\":\"person1@domain.com\",\n      \"vars\":{\n        \"MyVar\":\"My Value\",\n        \"MyVar2\":\"My Value 2\"\n      },\n      \"headers\":{\n        \"Custom-Header\":\"Custom-Value\",\n        \"Custom-Header2\":\"Custom Value 2\"\n      }\n    },\n    {\n      \"email\":\"person2@domain.com\",\n      \"vars\":{\n        \"MyVar\":\"My Value\",\n        \"MyVar2\":\"My Value 2\"\n      },\n      \"headers\":{\n        \"Custom-Header\":\"Custom-Value\",\n        \"Custom-Header2\":\"Custom Value 2\"\n      }\n    },\n    {\n      \"email\":\"person3@domain.com\",\n      \"vars\":{\n        \"MyVar\":\"My Value\",\n        \"MyVar2\":\"My Value 2\"\n      },\n      \"headers\":{\n        \"Custom-Header\":\"Custom-Value\",\n        \"Custom-Header2\":\"Custom Value 2\"\n      }\n    }\n  ]\n}"
+  "body": "# Simple Queue\n{\"stack\":[\"person1@domain.com\",\"person2@domain.com\",\"person3@domain.com\"]}\n\n# Custom Queue\n{\n  \"stack\":[\n    {\n      \"email\":\"person1@domain.com\",\n      \"vars\":{\n        \"MyVar\":\"My Value\",\n        \"MyVar2\":\"My Value 2\"\n      },\n      \"headers\":{\n        \"Custom-Header\":\"Custom-Value\",\n        \"Custom-Header2\":\"Custom Value 2\"\n      }\n    },\n    {\n      \"email\":\"person2@domain.com\",\n      \"vars\":{\n        \"MyVar\":\"My Value\",\n        \"MyVar2\":\"My Value 2\"\n      },\n      \"headers\":{\n        \"Custom-Header\":\"Custom-Value\",\n        \"Custom-Header2\":\"Custom Value 2\"\n      }\n    },\n    {\n      \"email\":\"person3@domain.com\",\n      \"vars\":{\n        \"MyVar\":\"My Value\",\n        \"MyVar2\":\"My Value 2\"\n      },\n      \"headers\":{\n        \"Custom-Header\":\"Custom-Value\",\n        \"Custom-Header2\":\"Custom Value 2\"\n      }\n    }\n  ]\n}"
 });
 </script>
                                                                                                 <p class="ioDesc">Response</p>
@@ -1862,26 +1909,6 @@ Content-Type: application/json</code></pre>
                                                                                     </section>
             </section>
                           <section class="debugger" data-resource-signature="PUT /api/campaign/{key}/queue"></section>
-                            <section class="social">
-                <nav class="switch"></nav>
-
-                <section class="newPost">
-                  <form action="/discussion/53e141ece339e902000007b8" method="post">
-                     <textarea placeholder="Start a new thread…" name="comment"></textarea>
-                     <div class="postControl">
-                       <div class="postTools">
-                         <input class="button blue big" type="submit" value="Submit">
-                         <a class="cancel" href="#"><i class="icon-remove"></i> Cancel</a>
-                       </div>
-                     </div>
-                     <input type="hidden" name="url" value="/api/campaign/{key}/queue">
-                     <input type="hidden" name="method" value="PUT" >
-                  </form>
-                </section>
-
-                                <section class="all" name="thread">
-                                  </section>
-                              </section>
               
               <section class="tryit">
                 <form name="jsRunExample">
@@ -1893,109 +1920,6 @@ Content-Type: application/json</code></pre>
           
         </section>                      
         
-                  <h3 class="nameMethod">Remove eMails from queue</h3>
-        
-        <section class="resource noActivity">
-          <hgroup>
-            <h1 class="methodPost"><span>PUT</span></h1>
-            <h2>/api/campaign/{key}/queue</h2>
-            <a class="resourcePermalink" href="#put-%2Fapi%2Fcampaign%2F%7Bkey%7D%2Fqueue" name="put-%2Fapi%2Fcampaign%2F%7Bkey%7D%2Fqueue"><span> </span></a>
-            <div class="toggle"></div>
-                          <div class="commentsCount">
-                <a href="#" class="commentsCountLink">Add Comment</a>
-              </div>
-                      </hgroup>
-
-                              <div class="content">
-            <nav class="switch">
-              <ul>
-                <a href="#example" class="active"><li><span>Example</span></li></a>
-                                  <a href="#debugger"><li><span>Debugger</span></li></a>
-                                                  <a href="#social"><li><span>Comments</span></li></a>
-                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
-                              </ul>
-            </nav>
-            <section class="example">
-                            <nav class="language">
-                <form name="languageSwitcher">
-                  <p>Show code sample</p>
-                  <select>
-                                          <option value="raw">none (raw data)</option>
-                                          <option value="curl">curl</option>
-                                          <option value="csharp">C#</option>
-                                          <option value="javascript">javascript</option>
-                                          <option value="nodejs">node.js</option>
-                                          <option value="python">python</option>
-                                          <option value="php">php</option>
-                                          <option value="ruby">ruby</option>
-                                          <option value="vb">Visual Basic</option>
-                                          <option value="objc">Objective-C</option>
-                                          <option value="swift">Swift</option>
-                                          <option value="groovy">Groovy</option>
-                                      </select>
-                </form>
-              </nav>
-                            <section class="code" id="generatedResourceCodeS1E18">                                                                            
-<span id="requestExampleIdS1E18req0" class="hidden"></span>
-<script>
-window.docResources["generatedResourceCodeS1E18"] = (window.docResources["generatedResourceCodeS1E18"] || []).concat({
-  "exampleId": "S1E18req0",
-  "url": "/api/campaign/{key}/queue",
-  "method": "PUT",
-  "contentType": "application/json",
-  "headers": {
-    "Content-Type": "application/json",
-    "Auth-Service-Key": "imkt",
-    "Auth-Token": "07fe5ae62bd4f329964f74ffa5a09f22cc11a4cab7931d4fb1bc911915b6293929069abeb177f21b",
-    "Perform-Delete": "1"
-  },
-  "body": "{\n  \"stack\": [\n    \"person1@domain.com\",\n    \"person2@domain.com\",\n    \"person3@domain.com\",\n  ]\n}"
-});
-</script>
-                                                                                                <p class="ioDesc">Response</p>
-                    <section class="outgoingCall rawResponse">
-                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
-Content-Type: application/json</code></pre>
-                      <pre class="outgoing"><code class="language-javascript">{
-  &#34;success&#34;: 1
-}</code></pre>
-                    </section>
-                                                                                    </section>
-            </section>
-                          <section class="debugger" data-resource-signature="PUT /api/campaign/{key}/queue"></section>
-                            <section class="social">
-                <nav class="switch"></nav>
-
-                <section class="newPost">
-                  <form action="/discussion/53e141ece339e902000007b8" method="post">
-                     <textarea placeholder="Start a new thread…" name="comment"></textarea>
-                     <div class="postControl">
-                       <div class="postTools">
-                         <input class="button blue big" type="submit" value="Submit">
-                         <a class="cancel" href="#"><i class="icon-remove"></i> Cancel</a>
-                       </div>
-                     </div>
-                     <input type="hidden" name="url" value="/api/campaign/{key}/queue">
-                     <input type="hidden" name="method" value="PUT" >
-                  </form>
-                </section>
-
-                                <section class="all" name="thread">
-                                  </section>
-                              </section>
-              
-              <section class="tryit">
-                <form name="jsRunExample">
-                  <span class="ajaxLoader block jsEmptyTryit"></span>
-                </form>
-              </section>
-                      </div>
-
-          
-        </section>              </div>                  <div class="sameResourceGroup">
-        
-                  <h2 class="nameResource">Campaign Process</h2>                  
-                  <h3 class="nameMethod">Starting Service</h3>
         
         <section class="resource noActivity">
           <hgroup>
@@ -2003,18 +1927,16 @@ Content-Type: application/json</code></pre>
             <h2>/api/campaign/{key}/start</h2>
             <a class="resourcePermalink" href="#post-%2Fapi%2Fcampaign%2F%7Bkey%7D%2Fstart" name="post-%2Fapi%2Fcampaign%2F%7Bkey%7D%2Fstart"><span> </span></a>
             <div class="toggle"></div>
-                          <div class="commentsCount">
-                <a href="#" class="commentsCountLink">Add Comment</a>
-              </div>
                       </hgroup>
 
-                              <div class="content">
+                                <article class="details">
+              <p>Start a campaign send process</p>                          </article>
+                    <div class="content">
             <nav class="switch">
               <ul>
                 <a href="#example" class="active"><li><span>Example</span></li></a>
                                   <a href="#debugger"><li><span>Debugger</span></li></a>
-                                                  <a href="#social"><li><span>Comments</span></li></a>
-                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
+                                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
                               </ul>
             </nav>
             <section class="example">
@@ -2037,18 +1959,18 @@ Content-Type: application/json</code></pre>
                                       </select>
                 </form>
               </nav>
-                            <section class="code" id="generatedResourceCodeS1E19">                                                                            
-<span id="requestExampleIdS1E19req0" class="hidden"></span>
+                            <section class="code" id="generatedResourceCodeS6E9">                                                                            
+<span id="requestExampleIdS6E9req0" class="hidden"></span>
 <script>
-window.docResources["generatedResourceCodeS1E19"] = (window.docResources["generatedResourceCodeS1E19"] || []).concat({
-  "exampleId": "S1E19req0",
+window.docResources["generatedResourceCodeS6E9"] = (window.docResources["generatedResourceCodeS6E9"] || []).concat({
+  "exampleId": "S6E9req0",
   "url": "/api/campaign/{key}/start",
   "method": "POST",
   "contentType": "application/json",
   "headers": {
     "Content-Type": "application/json",
-    "Auth-Service-Key": "imkt",
-    "Auth-Token": "07fe5ae62bd4f329964f74ffa5a09f22cc11a4cab7931d4fb1bc911915b6293929069abeb177f21b"
+    "Auth-Service-Key": "myservicekey",
+    "Auth-Token": "MyServiceToken"
   },
   "body": ""
 });
@@ -2061,26 +1983,6 @@ window.docResources["generatedResourceCodeS1E19"] = (window.docResources["genera
                                                                                     </section>
             </section>
                           <section class="debugger" data-resource-signature="POST /api/campaign/{key}/start"></section>
-                            <section class="social">
-                <nav class="switch"></nav>
-
-                <section class="newPost">
-                  <form action="/discussion/53e141ece339e902000007b8" method="post">
-                     <textarea placeholder="Start a new thread…" name="comment"></textarea>
-                     <div class="postControl">
-                       <div class="postTools">
-                         <input class="button blue big" type="submit" value="Submit">
-                         <a class="cancel" href="#"><i class="icon-remove"></i> Cancel</a>
-                       </div>
-                     </div>
-                     <input type="hidden" name="url" value="/api/campaign/{key}/start">
-                     <input type="hidden" name="method" value="POST" >
-                  </form>
-                </section>
-
-                                <section class="all" name="thread">
-                                  </section>
-                              </section>
               
               <section class="tryit">
                 <form name="jsRunExample">
@@ -2090,10 +1992,8 @@ window.docResources["generatedResourceCodeS1E19"] = (window.docResources["genera
                       </div>
 
           
-        </section>              </div>                  <div class="sameResourceGroup">
+        </section>                      
         
-                  <h2 class="nameResource">Campaign Process</h2>                  
-                  <h3 class="nameMethod">Pause Service</h3>
         
         <section class="resource noActivity">
           <hgroup>
@@ -2101,18 +2001,16 @@ window.docResources["generatedResourceCodeS1E19"] = (window.docResources["genera
             <h2>/api/campaign/{key}/pause</h2>
             <a class="resourcePermalink" href="#post-%2Fapi%2Fcampaign%2F%7Bkey%7D%2Fpause" name="post-%2Fapi%2Fcampaign%2F%7Bkey%7D%2Fpause"><span> </span></a>
             <div class="toggle"></div>
-                          <div class="commentsCount">
-                <a href="#" class="commentsCountLink">Add Comment</a>
-              </div>
                       </hgroup>
 
-                              <div class="content">
+                                <article class="details">
+              <p>Pause a campaign send processs</p>                          </article>
+                    <div class="content">
             <nav class="switch">
               <ul>
                 <a href="#example" class="active"><li><span>Example</span></li></a>
                                   <a href="#debugger"><li><span>Debugger</span></li></a>
-                                                  <a href="#social"><li><span>Comments</span></li></a>
-                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
+                                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
                               </ul>
             </nav>
             <section class="example">
@@ -2135,18 +2033,18 @@ window.docResources["generatedResourceCodeS1E19"] = (window.docResources["genera
                                       </select>
                 </form>
               </nav>
-                            <section class="code" id="generatedResourceCodeS1E20">                                                                            
-<span id="requestExampleIdS1E20req0" class="hidden"></span>
+                            <section class="code" id="generatedResourceCodeS6E10">                                                                            
+<span id="requestExampleIdS6E10req0" class="hidden"></span>
 <script>
-window.docResources["generatedResourceCodeS1E20"] = (window.docResources["generatedResourceCodeS1E20"] || []).concat({
-  "exampleId": "S1E20req0",
+window.docResources["generatedResourceCodeS6E10"] = (window.docResources["generatedResourceCodeS6E10"] || []).concat({
+  "exampleId": "S6E10req0",
   "url": "/api/campaign/{key}/pause",
   "method": "POST",
   "contentType": "application/json",
   "headers": {
     "Content-Type": "application/json",
-    "Auth-Service-Key": "imkt",
-    "Auth-Token": "07fe5ae62bd4f329964f74ffa5a09f22cc11a4cab7931d4fb1bc911915b6293929069abeb177f21b"
+    "Auth-Service-Key": "myservicekey",
+    "Auth-Token": "MyServiceToken"
   },
   "body": ""
 });
@@ -2159,26 +2057,6 @@ window.docResources["generatedResourceCodeS1E20"] = (window.docResources["genera
                                                                                     </section>
             </section>
                           <section class="debugger" data-resource-signature="POST /api/campaign/{key}/pause"></section>
-                            <section class="social">
-                <nav class="switch"></nav>
-
-                <section class="newPost">
-                  <form action="/discussion/53e141ece339e902000007b8" method="post">
-                     <textarea placeholder="Start a new thread…" name="comment"></textarea>
-                     <div class="postControl">
-                       <div class="postTools">
-                         <input class="button blue big" type="submit" value="Submit">
-                         <a class="cancel" href="#"><i class="icon-remove"></i> Cancel</a>
-                       </div>
-                     </div>
-                     <input type="hidden" name="url" value="/api/campaign/{key}/pause">
-                     <input type="hidden" name="method" value="POST" >
-                  </form>
-                </section>
-
-                                <section class="all" name="thread">
-                                  </section>
-                              </section>
               
               <section class="tryit">
                 <form name="jsRunExample">
@@ -2188,10 +2066,8 @@ window.docResources["generatedResourceCodeS1E20"] = (window.docResources["genera
                       </div>
 
           
-        </section>              </div>                  <div class="sameResourceGroup">
+        </section>                      
         
-                  <h2 class="nameResource">Campaign Process</h2>                  
-                  <h3 class="nameMethod">Stop Service</h3>
         
         <section class="resource noActivity">
           <hgroup>
@@ -2199,18 +2075,16 @@ window.docResources["generatedResourceCodeS1E20"] = (window.docResources["genera
             <h2>/api/campaign/{key}/stop</h2>
             <a class="resourcePermalink" href="#post-%2Fapi%2Fcampaign%2F%7Bkey%7D%2Fstop" name="post-%2Fapi%2Fcampaign%2F%7Bkey%7D%2Fstop"><span> </span></a>
             <div class="toggle"></div>
-                          <div class="commentsCount">
-                <a href="#" class="commentsCountLink">Add Comment</a>
-              </div>
                       </hgroup>
 
-                              <div class="content">
+                                <article class="details">
+              <p>Stop a campaign send processs</p>                          </article>
+                    <div class="content">
             <nav class="switch">
               <ul>
                 <a href="#example" class="active"><li><span>Example</span></li></a>
                                   <a href="#debugger"><li><span>Debugger</span></li></a>
-                                                  <a href="#social"><li><span>Comments</span></li></a>
-                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
+                                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
                               </ul>
             </nav>
             <section class="example">
@@ -2233,18 +2107,18 @@ window.docResources["generatedResourceCodeS1E20"] = (window.docResources["genera
                                       </select>
                 </form>
               </nav>
-                            <section class="code" id="generatedResourceCodeS1E21">                                                                            
-<span id="requestExampleIdS1E21req0" class="hidden"></span>
+                            <section class="code" id="generatedResourceCodeS6E11">                                                                            
+<span id="requestExampleIdS6E11req0" class="hidden"></span>
 <script>
-window.docResources["generatedResourceCodeS1E21"] = (window.docResources["generatedResourceCodeS1E21"] || []).concat({
-  "exampleId": "S1E21req0",
+window.docResources["generatedResourceCodeS6E11"] = (window.docResources["generatedResourceCodeS6E11"] || []).concat({
+  "exampleId": "S6E11req0",
   "url": "/api/campaign/{key}/stop",
   "method": "POST",
   "contentType": "application/json",
   "headers": {
     "Content-Type": "application/json",
-    "Auth-Service-Key": "imkt",
-    "Auth-Token": "07fe5ae62bd4f329964f74ffa5a09f22cc11a4cab7931d4fb1bc911915b6293929069abeb177f21b"
+    "Auth-Service-Key": "myservicekey",
+    "Auth-Token": "MyServiceToken"
   },
   "body": ""
 });
@@ -2257,26 +2131,6 @@ window.docResources["generatedResourceCodeS1E21"] = (window.docResources["genera
                                                                                     </section>
             </section>
                           <section class="debugger" data-resource-signature="POST /api/campaign/{key}/stop"></section>
-                            <section class="social">
-                <nav class="switch"></nav>
-
-                <section class="newPost">
-                  <form action="/discussion/53e141ece339e902000007b8" method="post">
-                     <textarea placeholder="Start a new thread…" name="comment"></textarea>
-                     <div class="postControl">
-                       <div class="postTools">
-                         <input class="button blue big" type="submit" value="Submit">
-                         <a class="cancel" href="#"><i class="icon-remove"></i> Cancel</a>
-                       </div>
-                     </div>
-                     <input type="hidden" name="url" value="/api/campaign/{key}/stop">
-                     <input type="hidden" name="method" value="POST" >
-                  </form>
-                </section>
-
-                                <section class="all" name="thread">
-                                  </section>
-                              </section>
               
               <section class="tryit">
                 <form name="jsRunExample">
@@ -2285,64 +2139,144 @@ window.docResources["generatedResourceCodeS1E21"] = (window.docResources["genera
               </section>
                       </div>
 
-          </div>
+          
+        </section>                      
+        
+        
+        <section class="resource noActivity">
+          <hgroup>
+            <h1 class="methodPost"><span>POST</span></h1>
+            <h2>/api/campaign/status</h2>
+            <a class="resourcePermalink" href="#post-%2Fapi%2Fcampaign%2Fstatus" name="post-%2Fapi%2Fcampaign%2Fstatus"><span> </span></a>
+            <div class="toggle"></div>
+                      </hgroup>
+
+                                <article class="details">
+              <p>Get status from multiple campaigns</p>                            <div class="paramsTableWrap"><table class="paramsTable">
+                <caption>Parameters</caption>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Details</th>
+                  </tr>
+                </thead>
+                <tbody>
+                                      <tr>
+                      <td>campaigns</td>
+                      <td><p>A array with campaign keys</p>
+</td>
+                      <td>array, required                                              </td>
+                    </tr>
+                                  </tbody>
+              </table></div>
+                          </article>
+                    <div class="content">
+            <nav class="switch">
+              <ul>
+                <a href="#example" class="active"><li><span>Example</span></li></a>
+                                  <a href="#debugger"><li><span>Debugger</span></li></a>
+                                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
+                              </ul>
+            </nav>
+            <section class="example">
+                            <nav class="language">
+                <form name="languageSwitcher">
+                  <p>Show code sample</p>
+                  <select>
+                                          <option value="raw">none (raw data)</option>
+                                          <option value="curl">curl</option>
+                                          <option value="csharp">C#</option>
+                                          <option value="javascript">javascript</option>
+                                          <option value="nodejs">node.js</option>
+                                          <option value="python">python</option>
+                                          <option value="php">php</option>
+                                          <option value="ruby">ruby</option>
+                                          <option value="vb">Visual Basic</option>
+                                          <option value="objc">Objective-C</option>
+                                          <option value="swift">Swift</option>
+                                          <option value="groovy">Groovy</option>
+                                      </select>
+                </form>
+              </nav>
+                            <section class="code" id="generatedResourceCodeS6E12">                                                                            
+<span id="requestExampleIdS6E12req0" class="hidden"></span>
+<script>
+window.docResources["generatedResourceCodeS6E12"] = (window.docResources["generatedResourceCodeS6E12"] || []).concat({
+  "exampleId": "S6E12req0",
+  "url": "/api/campaign/status",
+  "method": "POST",
+  "contentType": "application/json",
+  "headers": {
+    "Content-Type": "application/json",
+    "Auth-Service-Key": "myservicekey",
+    "Auth-Token": "MyServiceToken"
+  },
+  "body": "{\n  \"campaigns\": [\n    \"45ad434daaf7bf22e45c8938fb745b45\",\n    \"18923n13n9dw7qwhnjbabsd1lmvz1823\"\n  ]\n}"
+});
+</script>
+                                                                                                <p class="ioDesc">Response</p>
+                    <section class="outgoingCall rawResponse">
+                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
+Content-Type: application/json</code></pre>
+                      <pre class="outgoing"><code class="language-javascript">{
+  &#34;45ad434daaf7bf22e45c8938fb745b45&#34;: {
+    &#34;success&#34;: 1,
+    &#34;id&#34; : &#34;1&#34;,
+    &#34;key&#34; : &#34;45ad434daaf7bf22e45c8938fb745b45&#34;,
+    &#34;total&#34; : 0,
+    &#34;sent&#34; : 0,
+    &#34;fail&#34; : 0,
+    &#34;progress&#34; : 0,
+    &#34;status&#34; : 0,
+    &#34;external&#34; : &#34;123&#34;,
+    &#34;pid&#34; : null,
+    &#34;cache&#34;: 1
+  },
+  &#34;18923n13n9dw7qwhnjbabsd1lmvz1823&#34;: {
+    &#34;success&#34;: 0,
+    &#34;error&#34;: &#34;Campaign not found&#34;
+  }
+}</code></pre>
+                    </section>
+                                                                                    </section>
+            </section>
+                          <section class="debugger" data-resource-signature="POST /api/campaign/status"></section>
+              
+              <section class="tryit">
+                <form name="jsRunExample">
+                  <span class="ajaxLoader block jsEmptyTryit"></span>
+                </form>
+              </section>
+                      </div>
+
+          
         </section>      
+          </div>
+      <a name="changelog"></a>
+    <div class="chapterWrapper">
+              <hgroup class="chapter">
+          <h1>Changelog</h1>          <div class="details"><ul>
+<li><code>v0.3.2-beta:</code> The first beta release with minor bugs</li>
+<li><code>v0.3.2-alpha:</code> Optimised authentication service</li>
+<li><code>v0.3.1-alpha:</code> Fix issue that cannot be start service logger</li>
+<li><code>v0.3.0-alpha:</code> Implemented log, logging only daemon/service behaviour and API calls</li>
+<li><code>v0.2.2-alpha:</code> M4A1 Service uses packages in sent process for reduce memory usage</li>
+<li><code>v0.2.1-alpha:</code> Fixed some database connection issues in service, daemon e API</li>
+<li><code>v0.2.0-alpha:</code> Implemented cached results when request the status of an campaign</li>
+<li><code>v0.1.0-alpha:</code> Fixed database crash using cache to store service processes</li>
+<li><code>v0.0.2-alpha:</code> Fixed header parser in service</li>
+<li><code>v0.0.1-alpha:</code> First alpha release</li>
+</ul></div>
+                  </hgroup>
+      
+                  
           </div>
   
 </div>
 
 </div>
 
-<div class="loginOverlay overlay smallerPanel" style="display:none" id="loginPicker">
-  <div class="closeLayer"></div>
-  <div class="panelShadow">
-    <div class="panelLegacy">
-      <a href="#"><span class="block close"></span></a>
-      <form action="https://login.apiary.io//api/login" method="post" accept-charset="utf-8">
-        <div class="discusion">
-          <h1>Identify Yourself</h1>
-          <p>To proceed, please use credentials from one of the following services.</p>
-          <ul class="overlayLoginList">
-            <a href="https://github.com/login/oauth/authorize?client_id=f739c33cbd5c32296a43&redirect_uri=https://login.apiary.io/github/login?discussion=1&redirect=http%253A%252F%252Fdocs.m4a1.apiary.io%252Flogin%252Fcallback" data-type="github"><li>GitHub<img src="https://apiary.a.ssl.fastly.net/assets/css/design/arrowOfTime-e204e0dbfdab5e33.png" width="12" height="20" /></li></a>
-            <a href="https://login.apiary.io/twitter/send_to_login?discussion=1&redirect=http://docs.m4a1.apiary.io/login/callback" data-type="twitter"><li>Twitter<img src="https://apiary.a.ssl.fastly.net/assets/css/design/arrowOfTime-e204e0dbfdab5e33.png" width="12" height="20" /></li></a>
-            <a href="#" data-type="apiary"><li>apiary.io<img src="https://apiary.a.ssl.fastly.net/assets/css/design/arrowOfTime-e204e0dbfdab5e33.png" width="12" height="20" /></li></a>
-          </ul>
-          </div>
-      </form>
-    </div>
-  </div>
-</div>
-
-<div id="appLogin" style="display:none" class="loginOverlay overlay smallerPanel">
-  <div class="closeLayer"></div>
-  <div class="panelShadow">
-    <div class="panelLegacy">
-      <a href="#"><span class="block close"></span></a>
-      <form action="https://login.apiary.io/api/login?xhr_login=1" method="post" accept-charset="utf-8">
-        <img src="https://apiary.a.ssl.fastly.net/assets/css/design2/apiary-io-beta-logo-1x-7a5112f76ac0f4de.png" width="160" height="30" />
-        <ul id="loginUL">
-          <li>
-            <p><label for="username">Your e-mail</label></p>
-            <input class="textField" type="text" name="username" value="" id="username" tabindex="1" />
-          </li>
-          <li>
-            <p class="fieldDetails"><a href="https://login.apiary.io/password-recovery">Forgotten password</a></p>
-            <p><label for="password">Password</label></p>
-            <input class="textField" type="password" name="password" value="" id="password" tabindex="2" />
-          </li>
-        </ul>
-        <p><input class="button small yellow" type="submit" value="Sign In" tabindex="3" /></p>
-        <div class="adI">
-          <p>
-            Need an account?<br />
-            <a tabindex="4" href="https://login.apiary.io/register">Sign up now</a>.
-          </p>
-        </div>
-        <div class="clr"></div>
-      </form>
-    </div>
-  </div>
-</div>
 
   
 </div>
@@ -2355,7 +2289,7 @@ window.docResources["generatedResourceCodeS1E21"] = (window.docResources["genera
 
   <script>
     window.jsLoginUrl    = "https://login.apiary.io/login?discussion=1&xhr_login=1";
-    window.jsLoggedIn    = false;
+    window.jsLoggedIn    = true;
     window.trafficSecret = "";
     window.runExampleIframeUrl = "http://m4a1.apiary.io/___APIARY_INTERNAL___/docs/run-button";
     window.tryItUrl    = "http://m4a1.apiary.io";
@@ -2403,9 +2337,13 @@ window.docResources["generatedResourceCodeS1E21"] = (window.docResources["genera
   <!-- vitalize documentation -->
   <script src="https://apiary.a.ssl.fastly.net/assets/js/docs-4c7d9c8ecd503824.js"></script>
   <!-- templates in JSONP -->
-  <script src="https://apiary.a.ssl.fastly.net/assets/js/examples.compiled.templates-fe29ef42a5351924.js?callback=examplesBundle"></script>
+  <script src="https://apiary.a.ssl.fastly.net/assets/js/examples.compiled.templates-e26091758f915b89.js?callback=examplesBundle"></script>
   <!-- inspect traffic w/ ease -->
   <script src="https://apiary.a.ssl.fastly.net/assets/js/traffic-83f8d935b3a7b5b0.js" data-multipart-container='.resource .debugger[data-resource-signature="#{method} #{url}"]'></script>
+        <script src="https://apiary.a.ssl.fastly.net/assets/js/libs/tipsy-012f30b117d79e4b.js"></script>
+  <script src="https://apiary.a.ssl.fastly.net/assets/components/diacritics-4a719096d14e9e72.js"></script>
+  <script src="https://apiary.a.ssl.fastly.net/assets/js/global-signedin-2d5f31b345d61509.js"></script>
+  <script src="https://apiary.a.ssl.fastly.net/assets/js/people-manager-89d0525834c79dbf.js"></script>
     <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -2431,9 +2369,47 @@ window.docResources["generatedResourceCodeS1E21"] = (window.docResources["genera
   s.parentNode.insertBefore(g, s);
  })(document, 'script');
 </script>
-
+<script id="IntercomSettingsScriptTag">
+  var intercomSettings = {"app_id":"8dy7eohb","user_id":"53e141b06ed2840200000726","user_hash":"91acd921f31681017ba7f3a4a1708450398f09a9216140fa62ce96382537abf7","email":"devsdmf@gmail.com","name":"Lucas Mendes de Freitas (devsdmf)","created_at":1407271344,"custom_data":{"github":"devsdmf","blueprint_size":18885,"subdomain":"devsdmf, m4a1","count_github_associated_apis":0},"widget":{"activator":"#Intercom","use_counter":true}}
+  intercomSettings.widget.activator_html=function (obj) {
+    var unread_count;
+    unread_count = obj.owner.store.get_unread_count();
+    unread_count || (unread_count = 0);
+    if (unread_count > 0) {
+      return "" + obj.original_html + "<span class=\"unreadCounter\">" + unread_count + "</span>";
+    } else {
+      return obj.original_html;
+    }
+  }
+</script>
+<script>
+  (function(){
+    var w=window;
+    var ic=w.Intercom;
+    if(typeof ic==="function"){
+      ic('reattach_activator');
+      ic('update',intercomSettings);
+    }else{
+      var d=document;
+      var i=function(){i.c(arguments)};
+      i.q=[];
+      i.c=function(args){i.q.push(args)};
+      w.Intercom=i;
+      function l(){
+        var s=d.createElement('script');s.type='text/javascript';
+        s.async=true;
+        s.src='https://static.intercomcdn.com/intercom.v1.js';
+        var x=d.getElementsByTagName('script')[0];
+        x.parentNode.insertBefore(s,x);
+      }
+      if(w.attachEvent){
+        w.attachEvent('onload',l);
+      }else{
+        w.addEventListener('load',l,false);
+      }
+    }
+  })()
+</script>
 
 </body>
 </html>
-
-<!-- Localized -->

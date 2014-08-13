@@ -1,5 +1,24 @@
 <?php
 
+/**
+ * M4A1 - The Awesome Mailer Service
+ *
+ * The M4A1 is a software developed for provide a mail service
+ * which can be used by all services of iSET.
+ *
+ * The proposal of M4A1 is provide a mail tool that runs a daemon
+ * as a observer for new services to be triggered, this services
+ * runs natively on Linux servers independent of each others.
+ *
+ * This is a source code file, part of M4A1 product and this
+ * source code is privately and only iSET and your developers
+ * can use or distribute it.
+ *
+ * @copyright M4A1 (c) iSET - Internet, Soluções e Tecnologia LTDA.
+ * @version $Id$
+ *
+ */
+
 namespace Iset\Api\Controller;
 
 use Silex\Application;
@@ -119,7 +138,7 @@ class CampaignController implements ControllerProviderInterface
     	$campaign->service      = (int)$service->id;
     	$campaign->subject      = (!is_null($subject)) ? $subject : null;
     	$campaign->body         = (!is_null($body)) ? $body : null;
-    	$campaign->headers      = (!is_null($headers)) ? $headers : null;
+    	$campaign->headers      = (!is_null($headers)) ? $headers : array();
     	$campaign->user_vars    = (!is_null($user_vars)) ? $user_vars : 0;
     	$campaign->user_headers = (!is_null($user_headers)) ? $user_headers : 0;
     	$campaign->external     = (!is_null($external)) ? $external : null;
