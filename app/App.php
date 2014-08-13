@@ -7,7 +7,6 @@ use Zend\Config\Reader\Ini as ConfigReader;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Silex\Provider\DoctrineServiceProvider;
-use Silex\Provider\SessionServiceProvider;
 use SilexExtension\MongoDbExtension;
 use Iset\Silex\Provider\ZendCacheServiceProvider;
 use Monolog\Logger;
@@ -95,9 +94,9 @@ class App
                 'method'=>$request->getMethod(),
                 'path'=>$request->get('_route'),
                 'status'=>$response->getStatusCode(),
-                'service-key'=>$kernel['session']->get($kernel['config']['api']['auth_session']['service']),
-                'token'=>$kernel['session']->get($kernel['config']['api']['auth_session']['token']),
-                'client-ip'=>$kernel['session']->get($kernel['config']['api']['auth_session']['ipaddress']),
+                'service-key'=>$request->headers->get($kernel['config']['api']['auth_header']['service_key']),
+                'token'=>$request->headers->get($kernel['config']['api']['auth_header']['token']),
+                'client-ip'=>$request->getClientIp(),
             );
             
             $kernel['monolog.api']->addInfo('API Call',$log_data);
@@ -107,9 +106,6 @@ class App
 		$kernel->register(new Silex\Provider\DoctrineServiceProvider(), array(
             'db.options'=>$kernel['config']['database']['mysql']
 		));
-		
-		# Symfony Session
-		$kernel->register(new Silex\Provider\SessionServiceProvider());
 		
 		# Doctrine Mongodb
 		$kernel->register(new SilexExtension\MongoDbExtension(), array(
@@ -183,6 +179,9 @@ class App
 			           $kernel->terminate($request,$response);
 			           die();
 			       }
+			       
+			       # Performing authentication by IpAddress
+			       $kernel['auth.ipaddress']();
 		       });
 		
 		# Finish application flow

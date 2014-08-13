@@ -63,6 +63,9 @@ class CampaignController implements ControllerProviderInterface
      */
     public function getOne($key)
     {
+        # Performing authentication
+        $this->_app['auth.service']();
+        
         # Getting providers
         $gateway = $this->getTableGateway();
         
@@ -87,6 +90,9 @@ class CampaignController implements ControllerProviderInterface
      */
     public function create()
     {
+        # Performing authentication
+        $this->_app['auth.service']();
+        
     	# Getting providers
     	$request = $this->getRequest();
     	$campaign = new Campaign($this->getTableGateway());
@@ -142,6 +148,9 @@ class CampaignController implements ControllerProviderInterface
      */
     public function update($key)
     {
+        # Performing authentication
+        $this->_app['auth.service']();
+        
         # Getting providers
         $request = $this->getRequest();
         $gateway = $this->getTableGateway();
@@ -205,6 +214,9 @@ class CampaignController implements ControllerProviderInterface
      */
     public function remove($key)
     {
+        # Performing authentication
+        $this->_app['auth.service']();
+        
         # Getting providers
         $gateway = $this->getTableGateway();
         
@@ -238,6 +250,9 @@ class CampaignController implements ControllerProviderInterface
      */
     public function getStatus($key)
     {
+        # Performing authentication
+        $this->_app['auth.service']();
+        
         # Getting providers
         $gateway = $this->getTableGateway();
         
@@ -293,6 +308,9 @@ class CampaignController implements ControllerProviderInterface
      */
     public function getMultipleStatus()
     {
+        # Performing authentication
+        $this->_app['auth.service']();
+        
         # Getting providers
         $request = $this->getRequest();
         $gateway = $this->getTableGateway();
@@ -359,6 +377,9 @@ class CampaignController implements ControllerProviderInterface
      */
     public function getQueue($key)
     {
+        # Performing authentication
+        $this->_app['auth.service']();
+        
         # Getting Providers
         $collection = $this->getCollection();
         $request    = $this->getRequest();
@@ -386,6 +407,9 @@ class CampaignController implements ControllerProviderInterface
      */
     public function changeQueue($key)
     {
+        # Performing authentication
+        $this->_app['auth.service']();
+        
         # Retrieving header for select correct method
         # because the HTTP DELETE method doesn't allow
         # a request body, the use the put method using
@@ -411,6 +435,9 @@ class CampaignController implements ControllerProviderInterface
      */
     public function fillQueue($key)
     {
+        # Performing authentication
+        $this->_app['auth.service']();
+        
         # Getting Providers
         $request = $this->getRequest();
         $gateway = $this->getTableGateway();
@@ -469,6 +496,9 @@ class CampaignController implements ControllerProviderInterface
      */
     public function clearQueue($key)
     {
+        # Performing authentication
+        $this->_app['auth.service']();
+        
         # Getting providers
         $request = $this->getRequest();
         $gateway = $this->getTableGateway();
@@ -513,6 +543,9 @@ class CampaignController implements ControllerProviderInterface
      */
     public function startCampaign($key) 
     {
+        # Performing authentication
+        $this->_app['auth.service']();
+        
         # Getting providers
         $gateway = $this->getTableGateway();
         
@@ -539,6 +572,9 @@ class CampaignController implements ControllerProviderInterface
      */
     public function pauseCampaign($key)
     {
+        # Performing authentication
+        $this->_app['auth.service']();
+        
         # Getting providers
         $gateway = $this->getTableGateway();
         
@@ -565,6 +601,9 @@ class CampaignController implements ControllerProviderInterface
      */
     public function stopCampaign($key)
     {
+        # Performing authentication
+        $this->_app['auth.service']();
+        
         # Getting providers
         $gateway = $this->getTableGateway();
     
@@ -592,6 +631,9 @@ class CampaignController implements ControllerProviderInterface
      */
     public function changeStatusCampaign($key, $status = Campaign::STATUS_DEFAULT)
     {
+        # Performing authentication
+        $this->_app['auth.service']();
+        
         # Getting providers
         $gateway = $this->getTableGateway();
         
@@ -666,10 +708,6 @@ class CampaignController implements ControllerProviderInterface
     public function connect(Application $app)
     {
         $this->_app = $app;
-        
-        # Performing authentication
-        $this->_app['auth.ipaddress']();
-        $this->_app['auth.service']();
         
         return $this->register();
     }

@@ -224,9 +224,6 @@ class ServiceController implements ControllerProviderInterface
     {
     	$this->_app = $app;
     	
-    	# Performing authentication
-    	$this->_app['auth.ipaddress']();
-    	
     	return $this->register();
     }
     
