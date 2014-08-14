@@ -804,11 +804,6 @@ class CampaignController implements ControllerProviderInterface
         	return $this->stopCampaign($key);
         });
         
-        # Reset status
-        $container->post('/{key}/reset', function ($key) {
-        	return $this->changeStatusCampaign($key);
-        });
-        
         # Get status from multiple campaigns
         $container->post('/status', function() {
         	return $this->getMultipleStatus();
