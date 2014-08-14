@@ -576,10 +576,15 @@ class CampaignController implements ControllerProviderInterface
         
         # Verifying result
         if ($campaign) {
-            # Changing status of campaign
-            $this->changeStatusCampaign($key,Campaign::STATUS_START);
-            
-            return new Response(null,Response::HTTP_NO_CONTENT);
+            # Verifying if campaign isn't done or stopped
+            if ($campaign->status == Campaign::STATUS_DONE || $campaign->status == Campaign::STATUS_STOP) {
+                $response = array('success'=>0,'error'=>'Campaing was done or stopped');
+                return $this->_app->json($response,Respone::HTTP_OK);
+            } else {
+                # Changing status of campaign
+                $this->changeStatusCampaign($key,Campaign::STATUS_START);
+                return new Response(null,Response::HTTP_NO_CONTENT);
+            }
         } else {
             $response = array('success'=>0,'error'=>'Campaign not found');
             return $this->_app->json($response,Response::HTTP_OK);
