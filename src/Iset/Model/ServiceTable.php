@@ -88,6 +88,27 @@ class ServiceTable extends TableGatewayAbstract
     }
     
     /**
+     * Fetch an service from database using service id
+     * 
+     * @param integer $id
+     * @return boolean
+     */
+    public function getServiceById($id)
+    {
+        # Retrieving data from database
+        $query = "SELECT * FROM `" . self::TABLE_NAME . "` WHERE `idservice`=?";
+        $result = $this->tableGateway->fetchAssoc($query,array($id));
+        
+        # Verifying result
+        if ($result) {
+            $service = new Service($this);
+            return $service->exchangeArray($result);
+        } else {
+            return false;
+        }
+    }
+    
+    /**
      * Save an Service
      * 
      * @param Service $service

@@ -194,7 +194,7 @@ class Campaign implements ModelInterface
     public function exchangeArray(array $data)
     {
         $this->id = (!empty($data['idcampaign'])) ? $data['idcampaign'] : null;
-        $this->service = (!empty($data['idservice'])) ? $data['idservice'] : null;
+        $this->service = (!empty($data['idservice'])) ? (int)$data['idservice'] : null;
         $this->key = (!empty($data['key'])) ? $data['key'] : null;
         $this->total = (!empty($data['total_queue'])) ? (int)$data['total_queue'] : 0;
         $this->sent = (!empty($data['sent'])) ? (int)$data['sent'] : 0;
@@ -251,10 +251,49 @@ class Campaign implements ModelInterface
      */
     public function validate()
     {
+        # Validating service id
+        if (!is_null($this->service)) {
+            if ($this->service instanceof Service) {
+                if (is_null($this->service->id)) {
+                    $this->service->save();
+                }
+                $this->service = (int)$this->service->id;
+            } elseif (!is_integer($this->service)) {
+                return array('error'=>'A service must be an instance of a Service object or the id of service');
+            }
+        } else {
+            return array('error'=>'A Service must be specified');
+        }
+        
         # Generate key for campaign
         if (is_null($this->id) && is_null($this->key)) {
             $factor = '#'.$this->service.'?'.rand(1111,9999).'#'.time();
             $this->key = hash("ripemd128",bin2hex($factor));
+        }
+        
+        # Treatment counters
+        $this->total    = (int)$this->total;
+        $this->sent     = (int)$this->sent;
+        $this->fail     = (int)$this->fail;
+        $this->progress = (int)$this->progress;
+        
+        # Validating subject
+        if (!is_null($this->subject)) {
+            $this->subject = (string)$this->subject;
+        } else {
+            return array('error'=>'You must set a subject');
+        }
+        
+        # Validating body
+        if (!is_null($this->body)) {
+            $this->body = (string)$this->body;
+        } else {
+            return array('error'=>'You must set a body');
+        }
+        
+        # Validating headers
+        if (!is_array($this->headers)) {
+            return array('error'=>'Headers must be an array');
         }
         
     	return true;
