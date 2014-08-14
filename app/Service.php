@@ -19,7 +19,7 @@ $queueCollection = new Iset\Model\QueueCollection($app);
 
 # Initializing Campaign
 if (isset($_SERVER['argv'][1])) {
-    $campaignKey = $_SERVER['argv'][1];
+    $campaignKey = trim(str_replace('> /dev/null','',$_SERVER['argv'][1]));
 } else {
     # Campaign not found
     die();
