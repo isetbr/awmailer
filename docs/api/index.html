@@ -1,152 +1,118 @@
-<!doctype html>
-<!--[if lt IE 7 ]> <html class="no-js ie6" lang="en"> <![endif]-->
-<!--[if IE 7 ]>    <html class="no-js ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]>    <html class="no-js ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
-    <title>M4A1 - The Awesome Mailer Service—by apiary.io</title>
-    <meta name="description" content="a place where APIs are kept">
-  <meta name="author" content="apiary.io">
-
-  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="chrome=1">
-
-  <link rel="shortcut icon" href="https://apiary.a.ssl.fastly.net/assets/icons/favicon-aa8fc5808796304b.ico">
-  <link rel="apple-touch-icon-precomposed" href="https://apiary.a.ssl.fastly.net/assets/icons/apple-touch-icon-precomposed-16cb9301e5cd0912.png">
-  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://apiary.a.ssl.fastly.net/assets/icons/apple-touch-icon-72x72-precomposed-88b45e069ad376bd.png">
-  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://apiary.a.ssl.fastly.net/assets/icons/apple-touch-icon-114x114-precomposed-166416e5d92f4c45.png">
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://apiary.a.ssl.fastly.net/assets/icons/apple-touch-icon-144x144-precomposed-54504235b83a48b2.png">
-
-  <link rel="stylesheet" href="https://apiary.a.ssl.fastly.net/assets/css/normalize-c1a6015040ef1201.css">
-  <link rel="stylesheet" href="https://apiary.a.ssl.fastly.net/assets/css/font-awesome-b2431b0e6805305e.css" media="screen, presentation, print" />
-  <link rel="stylesheet" href="https://apiary.a.ssl.fastly.net/assets/css/docs-3a1d90c987ec07b8.css" media="screen, presentation" />
-  <link rel="stylesheet" href="https://apiary.a.ssl.fastly.net/assets/css/head-foot-977ede17d28757e5.css" media="screen, presentation" />
-  <link rel="stylesheet" href="https://apiary.a.ssl.fastly.net/assets/css/multi-ab9a0afd6c12f594.css" media="screen, presentation" />
-
-  <link rel="stylesheet" href="https://apiary.a.ssl.fastly.net/assets/css/sign-in-sign-up-fa7f0d87430e8def.css" media="screen, presentation" />
-
-  <link rel="stylesheet" href="https://apiary.a.ssl.fastly.net/assets/css/print-6eee3ab0ca0df503.css" media="print" />
-
-  <link rel="stylesheet" href="https://apiary.a.ssl.fastly.net/assets/js/libs/prism/prism-1eef7208dd36cbe3.css" media="screen, presentation" />
-  <script src="https://apiary.a.ssl.fastly.net/assets/js/libs/prism/prism-f6f3c65d1dee7d0a.js" data-manual></script>
-
-  <script src="https://apiary.a.ssl.fastly.net/assets/js/libs/jquery-1.8.3-a1bb2f1ddad0f568.js"></script>
-
-</head>
-
-<body class="themeDark">
-
-<div id="container">
-
-
-  
-
-<header class="fullSize"><div class="apiaryMenu"><div class="wholeMenu menuRow">
-
-  <div role="banner" class="apiaryLogo menuCell"><a class="absFg" title="Apiary Ltd." href="http://apiary.io/"><span class="visuallyhidden">Apiary</span></a></div>
-
-    <hgroup class="menuCell apiNameCell">
-    <div class="apiSwitchName">
-      <div class="apiSwitcher">
-                          <div class="apiLines vIcoHover">
-        <h1 class="apiName oneLiner" title="M4A1 - The Awesome Mailer Service"><span class="ellipsis">M4A1 - The Awesome Mailer Service</span></h1>
-            </div>
-        </div>
-    </div>
-  </hgroup>
-  
-<!-- shared for unknown-guest / logged-in user -->
-
-  <nav class="apiMenu menuCell">    <ul class="apiMenuList apiMenuTexts">
-      <li class="apiMenuItem">
-        <a id="docLink" href="http://docs.m4a1.apiary.io/" class="selected">Documentation</a>
-      </li>
-      <li class="apiMenuItem">
-                  <a id="trafficLink" href="http://docs.m4a1.apiary.io/traffic">Traffic Inspector</a>
-              </li>
-                </ul>
-  </nav>
-
-  
-
-  <div class="menuCell flexibleSpace"></div>
-
-      <div class="secondaryNav menuCell dualLine">
-      <div class="switcherToggle">
-        <h2 class="poweredByApiary">Apiary Powered Documentation</h2>
-        <p class="headSignInLinks">
-          <a href="https://login.apiary.io/login?redirect=http%3A%2F%2Fdocs.m4a1.apiary.io%2F">Sign in</a> with Apiary account
-        </p>
-      </div>
-    </div>
-  
-</div></header>
-
-
-
-
-<div id="documentationContainer">
-
-    <div id="rightColumn">
-              <p class="title">Table of Contents</p>
-        <ul id="toc">
-                      <li><a href="#introduction">Introduction</a></li>
-                      <li><a href="#httprequestbasics">HTTP Request Basics</a></li>
-                      <li><a href="#authentication">Authentication</a></li>
-                      <li><a href="#services">Services</a></li>
-                      <li><a href="#ipaddresses">Ip Addresses</a></li>
-                      <li><a href="#campaigns">Campaigns</a></li>
-                      <li><a href="#changelog">Changelog</a></li>
-                  </ul>
-            <div id="endpoints">
-        <ul>
-                      <p class="title">API</p>
-            <input type="text" name="real-api" value="http://m4a1.create4.us/api/" readonly="readonly" id="real-api" tabindex="1">
-                                              <p class="title">Mock Server</p>
-              <input type="text" name="mock-api" value="http://m4a1.apiary-mock.com" readonly="readonly" id="mock-api" tabindex="2">
-              <p>Use this URL to access a mockup of the API server. Your traffic will be recorded and compared to the documentation. You'll find your traffic analysis in the <a href="/traffic">inspector</a> or directly here in the documentation, right next to each resource.</p>
-                              </ul>
-      </div>
-    </div>
-
-<script>window.docResources = {};</script>
-
-<div id="leftColumn">
-  <h1 id="apiHeadline">M4A1 - The Awesome Mailer Service</h1>
-
-  
-        <a name="introduction"></a>
-    <div class="chapterWrapper">
-              <hgroup class="chapter">
-          <h1>Introduction</h1>          <div class="details"><p>The M4A1 is a software developed for provide a mail service which can be used by all services of iSET.
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>API Documentation</title><link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/slate/bootstrap.min.css"><link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,700|Inconsolata|Raleway:200"><style>/* Highlight.js Theme Tomorrow Night Eighties */
+pre{color:#fff;background:#272b30;border:1px solid rgba(255, 255, 255, 0.2)}
+pre code{display:block;padding:.5em;background:#272b30}
+.hljs-comment,.hljs-title{color:#999}.hljs-variable,.hljs-attribute,.hljs-tag,.hljs-regexp,.ruby .hljs-constant,.xml .hljs-tag .hljs-title,.xml .hljs-pi,.xml .hljs-doctype,.html .hljs-doctype,.css .hljs-id,.css .hljs-class,.css .hljs-pseudo{color:#f2777a}.hljs-number,.hljs-preprocessor,.hljs-pragma,.hljs-built_in,.hljs-literal,.hljs-params,.hljs-constant{color:#f99157}.ruby .hljs-class .hljs-title,.css .hljs-rules .hljs-attribute{color:#fc6}.hljs-string,.hljs-value,.hljs-inheritance,.hljs-header,.ruby .hljs-symbol,.xml .hljs-cdata{color:#9c9}.css .hljs-hexcolor{color:#6cc}.hljs-function,.python .hljs-decorator,.python .hljs-title,.ruby .hljs-function .hljs-title,.ruby .hljs-title .hljs-keyword,.perl .hljs-sub,.javascript .hljs-title,.coffeescript .hljs-title{color:#69c}.hljs-keyword,.javascript .hljs-function{color:#c9c}.hljs{display:block;background:#2d2d2d;color:#ccc;padding:.5em}.coffeescript .javascript,.javascript .xml,.tex .hljs-formula,.xml .javascript,.xml .vbscript,.xml .css,.xml .hljs-cdata{opacity:.5}</style><style>body,
+h4,
+h5 {
+  font-family: 'Roboto' sans-serif !important;
+}
+h1,
+h2,
+h3,
+.aglio {
+  font-family: 'Raleway' sans-serif !important;
+}
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a {
+  display: none;
+}
+h1:hover a,
+h2:hover a,
+h3:hover a,
+h4:hover a,
+h5:hover a {
+  display: inline;
+}
+code {
+  color: #222;
+  background-color: #aaa;
+  font-family: 'Inconsolata' monospace !important;
+}
+a[data-target] {
+  cursor: pointer;
+}
+h4 {
+  font-size: 100%;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.back-to-top {
+  position: fixed;
+  z-index: 1;
+  bottom: 0px;
+  right: 24px;
+  padding: 4px 8px;
+  color: #aaa;
+  background-color: #171b20;
+  text-decoration: none !important;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  border-left: 1px solid rgba(0,0,0,0.1);
+  border-right: 1px solid rgba(0,0,0,0.1);
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+.panel {
+  overflow: hidden;
+}
+.panel-heading code {
+  color: #000;
+  background-color: transparent;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+.panel-heading h3 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+a.list-group-item {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+a.list-group-item.heading {
+  background-color: #3e444c;
+}
+.list-group-item.collapse {
+  display: none;
+}
+.list-group-item.collapse.in {
+  display: block;
+}
+#nav {
+  margin-top: 38px;
+  min-width: 255px;
+  top: 0;
+  bottom: 0;
+  padding-right: 12px;
+  padding-bottom: 12px;
+  overflow-y: auto;
+}
+@media (max-width: 1199px) {
+  #nav {
+    min-width: 212px;
+  }
+}
+</style></head><body><a href="#top" class="text-muted back-to-top"><i class="fa fa-toggle-up"></i>&nbsp;Back to top</a><div class="container"><div class="row"><div class="col-md-3"><nav id="nav" class="hidden-sm hidden-xs affix nav"><div class="list-group"><a href="#introduction" class="list-group-item heading">Introduction</a></div><div class="list-group"><a href="#http-request-basics" class="list-group-item heading">HTTP Request Basics</a></div><div class="list-group"><a href="#authentication" class="list-group-item heading">Authentication</a></div><div class="list-group"><a href="#services" class="list-group-item heading">Services</a><a href="#services-" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Resource</a><a href="#services--get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;GET /service</a><a href="#services--post" style="padding-left: 32px" class="list-group-item"><i class="fa fa-plus-square"></i>&nbsp;POST /service</a><a href="#services-" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Resource</a><a href="#services--get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;GET /service/{key}</a><a href="#services--put" style="padding-left: 32px" class="list-group-item"><i class="fa fa-pencil"></i>&nbsp;PUT /service/{key}</a><a href="#services--delete" style="padding-left: 32px" class="list-group-item"><i class="fa fa-warning"></i>&nbsp;DELETE /service/{key}</a></div><div class="list-group"><a href="#ip-addresses" class="list-group-item heading">Ip Addresses</a><a href="#ip-addresses-" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Resource</a><a href="#ip-addresses--get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;GET /ipaddress</a><a href="#ip-addresses--post" style="padding-left: 32px" class="list-group-item"><i class="fa fa-plus-square"></i>&nbsp;POST /ipaddress</a><a href="#ip-addresses-" class="list-group-item"><i class="fa fa-warning"></i>&nbsp;DELETE /ipaddress/{ipaddress}</a></div><div class="list-group"><a href="#campaigns" class="list-group-item heading">Campaigns</a><a href="#campaigns-" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Resource</a><a href="#campaigns--get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;GET /campaign</a><a href="#campaigns--post" style="padding-left: 32px" class="list-group-item"><i class="fa fa-plus-square"></i>&nbsp;POST /campaign</a><a href="#campaigns-" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Resource</a><a href="#campaigns--get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;GET /campaign/{key}</a><a href="#campaigns--put" style="padding-left: 32px" class="list-group-item"><i class="fa fa-pencil"></i>&nbsp;PUT /campaign/{key}</a><a href="#campaigns--delete" style="padding-left: 32px" class="list-group-item"><i class="fa fa-warning"></i>&nbsp;DELETE /campaign/{key}</a><a href="#campaigns-" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;GET /campaign/{key}/status</a><a href="#campaigns-" class="list-group-item"><i class="fa fa-bars"></i>&nbsp;Resource</a><a href="#campaigns--get" style="padding-left: 32px" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;GET /campaign/{key}/queue</a><a href="#campaigns--put" style="padding-left: 32px" class="list-group-item"><i class="fa fa-pencil"></i>&nbsp;PUT /campaign/{key}/queue</a><a href="#campaigns-" class="list-group-item"><i class="fa fa-plus-square"></i>&nbsp;POST /campaign/{key}/start</a><a href="#campaigns-" class="list-group-item"><i class="fa fa-plus-square"></i>&nbsp;POST /campaign/{key}/pause</a><a href="#campaigns-" class="list-group-item"><i class="fa fa-plus-square"></i>&nbsp;POST /campaign/{key}/stop</a><a href="#campaigns-" class="list-group-item"><i class="fa fa-plus-square"></i>&nbsp;POST /campaign/status</a></div><div class="list-group"><a href="#changelog" class="list-group-item heading">Changelog</a></div><p style="text-align: center"><a href="http://m4a1.create4.us/api/">http://m4a1.create4.us/api/</a></p></nav></div><div class="col-md-9"><div><header><div class="page-header"><h1 id="top">API Documentation</h1></div></header><div class="description"><h1 id="m4a1-the-awesome-mailer-service">M4A1 - The Awesome Mailer Service</h1>
+</div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="introduction">Introduction&nbsp;<a href="#introduction"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><p>The M4A1 is a software developed for provide a mail service which can be used by all services of iSET.
 The proposal of M4A1 is provide a mail tool that runs a daemon as a observer for new services to be triggered, this services runs natively on Linux servers independent of each others.</p>
-
-<p>This document covers the core resources you can use to manipulate your services inside the API that it&#39;s based on REST principles.</p>
-
+<p>This document covers the core resources you can use to manipulate your services inside the API that it’s based on REST principles.</p>
 <blockquote>
 <p><strong>Attention:</strong> All values such as service keys, tokens, campaign keys, ip addresses used in each <em>requests, responses and headers</em> in the following methods are examples, when you use this API new values will be generated and returned to you, not forget to replace this values on next requests.</p>
-</blockquote></div>
-                  </hgroup>
-      
-                  
-          </div>
-      <a name="httprequestbasics"></a>
-    <div class="chapterWrapper">
-              <hgroup class="chapter">
-          <h1>HTTP Request Basics</h1>          <div class="details"><h2>Allowed HTTP methods</h2>
-
+</blockquote>
+</div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="http-request-basics">HTTP Request Basics&nbsp;<a href="#http-request-basics"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><h2 id="allowed-http-methods">Allowed HTTP methods</h2>
 <ul>
 <li><code>GET</code>    - Used to get information about an object in API.</li>
 <li><code>POST</code>   - Used to create new objects in API and run processes.</li>
 <li><code>PUT</code>    - Used to update and object in API.</li>
 <li><code>DELETE</code> - Used to remove and object in API.</li>
 </ul>
-
-<h2>Typical Server Responses</h2>
-
+<h2 id="typical-server-responses">Typical Server Responses</h2>
 <ul>
 <li>200 <code>OK</code> - The request was successful (some API calls may return 201 instead).</li>
 <li>201 <code>Created</code> - The request was successful and a resource was created.</li>
@@ -159,2049 +125,349 @@ The proposal of M4A1 is provide a mail tool that runs a daemon as a observer for
 <li>429 <code>Too Many Requests</code> - Exceeded GoodData API limits. Pause requests, wait one minute, and try again. </li>
 <li>503 <code>Service Unavailable</code> - The service is temporary unavailable (e.g. scheduled Platform Maintenance). Try again later.</li>
 </ul>
-
 <blockquote>
 <p><strong>Note:</strong> M4A1 API works with json in requests and responses then, all HTTP calls must be include a header <em>Content-Type: application/json</em>, otherwise the API will return a HTTP 400 - Bad Request response.</p>
-</blockquote></div>
-                  </hgroup>
-      
-                  
-          </div>
-      <a name="authentication"></a>
-    <div class="chapterWrapper">
-              <hgroup class="chapter">
-          <h1>Authentication</h1>          <div class="details"><p><a id="authentication"></a></p>
-
-<h2>IP Address</h2>
-
+</blockquote>
+</div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="authentication">Authentication&nbsp;<a href="#authentication"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><p><a id="authentication"></a></p>
+<h2 id="ip-address">IP Address</h2>
 <p>The authentication system based on client IP address, verify in all HTTP calls the client IP address and validate it in API database which have a white list of IP addresses allowed to consume API, to allow a new IP address, see the <em>ipaddress</em> resource below.</p>
-
-<h2>Service-Key and Auth-Token</h2>
-
+<h2 id="service-key-and-auth-token">Service-Key and Auth-Token</h2>
 <p>In some API methods you will have to send in you HTTP request headers two params that will authenticate and performr your request in the API.</p>
-
 <ul>
 <li><code>Auth-Service-Key</code> - Your service key provided on service registration moment.</li>
 <li><code>Auth-Token</code> - The token returned by API when you register a new service.</li>
 </ul>
-
-<p>If one of these headers are incorrect, the API will return a HTTP 403 - Forbbiden response.</p></div>
-                  </hgroup>
-      
-                  
-          </div>
-      <a name="services"></a>
-    <div class="chapterWrapper">
-              <hgroup class="chapter">
-          <h1>Services</h1>          <div class="details"><p><a id="services"></a></p>
-
-<p>A <em>service</em> in API is any application that will consume API resources and it need to are registered to get a authorization token that is required to consume some resources.</p></div>
-                  </hgroup>
-      
-                                  
-        
-        
-        <section class="resource noActivity">
-          <hgroup>
-            <h1 class="methodGet"><span>GET</span></h1>
-            <h2>/api/service</h2>
-            <a class="resourcePermalink" href="#get-%2Fapi%2Fservice" name="get-%2Fapi%2Fservice"><span> </span></a>
-            <div class="toggle"></div>
-                      </hgroup>
-
-                                <article class="details">
-              <p>Retrieve all Services </p>                          </article>
-                    <div class="content">
-            <nav class="switch">
-              <ul>
-                <a href="#example" class="active"><li><span>Example</span></li></a>
-                                  <a href="#debugger"><li><span>Debugger</span></li></a>
-                                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
-                              </ul>
-            </nav>
-            <section class="example">
-                            <nav class="language">
-                <form name="languageSwitcher">
-                  <p>Show code sample</p>
-                  <select>
-                                          <option value="raw">none (raw data)</option>
-                                          <option value="curl">curl</option>
-                                          <option value="csharp">C#</option>
-                                          <option value="javascript">javascript</option>
-                                          <option value="nodejs">node.js</option>
-                                          <option value="python">python</option>
-                                          <option value="php">php</option>
-                                          <option value="ruby">ruby</option>
-                                          <option value="vb">Visual Basic</option>
-                                          <option value="objc">Objective-C</option>
-                                          <option value="swift">Swift</option>
-                                          <option value="groovy">Groovy</option>
-                                      </select>
-                </form>
-              </nav>
-                            <section class="code" id="generatedResourceCodeS4E1">                                                                            
-<span id="requestExampleIdS4E1req0" class="hidden"></span>
-<script>
-window.docResources["generatedResourceCodeS4E1"] = (window.docResources["generatedResourceCodeS4E1"] || []).concat({
-  "exampleId": "S4E1req0",
-  "url": "/api/service",
-  "method": "GET",
-  "contentType": "application/json",
-  "headers": {
-    "Content-Type": "application/json"
-  },
-  "body": ""
-});
-</script>
-                                                                                                <p class="ioDesc">Response</p>
-                    <section class="outgoingCall rawResponse">
-                      <pre class="outgoing outgoingHeaders"><code>204 (No Content)</code></pre>
-                      <pre class="outgoing"><code class=""></code></pre>
-                    </section>
-                                                                              <p class="ioDesc">Response</p>
-                    <section class="outgoingCall rawResponse">
-                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
-Content-Type: application/json</code></pre>
-                      <pre class="outgoing"><code class="language-javascript">[{
-  &#34;name&#34;: &#34;First Service&#34;, &#34;key&#34;: &#34;svc1&#34;
-},
+<p>If one of these headers are incorrect, the API will return a HTTP 403 - Forbbiden response.</p>
+</div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="services">Services&nbsp;<a href="#services"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><p><a id="services"></a></p>
+<p>A <em>service</em> in API is any application that will consume API resources and it need to are registered to get a authorization token that is required to consume some resources.</p>
+<h4 id="services-">Resources&nbsp;<a href="#services-"><i class="fa fa-link"></i></a></h4><section id="services--get" class="panel panel-info"><div class="panel-heading"><div style="float:left"><a href="#services--get" class="btn btn-xs btn-info">GET</a></div><div style="overflow:hidden"><code>/service</code></div></div><div class="panel-body"><p>Retrieve all Services </p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#0403b74c7abfb770ec806c73d5cf5485" class="pull-right">Toggle</a></li><li id="0403b74c7abfb770ec806c73d5cf5485" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#4ef7abad82af4dc4615a35a36a71e346" class="pull-right">Toggle</a></li><li id="4ef7abad82af4dc4615a35a36a71e346" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>[{
+  "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"First Service"</span></span>, "<span class="hljs-attribute">key</span>": <span class="hljs-value"><span class="hljs-string">"svc1"</span>
+</span>},
 {
-  &#34;name&#34;: &#34;Second Service&#34;, &#34;key&#34;: &#34;svc2&#34;
-},
+  "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Second Service"</span></span>, "<span class="hljs-attribute">key</span>": <span class="hljs-value"><span class="hljs-string">"svc2"</span>
+</span>},
 {
-  &#34;name&#34;: &#34;Third Service&#34;, &#34;key&#34;:&#34;svc3&#34;
-}]</code></pre>
-                    </section>
-                                                                                    </section>
-            </section>
-                          <section class="debugger" data-resource-signature="GET /api/service"></section>
-              
-              <section class="tryit">
-                <form name="jsRunExample">
-                  <span class="ajaxLoader block jsEmptyTryit"></span>
-                </form>
-              </section>
-                      </div>
-
-          
-        </section>                      
-        
-        
-        <section class="resource noActivity">
-          <hgroup>
-            <h1 class="methodPost"><span>POST</span></h1>
-            <h2>/api/service</h2>
-            <a class="resourcePermalink" href="#post-%2Fapi%2Fservice" name="post-%2Fapi%2Fservice"><span> </span></a>
-            <div class="toggle"></div>
-                      </hgroup>
-
-                                <article class="details">
-              <p>Create a new Service</p>                            <div class="paramsTableWrap"><table class="paramsTable">
-                <caption>Parameters</caption>
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Details</th>
-                  </tr>
-                </thead>
-                <tbody>
-                                      <tr>
-                      <td>name</td>
-                      <td><p>The Service name</p>
-</td>
-                      <td>string, required<br>example: <samp>Service Name</samp>                                              </td>
-                    </tr>
-                                      <tr>
-                      <td>key</td>
-                      <td><p>The service key that will used to authenticate your HTTP requests</p>
-</td>
-                      <td>string, required<br>example: <samp>myservicekey</samp>                                              </td>
-                    </tr>
-                                  </tbody>
-              </table></div>
-                          </article>
-                    <div class="content">
-            <nav class="switch">
-              <ul>
-                <a href="#example" class="active"><li><span>Example</span></li></a>
-                                  <a href="#debugger"><li><span>Debugger</span></li></a>
-                                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
-                              </ul>
-            </nav>
-            <section class="example">
-                            <nav class="language">
-                <form name="languageSwitcher">
-                  <p>Show code sample</p>
-                  <select>
-                                          <option value="raw">none (raw data)</option>
-                                          <option value="curl">curl</option>
-                                          <option value="csharp">C#</option>
-                                          <option value="javascript">javascript</option>
-                                          <option value="nodejs">node.js</option>
-                                          <option value="python">python</option>
-                                          <option value="php">php</option>
-                                          <option value="ruby">ruby</option>
-                                          <option value="vb">Visual Basic</option>
-                                          <option value="objc">Objective-C</option>
-                                          <option value="swift">Swift</option>
-                                          <option value="groovy">Groovy</option>
-                                      </select>
-                </form>
-              </nav>
-                            <section class="code" id="generatedResourceCodeS4E2">                                                                            
-<span id="requestExampleIdS4E2req0" class="hidden"></span>
-<script>
-window.docResources["generatedResourceCodeS4E2"] = (window.docResources["generatedResourceCodeS4E2"] || []).concat({
-  "exampleId": "S4E2req0",
-  "url": "/api/service",
-  "method": "POST",
-  "contentType": "application/json",
-  "headers": {
-    "Content-Type": "application/json"
-  },
-  "body": "{\n  \"name\": \"Service Name\",\n  \"key\": \"myservicekey\" \n}",
-  "parameters": {
-    "name": "Service Name",
-    "key": "myservicekey"
-  }
-});
-</script>
-                                                                                                <p class="ioDesc">Response</p>
-                    <section class="outgoingCall rawResponse">
-                      <pre class="outgoing outgoingHeaders"><code>201 (Created)
-Content-Type: application/json</code></pre>
-                      <pre class="outgoing"><code class="language-javascript">{ 
-  &#34;success&#34;: 1, 
-  &#34;key&#34;: &#34;myservicekey&#34;, 
-  &#34;token&#34;: &#34;MyServiceToken&#34; 
-}</code></pre>
-                    </section>
-                                                                              <p class="ioDesc">Response</p>
-                    <section class="outgoingCall rawResponse">
-                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
-Content-Type: application/json</code></pre>
-                      <pre class="outgoing"><code class="language-javascript">{
-  &#34;success&#34;: 0,
-  &#34;error&#34;: &#34;The error message&#34;,
-  &#34;details&#34;: &#34;The detailed information about error, present only if is a validation error&#34;
-}</code></pre>
-                    </section>
-                                                                              <p class="ioDesc">Response</p>
-                    <section class="outgoingCall rawResponse">
-                      <pre class="outgoing outgoingHeaders"><code>500 (Internal Server Error)
-Content-Type: application/json</code></pre>
-                      <pre class="outgoing"><code class="language-javascript">{
-  &#34;success&#34;: 0,
-  &#34;error&#34;: &#34;Unknow error&#34;
-}</code></pre>
-                    </section>
-                                                                                    </section>
-            </section>
-                          <section class="debugger" data-resource-signature="POST /api/service"></section>
-              
-              <section class="tryit">
-                <form name="jsRunExample">
-                  <span class="ajaxLoader block jsEmptyTryit"></span>
-                </form>
-              </section>
-                      </div>
-
-          
-        </section>                      
-        
-        
-        <section class="resource noActivity">
-          <hgroup>
-            <h1 class="methodGet"><span>GET</span></h1>
-            <h2>/api/service/{key}</h2>
-            <a class="resourcePermalink" href="#get-%2Fapi%2Fservice%2F%7Bkey%7D" name="get-%2Fapi%2Fservice%2F%7Bkey%7D"><span> </span></a>
-            <div class="toggle"></div>
-                      </hgroup>
-
-                                <article class="details">
-              <p>Get a Service</p>                          </article>
-                    <div class="content">
-            <nav class="switch">
-              <ul>
-                <a href="#example" class="active"><li><span>Example</span></li></a>
-                                  <a href="#debugger"><li><span>Debugger</span></li></a>
-                                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
-                              </ul>
-            </nav>
-            <section class="example">
-                            <nav class="language">
-                <form name="languageSwitcher">
-                  <p>Show code sample</p>
-                  <select>
-                                          <option value="raw">none (raw data)</option>
-                                          <option value="curl">curl</option>
-                                          <option value="csharp">C#</option>
-                                          <option value="javascript">javascript</option>
-                                          <option value="nodejs">node.js</option>
-                                          <option value="python">python</option>
-                                          <option value="php">php</option>
-                                          <option value="ruby">ruby</option>
-                                          <option value="vb">Visual Basic</option>
-                                          <option value="objc">Objective-C</option>
-                                          <option value="swift">Swift</option>
-                                          <option value="groovy">Groovy</option>
-                                      </select>
-                </form>
-              </nav>
-                            <section class="code" id="generatedResourceCodeS4E3">                                                                            
-<span id="requestExampleIdS4E3req0" class="hidden"></span>
-<script>
-window.docResources["generatedResourceCodeS4E3"] = (window.docResources["generatedResourceCodeS4E3"] || []).concat({
-  "exampleId": "S4E3req0",
-  "url": "/api/service/{key}",
-  "method": "GET",
-  "contentType": "application/json",
-  "headers": {
-    "Content-Type": "application/json"
-  },
-  "body": ""
-});
-</script>
-                                                                                                <p class="ioDesc">Response</p>
-                    <section class="outgoingCall rawResponse">
-                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
-Content-Type: application/json</code></pre>
-                      <pre class="outgoing"><code class="language-javascript">{
-  &#34;name&#34;: &#34;First Service&#34;,
-  &#34;key&#34;: &#34;svc1&#34;
-}</code></pre>
-                    </section>
-                                                                              <p class="ioDesc">Response</p>
-                    <section class="outgoingCall rawResponse">
-                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
-Content-Type: application/json</code></pre>
-                      <pre class="outgoing"><code class="language-javascript">{
-  &#34;success&#34;: 0,
-  &#34;error&#34;: &#34;Service not found&#34;
-}</code></pre>
-                    </section>
-                                                                                    </section>
-            </section>
-                          <section class="debugger" data-resource-signature="GET /api/service/{key}"></section>
-              
-              <section class="tryit">
-                <form name="jsRunExample">
-                  <span class="ajaxLoader block jsEmptyTryit"></span>
-                </form>
-              </section>
-                      </div>
-
-          
-        </section>                      
-        
-        
-        <section class="resource noActivity">
-          <hgroup>
-            <h1 class="methodPost"><span>PUT</span></h1>
-            <h2>/api/service/{key}</h2>
-            <a class="resourcePermalink" href="#put-%2Fapi%2Fservice%2F%7Bkey%7D" name="put-%2Fapi%2Fservice%2F%7Bkey%7D"><span> </span></a>
-            <div class="toggle"></div>
-                      </hgroup>
-
-                                <article class="details">
-              <p>Update a Service</p>                            <div class="paramsTableWrap"><table class="paramsTable">
-                <caption>Parameters</caption>
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Details</th>
-                  </tr>
-                </thead>
-                <tbody>
-                                      <tr>
-                      <td>name</td>
-                      <td><p>The name of service</p>
-</td>
-                      <td>string, optional<br>example: <samp>Service Name</samp>                                              </td>
-                    </tr>
-                                      <tr>
-                      <td>key</td>
-                      <td><p>The service key that will used to authenticate your HTTP requests</p>
-</td>
-                      <td>string, optional<br>example: <samp>myservicekey</samp>                                              </td>
-                    </tr>
-                                  </tbody>
-              </table></div>
-                          </article>
-                    <div class="content">
-            <nav class="switch">
-              <ul>
-                <a href="#example" class="active"><li><span>Example</span></li></a>
-                                  <a href="#debugger"><li><span>Debugger</span></li></a>
-                                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
-                              </ul>
-            </nav>
-            <section class="example">
-                            <nav class="language">
-                <form name="languageSwitcher">
-                  <p>Show code sample</p>
-                  <select>
-                                          <option value="raw">none (raw data)</option>
-                                          <option value="curl">curl</option>
-                                          <option value="csharp">C#</option>
-                                          <option value="javascript">javascript</option>
-                                          <option value="nodejs">node.js</option>
-                                          <option value="python">python</option>
-                                          <option value="php">php</option>
-                                          <option value="ruby">ruby</option>
-                                          <option value="vb">Visual Basic</option>
-                                          <option value="objc">Objective-C</option>
-                                          <option value="swift">Swift</option>
-                                          <option value="groovy">Groovy</option>
-                                      </select>
-                </form>
-              </nav>
-                            <section class="code" id="generatedResourceCodeS4E4">                                                                            
-<span id="requestExampleIdS4E4req0" class="hidden"></span>
-<script>
-window.docResources["generatedResourceCodeS4E4"] = (window.docResources["generatedResourceCodeS4E4"] || []).concat({
-  "exampleId": "S4E4req0",
-  "url": "/api/service/{key}",
-  "method": "PUT",
-  "contentType": "application/json",
-  "headers": {
-    "Content-Type": "application/json"
-  },
-  "body": "{ \"name\": \"Service Name\", \"key\": \"myservicekey\" }",
-  "parameters": {
-    "name": "Service Name",
-    "key": "myservicekey"
-  }
-});
-</script>
-                                                                                                <p class="ioDesc">Response</p>
-                    <section class="outgoingCall rawResponse">
-                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
-Content-Type: application/json</code></pre>
-                      <pre class="outgoing"><code class="language-javascript">{
-  &#34;success&#34;: 1,
-  &#34;name&#34;: &#34;Service Name&#34;,
-  &#34;key&#34;: &#34;myservicekey&#34;
-}</code></pre>
-                    </section>
-                                                                              <p class="ioDesc">Response</p>
-                    <section class="outgoingCall rawResponse">
-                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
-Content-Type: application/json</code></pre>
-                      <pre class="outgoing"><code class="language-javascript">{
-  &#34;success&#34;: 0,
-  &#34;error&#34;: &#34;The error message&#34;,
-  &#34;details&#34;: &#34;The detailed information about error, present only if is a validation error&#34;
-}</code></pre>
-                    </section>
-                                                                              <p class="ioDesc">Response</p>
-                    <section class="outgoingCall rawResponse">
-                      <pre class="outgoing outgoingHeaders"><code>500 (Internal Server Error)
-Content-Type: application/json</code></pre>
-                      <pre class="outgoing"><code class="language-javascript">{
-  &#34;success&#34;: 0,
-  &#34;error&#34;: &#34;Unknow error&#34;
-}</code></pre>
-                    </section>
-                                                                                    </section>
-            </section>
-                          <section class="debugger" data-resource-signature="PUT /api/service/{key}"></section>
-              
-              <section class="tryit">
-                <form name="jsRunExample">
-                  <span class="ajaxLoader block jsEmptyTryit"></span>
-                </form>
-              </section>
-                      </div>
-
-          
-        </section>                      
-        
-        
-        <section class="resource noActivity">
-          <hgroup>
-            <h1 class="methodPost"><span>DELETE</span></h1>
-            <h2>/api/service/{key}</h2>
-            <a class="resourcePermalink" href="#delete-%2Fapi%2Fservice%2F%7Bkey%7D" name="delete-%2Fapi%2Fservice%2F%7Bkey%7D"><span> </span></a>
-            <div class="toggle"></div>
-                      </hgroup>
-
-                                <article class="details">
-              <p>Remove a Service</p>
-
-<p><strong>Warning:</strong> This action <em>permanently</em> destroy all information about service and it actions from API database.</p>                          </article>
-                    <div class="content">
-            <nav class="switch">
-              <ul>
-                <a href="#example" class="active"><li><span>Example</span></li></a>
-                                  <a href="#debugger"><li><span>Debugger</span></li></a>
-                                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
-                              </ul>
-            </nav>
-            <section class="example">
-                            <nav class="language">
-                <form name="languageSwitcher">
-                  <p>Show code sample</p>
-                  <select>
-                                          <option value="raw">none (raw data)</option>
-                                          <option value="curl">curl</option>
-                                          <option value="csharp">C#</option>
-                                          <option value="javascript">javascript</option>
-                                          <option value="nodejs">node.js</option>
-                                          <option value="python">python</option>
-                                          <option value="php">php</option>
-                                          <option value="ruby">ruby</option>
-                                          <option value="vb">Visual Basic</option>
-                                          <option value="objc">Objective-C</option>
-                                          <option value="swift">Swift</option>
-                                          <option value="groovy">Groovy</option>
-                                      </select>
-                </form>
-              </nav>
-                            <section class="code" id="generatedResourceCodeS4E5">                                                                            
-<span id="requestExampleIdS4E5req0" class="hidden"></span>
-<script>
-window.docResources["generatedResourceCodeS4E5"] = (window.docResources["generatedResourceCodeS4E5"] || []).concat({
-  "exampleId": "S4E5req0",
-  "url": "/api/service/{key}",
-  "method": "DELETE",
-  "contentType": "application/json",
-  "headers": {
-    "Content-Type": "application/json"
-  },
-  "body": ""
-});
-</script>
-                                                                                                <p class="ioDesc">Response</p>
-                    <section class="outgoingCall rawResponse">
-                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
-Content-Type: application/json</code></pre>
-                      <pre class="outgoing"><code class="language-javascript">{
-  &#34;success&#34;: 1
-}</code></pre>
-                    </section>
-                                                                              <p class="ioDesc">Response</p>
-                    <section class="outgoingCall rawResponse">
-                      <pre class="outgoing outgoingHeaders"><code>500 (Internal Server Error)
-Content-Type: application/json</code></pre>
-                      <pre class="outgoing"><code class="language-javascript">{
-  &#34;success&#34;: 0,
-  &#34;error&#34;: &#34;Unknow error&#34;
-}</code></pre>
-                    </section>
-                                                                              <p class="ioDesc">Response</p>
-                    <section class="outgoingCall rawResponse">
-                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
-Content-Type: application/json</code></pre>
-                      <pre class="outgoing"><code class="language-javascript">{
-  &#34;success&#34;: 0,
-  &#34;error&#34;: &#34;Service not found&#34;
-}</code></pre>
-                    </section>
-                                                                                    </section>
-            </section>
-                          <section class="debugger" data-resource-signature="DELETE /api/service/{key}"></section>
-              
-              <section class="tryit">
-                <form name="jsRunExample">
-                  <span class="ajaxLoader block jsEmptyTryit"></span>
-                </form>
-              </section>
-                      </div>
-
-          
-        </section>      
-          </div>
-      <a name="ipaddresses"></a>
-    <div class="chapterWrapper">
-              <hgroup class="chapter">
-          <h1>Ip Addresses</h1>                  </hgroup>
-      
-                                  
-        
-        
-        <section class="resource noActivity">
-          <hgroup>
-            <h1 class="methodGet"><span>GET</span></h1>
-            <h2>/api/ipaddress</h2>
-            <a class="resourcePermalink" href="#get-%2Fapi%2Fipaddress" name="get-%2Fapi%2Fipaddress"><span> </span></a>
-            <div class="toggle"></div>
-                      </hgroup>
-
-                                <article class="details">
-              <p>Retrieve all allowed IP addresses</p>                          </article>
-                    <div class="content">
-            <nav class="switch">
-              <ul>
-                <a href="#example" class="active"><li><span>Example</span></li></a>
-                                  <a href="#debugger"><li><span>Debugger</span></li></a>
-                                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
-                              </ul>
-            </nav>
-            <section class="example">
-                            <nav class="language">
-                <form name="languageSwitcher">
-                  <p>Show code sample</p>
-                  <select>
-                                          <option value="raw">none (raw data)</option>
-                                          <option value="curl">curl</option>
-                                          <option value="csharp">C#</option>
-                                          <option value="javascript">javascript</option>
-                                          <option value="nodejs">node.js</option>
-                                          <option value="python">python</option>
-                                          <option value="php">php</option>
-                                          <option value="ruby">ruby</option>
-                                          <option value="vb">Visual Basic</option>
-                                          <option value="objc">Objective-C</option>
-                                          <option value="swift">Swift</option>
-                                          <option value="groovy">Groovy</option>
-                                      </select>
-                </form>
-              </nav>
-                            <section class="code" id="generatedResourceCodeS5E1">                                                                            
-<span id="requestExampleIdS5E1req0" class="hidden"></span>
-<script>
-window.docResources["generatedResourceCodeS5E1"] = (window.docResources["generatedResourceCodeS5E1"] || []).concat({
-  "exampleId": "S5E1req0",
-  "url": "/api/ipaddress",
-  "method": "GET",
-  "contentType": "application/json",
-  "headers": {
-    "Content-Type": "application/json"
-  },
-  "body": ""
-});
-</script>
-                                                                                                <p class="ioDesc">Response</p>
-                    <section class="outgoingCall rawResponse">
-                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
-Content-Type: application/json</code></pre>
-                      <pre class="outgoing"><code class="language-javascript">[
-  &#34;192.168.0.1&#34;,
-  &#34;192.168.0.2&#34;,
-  &#34;192.168.0.3&#34;
-]</code></pre>
-                    </section>
-                                                                              <p class="ioDesc">Response</p>
-                    <section class="outgoingCall rawResponse">
-                      <pre class="outgoing outgoingHeaders"><code>204 (No Content)</code></pre>
-                      <pre class="outgoing"><code class=""></code></pre>
-                    </section>
-                                                                                    </section>
-            </section>
-                          <section class="debugger" data-resource-signature="GET /api/ipaddress"></section>
-              
-              <section class="tryit">
-                <form name="jsRunExample">
-                  <span class="ajaxLoader block jsEmptyTryit"></span>
-                </form>
-              </section>
-                      </div>
-
-          
-        </section>                      
-        
-        
-        <section class="resource noActivity">
-          <hgroup>
-            <h1 class="methodPost"><span>POST</span></h1>
-            <h2>/api/ipaddress</h2>
-            <a class="resourcePermalink" href="#post-%2Fapi%2Fipaddress" name="post-%2Fapi%2Fipaddress"><span> </span></a>
-            <div class="toggle"></div>
-                      </hgroup>
-
-                                <article class="details">
-              <p>Allow new IP address to consume API</p>                            <div class="paramsTableWrap"><table class="paramsTable">
-                <caption>Parameters</caption>
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Details</th>
-                  </tr>
-                </thead>
-                <tbody>
-                                      <tr>
-                      <td>ipaddress</td>
-                      <td><p>The Ip address that you wish to allow</p>
-</td>
-                      <td>string, required<br>example: <samp>127.0.0.1</samp>                                              </td>
-                    </tr>
-                                  </tbody>
-              </table></div>
-                          </article>
-                    <div class="content">
-            <nav class="switch">
-              <ul>
-                <a href="#example" class="active"><li><span>Example</span></li></a>
-                                  <a href="#debugger"><li><span>Debugger</span></li></a>
-                                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
-                              </ul>
-            </nav>
-            <section class="example">
-                            <nav class="language">
-                <form name="languageSwitcher">
-                  <p>Show code sample</p>
-                  <select>
-                                          <option value="raw">none (raw data)</option>
-                                          <option value="curl">curl</option>
-                                          <option value="csharp">C#</option>
-                                          <option value="javascript">javascript</option>
-                                          <option value="nodejs">node.js</option>
-                                          <option value="python">python</option>
-                                          <option value="php">php</option>
-                                          <option value="ruby">ruby</option>
-                                          <option value="vb">Visual Basic</option>
-                                          <option value="objc">Objective-C</option>
-                                          <option value="swift">Swift</option>
-                                          <option value="groovy">Groovy</option>
-                                      </select>
-                </form>
-              </nav>
-                            <section class="code" id="generatedResourceCodeS5E2">                                                                            
-<span id="requestExampleIdS5E2req0" class="hidden"></span>
-<script>
-window.docResources["generatedResourceCodeS5E2"] = (window.docResources["generatedResourceCodeS5E2"] || []).concat({
-  "exampleId": "S5E2req0",
-  "url": "/api/ipaddress",
-  "method": "POST",
-  "contentType": "application/json",
-  "headers": {
-    "Content-Type": "application/json"
-  },
-  "body": "{\n  \"ipaddress\": \"192.168.0.1\"\n}",
-  "parameters": {
-    "ipaddress": "127.0.0.1"
-  }
-});
-</script>
-                                                                                                <p class="ioDesc">Response</p>
-                    <section class="outgoingCall rawResponse">
-                      <pre class="outgoing outgoingHeaders"><code>201 (Created)
-Content-Type: application/json</code></pre>
-                      <pre class="outgoing"><code class="language-javascript">{
-  &#34;success&#34;: 1
-}</code></pre>
-                    </section>
-                                                                              <p class="ioDesc">Response</p>
-                    <section class="outgoingCall rawResponse">
-                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
-Content-Type: application/json</code></pre>
-                      <pre class="outgoing"><code class="language-javascript">{
-  &#34;success&#34;: 0,
-  &#34;error&#34;: &#34;The error message&#34;
-}</code></pre>
-                    </section>
-                                                                              <p class="ioDesc">Response</p>
-                    <section class="outgoingCall rawResponse">
-                      <pre class="outgoing outgoingHeaders"><code>500 (Internal Server Error)
-Content-Type: application/json</code></pre>
-                      <pre class="outgoing"><code class="language-javascript">{
-  &#34;success&#34;: 0,
-  &#34;error&#34;: &#34;Unknow error&#34;
-}</code></pre>
-                    </section>
-                                                                                    </section>
-            </section>
-                          <section class="debugger" data-resource-signature="POST /api/ipaddress"></section>
-              
-              <section class="tryit">
-                <form name="jsRunExample">
-                  <span class="ajaxLoader block jsEmptyTryit"></span>
-                </form>
-              </section>
-                      </div>
-
-          
-        </section>                      
-        
-        
-        <section class="resource noActivity">
-          <hgroup>
-            <h1 class="methodPost"><span>DELETE</span></h1>
-            <h2>/api/ipaddress/{ipaddress}</h2>
-            <a class="resourcePermalink" href="#delete-%2Fapi%2Fipaddress%2F%7Bipaddress%7D" name="delete-%2Fapi%2Fipaddress%2F%7Bipaddress%7D"><span> </span></a>
-            <div class="toggle"></div>
-                      </hgroup>
-
-                                <article class="details">
-              <p>Revoke access from an IP address</p>                          </article>
-                    <div class="content">
-            <nav class="switch">
-              <ul>
-                <a href="#example" class="active"><li><span>Example</span></li></a>
-                                  <a href="#debugger"><li><span>Debugger</span></li></a>
-                                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
-                              </ul>
-            </nav>
-            <section class="example">
-                            <nav class="language">
-                <form name="languageSwitcher">
-                  <p>Show code sample</p>
-                  <select>
-                                          <option value="raw">none (raw data)</option>
-                                          <option value="curl">curl</option>
-                                          <option value="csharp">C#</option>
-                                          <option value="javascript">javascript</option>
-                                          <option value="nodejs">node.js</option>
-                                          <option value="python">python</option>
-                                          <option value="php">php</option>
-                                          <option value="ruby">ruby</option>
-                                          <option value="vb">Visual Basic</option>
-                                          <option value="objc">Objective-C</option>
-                                          <option value="swift">Swift</option>
-                                          <option value="groovy">Groovy</option>
-                                      </select>
-                </form>
-              </nav>
-                            <section class="code" id="generatedResourceCodeS5E3">                                                                            
-<span id="requestExampleIdS5E3req0" class="hidden"></span>
-<script>
-window.docResources["generatedResourceCodeS5E3"] = (window.docResources["generatedResourceCodeS5E3"] || []).concat({
-  "exampleId": "S5E3req0",
-  "url": "/api/ipaddress/{ipaddress}",
-  "method": "DELETE",
-  "contentType": "application/json",
-  "headers": {
-    "Content-Type": "application/json"
-  },
-  "body": ""
-});
-</script>
-                                                                                                <p class="ioDesc">Response</p>
-                    <section class="outgoingCall rawResponse">
-                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
-Content-Type: application/json</code></pre>
-                      <pre class="outgoing"><code class="language-javascript">{
-  &#34;success&#34;: 1
-}</code></pre>
-                    </section>
-                                                                              <p class="ioDesc">Response</p>
-                    <section class="outgoingCall rawResponse">
-                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
-Content-Type: application/json</code></pre>
-                      <pre class="outgoing"><code class="language-javascript">{
-  &#34;success&#34;: 0,
-  &#34;error&#34;: &#34;Ip address not found&#34;
-}</code></pre>
-                    </section>
-                                                                              <p class="ioDesc">Response</p>
-                    <section class="outgoingCall rawResponse">
-                      <pre class="outgoing outgoingHeaders"><code>500 (Internal Server Error)
-Content-Type: application/json</code></pre>
-                      <pre class="outgoing"><code class="language-javascript">{
- &#34;success&#34;: 0,
- &#34;error&#34;: &#34;Unknow error&#34;
-}</code></pre>
-                    </section>
-                                                                                    </section>
-            </section>
-                          <section class="debugger" data-resource-signature="DELETE /api/ipaddress/{ipaddress}"></section>
-              
-              <section class="tryit">
-                <form name="jsRunExample">
-                  <span class="ajaxLoader block jsEmptyTryit"></span>
-                </form>
-              </section>
-                      </div>
-
-          
-        </section>      
-          </div>
-      <a name="campaigns"></a>
-    <div class="chapterWrapper">
-              <hgroup class="chapter">
-          <h1>Campaigns</h1>                  </hgroup>
-      
-                                  
-        
-        
-        <section class="resource noActivity">
-          <hgroup>
-            <h1 class="methodGet"><span>GET</span></h1>
-            <h2>/api/campaign</h2>
-            <a class="resourcePermalink" href="#get-%2Fapi%2Fcampaign" name="get-%2Fapi%2Fcampaign"><span> </span></a>
-            <div class="toggle"></div>
-                      </hgroup>
-
-                                <article class="details">
-              <p>Retrieve all campaigns</p>                          </article>
-                    <div class="content">
-            <nav class="switch">
-              <ul>
-                <a href="#example" class="active"><li><span>Example</span></li></a>
-                                  <a href="#debugger"><li><span>Debugger</span></li></a>
-                                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
-                              </ul>
-            </nav>
-            <section class="example">
-                            <nav class="language">
-                <form name="languageSwitcher">
-                  <p>Show code sample</p>
-                  <select>
-                                          <option value="raw">none (raw data)</option>
-                                          <option value="curl">curl</option>
-                                          <option value="csharp">C#</option>
-                                          <option value="javascript">javascript</option>
-                                          <option value="nodejs">node.js</option>
-                                          <option value="python">python</option>
-                                          <option value="php">php</option>
-                                          <option value="ruby">ruby</option>
-                                          <option value="vb">Visual Basic</option>
-                                          <option value="objc">Objective-C</option>
-                                          <option value="swift">Swift</option>
-                                          <option value="groovy">Groovy</option>
-                                      </select>
-                </form>
-              </nav>
-                            <section class="code" id="generatedResourceCodeS6E1">                                                                            
-<span id="requestExampleIdS6E1req0" class="hidden"></span>
-<script>
-window.docResources["generatedResourceCodeS6E1"] = (window.docResources["generatedResourceCodeS6E1"] || []).concat({
-  "exampleId": "S6E1req0",
-  "url": "/api/campaign",
-  "method": "GET",
-  "contentType": "application/json",
-  "headers": {
-    "Content-Type": "application/json"
-  },
-  "body": ""
-});
-</script>
-                                                                                                <p class="ioDesc">Response</p>
-                    <section class="outgoingCall rawResponse">
-                      <pre class="outgoing outgoingHeaders"><code>501 (Not Implemented)</code></pre>
-                      <pre class="outgoing"><code class=""></code></pre>
-                    </section>
-                                                                                    </section>
-            </section>
-                          <section class="debugger" data-resource-signature="GET /api/campaign"></section>
-              
-              <section class="tryit">
-                <form name="jsRunExample">
-                  <span class="ajaxLoader block jsEmptyTryit"></span>
-                </form>
-              </section>
-                      </div>
-
-          
-        </section>                      
-        
-        
-        <section class="resource noActivity">
-          <hgroup>
-            <h1 class="methodPost"><span>POST</span></h1>
-            <h2>/api/campaign</h2>
-            <a class="resourcePermalink" href="#post-%2Fapi%2Fcampaign" name="post-%2Fapi%2Fcampaign"><span> </span></a>
-            <div class="toggle"></div>
-                      </hgroup>
-
-                                <article class="details">
-              <p>Create a new campaign</p>                            <div class="paramsTableWrap"><table class="paramsTable">
-                <caption>Parameters</caption>
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Details</th>
-                  </tr>
-                </thead>
-                <tbody>
-                                      <tr>
-                      <td>subject</td>
-                      <td><p>The campaigns subject</p>
-</td>
-                      <td>string, required                                              </td>
-                    </tr>
-                                      <tr>
-                      <td>body</td>
-                      <td><p>The body of email</p>
-</td>
-                      <td>string, required                                              </td>
-                    </tr>
-                                      <tr>
-                      <td>headers</td>
-                      <td><p>The headers to send in each all emails</p>
-</td>
-                      <td>array, required                                              </td>
-                    </tr>
-                                      <tr>
-                      <td>user_vars</td>
-                      <td><p>Flag for parse queue with body variables</p>
-</td>
-                      <td>integer, optional                                              </td>
-                    </tr>
-                                      <tr>
-                      <td>user_headers</td>
-                      <td><p>Flag for set custom headers by each destination</p>
-</td>
-                      <td>integer, optional                                              </td>
-                    </tr>
-                                      <tr>
-                      <td>external</td>
-                      <td><p>The identification of this campaign in client application.</p>
-</td>
-                      <td>integer, required                                              </td>
-                    </tr>
-                                  </tbody>
-              </table></div>
-                          </article>
-                    <div class="content">
-            <nav class="switch">
-              <ul>
-                <a href="#example" class="active"><li><span>Example</span></li></a>
-                                  <a href="#debugger"><li><span>Debugger</span></li></a>
-                                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
-                              </ul>
-            </nav>
-            <section class="example">
-                            <nav class="language">
-                <form name="languageSwitcher">
-                  <p>Show code sample</p>
-                  <select>
-                                          <option value="raw">none (raw data)</option>
-                                          <option value="curl">curl</option>
-                                          <option value="csharp">C#</option>
-                                          <option value="javascript">javascript</option>
-                                          <option value="nodejs">node.js</option>
-                                          <option value="python">python</option>
-                                          <option value="php">php</option>
-                                          <option value="ruby">ruby</option>
-                                          <option value="vb">Visual Basic</option>
-                                          <option value="objc">Objective-C</option>
-                                          <option value="swift">Swift</option>
-                                          <option value="groovy">Groovy</option>
-                                      </select>
-                </form>
-              </nav>
-                            <section class="code" id="generatedResourceCodeS6E2">                                                                            
-<span id="requestExampleIdS6E2req0" class="hidden"></span>
-<script>
-window.docResources["generatedResourceCodeS6E2"] = (window.docResources["generatedResourceCodeS6E2"] || []).concat({
-  "exampleId": "S6E2req0",
-  "url": "/api/campaign",
-  "method": "POST",
-  "contentType": "application/json",
-  "headers": {
-    "Content-Type": "application/json",
-    "Auth-Service-Key": "myservicekey",
-    "Auth-Token": "MyServiceToken"
-  },
-  "body": "{\n  \"subject\": \"The subject of mail\",\n  \"body\": \"The body of email\",\n  \"headers\": {\n    \"Content-Type\": \"text/html\",\n    \"Bounce-Mail\": \"mybounce@domain.com\"\n  },\n  \"user_vars\": 1,\n  \"user_headers\": 1,\n  \"external\": 123\n}"
-});
-</script>
-                                                                                                <p class="ioDesc">Response</p>
-                    <section class="outgoingCall rawResponse">
-                      <pre class="outgoing outgoingHeaders"><code>201 (Created)
-Content-Type: application/json</code></pre>
-                      <pre class="outgoing"><code class="language-javascript">{
-  &#34;success&#34;: 1,
-  &#34;campaign&#34;: &#34;45ad434daaf7bf22e45c8938fb745b45&#34;
-}</code></pre>
-                    </section>
-                                                                              <p class="ioDesc">Response</p>
-                    <section class="outgoingCall rawResponse">
-                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
-Content-Type: application/json</code></pre>
-                      <pre class="outgoing"><code class="language-javascript">{
-  &#34;success&#34;: 0,
-  &#34;error&#34;: &#34;The error message&#34;,
-  &#34;details&#34;: &#34;The detailed error message, present if occured a validation error&#34;
-}</code></pre>
-                    </section>
-                                                                              <p class="ioDesc">Response</p>
-                    <section class="outgoingCall rawResponse">
-                      <pre class="outgoing outgoingHeaders"><code>500 (Internal Server Error)
-Content-Type: application/json</code></pre>
-                      <pre class="outgoing"><code class="language-javascript">{
-  &#34;success&#34;: 0,
-  &#34;error&#34;: &#34;Unknow error&#34;
-}</code></pre>
-                    </section>
-                                                                                    </section>
-            </section>
-                          <section class="debugger" data-resource-signature="POST /api/campaign"></section>
-              
-              <section class="tryit">
-                <form name="jsRunExample">
-                  <span class="ajaxLoader block jsEmptyTryit"></span>
-                </form>
-              </section>
-                      </div>
-
-          
-        </section>                      
-        
-        
-        <section class="resource noActivity">
-          <hgroup>
-            <h1 class="methodGet"><span>GET</span></h1>
-            <h2>/api/campaign/{key}</h2>
-            <a class="resourcePermalink" href="#get-%2Fapi%2Fcampaign%2F%7Bkey%7D" name="get-%2Fapi%2Fcampaign%2F%7Bkey%7D"><span> </span></a>
-            <div class="toggle"></div>
-                      </hgroup>
-
-                                <article class="details">
-              <p>Get details of an campaign</p>                          </article>
-                    <div class="content">
-            <nav class="switch">
-              <ul>
-                <a href="#example" class="active"><li><span>Example</span></li></a>
-                                  <a href="#debugger"><li><span>Debugger</span></li></a>
-                                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
-                              </ul>
-            </nav>
-            <section class="example">
-                            <nav class="language">
-                <form name="languageSwitcher">
-                  <p>Show code sample</p>
-                  <select>
-                                          <option value="raw">none (raw data)</option>
-                                          <option value="curl">curl</option>
-                                          <option value="csharp">C#</option>
-                                          <option value="javascript">javascript</option>
-                                          <option value="nodejs">node.js</option>
-                                          <option value="python">python</option>
-                                          <option value="php">php</option>
-                                          <option value="ruby">ruby</option>
-                                          <option value="vb">Visual Basic</option>
-                                          <option value="objc">Objective-C</option>
-                                          <option value="swift">Swift</option>
-                                          <option value="groovy">Groovy</option>
-                                      </select>
-                </form>
-              </nav>
-                            <section class="code" id="generatedResourceCodeS6E3">                                                                            
-<span id="requestExampleIdS6E3req0" class="hidden"></span>
-<script>
-window.docResources["generatedResourceCodeS6E3"] = (window.docResources["generatedResourceCodeS6E3"] || []).concat({
-  "exampleId": "S6E3req0",
-  "url": "/api/campaign/{key}",
-  "method": "GET",
-  "contentType": "application/json",
-  "headers": {
-    "Content-Type": "application/json",
-    "Auth-Service-Key": "myservicekey",
-    "Auth-Token": "MyServiceToken"
-  },
-  "body": ""
-});
-</script>
-                                                                                                <p class="ioDesc">Response</p>
-                    <section class="outgoingCall rawResponse">
-                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
-Content-Type: application/json</code></pre>
-                      <pre class="outgoing"><code class="language-javascript">{
-  &#34;id&#34;: &#34;1&#34;,
-  &#34;key&#34;: &#34;45ad434daaf7bf22e45c8938fb745b45&#34;,
-  &#34;total&#34;: 0,
-  &#34;sent&#34;: 0,
-  &#34;fail&#34;: 0,
-  &#34;progress&#34;: 0,
-  &#34;status&#34;: 0,
-  &#34;subject&#34;: &#34;The subject of email&#34;,
-  &#34;body&#34;: &#34;The body of email&#34;,
-  &#34;headers&#34;: {
-    &#34;Content-Type&#34;: &#34;text/html&#34;,
-    &#34;Bounce-Mail&#34;: &#34;mybounce@domain.com&#34;
-  },
-  &#34;user_vars&#34;: 1,
-  &#34;user_headers&#34;: 1,
-  &#34;date&#34;: &#34;2014-08-05&#34;,
-  &#34;external&#34;: &#34;123&#34;,
-  &#34;pid&#34;: null,
-}</code></pre>
-                    </section>
-                                                                              <p class="ioDesc">Response</p>
-                    <section class="outgoingCall rawResponse">
-                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
-Content-Type: application/json</code></pre>
-                      <pre class="outgoing"><code class="language-javascript">{
-  &#34;success&#34;: 0,
-  &#34;error&#34;: &#34;Campaign not found&#34;
-}</code></pre>
-                    </section>
-                                                                                    </section>
-            </section>
-                          <section class="debugger" data-resource-signature="GET /api/campaign/{key}"></section>
-              
-              <section class="tryit">
-                <form name="jsRunExample">
-                  <span class="ajaxLoader block jsEmptyTryit"></span>
-                </form>
-              </section>
-                      </div>
-
-          
-        </section>                      
-        
-        
-        <section class="resource noActivity">
-          <hgroup>
-            <h1 class="methodPost"><span>PUT</span></h1>
-            <h2>/api/campaign/{key}</h2>
-            <a class="resourcePermalink" href="#put-%2Fapi%2Fcampaign%2F%7Bkey%7D" name="put-%2Fapi%2Fcampaign%2F%7Bkey%7D"><span> </span></a>
-            <div class="toggle"></div>
-                      </hgroup>
-
-                                <article class="details">
-              <p>Update an campaign</p>                            <div class="paramsTableWrap"><table class="paramsTable">
-                <caption>Parameters</caption>
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Details</th>
-                  </tr>
-                </thead>
-                <tbody>
-                                      <tr>
-                      <td>subject</td>
-                      <td><p>The campaigns subject</p>
-</td>
-                      <td>string, required                                              </td>
-                    </tr>
-                                      <tr>
-                      <td>body</td>
-                      <td><p>The body of email</p>
-</td>
-                      <td>string, required                                              </td>
-                    </tr>
-                                      <tr>
-                      <td>headers</td>
-                      <td><p>The headers to send in each all emails</p>
-</td>
-                      <td>array, required                                              </td>
-                    </tr>
-                                      <tr>
-                      <td>user_vars</td>
-                      <td><p>Flag for parse queue with body variables</p>
-</td>
-                      <td>integer, optional                                              </td>
-                    </tr>
-                                      <tr>
-                      <td>user_headers</td>
-                      <td><p>Flag for set custom headers by each destination</p>
-</td>
-                      <td>integer, optional                                              </td>
-                    </tr>
-                                      <tr>
-                      <td>external</td>
-                      <td><p>The identification of this campaign in client application.</p>
-</td>
-                      <td>integer, required                                              </td>
-                    </tr>
-                                  </tbody>
-              </table></div>
-                          </article>
-                    <div class="content">
-            <nav class="switch">
-              <ul>
-                <a href="#example" class="active"><li><span>Example</span></li></a>
-                                  <a href="#debugger"><li><span>Debugger</span></li></a>
-                                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
-                              </ul>
-            </nav>
-            <section class="example">
-                            <nav class="language">
-                <form name="languageSwitcher">
-                  <p>Show code sample</p>
-                  <select>
-                                          <option value="raw">none (raw data)</option>
-                                          <option value="curl">curl</option>
-                                          <option value="csharp">C#</option>
-                                          <option value="javascript">javascript</option>
-                                          <option value="nodejs">node.js</option>
-                                          <option value="python">python</option>
-                                          <option value="php">php</option>
-                                          <option value="ruby">ruby</option>
-                                          <option value="vb">Visual Basic</option>
-                                          <option value="objc">Objective-C</option>
-                                          <option value="swift">Swift</option>
-                                          <option value="groovy">Groovy</option>
-                                      </select>
-                </form>
-              </nav>
-                            <section class="code" id="generatedResourceCodeS6E4">                                                                            
-<span id="requestExampleIdS6E4req0" class="hidden"></span>
-<script>
-window.docResources["generatedResourceCodeS6E4"] = (window.docResources["generatedResourceCodeS6E4"] || []).concat({
-  "exampleId": "S6E4req0",
-  "url": "/api/campaign/{key}",
-  "method": "PUT",
-  "contentType": "application/json",
-  "headers": {
-    "Content-Type": "application/json",
-    "Auth-Service-Key": "myservicekey",
-    "Auth-Token": "MyServiceToken"
-  },
-  "body": "{\n  \"subject\": \"The subject of mail\",\n  \"body\": \"The body of email\",\n  \"headers\": {\n    \"Content-Type\": \"text/html\",\n    \"Bounce-Mail\": null\n  },\n  \"user_vars\": 0,\n  \"user_headers\": 0,\n  \"external\": 456\n}"
-});
-</script>
-                                                                                                <p class="ioDesc">Response</p>
-                    <section class="outgoingCall rawResponse">
-                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
-Content-Type: application/json</code></pre>
-                      <pre class="outgoing"><code class="language-javascript">{
-  &#34;success&#34;: 1,
-  &#34;campaign&#34;: &#34;45ad434daaf7bf22e45c8938fb745b45&#34;
-}</code></pre>
-                    </section>
-                                                                              <p class="ioDesc">Response</p>
-                    <section class="outgoingCall rawResponse">
-                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
-Content-Type: application/json</code></pre>
-                      <pre class="outgoing"><code class="language-javascript">{
-  &#34;success&#34;: 0,
-  &#34;error&#34;: &#34;The error message&#34;,
-  &#34;details&#34;: &#34;The detailed information about error, present if occured a validation error&#34;
-}</code></pre>
-                    </section>
-                                                                              <p class="ioDesc">Response</p>
-                    <section class="outgoingCall rawResponse">
-                      <pre class="outgoing outgoingHeaders"><code>500 (Internal Server Error)
-Content-Type: application/json</code></pre>
-                      <pre class="outgoing"><code class="language-javascript">{
-  &#34;success&#34;: 0,
-  &#34;error&#34;: &#34;Unknow error&#34;
-}</code></pre>
-                    </section>
-                                                                                    </section>
-            </section>
-                          <section class="debugger" data-resource-signature="PUT /api/campaign/{key}"></section>
-              
-              <section class="tryit">
-                <form name="jsRunExample">
-                  <span class="ajaxLoader block jsEmptyTryit"></span>
-                </form>
-              </section>
-                      </div>
-
-          
-        </section>                      
-        
-        
-        <section class="resource noActivity">
-          <hgroup>
-            <h1 class="methodPost"><span>DELETE</span></h1>
-            <h2>/api/campaign/{key}</h2>
-            <a class="resourcePermalink" href="#delete-%2Fapi%2Fcampaign%2F%7Bkey%7D" name="delete-%2Fapi%2Fcampaign%2F%7Bkey%7D"><span> </span></a>
-            <div class="toggle"></div>
-                      </hgroup>
-
-                                <article class="details">
-              <p>Remove an campaign</p>                          </article>
-                    <div class="content">
-            <nav class="switch">
-              <ul>
-                <a href="#example" class="active"><li><span>Example</span></li></a>
-                                  <a href="#debugger"><li><span>Debugger</span></li></a>
-                                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
-                              </ul>
-            </nav>
-            <section class="example">
-                            <nav class="language">
-                <form name="languageSwitcher">
-                  <p>Show code sample</p>
-                  <select>
-                                          <option value="raw">none (raw data)</option>
-                                          <option value="curl">curl</option>
-                                          <option value="csharp">C#</option>
-                                          <option value="javascript">javascript</option>
-                                          <option value="nodejs">node.js</option>
-                                          <option value="python">python</option>
-                                          <option value="php">php</option>
-                                          <option value="ruby">ruby</option>
-                                          <option value="vb">Visual Basic</option>
-                                          <option value="objc">Objective-C</option>
-                                          <option value="swift">Swift</option>
-                                          <option value="groovy">Groovy</option>
-                                      </select>
-                </form>
-              </nav>
-                            <section class="code" id="generatedResourceCodeS6E5">                                                                            
-<span id="requestExampleIdS6E5req0" class="hidden"></span>
-<script>
-window.docResources["generatedResourceCodeS6E5"] = (window.docResources["generatedResourceCodeS6E5"] || []).concat({
-  "exampleId": "S6E5req0",
-  "url": "/api/campaign/{key}",
-  "method": "DELETE",
-  "contentType": "application/json",
-  "headers": {
-    "Content-Type": "application/json",
-    "Auth-Service-Key": "myservicetoken",
-    "Auth-Token": "MyServiceToken"
-  },
-  "body": ""
-});
-</script>
-                                                                                                <p class="ioDesc">Response</p>
-                    <section class="outgoingCall rawResponse">
-                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
-Content-Type: application/json</code></pre>
-                      <pre class="outgoing"><code class="language-javascript">{
-  &#34;success&#34;: 1
-}</code></pre>
-                    </section>
-                                                                                    </section>
-            </section>
-                          <section class="debugger" data-resource-signature="DELETE /api/campaign/{key}"></section>
-              
-              <section class="tryit">
-                <form name="jsRunExample">
-                  <span class="ajaxLoader block jsEmptyTryit"></span>
-                </form>
-              </section>
-                      </div>
-
-          
-        </section>                      
-        
-        
-        <section class="resource noActivity">
-          <hgroup>
-            <h1 class="methodGet"><span>GET</span></h1>
-            <h2>/api/campaign/{key}/status</h2>
-            <a class="resourcePermalink" href="#get-%2Fapi%2Fcampaign%2F%7Bkey%7D%2Fstatus" name="get-%2Fapi%2Fcampaign%2F%7Bkey%7D%2Fstatus"><span> </span></a>
-            <div class="toggle"></div>
-                      </hgroup>
-
-                                <article class="details">
-              <p>Get the status information of an campaign</p>                          </article>
-                    <div class="content">
-            <nav class="switch">
-              <ul>
-                <a href="#example" class="active"><li><span>Example</span></li></a>
-                                  <a href="#debugger"><li><span>Debugger</span></li></a>
-                                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
-                              </ul>
-            </nav>
-            <section class="example">
-                            <nav class="language">
-                <form name="languageSwitcher">
-                  <p>Show code sample</p>
-                  <select>
-                                          <option value="raw">none (raw data)</option>
-                                          <option value="curl">curl</option>
-                                          <option value="csharp">C#</option>
-                                          <option value="javascript">javascript</option>
-                                          <option value="nodejs">node.js</option>
-                                          <option value="python">python</option>
-                                          <option value="php">php</option>
-                                          <option value="ruby">ruby</option>
-                                          <option value="vb">Visual Basic</option>
-                                          <option value="objc">Objective-C</option>
-                                          <option value="swift">Swift</option>
-                                          <option value="groovy">Groovy</option>
-                                      </select>
-                </form>
-              </nav>
-                            <section class="code" id="generatedResourceCodeS6E6">                                                                            
-<span id="requestExampleIdS6E6req0" class="hidden"></span>
-<script>
-window.docResources["generatedResourceCodeS6E6"] = (window.docResources["generatedResourceCodeS6E6"] || []).concat({
-  "exampleId": "S6E6req0",
-  "url": "/api/campaign/{key}/status",
-  "method": "GET",
-  "contentType": "application/json",
-  "headers": {
-    "Content-Type": "application/json",
-    "Auth-Service-Key": "myservicekey",
-    "Auth-Token": "MyServiceToken"
-  },
-  "body": ""
-});
-</script>
-                                                                                                <p class="ioDesc">Response</p>
-                    <section class="outgoingCall rawResponse">
-                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
-Content-Type: application/json</code></pre>
-                      <pre class="outgoing"><code class="language-javascript">{
-  &#34;id&#34; : &#34;1&#34;,
-  &#34;key&#34; : &#34;45ad434daaf7bf22e45c8938fb745b45&#34;,
-  &#34;total&#34; : 0,
-  &#34;sent&#34; : 0,
-  &#34;fail&#34; : 0,
-  &#34;progress&#34; : 0,
-  &#34;status&#34; : 0,
-  &#34;external&#34; : &#34;123&#34;,
-  &#34;pid&#34; : null,
-  &#34;cache&#34;: 1
-}</code></pre>
-                    </section>
-                                                                              <p class="ioDesc">Response</p>
-                    <section class="outgoingCall rawResponse">
-                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
-Content-Type: application/json</code></pre>
-                      <pre class="outgoing"><code class="language-javascript">{
-  &#34;success&#34;: 0,
-  &#34;error&#34;: &#34;Campaign not found&#34;
-}</code></pre>
-                    </section>
-                                                                                    </section>
-            </section>
-                          <section class="debugger" data-resource-signature="GET /api/campaign/{key}/status"></section>
-              
-              <section class="tryit">
-                <form name="jsRunExample">
-                  <span class="ajaxLoader block jsEmptyTryit"></span>
-                </form>
-              </section>
-                      </div>
-
-          
-        </section>                      
-        
-        
-        <section class="resource noActivity">
-          <hgroup>
-            <h1 class="methodGet"><span>GET</span></h1>
-            <h2>/api/campaign/{key}/queue</h2>
-            <a class="resourcePermalink" href="#get-%2Fapi%2Fcampaign%2F%7Bkey%7D%2Fqueue" name="get-%2Fapi%2Fcampaign%2F%7Bkey%7D%2Fqueue"><span> </span></a>
-            <div class="toggle"></div>
-                      </hgroup>
-
-                                <article class="details">
-              <p>Retrieve the current email queue of an campaign</p>                          </article>
-                    <div class="content">
-            <nav class="switch">
-              <ul>
-                <a href="#example" class="active"><li><span>Example</span></li></a>
-                                  <a href="#debugger"><li><span>Debugger</span></li></a>
-                                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
-                              </ul>
-            </nav>
-            <section class="example">
-                            <nav class="language">
-                <form name="languageSwitcher">
-                  <p>Show code sample</p>
-                  <select>
-                                          <option value="raw">none (raw data)</option>
-                                          <option value="curl">curl</option>
-                                          <option value="csharp">C#</option>
-                                          <option value="javascript">javascript</option>
-                                          <option value="nodejs">node.js</option>
-                                          <option value="python">python</option>
-                                          <option value="php">php</option>
-                                          <option value="ruby">ruby</option>
-                                          <option value="vb">Visual Basic</option>
-                                          <option value="objc">Objective-C</option>
-                                          <option value="swift">Swift</option>
-                                          <option value="groovy">Groovy</option>
-                                      </select>
-                </form>
-              </nav>
-                            <section class="code" id="generatedResourceCodeS6E7">                                                                            
-<span id="requestExampleIdS6E7req0" class="hidden"></span>
-<script>
-window.docResources["generatedResourceCodeS6E7"] = (window.docResources["generatedResourceCodeS6E7"] || []).concat({
-  "exampleId": "S6E7req0",
-  "url": "/api/campaign/{key}/queue",
-  "method": "GET",
-  "contentType": "application/json",
-  "headers": {
-    "Content-Type": "application/json",
-    "Auth-Service-Key": "myservicekey",
-    "Auth-Token": "MyServiceToken"
-  },
-  "body": ""
-});
-</script>
-                                                                                                <p class="ioDesc">Response</p>
-                    <section class="outgoingCall rawResponse">
-                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
-Content-Type: application/json</code></pre>
-                      <pre class="outgoing"><code class="language-javascript">[&#34;person1@domain.com&#34;,&#34;person2@domain.com&#34;,&#34;person3@domain.com&#34;]</code></pre>
-                    </section>
-                                                                              <p class="ioDesc">Response</p>
-                    <section class="outgoingCall rawResponse">
-                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
-Content-Type: application/json</code></pre>
-                      <pre class="outgoing"><code class="language-javascript">[
+  "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Third Service"</span></span>, "<span class="hljs-attribute">key</span>":<span class="hljs-value"><span class="hljs-string">"svc3"</span>
+</span>}]
+</code></pre></li></ul></section><section id="services--post" class="panel panel-success"><div class="panel-heading"><div style="float:left"><a href="#services--post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/service</code></div></div><div class="panel-body"><p>Create a new Service</p>
+</div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>name</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>Service Name</span></span><p>The Service name</p>
+</dd><dt>key</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>myservicekey</span></span><p>The service key that will used to authenticate your HTTP requests</p>
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#5d6adbca79c68982206936ceb376ebb1" class="pull-right">Toggle</a></li><li id="5d6adbca79c68982206936ceb376ebb1" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Service Name"</span></span>,
+  "<span class="hljs-attribute">key</span>": <span class="hljs-value"><span class="hljs-string">"myservicekey"</span> 
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#d9e8ab56ab2ace92bde3207d4a12edcd" class="pull-right">Toggle</a></li><li id="d9e8ab56ab2ace92bde3207d4a12edcd" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{ 
+  "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>, 
+  "<span class="hljs-attribute">key</span>": <span class="hljs-value"><span class="hljs-string">"myservicekey"</span></span>, 
+  "<span class="hljs-attribute">token</span>": <span class="hljs-value"><span class="hljs-string">"MyServiceToken"</span> 
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#083184bb088e0777614bc400f62a2a19" class="pull-right">Toggle</a></li><li id="083184bb088e0777614bc400f62a2a19" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+  "<span class="hljs-attribute">error</span>": <span class="hljs-value"><span class="hljs-string">"The error message"</span></span>,
+  "<span class="hljs-attribute">details</span>": <span class="hljs-value"><span class="hljs-string">"The detailed information about error, present only if is a validation error"</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>500</code></strong><a data-toggle="collapse" data-target="#104404f583610765805d5d27b78741db" class="pull-right">Toggle</a></li><li id="104404f583610765805d5d27b78741db" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+  "<span class="hljs-attribute">error</span>": <span class="hljs-value"><span class="hljs-string">"Unknow error"</span>
+</span>}
+</code></pre></li></ul></section><h4 id="services-">Resources&nbsp;<a href="#services-"><i class="fa fa-link"></i></a></h4><section id="services--get" class="panel panel-info"><div class="panel-heading"><div style="float:left"><a href="#services--get" class="btn btn-xs btn-info">GET</a></div><div style="overflow:hidden"><code>/service/{key}</code></div></div><div class="panel-body"><p>Get a Service</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#0403b74c7abfb770ec806c73d5cf5485" class="pull-right">Toggle</a></li><li id="0403b74c7abfb770ec806c73d5cf5485" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#3fbce774e7f0693bc949c5c083e90ff2" class="pull-right">Toggle</a></li><li id="3fbce774e7f0693bc949c5c083e90ff2" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"First Service"</span></span>,
+  "<span class="hljs-attribute">key</span>": <span class="hljs-value"><span class="hljs-string">"svc1"</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#a25ec8344a06203059c5401b09f0d758" class="pull-right">Toggle</a></li><li id="a25ec8344a06203059c5401b09f0d758" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+  "<span class="hljs-attribute">error</span>": <span class="hljs-value"><span class="hljs-string">"Service not found"</span>
+</span>}
+</code></pre></li></ul></section><section id="services--put" class="panel panel-warning"><div class="panel-heading"><div style="float:left"><a href="#services--put" class="btn btn-xs btn-warning">PUT</a></div><div style="overflow:hidden"><code>/service/{key}</code></div></div><div class="panel-body"><p>Update a Service</p>
+</div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>name</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>Service Name</span></span><p>The name of service</p>
+</dd><dt>key</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>myservicekey</span></span><p>The service key that will used to authenticate your HTTP requests</p>
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#a705d242557e7e4885ba7962d4b802fa" class="pull-right">Toggle</a></li><li id="a705d242557e7e4885ba7962d4b802fa" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{ "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Service Name"</span></span>, "<span class="hljs-attribute">key</span>": <span class="hljs-value"><span class="hljs-string">"myservicekey"</span> </span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#8d922be64ae0a7e5483a5b0abfa21ecc" class="pull-right">Toggle</a></li><li id="8d922be64ae0a7e5483a5b0abfa21ecc" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+  "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Service Name"</span></span>,
+  "<span class="hljs-attribute">key</span>": <span class="hljs-value"><span class="hljs-string">"myservicekey"</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#075897da7c7f8e7a75bf0ea3c2667fc9" class="pull-right">Toggle</a></li><li id="075897da7c7f8e7a75bf0ea3c2667fc9" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+  "<span class="hljs-attribute">error</span>": <span class="hljs-value"><span class="hljs-string">"The error message"</span></span>,
+  "<span class="hljs-attribute">details</span>": <span class="hljs-value"><span class="hljs-string">"The detailed information about error, present only if is a validation error"</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>500</code></strong><a data-toggle="collapse" data-target="#acc8eb56c878672e461c07a4beb7fe2d" class="pull-right">Toggle</a></li><li id="acc8eb56c878672e461c07a4beb7fe2d" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+  "<span class="hljs-attribute">error</span>": <span class="hljs-value"><span class="hljs-string">"Unknow error"</span>
+</span>}
+</code></pre></li></ul></section><section id="services--delete" class="panel panel-danger"><div class="panel-heading"><div style="float:left"><a href="#services--delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/service/{key}</code></div></div><div class="panel-body"><p>Remove a Service</p>
+<p><strong>Warning:</strong> This action <em>permanently</em> destroy all information about service and it actions from API database.</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#fdf3901046e90a0d44eba0f2efa1e05d" class="pull-right">Toggle</a></li><li id="fdf3901046e90a0d44eba0f2efa1e05d" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#019f9d7853061a1fda719e5ee5bfc28f" class="pull-right">Toggle</a></li><li id="019f9d7853061a1fda719e5ee5bfc28f" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-number">1</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>500</code></strong><a data-toggle="collapse" data-target="#1c77ec26f03b6c90fecc5f182c292bf4" class="pull-right">Toggle</a></li><li id="1c77ec26f03b6c90fecc5f182c292bf4" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+  "<span class="hljs-attribute">error</span>": <span class="hljs-value"><span class="hljs-string">"Unknow error"</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#61a1578e12667629316037180cea3712" class="pull-right">Toggle</a></li><li id="61a1578e12667629316037180cea3712" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+  "<span class="hljs-attribute">error</span>": <span class="hljs-value"><span class="hljs-string">"Service not found"</span>
+</span>}
+</code></pre></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="ip-addresses">Ip Addresses&nbsp;<a href="#ip-addresses"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><h4 id="ip-addresses-">Resources&nbsp;<a href="#ip-addresses-"><i class="fa fa-link"></i></a></h4><section id="ip-addresses--get" class="panel panel-info"><div class="panel-heading"><div style="float:left"><a href="#ip-addresses--get" class="btn btn-xs btn-info">GET</a></div><div style="overflow:hidden"><code>/ipaddress</code></div></div><div class="panel-body"><p>Retrieve all allowed IP addresses</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#733415ccb2e9c64146de69567129c318" class="pull-right">Toggle</a></li><li id="733415ccb2e9c64146de69567129c318" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#5c74401fabcb05545e058dd7579a7686" class="pull-right">Toggle</a></li><li id="5c74401fabcb05545e058dd7579a7686" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>[
+  <span class="hljs-string">"192.168.0.1"</span>,
+  <span class="hljs-string">"192.168.0.2"</span>,
+  <span class="hljs-string">"192.168.0.3"</span>
+]
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section><section id="ip-addresses--post" class="panel panel-success"><div class="panel-heading"><div style="float:left"><a href="#ip-addresses--post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/ipaddress</code></div></div><div class="panel-body"><p>Allow new IP address to consume API</p>
+</div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>ipaddress</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>127.0.0.1</span></span><p>The Ip address that you wish to allow</p>
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#5a896e0ea98a9c0c31e64f5b4ca00d68" class="pull-right">Toggle</a></li><li id="5a896e0ea98a9c0c31e64f5b4ca00d68" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">ipaddress</span>": <span class="hljs-value"><span class="hljs-string">"192.168.0.1"</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#5135e54664f496acd4fca1d361fe0939" class="pull-right">Toggle</a></li><li id="5135e54664f496acd4fca1d361fe0939" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-number">1</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#ad56b4d0a538331f68a38388c2d7554b" class="pull-right">Toggle</a></li><li id="ad56b4d0a538331f68a38388c2d7554b" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+  "<span class="hljs-attribute">error</span>": <span class="hljs-value"><span class="hljs-string">"The error message"</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>500</code></strong><a data-toggle="collapse" data-target="#4a1ec1c825b8e31764fc181d33f4c81a" class="pull-right">Toggle</a></li><li id="4a1ec1c825b8e31764fc181d33f4c81a" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+  "<span class="hljs-attribute">error</span>": <span class="hljs-value"><span class="hljs-string">"Unknow error"</span>
+</span>}
+</code></pre></li></ul></section><h4 id="ip-addresses-">Resources&nbsp;<a href="#ip-addresses-"><i class="fa fa-link"></i></a></h4><section id="ip-addresses--delete" class="panel panel-danger"><div class="panel-heading"><div style="float:left"><a href="#ip-addresses--delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/ipaddress/{ipaddress}</code></div></div><div class="panel-body"><p>Revoke access from an IP address</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#cc27418f596e6abd7662e16b4e951473" class="pull-right">Toggle</a></li><li id="cc27418f596e6abd7662e16b4e951473" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#13c877178ca4468c75e81e9030c7652f" class="pull-right">Toggle</a></li><li id="13c877178ca4468c75e81e9030c7652f" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-number">1</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#7be773837a961f1d9ebfaf77d503815a" class="pull-right">Toggle</a></li><li id="7be773837a961f1d9ebfaf77d503815a" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+  "<span class="hljs-attribute">error</span>": <span class="hljs-value"><span class="hljs-string">"Ip address not found"</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>500</code></strong><a data-toggle="collapse" data-target="#36c5474f7e2075f45162eda8af03298b" class="pull-right">Toggle</a></li><li id="36c5474f7e2075f45162eda8af03298b" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+ "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+ "<span class="hljs-attribute">error</span>": <span class="hljs-value"><span class="hljs-string">"Unknow error"</span>
+</span>}
+</code></pre></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="campaigns">Campaigns&nbsp;<a href="#campaigns"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><h4 id="campaigns-">Resources&nbsp;<a href="#campaigns-"><i class="fa fa-link"></i></a></h4><section id="campaigns--get" class="panel panel-info"><div class="panel-heading"><div style="float:left"><a href="#campaigns--get" class="btn btn-xs btn-info">GET</a></div><div style="overflow:hidden"><code>/campaign</code></div></div><div class="panel-body"><p>Retrieve all campaigns</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#7a3211ded7aa716ac0e11b2e5ad7ebfb" class="pull-right">Toggle</a></li><li id="7a3211ded7aa716ac0e11b2e5ad7ebfb" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>501</code></strong></li></ul></section><section id="campaigns--post" class="panel panel-success"><div class="panel-heading"><div style="float:left"><a href="#campaigns--post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/campaign</code></div></div><div class="panel-body"><p>Create a new campaign</p>
+</div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>subject</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>The campaigns subject</p>
+</dd><dt>body</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>The body of email</p>
+</dd><dt>headers</dt><dd><code>array</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>The headers to send in each all emails</p>
+</dd><dt>user_vars</dt><dd><code>integer</code>&nbsp;<span>(optional)</span>&nbsp;<p>Flag for parse queue with body variables</p>
+</dd><dt>user_headers</dt><dd><code>integer</code>&nbsp;<span>(optional)</span>&nbsp;<p>Flag for set custom headers by each destination</p>
+</dd><dt>external</dt><dd><code>integer</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>The identification of this campaign in client application.</p>
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#8e20fa157d4f39db9eea624a87feff6a" class="pull-right">Toggle</a></li><li id="8e20fa157d4f39db9eea624a87feff6a" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Auth-Service-Key</span>: <span class="hljs-string">myservicekey</span><br><span class="hljs-attribute">Auth-Token</span>: <span class="hljs-string">MyServiceToken</span><br></code></pre><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">subject</span>": <span class="hljs-value"><span class="hljs-string">"The subject of mail"</span></span>,
+  "<span class="hljs-attribute">body</span>": <span class="hljs-value"><span class="hljs-string">"The body of email"</span></span>,
+  "<span class="hljs-attribute">headers</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">Content-Type</span>": <span class="hljs-value"><span class="hljs-string">"text/html"</span></span>,
+    "<span class="hljs-attribute">Bounce-Mail</span>": <span class="hljs-value"><span class="hljs-string">"mybounce@domain.com"</span>
+  </span>}</span>,
+  "<span class="hljs-attribute">user_vars</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+  "<span class="hljs-attribute">user_headers</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+  "<span class="hljs-attribute">external</span>": <span class="hljs-value"><span class="hljs-number">123</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#58616af7ad38b4bf708a619624a050c8" class="pull-right">Toggle</a></li><li id="58616af7ad38b4bf708a619624a050c8" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+  "<span class="hljs-attribute">campaign</span>": <span class="hljs-value"><span class="hljs-string">"45ad434daaf7bf22e45c8938fb745b45"</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#891e044bbf197a8af2ee73e49b02dcf8" class="pull-right">Toggle</a></li><li id="891e044bbf197a8af2ee73e49b02dcf8" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+  "<span class="hljs-attribute">error</span>": <span class="hljs-value"><span class="hljs-string">"The error message"</span></span>,
+  "<span class="hljs-attribute">details</span>": <span class="hljs-value"><span class="hljs-string">"The detailed error message, present if occured a validation error"</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>500</code></strong><a data-toggle="collapse" data-target="#bdb29de52941cdfbc4cc429d35564c27" class="pull-right">Toggle</a></li><li id="bdb29de52941cdfbc4cc429d35564c27" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+  "<span class="hljs-attribute">error</span>": <span class="hljs-value"><span class="hljs-string">"Unknow error"</span>
+</span>}
+</code></pre></li></ul></section><h4 id="campaigns-">Resources&nbsp;<a href="#campaigns-"><i class="fa fa-link"></i></a></h4><section id="campaigns--get" class="panel panel-info"><div class="panel-heading"><div style="float:left"><a href="#campaigns--get" class="btn btn-xs btn-info">GET</a></div><div style="overflow:hidden"><code>/campaign/{key}</code></div></div><div class="panel-body"><p>Get details of an campaign</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#c5d7a2bd2c132b4d7575976a58502dec" class="pull-right">Toggle</a></li><li id="c5d7a2bd2c132b4d7575976a58502dec" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Auth-Service-Key</span>: <span class="hljs-string">myservicekey</span><br><span class="hljs-attribute">Auth-Token</span>: <span class="hljs-string">MyServiceToken</span><br></code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#0fde315132eb2ce4053f4f46c8a0bda5" class="pull-right">Toggle</a></li><li id="0fde315132eb2ce4053f4f46c8a0bda5" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"1"</span></span>,
+  "<span class="hljs-attribute">key</span>": <span class="hljs-value"><span class="hljs-string">"45ad434daaf7bf22e45c8938fb745b45"</span></span>,
+  "<span class="hljs-attribute">total</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+  "<span class="hljs-attribute">sent</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+  "<span class="hljs-attribute">fail</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+  "<span class="hljs-attribute">progress</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+  "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+  "<span class="hljs-attribute">subject</span>": <span class="hljs-value"><span class="hljs-string">"The subject of email"</span></span>,
+  "<span class="hljs-attribute">body</span>": <span class="hljs-value"><span class="hljs-string">"The body of email"</span></span>,
+  "<span class="hljs-attribute">headers</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">Content-Type</span>": <span class="hljs-value"><span class="hljs-string">"text/html"</span></span>,
+    "<span class="hljs-attribute">Bounce-Mail</span>": <span class="hljs-value"><span class="hljs-string">"mybounce@domain.com"</span>
+  </span>}</span>,
+  "<span class="hljs-attribute">user_vars</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+  "<span class="hljs-attribute">user_headers</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+  "<span class="hljs-attribute">date</span>": <span class="hljs-value"><span class="hljs-string">"2014-08-05"</span></span>,
+  "<span class="hljs-attribute">external</span>": <span class="hljs-value"><span class="hljs-string">"123"</span></span>,
+  "<span class="hljs-attribute">pid</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#5ae582b980d61260c00712ffd7bc689c" class="pull-right">Toggle</a></li><li id="5ae582b980d61260c00712ffd7bc689c" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+  "<span class="hljs-attribute">error</span>": <span class="hljs-value"><span class="hljs-string">"Campaign not found"</span>
+</span>}
+</code></pre></li></ul></section><section id="campaigns--put" class="panel panel-warning"><div class="panel-heading"><div style="float:left"><a href="#campaigns--put" class="btn btn-xs btn-warning">PUT</a></div><div style="overflow:hidden"><code>/campaign/{key}</code></div></div><div class="panel-body"><p>Update an campaign</p>
+</div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>subject</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>The campaigns subject</p>
+</dd><dt>body</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>The body of email</p>
+</dd><dt>headers</dt><dd><code>array</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>The headers to send in each all emails</p>
+</dd><dt>user_vars</dt><dd><code>integer</code>&nbsp;<span>(optional)</span>&nbsp;<p>Flag for parse queue with body variables</p>
+</dd><dt>user_headers</dt><dd><code>integer</code>&nbsp;<span>(optional)</span>&nbsp;<p>Flag for set custom headers by each destination</p>
+</dd><dt>external</dt><dd><code>integer</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>The identification of this campaign in client application.</p>
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#73aea4f16d9038a85c2fc1c07440781d" class="pull-right">Toggle</a></li><li id="73aea4f16d9038a85c2fc1c07440781d" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Auth-Service-Key</span>: <span class="hljs-string">myservicekey</span><br><span class="hljs-attribute">Auth-Token</span>: <span class="hljs-string">MyServiceToken</span><br></code></pre><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">subject</span>": <span class="hljs-value"><span class="hljs-string">"The subject of mail"</span></span>,
+  "<span class="hljs-attribute">body</span>": <span class="hljs-value"><span class="hljs-string">"The body of email"</span></span>,
+  "<span class="hljs-attribute">headers</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">Content-Type</span>": <span class="hljs-value"><span class="hljs-string">"text/html"</span></span>,
+    "<span class="hljs-attribute">Bounce-Mail</span>": <span class="hljs-value"><span class="hljs-literal">null</span>
+  </span>}</span>,
+  "<span class="hljs-attribute">user_vars</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+  "<span class="hljs-attribute">user_headers</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+  "<span class="hljs-attribute">external</span>": <span class="hljs-value"><span class="hljs-number">456</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#4e1a785bdaa8e571f30697e2a07fbae9" class="pull-right">Toggle</a></li><li id="4e1a785bdaa8e571f30697e2a07fbae9" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+  "<span class="hljs-attribute">campaign</span>": <span class="hljs-value"><span class="hljs-string">"45ad434daaf7bf22e45c8938fb745b45"</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#6742959fb0b88905c4ef6d663abca0c9" class="pull-right">Toggle</a></li><li id="6742959fb0b88905c4ef6d663abca0c9" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+  "<span class="hljs-attribute">error</span>": <span class="hljs-value"><span class="hljs-string">"The error message"</span></span>,
+  "<span class="hljs-attribute">details</span>": <span class="hljs-value"><span class="hljs-string">"The detailed information about error, present if occured a validation error"</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>500</code></strong><a data-toggle="collapse" data-target="#690eef3961fe7865aaced6cfef3876f3" class="pull-right">Toggle</a></li><li id="690eef3961fe7865aaced6cfef3876f3" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+  "<span class="hljs-attribute">error</span>": <span class="hljs-value"><span class="hljs-string">"Unknow error"</span>
+</span>}
+</code></pre></li></ul></section><section id="campaigns--delete" class="panel panel-danger"><div class="panel-heading"><div style="float:left"><a href="#campaigns--delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/campaign/{key}</code></div></div><div class="panel-body"><p>Remove an campaign</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#115f2affd0927e92bf98c98ccfe91a8c" class="pull-right">Toggle</a></li><li id="115f2affd0927e92bf98c98ccfe91a8c" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Auth-Service-Key</span>: <span class="hljs-string">myservicetoken</span><br><span class="hljs-attribute">Auth-Token</span>: <span class="hljs-string">MyServiceToken</span><br></code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#c580a636055d957c0319bf5b6e7905e7" class="pull-right">Toggle</a></li><li id="c580a636055d957c0319bf5b6e7905e7" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-number">1</span>
+</span>}
+</code></pre></li></ul></section><h4 id="campaigns-">Resources&nbsp;<a href="#campaigns-"><i class="fa fa-link"></i></a></h4><section id="campaigns--get" class="panel panel-info"><div class="panel-heading"><div style="float:left"><a href="#campaigns--get" class="btn btn-xs btn-info">GET</a></div><div style="overflow:hidden"><code>/campaign/{key}/status</code></div></div><div class="panel-body"><p>Get the status information of an campaign</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#c5d7a2bd2c132b4d7575976a58502dec" class="pull-right">Toggle</a></li><li id="c5d7a2bd2c132b4d7575976a58502dec" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Auth-Service-Key</span>: <span class="hljs-string">myservicekey</span><br><span class="hljs-attribute">Auth-Token</span>: <span class="hljs-string">MyServiceToken</span><br></code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#cea8ab720061d1d04acabbc62a37c47b" class="pull-right">Toggle</a></li><li id="cea8ab720061d1d04acabbc62a37c47b" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">id</span>" : <span class="hljs-value"><span class="hljs-string">"1"</span></span>,
+  "<span class="hljs-attribute">key</span>" : <span class="hljs-value"><span class="hljs-string">"45ad434daaf7bf22e45c8938fb745b45"</span></span>,
+  "<span class="hljs-attribute">total</span>" : <span class="hljs-value"><span class="hljs-number">0</span></span>,
+  "<span class="hljs-attribute">sent</span>" : <span class="hljs-value"><span class="hljs-number">0</span></span>,
+  "<span class="hljs-attribute">fail</span>" : <span class="hljs-value"><span class="hljs-number">0</span></span>,
+  "<span class="hljs-attribute">progress</span>" : <span class="hljs-value"><span class="hljs-number">0</span></span>,
+  "<span class="hljs-attribute">status</span>" : <span class="hljs-value"><span class="hljs-number">0</span></span>,
+  "<span class="hljs-attribute">external</span>" : <span class="hljs-value"><span class="hljs-string">"123"</span></span>,
+  "<span class="hljs-attribute">pid</span>" : <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+  "<span class="hljs-attribute">cache</span>": <span class="hljs-value"><span class="hljs-number">1</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#5ae582b980d61260c00712ffd7bc689c" class="pull-right">Toggle</a></li><li id="5ae582b980d61260c00712ffd7bc689c" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+  "<span class="hljs-attribute">error</span>": <span class="hljs-value"><span class="hljs-string">"Campaign not found"</span>
+</span>}
+</code></pre></li></ul></section><h4 id="campaigns-">Resources&nbsp;<a href="#campaigns-"><i class="fa fa-link"></i></a></h4><section id="campaigns--get" class="panel panel-info"><div class="panel-heading"><div style="float:left"><a href="#campaigns--get" class="btn btn-xs btn-info">GET</a></div><div style="overflow:hidden"><code>/campaign/{key}/queue</code></div></div><div class="panel-body"><p>Retrieve the current email queue of an campaign</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#c5d7a2bd2c132b4d7575976a58502dec" class="pull-right">Toggle</a></li><li id="c5d7a2bd2c132b4d7575976a58502dec" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Auth-Service-Key</span>: <span class="hljs-string">myservicekey</span><br><span class="hljs-attribute">Auth-Token</span>: <span class="hljs-string">MyServiceToken</span><br></code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#869e1a2b79cf85ec0e7f22c97cff6153" class="pull-right">Toggle</a></li><li id="869e1a2b79cf85ec0e7f22c97cff6153" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>[<span class="hljs-string">"person1@domain.com"</span>,<span class="hljs-string">"person2@domain.com"</span>,<span class="hljs-string">"person3@domain.com"</span>]
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#f76a2c920d8789ad03703e76c1daf060" class="pull-right">Toggle</a></li><li id="f76a2c920d8789ad03703e76c1daf060" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>[
   {
-    &#34;email&#34; : &#34;person1@domain.com&#34;,
-    &#34;vars&#34; : {
-      &#34;MyVar2&#34; : &#34;My Value 2&#34;,
-      &#34;MyVar&#34; : &#34;My Value&#34;
-    },
-    &#34;headers&#34; : {
-      &#34;Custom-Header&#34; : &#34;Custom-Value&#34;,
-      &#34;Custom-Header2&#34; : &#34;Custom Value 2&#34;
-    }
-  },
+    "<span class="hljs-attribute">email</span>" : <span class="hljs-value"><span class="hljs-string">"person1@domain.com"</span></span>,
+    "<span class="hljs-attribute">vars</span>" : <span class="hljs-value">{
+      "<span class="hljs-attribute">MyVar2</span>" : <span class="hljs-value"><span class="hljs-string">"My Value 2"</span></span>,
+      "<span class="hljs-attribute">MyVar</span>" : <span class="hljs-value"><span class="hljs-string">"My Value"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">headers</span>" : <span class="hljs-value">{
+      "<span class="hljs-attribute">Custom-Header</span>" : <span class="hljs-value"><span class="hljs-string">"Custom-Value"</span></span>,
+      "<span class="hljs-attribute">Custom-Header2</span>" : <span class="hljs-value"><span class="hljs-string">"Custom Value 2"</span>
+    </span>}
+  </span>},
   {
-    &#34;email&#34; : &#34;person2@domain.com&#34;,
-    &#34;vars&#34; : {
-      &#34;MyVar2&#34; : &#34;My Value 2&#34;,
-      &#34;MyVar&#34; : &#34;My Value&#34;
-    },
-    &#34;headers&#34; : {
-      &#34;Custom-Header&#34; : &#34;Custom-Value&#34;,
-      &#34;Custom-Header2&#34; : &#34;Custom Value 2&#34;
-    }
-  },
+    "<span class="hljs-attribute">email</span>" : <span class="hljs-value"><span class="hljs-string">"person2@domain.com"</span></span>,
+    "<span class="hljs-attribute">vars</span>" : <span class="hljs-value">{
+      "<span class="hljs-attribute">MyVar2</span>" : <span class="hljs-value"><span class="hljs-string">"My Value 2"</span></span>,
+      "<span class="hljs-attribute">MyVar</span>" : <span class="hljs-value"><span class="hljs-string">"My Value"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">headers</span>" : <span class="hljs-value">{
+      "<span class="hljs-attribute">Custom-Header</span>" : <span class="hljs-value"><span class="hljs-string">"Custom-Value"</span></span>,
+      "<span class="hljs-attribute">Custom-Header2</span>" : <span class="hljs-value"><span class="hljs-string">"Custom Value 2"</span>
+    </span>}
+  </span>},
   {
-    &#34;email&#34; : &#34;person3@domain.com&#34;,
-    &#34;vars&#34; : {
-      &#34;MyVar2&#34; : &#34;My Value 2&#34;,
-      &#34;MyVar&#34; : &#34;My Value&#34;
+    "<span class="hljs-attribute">email</span>" : <span class="hljs-value"><span class="hljs-string">"person3@domain.com"</span></span>,
+    "<span class="hljs-attribute">vars</span>" : <span class="hljs-value">{
+      "<span class="hljs-attribute">MyVar2</span>" : <span class="hljs-value"><span class="hljs-string">"My Value 2"</span></span>,
+      "<span class="hljs-attribute">MyVar</span>" : <span class="hljs-value"><span class="hljs-string">"My Value"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">headers</span>" : <span class="hljs-value">{
+      "<span class="hljs-attribute">Custom-Header</span>" : <span class="hljs-value"><span class="hljs-string">"Custom-Value"</span></span>,
+      "<span class="hljs-attribute">Custom-Header2</span>" : <span class="hljs-value"><span class="hljs-string">"Custom Value 2"</span>
+    </span>}
+  </span>}
+]
+</code></pre></li></ul></section><section id="campaigns--put" class="panel panel-warning"><div class="panel-heading"><div style="float:left"><a href="#campaigns--put" class="btn btn-xs btn-warning">PUT</a></div><div style="overflow:hidden"><code>/campaign/{key}/queue</code></div></div><div class="panel-body"><p>Update an campaign queue</p>
+</div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>Perform-Delete</dt><dd><code>integer</code>&nbsp;<span>(optional)</span>&nbsp;<p>A flag to set the operation, to include a stack of emails in queue or remove a stack of emails from it.<br /><br />This flag must be sent as a request header.</p>
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#d15555d2fe31710e0be101e7cdd3c2f6" class="pull-right">Toggle</a></li><li id="d15555d2fe31710e0be101e7cdd3c2f6" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Auth-Service-Key</span>: <span class="hljs-string">myservicekey</span><br><span class="hljs-attribute">Auth-Token</span>: <span class="hljs-string">MyServiceToken</span><br><span class="hljs-attribute">Perform-Delete</span>: <span class="hljs-string">0</span><br></code></pre><h5>Body</h5><pre><code><span class="hljs-comment"># Simple Queue</span>
+{<span class="hljs-string">"stack"</span>:[<span class="hljs-string">"person1<span class="hljs-variable">@domain</span>.com"</span>,<span class="hljs-string">"person2<span class="hljs-variable">@domain</span>.com"</span>,<span class="hljs-string">"person3<span class="hljs-variable">@domain</span>.com"</span>]}
+
+<span class="hljs-comment"># Custom Queue</span>
+{
+  <span class="hljs-string">"stack"</span>:[
+    {
+      <span class="hljs-string">"email"</span>:<span class="hljs-string">"person1<span class="hljs-variable">@domain</span>.com"</span>,
+      <span class="hljs-string">"vars"</span>:{
+        <span class="hljs-string">"MyVar"</span>:<span class="hljs-string">"My Value"</span>,
+        <span class="hljs-string">"MyVar2"</span>:<span class="hljs-string">"My Value 2"</span>
+      },
+      <span class="hljs-string">"headers"</span>:{
+        <span class="hljs-string">"Custom-Header"</span>:<span class="hljs-string">"Custom-Value"</span>,
+        <span class="hljs-string">"Custom-Header2"</span>:<span class="hljs-string">"Custom Value 2"</span>
+      }
     },
-    &#34;headers&#34; : {
-      &#34;Custom-Header&#34; : &#34;Custom-Value&#34;,
-      &#34;Custom-Header2&#34; : &#34;Custom Value 2&#34;
+    {
+      <span class="hljs-string">"email"</span>:<span class="hljs-string">"person2<span class="hljs-variable">@domain</span>.com"</span>,
+      <span class="hljs-string">"vars"</span>:{
+        <span class="hljs-string">"MyVar"</span>:<span class="hljs-string">"My Value"</span>,
+        <span class="hljs-string">"MyVar2"</span>:<span class="hljs-string">"My Value 2"</span>
+      },
+      <span class="hljs-string">"headers"</span>:{
+        <span class="hljs-string">"Custom-Header"</span>:<span class="hljs-string">"Custom-Value"</span>,
+        <span class="hljs-string">"Custom-Header2"</span>:<span class="hljs-string">"Custom Value 2"</span>
+      }
+    },
+    {
+      <span class="hljs-string">"email"</span>:<span class="hljs-string">"person3<span class="hljs-variable">@domain</span>.com"</span>,
+      <span class="hljs-string">"vars"</span>:{
+        <span class="hljs-string">"MyVar"</span>:<span class="hljs-string">"My Value"</span>,
+        <span class="hljs-string">"MyVar2"</span>:<span class="hljs-string">"My Value 2"</span>
+      },
+      <span class="hljs-string">"headers"</span>:{
+        <span class="hljs-string">"Custom-Header"</span>:<span class="hljs-string">"Custom-Value"</span>,
+        <span class="hljs-string">"Custom-Header2"</span>:<span class="hljs-string">"Custom Value 2"</span>
+      }
     }
-  }
-]</code></pre>
-                    </section>
-                                                                                    </section>
-            </section>
-                          <section class="debugger" data-resource-signature="GET /api/campaign/{key}/queue"></section>
-              
-              <section class="tryit">
-                <form name="jsRunExample">
-                  <span class="ajaxLoader block jsEmptyTryit"></span>
-                </form>
-              </section>
-                      </div>
-
-          
-        </section>                      
-        
-        
-        <section class="resource noActivity">
-          <hgroup>
-            <h1 class="methodPost"><span>PUT</span></h1>
-            <h2>/api/campaign/{key}/queue</h2>
-            <a class="resourcePermalink" href="#put-%2Fapi%2Fcampaign%2F%7Bkey%7D%2Fqueue" name="put-%2Fapi%2Fcampaign%2F%7Bkey%7D%2Fqueue"><span> </span></a>
-            <div class="toggle"></div>
-                      </hgroup>
-
-                                <article class="details">
-              <p>Update an campaign queue</p>                            <div class="paramsTableWrap"><table class="paramsTable">
-                <caption>Parameters</caption>
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Details</th>
-                  </tr>
-                </thead>
-                <tbody>
-                                      <tr>
-                      <td>Perform-Delete</td>
-                      <td><p>A flag to set the operation, to include a stack of emails in queue or remove a stack of emails from it.<br /><br />This flag must be sent as a request header.</p>
-</td>
-                      <td>integer, optional                                              </td>
-                    </tr>
-                                  </tbody>
-              </table></div>
-                          </article>
-                    <div class="content">
-            <nav class="switch">
-              <ul>
-                <a href="#example" class="active"><li><span>Example</span></li></a>
-                                  <a href="#debugger"><li><span>Debugger</span></li></a>
-                                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
-                              </ul>
-            </nav>
-            <section class="example">
-                            <nav class="language">
-                <form name="languageSwitcher">
-                  <p>Show code sample</p>
-                  <select>
-                                          <option value="raw">none (raw data)</option>
-                                          <option value="curl">curl</option>
-                                          <option value="csharp">C#</option>
-                                          <option value="javascript">javascript</option>
-                                          <option value="nodejs">node.js</option>
-                                          <option value="python">python</option>
-                                          <option value="php">php</option>
-                                          <option value="ruby">ruby</option>
-                                          <option value="vb">Visual Basic</option>
-                                          <option value="objc">Objective-C</option>
-                                          <option value="swift">Swift</option>
-                                          <option value="groovy">Groovy</option>
-                                      </select>
-                </form>
-              </nav>
-                            <section class="code" id="generatedResourceCodeS6E8">                                                                            
-<span id="requestExampleIdS6E8req0" class="hidden"></span>
-<script>
-window.docResources["generatedResourceCodeS6E8"] = (window.docResources["generatedResourceCodeS6E8"] || []).concat({
-  "exampleId": "S6E8req0",
-  "url": "/api/campaign/{key}/queue",
-  "method": "PUT",
-  "contentType": "application/json",
-  "headers": {
-    "Content-Type": "application/json",
-    "Auth-Service-Key": "myservicekey",
-    "Auth-Token": "MyServiceToken",
-    "Perform-Delete": "0"
-  },
-  "body": "# Simple Queue\n{\"stack\":[\"person1@domain.com\",\"person2@domain.com\",\"person3@domain.com\"]}\n\n# Custom Queue\n{\n  \"stack\":[\n    {\n      \"email\":\"person1@domain.com\",\n      \"vars\":{\n        \"MyVar\":\"My Value\",\n        \"MyVar2\":\"My Value 2\"\n      },\n      \"headers\":{\n        \"Custom-Header\":\"Custom-Value\",\n        \"Custom-Header2\":\"Custom Value 2\"\n      }\n    },\n    {\n      \"email\":\"person2@domain.com\",\n      \"vars\":{\n        \"MyVar\":\"My Value\",\n        \"MyVar2\":\"My Value 2\"\n      },\n      \"headers\":{\n        \"Custom-Header\":\"Custom-Value\",\n        \"Custom-Header2\":\"Custom Value 2\"\n      }\n    },\n    {\n      \"email\":\"person3@domain.com\",\n      \"vars\":{\n        \"MyVar\":\"My Value\",\n        \"MyVar2\":\"My Value 2\"\n      },\n      \"headers\":{\n        \"Custom-Header\":\"Custom-Value\",\n        \"Custom-Header2\":\"Custom Value 2\"\n      }\n    }\n  ]\n}"
-});
-</script>
-                                                                                                <p class="ioDesc">Response</p>
-                    <section class="outgoingCall rawResponse">
-                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
-Content-Type: application/json</code></pre>
-                      <pre class="outgoing"><code class="language-javascript">{
-  &#34;success&#34;: 1
-}</code></pre>
-                    </section>
-                                                                                    </section>
-            </section>
-                          <section class="debugger" data-resource-signature="PUT /api/campaign/{key}/queue"></section>
-              
-              <section class="tryit">
-                <form name="jsRunExample">
-                  <span class="ajaxLoader block jsEmptyTryit"></span>
-                </form>
-              </section>
-                      </div>
-
-          
-        </section>                      
-        
-        
-        <section class="resource noActivity">
-          <hgroup>
-            <h1 class="methodPost"><span>POST</span></h1>
-            <h2>/api/campaign/{key}/start</h2>
-            <a class="resourcePermalink" href="#post-%2Fapi%2Fcampaign%2F%7Bkey%7D%2Fstart" name="post-%2Fapi%2Fcampaign%2F%7Bkey%7D%2Fstart"><span> </span></a>
-            <div class="toggle"></div>
-                      </hgroup>
-
-                                <article class="details">
-              <p>Start a campaign send process</p>                          </article>
-                    <div class="content">
-            <nav class="switch">
-              <ul>
-                <a href="#example" class="active"><li><span>Example</span></li></a>
-                                  <a href="#debugger"><li><span>Debugger</span></li></a>
-                                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
-                              </ul>
-            </nav>
-            <section class="example">
-                            <nav class="language">
-                <form name="languageSwitcher">
-                  <p>Show code sample</p>
-                  <select>
-                                          <option value="raw">none (raw data)</option>
-                                          <option value="curl">curl</option>
-                                          <option value="csharp">C#</option>
-                                          <option value="javascript">javascript</option>
-                                          <option value="nodejs">node.js</option>
-                                          <option value="python">python</option>
-                                          <option value="php">php</option>
-                                          <option value="ruby">ruby</option>
-                                          <option value="vb">Visual Basic</option>
-                                          <option value="objc">Objective-C</option>
-                                          <option value="swift">Swift</option>
-                                          <option value="groovy">Groovy</option>
-                                      </select>
-                </form>
-              </nav>
-                            <section class="code" id="generatedResourceCodeS6E9">                                                                            
-<span id="requestExampleIdS6E9req0" class="hidden"></span>
-<script>
-window.docResources["generatedResourceCodeS6E9"] = (window.docResources["generatedResourceCodeS6E9"] || []).concat({
-  "exampleId": "S6E9req0",
-  "url": "/api/campaign/{key}/start",
-  "method": "POST",
-  "contentType": "application/json",
-  "headers": {
-    "Content-Type": "application/json",
-    "Auth-Service-Key": "myservicekey",
-    "Auth-Token": "MyServiceToken"
-  },
-  "body": ""
-});
-</script>
-                                                                                                <p class="ioDesc">Response</p>
-                    <section class="outgoingCall rawResponse">
-                      <pre class="outgoing outgoingHeaders"><code>204 (No Content)</code></pre>
-                      <pre class="outgoing"><code class=""></code></pre>
-                    </section>
-                                                                                    </section>
-            </section>
-                          <section class="debugger" data-resource-signature="POST /api/campaign/{key}/start"></section>
-              
-              <section class="tryit">
-                <form name="jsRunExample">
-                  <span class="ajaxLoader block jsEmptyTryit"></span>
-                </form>
-              </section>
-                      </div>
-
-          
-        </section>                      
-        
-        
-        <section class="resource noActivity">
-          <hgroup>
-            <h1 class="methodPost"><span>POST</span></h1>
-            <h2>/api/campaign/{key}/pause</h2>
-            <a class="resourcePermalink" href="#post-%2Fapi%2Fcampaign%2F%7Bkey%7D%2Fpause" name="post-%2Fapi%2Fcampaign%2F%7Bkey%7D%2Fpause"><span> </span></a>
-            <div class="toggle"></div>
-                      </hgroup>
-
-                                <article class="details">
-              <p>Pause a campaign send processs</p>                          </article>
-                    <div class="content">
-            <nav class="switch">
-              <ul>
-                <a href="#example" class="active"><li><span>Example</span></li></a>
-                                  <a href="#debugger"><li><span>Debugger</span></li></a>
-                                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
-                              </ul>
-            </nav>
-            <section class="example">
-                            <nav class="language">
-                <form name="languageSwitcher">
-                  <p>Show code sample</p>
-                  <select>
-                                          <option value="raw">none (raw data)</option>
-                                          <option value="curl">curl</option>
-                                          <option value="csharp">C#</option>
-                                          <option value="javascript">javascript</option>
-                                          <option value="nodejs">node.js</option>
-                                          <option value="python">python</option>
-                                          <option value="php">php</option>
-                                          <option value="ruby">ruby</option>
-                                          <option value="vb">Visual Basic</option>
-                                          <option value="objc">Objective-C</option>
-                                          <option value="swift">Swift</option>
-                                          <option value="groovy">Groovy</option>
-                                      </select>
-                </form>
-              </nav>
-                            <section class="code" id="generatedResourceCodeS6E10">                                                                            
-<span id="requestExampleIdS6E10req0" class="hidden"></span>
-<script>
-window.docResources["generatedResourceCodeS6E10"] = (window.docResources["generatedResourceCodeS6E10"] || []).concat({
-  "exampleId": "S6E10req0",
-  "url": "/api/campaign/{key}/pause",
-  "method": "POST",
-  "contentType": "application/json",
-  "headers": {
-    "Content-Type": "application/json",
-    "Auth-Service-Key": "myservicekey",
-    "Auth-Token": "MyServiceToken"
-  },
-  "body": ""
-});
-</script>
-                                                                                                <p class="ioDesc">Response</p>
-                    <section class="outgoingCall rawResponse">
-                      <pre class="outgoing outgoingHeaders"><code>204 (No Content)</code></pre>
-                      <pre class="outgoing"><code class=""></code></pre>
-                    </section>
-                                                                                    </section>
-            </section>
-                          <section class="debugger" data-resource-signature="POST /api/campaign/{key}/pause"></section>
-              
-              <section class="tryit">
-                <form name="jsRunExample">
-                  <span class="ajaxLoader block jsEmptyTryit"></span>
-                </form>
-              </section>
-                      </div>
-
-          
-        </section>                      
-        
-        
-        <section class="resource noActivity">
-          <hgroup>
-            <h1 class="methodPost"><span>POST</span></h1>
-            <h2>/api/campaign/{key}/stop</h2>
-            <a class="resourcePermalink" href="#post-%2Fapi%2Fcampaign%2F%7Bkey%7D%2Fstop" name="post-%2Fapi%2Fcampaign%2F%7Bkey%7D%2Fstop"><span> </span></a>
-            <div class="toggle"></div>
-                      </hgroup>
-
-                                <article class="details">
-              <p>Stop a campaign send processs</p>                          </article>
-                    <div class="content">
-            <nav class="switch">
-              <ul>
-                <a href="#example" class="active"><li><span>Example</span></li></a>
-                                  <a href="#debugger"><li><span>Debugger</span></li></a>
-                                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
-                              </ul>
-            </nav>
-            <section class="example">
-                            <nav class="language">
-                <form name="languageSwitcher">
-                  <p>Show code sample</p>
-                  <select>
-                                          <option value="raw">none (raw data)</option>
-                                          <option value="curl">curl</option>
-                                          <option value="csharp">C#</option>
-                                          <option value="javascript">javascript</option>
-                                          <option value="nodejs">node.js</option>
-                                          <option value="python">python</option>
-                                          <option value="php">php</option>
-                                          <option value="ruby">ruby</option>
-                                          <option value="vb">Visual Basic</option>
-                                          <option value="objc">Objective-C</option>
-                                          <option value="swift">Swift</option>
-                                          <option value="groovy">Groovy</option>
-                                      </select>
-                </form>
-              </nav>
-                            <section class="code" id="generatedResourceCodeS6E11">                                                                            
-<span id="requestExampleIdS6E11req0" class="hidden"></span>
-<script>
-window.docResources["generatedResourceCodeS6E11"] = (window.docResources["generatedResourceCodeS6E11"] || []).concat({
-  "exampleId": "S6E11req0",
-  "url": "/api/campaign/{key}/stop",
-  "method": "POST",
-  "contentType": "application/json",
-  "headers": {
-    "Content-Type": "application/json",
-    "Auth-Service-Key": "myservicekey",
-    "Auth-Token": "MyServiceToken"
-  },
-  "body": ""
-});
-</script>
-                                                                                                <p class="ioDesc">Response</p>
-                    <section class="outgoingCall rawResponse">
-                      <pre class="outgoing outgoingHeaders"><code>204 (No Content)</code></pre>
-                      <pre class="outgoing"><code class=""></code></pre>
-                    </section>
-                                                                                    </section>
-            </section>
-                          <section class="debugger" data-resource-signature="POST /api/campaign/{key}/stop"></section>
-              
-              <section class="tryit">
-                <form name="jsRunExample">
-                  <span class="ajaxLoader block jsEmptyTryit"></span>
-                </form>
-              </section>
-                      </div>
-
-          
-        </section>                      
-        
-        
-        <section class="resource noActivity">
-          <hgroup>
-            <h1 class="methodPost"><span>POST</span></h1>
-            <h2>/api/campaign/status</h2>
-            <a class="resourcePermalink" href="#post-%2Fapi%2Fcampaign%2Fstatus" name="post-%2Fapi%2Fcampaign%2Fstatus"><span> </span></a>
-            <div class="toggle"></div>
-                      </hgroup>
-
-                                <article class="details">
-              <p>Get status from multiple campaigns</p>                            <div class="paramsTableWrap"><table class="paramsTable">
-                <caption>Parameters</caption>
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Details</th>
-                  </tr>
-                </thead>
-                <tbody>
-                                      <tr>
-                      <td>campaigns</td>
-                      <td><p>A array with campaign keys</p>
-</td>
-                      <td>array, required                                              </td>
-                    </tr>
-                                  </tbody>
-              </table></div>
-                          </article>
-                    <div class="content">
-            <nav class="switch">
-              <ul>
-                <a href="#example" class="active"><li><span>Example</span></li></a>
-                                  <a href="#debugger"><li><span>Debugger</span></li></a>
-                                                                  <a href="#tryit" class="jsTryitSwitcher"><li><span>Try It</span></li></a>
-                              </ul>
-            </nav>
-            <section class="example">
-                            <nav class="language">
-                <form name="languageSwitcher">
-                  <p>Show code sample</p>
-                  <select>
-                                          <option value="raw">none (raw data)</option>
-                                          <option value="curl">curl</option>
-                                          <option value="csharp">C#</option>
-                                          <option value="javascript">javascript</option>
-                                          <option value="nodejs">node.js</option>
-                                          <option value="python">python</option>
-                                          <option value="php">php</option>
-                                          <option value="ruby">ruby</option>
-                                          <option value="vb">Visual Basic</option>
-                                          <option value="objc">Objective-C</option>
-                                          <option value="swift">Swift</option>
-                                          <option value="groovy">Groovy</option>
-                                      </select>
-                </form>
-              </nav>
-                            <section class="code" id="generatedResourceCodeS6E12">                                                                            
-<span id="requestExampleIdS6E12req0" class="hidden"></span>
-<script>
-window.docResources["generatedResourceCodeS6E12"] = (window.docResources["generatedResourceCodeS6E12"] || []).concat({
-  "exampleId": "S6E12req0",
-  "url": "/api/campaign/status",
-  "method": "POST",
-  "contentType": "application/json",
-  "headers": {
-    "Content-Type": "application/json",
-    "Auth-Service-Key": "myservicekey",
-    "Auth-Token": "MyServiceToken"
-  },
-  "body": "{\n  \"campaigns\": [\n    \"45ad434daaf7bf22e45c8938fb745b45\",\n    \"18923n13n9dw7qwhnjbabsd1lmvz1823\"\n  ]\n}"
-});
-</script>
-                                                                                                <p class="ioDesc">Response</p>
-                    <section class="outgoingCall rawResponse">
-                      <pre class="outgoing outgoingHeaders"><code>200 (OK)
-Content-Type: application/json</code></pre>
-                      <pre class="outgoing"><code class="language-javascript">{
-  &#34;45ad434daaf7bf22e45c8938fb745b45&#34;: {
-    &#34;success&#34;: 1,
-    &#34;id&#34; : &#34;1&#34;,
-    &#34;key&#34; : &#34;45ad434daaf7bf22e45c8938fb745b45&#34;,
-    &#34;total&#34; : 0,
-    &#34;sent&#34; : 0,
-    &#34;fail&#34; : 0,
-    &#34;progress&#34; : 0,
-    &#34;status&#34; : 0,
-    &#34;external&#34; : &#34;123&#34;,
-    &#34;pid&#34; : null,
-    &#34;cache&#34;: 1
-  },
-  &#34;18923n13n9dw7qwhnjbabsd1lmvz1823&#34;: {
-    &#34;success&#34;: 0,
-    &#34;error&#34;: &#34;Campaign not found&#34;
-  }
-}</code></pre>
-                    </section>
-                                                                                    </section>
-            </section>
-                          <section class="debugger" data-resource-signature="POST /api/campaign/status"></section>
-              
-              <section class="tryit">
-                <form name="jsRunExample">
-                  <span class="ajaxLoader block jsEmptyTryit"></span>
-                </form>
-              </section>
-                      </div>
-
-          
-        </section>      
-          </div>
-      <a name="changelog"></a>
-    <div class="chapterWrapper">
-              <hgroup class="chapter">
-          <h1>Changelog</h1>          <div class="details"><ul>
+  ]
+}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#c1e969428623e0bda78dfad53cf5291f" class="pull-right">Toggle</a></li><li id="c1e969428623e0bda78dfad53cf5291f" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-number">1</span>
+</span>}
+</code></pre></li></ul></section><h4 id="campaigns-">Resources&nbsp;<a href="#campaigns-"><i class="fa fa-link"></i></a></h4><section id="campaigns--post" class="panel panel-success"><div class="panel-heading"><div style="float:left"><a href="#campaigns--post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/campaign/{key}/start</code></div></div><div class="panel-body"><p>Start a campaign send process</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#34e872028c9797e05694a2764fe49e52" class="pull-right">Toggle</a></li><li id="34e872028c9797e05694a2764fe49e52" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Auth-Service-Key</span>: <span class="hljs-string">myservicekey</span><br><span class="hljs-attribute">Auth-Token</span>: <span class="hljs-string">MyServiceToken</span><br></code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section><h4 id="campaigns-">Resources&nbsp;<a href="#campaigns-"><i class="fa fa-link"></i></a></h4><section id="campaigns--post" class="panel panel-success"><div class="panel-heading"><div style="float:left"><a href="#campaigns--post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/campaign/{key}/pause</code></div></div><div class="panel-body"><p>Pause a campaign send processs</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#34e872028c9797e05694a2764fe49e52" class="pull-right">Toggle</a></li><li id="34e872028c9797e05694a2764fe49e52" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Auth-Service-Key</span>: <span class="hljs-string">myservicekey</span><br><span class="hljs-attribute">Auth-Token</span>: <span class="hljs-string">MyServiceToken</span><br></code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section><h4 id="campaigns-">Resources&nbsp;<a href="#campaigns-"><i class="fa fa-link"></i></a></h4><section id="campaigns--post" class="panel panel-success"><div class="panel-heading"><div style="float:left"><a href="#campaigns--post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/campaign/{key}/stop</code></div></div><div class="panel-body"><p>Stop a campaign send processs</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#34e872028c9797e05694a2764fe49e52" class="pull-right">Toggle</a></li><li id="34e872028c9797e05694a2764fe49e52" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Auth-Service-Key</span>: <span class="hljs-string">myservicekey</span><br><span class="hljs-attribute">Auth-Token</span>: <span class="hljs-string">MyServiceToken</span><br></code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section><h4 id="campaigns-">Resources&nbsp;<a href="#campaigns-"><i class="fa fa-link"></i></a></h4><section id="campaigns--post" class="panel panel-success"><div class="panel-heading"><div style="float:left"><a href="#campaigns--post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/campaign/status</code></div></div><div class="panel-body"><p>Get status from multiple campaigns</p>
+</div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>campaigns</dt><dd><code>array</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>A array with campaign keys</p>
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#954edff47fd3de519f52a35d483deb15" class="pull-right">Toggle</a></li><li id="954edff47fd3de519f52a35d483deb15" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Auth-Service-Key</span>: <span class="hljs-string">myservicekey</span><br><span class="hljs-attribute">Auth-Token</span>: <span class="hljs-string">MyServiceToken</span><br></code></pre><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">campaigns</span>": <span class="hljs-value">[
+    <span class="hljs-string">"45ad434daaf7bf22e45c8938fb745b45"</span>,
+    <span class="hljs-string">"18923n13n9dw7qwhnjbabsd1lmvz1823"</span>
+  ]
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#516b02c592bfe9615d32889820be3751" class="pull-right">Toggle</a></li><li id="516b02c592bfe9615d32889820be3751" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">45ad434daaf7bf22e45c8938fb745b45</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+    "<span class="hljs-attribute">id</span>" : <span class="hljs-value"><span class="hljs-string">"1"</span></span>,
+    "<span class="hljs-attribute">key</span>" : <span class="hljs-value"><span class="hljs-string">"45ad434daaf7bf22e45c8938fb745b45"</span></span>,
+    "<span class="hljs-attribute">total</span>" : <span class="hljs-value"><span class="hljs-number">0</span></span>,
+    "<span class="hljs-attribute">sent</span>" : <span class="hljs-value"><span class="hljs-number">0</span></span>,
+    "<span class="hljs-attribute">fail</span>" : <span class="hljs-value"><span class="hljs-number">0</span></span>,
+    "<span class="hljs-attribute">progress</span>" : <span class="hljs-value"><span class="hljs-number">0</span></span>,
+    "<span class="hljs-attribute">status</span>" : <span class="hljs-value"><span class="hljs-number">0</span></span>,
+    "<span class="hljs-attribute">external</span>" : <span class="hljs-value"><span class="hljs-string">"123"</span></span>,
+    "<span class="hljs-attribute">pid</span>" : <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+    "<span class="hljs-attribute">cache</span>": <span class="hljs-value"><span class="hljs-number">1</span>
+  </span>}</span>,
+  "<span class="hljs-attribute">18923n13n9dw7qwhnjbabsd1lmvz1823</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+    "<span class="hljs-attribute">error</span>": <span class="hljs-value"><span class="hljs-string">"Campaign not found"</span>
+  </span>}
+</span>}
+</code></pre></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="changelog">Changelog&nbsp;<a href="#changelog"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><ul>
 <li><code>v0.3.3-beta:</code> Fixed some security issues in campaign resource and implemented campaign validations</li>
 <li><code>v0.3.2-beta:</code> The first beta release with minor bugs</li>
 <li><code>v0.3.2-alpha:</code> Optimised authentication service</li>
@@ -2213,155 +479,17 @@ Content-Type: application/json</code></pre>
 <li><code>v0.1.0-alpha:</code> Fixed database crash using cache to store service processes</li>
 <li><code>v0.0.2-alpha:</code> Fixed header parser in service</li>
 <li><code>v0.0.1-alpha:</code> First alpha release</li>
-</ul></div>
-                  </hgroup>
-      
-                  
-          </div>
-  
-</div>
+</ul>
+</div></div></div></div></div></div><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 14 Aug 2014</p><div id="localFile" style="display: none; position: absolute; top: 0; left: 0; width: 100%; color: white; background: red; font-size: 150%; text-align: center; padding: 1em;">This page may not display correctly when opened as a local file. Instead, view it from a web server.
 
-</div>
+</div></body><script src="//code.jquery.com/jquery-1.11.0.min.js"></script><script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script>(function() {
+  if (location.protocol === 'file:') {
+    document.getElementById('localFile').style.display = 'block';
+  }
 
-<div class="loginOverlay overlay smallerPanel" style="display:none" id="loginPicker">
-  <div class="closeLayer"></div>
-  <div class="panelShadow">
-    <div class="panelLegacy">
-      <a href="#"><span class="block close"></span></a>
-      <form action="https://login.apiary.io//api/login" method="post" accept-charset="utf-8">
-        <div class="discusion">
-          <h1>Identify Yourself</h1>
-          <p>To proceed, please use credentials from one of the following services.</p>
-          <ul class="overlayLoginList">
-            <a href="https://github.com/login/oauth/authorize?client_id=f739c33cbd5c32296a43&#38;redirect_uri=https%3A%2F%2Flogin.apiary.io%2Fgithub%2Flogin%3Fdiscussion%3D1%26redirect%3Dhttp%253A%252F%252Fdocs.m4a1.apiary.io%252Flogin%252Fcallback" data-type="github"><li>GitHub<img src="https://apiary.a.ssl.fastly.net/assets/css/design/arrowOfTime-e204e0dbfdab5e33.png" width="12" height="20" /></li></a>
-            <a href="https://login.apiary.io/twitter/send_to_login?discussion=1&#38;redirect=http%3A%2F%2Fdocs.m4a1.apiary.io%2Flogin%2Fcallback" data-type="twitter"><li>Twitter<img src="https://apiary.a.ssl.fastly.net/assets/css/design/arrowOfTime-e204e0dbfdab5e33.png" width="12" height="20" /></li></a>
-            <a href="#" data-type="apiary"><li>apiary.io<img src="https://apiary.a.ssl.fastly.net/assets/css/design/arrowOfTime-e204e0dbfdab5e33.png" width="12" height="20" /></li></a>
-          </ul>
-          </div>
-      </form>
-    </div>
-  </div>
-</div>
+}).call(this);
+</script><script>(function() {
+  $('table').addClass('table');
 
-<div id="appLogin" style="display:none" class="loginOverlay overlay smallerPanel">
-  <div class="closeLayer"></div>
-  <div class="panelShadow">
-    <div class="panelLegacy">
-      <a href="#"><span class="block close"></span></a>
-      <form action="https://login.apiary.io/api/login?xhr_login=1" method="post" accept-charset="utf-8">
-        <img src="https://apiary.a.ssl.fastly.net/assets/css/design2/apiary-io-beta-logo-1x-7a5112f76ac0f4de.png" width="160" height="30" />
-        <ul id="loginUL">
-          <li>
-            <p><label for="username">Your e-mail</label></p>
-            <input class="textField" type="text" name="username" value="" id="username" tabindex="1" />
-          </li>
-          <li>
-            <p class="fieldDetails"><a href="https://login.apiary.io/password-recovery">Forgotten password</a></p>
-            <p><label for="password">Password</label></p>
-            <input class="textField" type="password" name="password" value="" id="password" tabindex="2" />
-          </li>
-        </ul>
-        <p><input class="button small yellow" type="submit" value="Sign In" tabindex="3" /></p>
-        <div class="adI">
-          <p>
-            Need an account?<br />
-            <a tabindex="4" href="https://login.apiary.io/register">Sign up now</a>.
-          </p>
-        </div>
-        <div class="clr"></div>
-      </form>
-    </div>
-  </div>
-</div>
-
-  
-</div>
-
-  <script>
-    window.config = {
-      "baseAjaxUrl": "http://docs.m4a1.apiary.io/"
-    };
-  </script>
-
-  <script>
-    window.jsLoginUrl    = "https://login.apiary.io/login?discussion=1&xhr_login=1";
-    window.jsLoggedIn    = false;
-    window.trafficSecret = "";
-    window.runExampleIframeUrl = "http://m4a1.apiary.io/___APIARY_INTERNAL___/docs/run-button";
-    window.tryItUrl    = "http://m4a1.apiary.io";
-    window.mockserverUrl    = "http://m4a1.apiary-mock.com";
-    window.loginUri      = "https://login.apiary.io/login";
-    window.baseDomain    = "apiary.io";
-    window.config.languages = {"raw":"none (raw data)","curl":"curl","csharp":"C#","javascript":"javascript","nodejs":"node.js","python":"python","php":"php","ruby":"ruby","vb":"Visual Basic","objc":"Objective-C","swift":"Swift","groovy":"Groovy"};
-    window.previewHelpers = window.previewHelpers || {};
-    window.previewHelpers.getContentTypeBrush = function (contentType) {
-    if ((contentType != null ? contentType.slice(-5) : void 0) === '+json') {
-      return 'language-javascript';
-    }
-    if ((contentType != null ? contentType.slice(-4) : void 0) === '+xml') {
-      return 'language-markup';
-    }
-    switch (contentType) {
-      case 'application/json':
-        return 'language-javascript';
-      case 'text/xml':
-        return 'language-markup';
-      case 'application/xml':
-        return 'language-markup';
-      default:
-        return '';
-    }
-  };
-    window.previewHelpers.apiUrl = window.previewHelpers.mockserverUrl = "http://m4a1.apiary-mock.com";
-
-    window['examplesBundle'] = window['examplesBundle'] || function(data) {
-      if (data && data.root) {
-        $.getScript('https://apiary.a.ssl.fastly.net/assets/js/libs/ect-812663b24498f44e.js', function () {
-          window.config.ectRender = window.ECT({ 'watch': false, 'cache': true, 'root': data.root, 'ext': '.html' });
-          var expandedResource = $('section.resource.expanded section.code');
-          if (expandedResource.length > 0) {
-            window.renderExampleCodes(expandedResource);
-          }
-        });
-      }
-    };
-  </script>
-  <!-- uriTemplates expand support -->
-  <script src="https://apiary.a.ssl.fastly.net/assets/js/libs/uritemplate-c6f8656d13255c83.js"></script>
-  <!-- render-preview helpers -->
-  <script src="https://apiary.a.ssl.fastly.net/assets/js/preview-58e5ffb27fbf290b.js"></script>
-  <!-- vitalize documentation -->
-  <script src="https://apiary.a.ssl.fastly.net/assets/js/docs-4c7d9c8ecd503824.js"></script>
-  <!-- templates in JSONP -->
-  <script src="https://apiary.a.ssl.fastly.net/assets/js/examples.compiled.templates-e26091758f915b89.js?callback=examplesBundle"></script>
-  <!-- inspect traffic w/ ease -->
-  <script src="https://apiary.a.ssl.fastly.net/assets/js/traffic-83f8d935b3a7b5b0.js" data-multipart-container='.resource .debugger[data-resource-signature="#{method} #{url}"]'></script>
-    <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-18252923-1', 'apiary.io');
-  ga('send', 'pageview');
-
-</script>
-
-<script type="text/javascript">
-  /* <![CDATA[ */
-    var google_conversion_id = 977730005;
-    var google_custom_params = window.google_tag_params;
-    var google_remarketing_only = true;
-  /* ]]> */
- (function(d, t) {
-  var g = d.createElement(t),
-      s = d.getElementsByTagName(t)[0];
-  g.async = true;
-  g.src = ('https:' == location.protocol ? 'https://' : 'http://') + 'www.googleadservices.com/pagead/conversion.js';
-  s.parentNode.insertBefore(g, s);
- })(document, 'script');
-</script>
-
-
-</body>
-</html>
+}).call(this);
+</script></html>

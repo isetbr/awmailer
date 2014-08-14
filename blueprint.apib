@@ -1,0 +1,697 @@
+FORMAT: X-1A
+
+HOST: http://m4a1.create4.us/api/
+
+#M4A1 - The Awesome Mailer Service
+
+# Group Introduction
+The M4A1 is a software developed for provide a mail service which can be used by all services of iSET.
+The proposal of M4A1 is provide a mail tool that runs a daemon as a observer for new services to be triggered, this services runs natively on Linux servers independent of each others.
+
+This document covers the core resources you can use to manipulate your services inside the API that it's based on REST principles.
+
+>**Attention:** All values such as service keys, tokens, campaign keys, ip addresses used in each *requests, responses and headers* in the following methods are examples, when you use this API new values will be generated and returned to you, not forget to replace this values on next requests.
+
+
+# Group HTTP Request Basics
+##Allowed HTTP methods
+
+- `GET`    - Used to get information about an object in API.
+- `POST`   - Used to create new objects in API and run processes.
+- `PUT`    - Used to update and object in API.
+- `DELETE` - Used to remove and object in API.
+
+##Typical Server Responses
+
+- 200 `OK` - The request was successful (some API calls may return 201 instead).
+- 201 `Created` - The request was successful and a resource was created.
+- 204 `No Content` - The request was successful but there is no representation to return (that is, the response is empty).
+- 400 `Bad Request` - The request could not be understood or was missing required parameters.
+- 401 `Unauthorized` - Authentication failed or user does not have permissions for the requested operation.
+- 403 `Forbidden` - Access denied.
+- 404 `Not Found` - Resource was not found.
+- 405 `Method Not Allowed` - Requested method is not supported for the specified resource.
+- 429 `Too Many Requests` - Exceeded GoodData API limits. Pause requests, wait one minute, and try again. 
+- 503 `Service Unavailable` - The service is temporary unavailable (e.g. scheduled Platform Maintenance). Try again later.
+
+>**Note:** M4A1 API works with json in requests and responses then, all HTTP calls must be include a header *Content-Type: application/json*, otherwise the API will return a HTTP 400 - Bad Request response.
+
+# Group Authentication
+<a id="authentication"></a>
+## IP Address
+
+The authentication system based on client IP address, verify in all HTTP calls the client IP address and validate it in API database which have a white list of IP addresses allowed to consume API, to allow a new IP address, see the *ipaddress* resource below.
+
+## Service-Key and Auth-Token
+
+In some API methods you will have to send in you HTTP request headers two params that will authenticate and performr your request in the API.
+
+- `Auth-Service-Key` - Your service key provided on service registration moment.
+- `Auth-Token` - The token returned by API when you register a new service.
+
+If one of these headers are incorrect, the API will return a HTTP 403 - Forbbiden response.
+
+# Group Services
+<a id="services"></a>
+
+A *service* in API is any application that will consume API resources and it need to are registered to get a authorization token that is required to consume some resources.
+
+## /service
+### GET
+Retrieve all Services 
+
++ Request (application/json)
+    
++ Response 204
+
++ Response 200 (application/json)
+
+        [{
+          "name": "First Service", "key": "svc1"
+        },
+        {
+          "name": "Second Service", "key": "svc2"
+        },
+        {
+          "name": "Third Service", "key":"svc3"
+        }]
+
+### POST
+Create a new Service
+
++ Parameters
+    + name (required, string, `Service Name`) ... The Service name
+    + key (required, string, `myservicekey`) ... The service key that will used to authenticate your HTTP requests
+
++ Request (application/json)
+        
+        {
+          "name": "Service Name",
+          "key": "myservicekey" 
+        }
+
++ Response 201 (application/json)
+
+        { 
+          "success": 1, 
+          "key": "myservicekey", 
+          "token": "MyServiceToken" 
+        }
+        
++ Response 200 (application/json)
+
+        {
+          "success": 0,
+          "error": "The error message",
+          "details": "The detailed information about error, present only if is a validation error"
+        }
+        
++ Response 500 (application/json)
+
+        {
+          "success": 0,
+          "error": "Unknow error"
+        }
+
+## /service/{key}
+### GET
+Get a Service
+
++ Request (application/json)
+        
++ Response 200 (application/json)
+
+        {
+          "name": "First Service",
+          "key": "svc1"
+        }
+
++ Response 200 (application/json)
+
+        {
+          "success": 0,
+          "error": "Service not found"
+        }
+        
+
+### PUT
+Update a Service
+
++ Parameters
+    + name (optional, string, `Service Name`) ... The name of service
+    + key (optional, string, `myservicekey`) ... The service key that will used to authenticate your HTTP requests
+
++ Request (application/json)
+
+        { "name": "Service Name", "key": "myservicekey" }
+
++ Response 200 (application/json)
+
+        {
+          "success": 1,
+          "name": "Service Name",
+          "key": "myservicekey"
+        }
+        
++ Response 200 (application/json)
+
+        {
+          "success": 0,
+          "error": "The error message",
+          "details": "The detailed information about error, present only if is a validation error"
+        }
+        
++ Response 500 (application/json)
+
+        {
+          "success": 0,
+          "error": "Unknow error"
+        }
+        
+### DELETE
+Remove a Service
+
+**Warning:** This action *permanently* destroy all information about service and it actions from API database.
+
++ Request (application/json)
+
++ Response 200 (application/json)
+
+        {
+          "success": 1
+        }
+        
+
++ Response 500 (application/json)
+
+        {
+          "success": 0,
+          "error": "Unknow error"
+        }
+        
++ Response 200 (application/json)
+
+        {
+          "success": 0,
+          "error": "Service not found"
+        }
+
+# Group Ip Addresses
+
+## /ipaddress
+### GET
+Retrieve all allowed IP addresses
+
++ Request (application/json)
+
++ Response 200 (application/json)
+
+        [
+          "192.168.0.1",
+          "192.168.0.2",
+          "192.168.0.3"
+        ]
+        
++ Response 204
+        
+### POST
+Allow new IP address to consume API
+
++ Parameters
+    + ipaddress (required,string,`127.0.0.1`) ... The Ip address that you wish to allow
+
++ Request (application/json)
+
+        {
+          "ipaddress": "192.168.0.1"
+        }
+
++ Response 201 (application/json)
+
+        {
+          "success": 1
+        }
+        
++ Response 200 (application/json)
+
+        {
+          "success": 0,
+          "error": "The error message"
+        }
+        
++ Response 500 (application/json)
+
+        {
+          "success": 0,
+          "error": "Unknow error"
+        }
+
+## /ipaddress/{ipaddress}
+### DELETE
+Revoke access from an IP address
+
++ Request (application/json)
+
++ Response 200 (application/json)
+
+        {
+          "success": 1
+        }
+        
++ Response 200 (application/json)
+
+        {
+          "success": 0,
+          "error": "Ip address not found"
+        }
+        
++ Response 500 (application/json)
+
+        {
+         "success": 0,
+         "error": "Unknow error"
+        }
+
+# Group Campaigns
+## /campaign
+### GET
+Retrieve all campaigns
+
++ Request (application/json)
+
++ Response 501
+
+### POST
+Create a new campaign
+
++ Parameters
+    + subject (required, string) ... The campaigns subject
+    + body (required, string) ... The body of email
+    + headers (required, array) ... The headers to send in each all emails
+    + user_vars (optional, integer) ... Flag for parse queue with body variables
+    + user_headers (optional, integer) ... Flag for set custom headers by each destination
+    + external (required, integer) ... The identification of this campaign in client application.
+
++ Request (application/json)
+
+    + Headers
+        
+            Auth-Service-Key: myservicekey
+            Auth-Token: MyServiceToken
+    
+    + Body
+    
+            {
+              "subject": "The subject of mail",
+              "body": "The body of email",
+              "headers": {
+                "Content-Type": "text/html",
+                "Bounce-Mail": "mybounce@domain.com"
+              },
+              "user_vars": 1,
+              "user_headers": 1,
+              "external": 123
+            }
+
++ Response 201 (application/json)
+
+        {
+          "success": 1,
+          "campaign": "45ad434daaf7bf22e45c8938fb745b45"
+        }
+        
++ Response 200 (application/json)
+
+        {
+          "success": 0,
+          "error": "The error message",
+          "details": "The detailed error message, present if occured a validation error"
+        }
+        
++ Response 500 (application/json)
+
+        {
+          "success": 0,
+          "error": "Unknow error"
+        }
+        
+## /campaign/{key}
+### GET
+Get details of an campaign
+
++ Request (application/json)
+    
+    + Headers
+        
+            Auth-Service-Key: myservicekey
+            Auth-Token: MyServiceToken
+
++ Response 200 (application/json)
+
+        {
+          "id": "1",
+          "key": "45ad434daaf7bf22e45c8938fb745b45",
+          "total": 0,
+          "sent": 0,
+          "fail": 0,
+          "progress": 0,
+          "status": 0,
+          "subject": "The subject of email",
+          "body": "The body of email",
+          "headers": {
+            "Content-Type": "text/html",
+            "Bounce-Mail": "mybounce@domain.com"
+          },
+          "user_vars": 1,
+          "user_headers": 1,
+          "date": "2014-08-05",
+          "external": "123",
+          "pid": null,
+        }
+
++ Response 200 (application/json)
+
+        {
+          "success": 0,
+          "error": "Campaign not found"
+        }
+        
+### PUT
+Update an campaign
+
++ Parameters
+    + subject (required, string) ... The campaigns subject
+    + body (required, string) ... The body of email
+    + headers (required, array) ... The headers to send in each all emails
+    + user_vars (optional, integer) ... Flag for parse queue with body variables
+    + user_headers (optional, integer) ... Flag for set custom headers by each destination
+    + external (required, integer) ... The identification of this campaign in client application.
+
++ Request (application/json)
+
+    + Headers
+        
+            Auth-Service-Key: myservicekey
+            Auth-Token: MyServiceToken
+    
+    + Body
+    
+            {
+              "subject": "The subject of mail",
+              "body": "The body of email",
+              "headers": {
+                "Content-Type": "text/html",
+                "Bounce-Mail": null
+              },
+              "user_vars": 0,
+              "user_headers": 0,
+              "external": 456
+            }
+
++ Response 200 (application/json)
+
+        {
+          "success": 1,
+          "campaign": "45ad434daaf7bf22e45c8938fb745b45"
+        }
+        
++ Response 200 (application/json)
+
+        {
+          "success": 0,
+          "error": "The error message",
+          "details": "The detailed information about error, present if occured a validation error"
+        }
+
++ Response 500 (application/json)
+
+        {
+          "success": 0,
+          "error": "Unknow error"
+        }
+        
+### DELETE
+Remove an campaign
+
++ Request (application/json)
+
+    + Headers
+        
+            Auth-Service-Key: myservicetoken
+            Auth-Token: MyServiceToken
+
++ Response 200 (application/json)
+
+        {
+          "success": 1
+        }
+
+## /campaign/{key}/status
+### GET
+Get the status information of an campaign
+
++ Request (application/json)
+
+    + Headers
+        
+            Auth-Service-Key: myservicekey
+            Auth-Token: MyServiceToken
+
++ Response 200 (application/json)
+
+        {
+          "id" : "1",
+          "key" : "45ad434daaf7bf22e45c8938fb745b45",
+          "total" : 0,
+          "sent" : 0,
+          "fail" : 0,
+          "progress" : 0,
+          "status" : 0,
+          "external" : "123",
+          "pid" : null,
+          "cache": 1
+        }
+        
++ Response 200 (application/json)
+
+        {
+          "success": 0,
+          "error": "Campaign not found"
+        }
+        
+## /campaign/{key}/queue
+### GET
+Retrieve the current email queue of an campaign
+
++ Request (application/json)
+    
+    + Headers
+        
+            Auth-Service-Key: myservicekey
+            Auth-Token: MyServiceToken
+
++ Response 200 (application/json)
+        
+        ["person1@domain.com","person2@domain.com","person3@domain.com"]
+
++ Response 200 (application/json)
+
+        [
+          {
+            "email" : "person1@domain.com",
+            "vars" : {
+              "MyVar2" : "My Value 2",
+              "MyVar" : "My Value"
+            },
+            "headers" : {
+              "Custom-Header" : "Custom-Value",
+              "Custom-Header2" : "Custom Value 2"
+            }
+          },
+          {
+            "email" : "person2@domain.com",
+            "vars" : {
+              "MyVar2" : "My Value 2",
+              "MyVar" : "My Value"
+            },
+            "headers" : {
+              "Custom-Header" : "Custom-Value",
+              "Custom-Header2" : "Custom Value 2"
+            }
+          },
+          {
+            "email" : "person3@domain.com",
+            "vars" : {
+              "MyVar2" : "My Value 2",
+              "MyVar" : "My Value"
+            },
+            "headers" : {
+              "Custom-Header" : "Custom-Value",
+              "Custom-Header2" : "Custom Value 2"
+            }
+          }
+        ]
+
+### PUT
+Update an campaign queue
+
++ Parameters
+    + Perform-Delete (optional, integer) ... A flag to set the operation, to include a stack of emails in queue or remove a stack of emails from it.
+    
+        <br /><br />This flag must be sent as a request header.
+
++ Request (application/json)
+
+    + Headers
+        
+            Auth-Service-Key: myservicekey
+            Auth-Token: MyServiceToken
+            Perform-Delete: 0
+            
+    + Body
+    
+            # Simple Queue
+            {"stack":["person1@domain.com","person2@domain.com","person3@domain.com"]}
+    
+            # Custom Queue
+            {
+              "stack":[
+                {
+                  "email":"person1@domain.com",
+                  "vars":{
+                    "MyVar":"My Value",
+                    "MyVar2":"My Value 2"
+                  },
+                  "headers":{
+                    "Custom-Header":"Custom-Value",
+                    "Custom-Header2":"Custom Value 2"
+                  }
+                },
+                {
+                  "email":"person2@domain.com",
+                  "vars":{
+                    "MyVar":"My Value",
+                    "MyVar2":"My Value 2"
+                  },
+                  "headers":{
+                    "Custom-Header":"Custom-Value",
+                    "Custom-Header2":"Custom Value 2"
+                  }
+                },
+                {
+                  "email":"person3@domain.com",
+                  "vars":{
+                    "MyVar":"My Value",
+                    "MyVar2":"My Value 2"
+                  },
+                  "headers":{
+                    "Custom-Header":"Custom-Value",
+                    "Custom-Header2":"Custom Value 2"
+                  }
+                }
+              ]
+            }
+
++ Response 200 (application/json)
+
+        {
+          "success": 1
+        }
+
+## /campaign/{key}/start
+### POST
+Start a campaign send process
+
++ Request (application/json)
+
+    + Headers
+        
+            Auth-Service-Key: myservicekey
+            Auth-Token: MyServiceToken
+
++ Response 204
+
+## /campaign/{key}/pause
+### POST
+Pause a campaign send processs
+
++ Request (application/json)
+
+    + Headers
+        
+            Auth-Service-Key: myservicekey
+            Auth-Token: MyServiceToken
+
++ Response 204
+
+## /campaign/{key}/stop
+### POST
+Stop a campaign send processs
+
++ Request (application/json)
+
+    + Headers
+        
+            Auth-Service-Key: myservicekey
+            Auth-Token: MyServiceToken
+
++ Response 204
+
+## /campaign/status
+### POST
+Get status from multiple campaigns
+
++ Parameters
+    + campaigns (required, array) ... A array with campaign keys
+
++ Request (application/json)
+
+    + Headers
+        
+            Auth-Service-Key: myservicekey
+            Auth-Token: MyServiceToken
+            
+    + Body
+    
+            {
+              "campaigns": [
+                "45ad434daaf7bf22e45c8938fb745b45",
+                "18923n13n9dw7qwhnjbabsd1lmvz1823"
+              ]
+            }
+
++ Response 200 (application/json)
+
+        {
+          "45ad434daaf7bf22e45c8938fb745b45": {
+            "success": 1,
+            "id" : "1",
+            "key" : "45ad434daaf7bf22e45c8938fb745b45",
+            "total" : 0,
+            "sent" : 0,
+            "fail" : 0,
+            "progress" : 0,
+            "status" : 0,
+            "external" : "123",
+            "pid" : null,
+            "cache": 1
+          },
+          "18923n13n9dw7qwhnjbabsd1lmvz1823": {
+            "success": 0,
+            "error": "Campaign not found"
+          }
+        }
+
+# Group  Changelog
+
+- `v0.3.3-beta:` Fixed some security issues in campaign resource and implemented campaign validations
+- `v0.3.2-beta:` The first beta release with minor bugs
+- `v0.3.2-alpha:` Optimised authentication service
+- `v0.3.1-alpha:` Fix issue that cannot be start service logger
+- `v0.3.0-alpha:` Implemented log, logging only daemon/service behaviour and API calls
+- `v0.2.2-alpha:` M4A1 Service uses packages in sent process for reduce memory usage
+- `v0.2.1-alpha:` Fixed some database connection issues in service, daemon e API
+- `v0.2.0-alpha:` Implemented cached results when request the status of an campaign
+- `v0.1.0-alpha:` Fixed database crash using cache to store service processes
+- `v0.0.2-alpha:` Fixed header parser in service
+- `v0.0.1-alpha:` First alpha release
