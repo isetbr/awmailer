@@ -154,7 +154,9 @@ class App
 		    # Initializing authentication provider
 		    $auth = new AuthIpAddress($kernel);
 		    
-		    if (!$auth->validate($ipaddress)) {
+		    if ($ipaddress = $auth->validate($ipaddress)) {
+		        $kernel['credentials.ipaddress'] = $ipaddress;
+		    } else {
 		        $request = Request::createFromGlobals();
 		        $response = Response::create(null,Response::HTTP_FORBIDDEN);
 		        $kernel['monolog.api.service']($request,$response);
@@ -174,7 +176,9 @@ class App
 		     # Initializing authentication provider
 		    $auth = new AuthService($kernel);
 		    
-		    if (!$auth->validate($auth_service_key,$auth_token)) {
+		    if ($service = $auth->validate($auth_service_key,$auth_token)) {
+		        $kernel['credentials.service'] = $service;
+		    } else {
 		        $request = Request::createFromGlobals();
 		        $response = Response::create(null,Response::HTTP_FORBIDDEN);
 		        $kernel['monolog.api.service']($request,$response);

@@ -67,6 +67,6 @@ class IpAddress
     {
         # Getting IpAddress
         $result = $this->gateway->getIpAddress($ipaddress);
-        return ($result) ? true : false;
+        return ($result) ? $result : false;
     }
 }
