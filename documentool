@@ -1,0 +1,12 @@
+#!/bin/sh
+echo "# DOCUMENTOOL - The tool to generate project documentations #"
+echo "--> Cleaning old documentation..."
+rm -rf web/docs/source/* > /dev/null
+rm -rf web/docs/api/* > /dev/null
+echo "--> Generating source code documentation..."
+phpdoc -c phpdoc.xml --force > /dev/null
+echo "--> Generating API documentation..."
+aglio -t slate -i blueprint.apib -o web/docs/api/index.html > /dev/null
+echo "--> Cleaning cache files"
+rm -rf phpdoc-cache-*
+echo "# DONE #"

@@ -7,7 +7,9 @@
 		"zendframework/zend-validator": "2.3.*",
 		"zendframework/zend-cache": "2.3.*",
 		"fate/silex-extensions": "dev-master",
-		"monolog/monolog": "1.10.0"
+		"monolog/monolog": "1.10.0",
+		"twig/twig": ">=1.8,<2.0-dev",
+		"symfony/twig-bridge": "~2.3"
 	},
 	"autoload": {
 		"psr-0": {
