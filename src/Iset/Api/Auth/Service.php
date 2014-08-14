@@ -70,7 +70,7 @@ class Service
         
         if ($service) {
             if ($service->key == strtolower($key) && $service->getToken() == $token) {
-                return true;
+                return $service;
             } else {
                 return false;
             }

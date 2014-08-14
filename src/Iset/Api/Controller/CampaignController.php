@@ -26,6 +26,7 @@ use Iset\Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Iset\Model\Campaign;
 use Iset\Model\CampaignTable;
+use Iset\Model\Service;
 use Iset\Model\ServiceTable;
 use Iset\Model\QueueCollection;
 
@@ -89,7 +90,7 @@ class CampaignController implements ControllerProviderInterface
         $gateway = $this->getTableGateway();
         
         # Fetching campaing details
-        $campaign = $gateway->getCampaignByKey($key);
+        $campaign = $gateway->getCampaignByKey($key,(int)$this->_app['credentials.service']->id);
         
         # Verifying result
         if ($campaign) {
@@ -116,16 +117,6 @@ class CampaignController implements ControllerProviderInterface
     	$request = $this->getRequest();
     	$campaign = new Campaign($this->getTableGateway());
     	
-    	# Initializing service 
-    	$serviceTable = new ServiceTable($this->_app);
-    	$service = $serviceTable->getService($request->headers->get('Auth-Service-Key'));
-    	
-    	# Validating service return
-    	if (!$service) {
-    	    $response = array('success'=>0,'error'=>'Service not found');
-    	    return $this->_app->json($response,Response::HTTP_INTERNAL_SERVER_ERROR);
-    	}
-    	
     	# Getting request params
     	$subject      = $request->request->get('subject');
     	$body         = $request->request->get('body');
@@ -135,7 +126,7 @@ class CampaignController implements ControllerProviderInterface
     	$external     = $request->request->get('external');
     	
     	# Setting params on object
-    	$campaign->service      = (int)$service->id;
+    	$campaign->service      = (int)$this->_app['credentials.service']->id;
     	$campaign->subject      = (!is_null($subject)) ? $subject : null;
     	$campaign->body         = (!is_null($body)) ? $body : null;
     	$campaign->headers      = (!is_null($headers)) ? $headers : array();
@@ -175,7 +166,7 @@ class CampaignController implements ControllerProviderInterface
         $gateway = $this->getTableGateway();
         
         # Getting campaign
-        $campaign = $gateway->getCampaignByKey($key);
+        $campaign = $gateway->getCampaignByKey($key,(int)$this->_app['credentials.service']->id);
         
         # Verifying result
         if ($campaign) {
@@ -240,7 +231,7 @@ class CampaignController implements ControllerProviderInterface
         $gateway = $this->getTableGateway();
         
         # Getting campaign
-        $campaign = $gateway->getCampaignByKey($key);
+        $campaign = $gateway->getCampaignByKey($key,(int)$this->_app['credentials.service']->id);
         
         # Verifying result
         if ($campaign) {
@@ -276,7 +267,7 @@ class CampaignController implements ControllerProviderInterface
         $gateway = $this->getTableGateway();
         
         # Fetching campaing details
-        $campaign = $gateway->getCampaignByKey($key);
+        $campaign = $gateway->getCampaignByKey($key,(int)$this->_app['credentials.service']->id);
         
         # Verifying result
         if ($campaign) {
@@ -335,7 +326,11 @@ class CampaignController implements ControllerProviderInterface
         $gateway = $this->getTableGateway();
     	
         # Getting request params
-        $campaigns = $request->request->get('campaigns');
+        $campaigns = (array)$request->request->get('campaigns');
+        if (count($campaigns) == 0) {
+            $response = array('success'=>0,'error'=>'You must send an array of campaign keys');
+            return $this->_app->json($response,Response::HTTP_OK);
+        }
         
         # Initializing stack array for store results
         $stack = array();
@@ -343,7 +338,7 @@ class CampaignController implements ControllerProviderInterface
         # Loop into campaigns for get status
         foreach ($campaigns as $key) {
             # Getting data from database
-            $campaign = $gateway->getCampaignByKey($key);
+            $campaign = $gateway->getCampaignByKey($key,(int)$this->_app['credentials.service']->id);
             
             # Verifying if campaign was found
             if ($campaign) {
@@ -400,12 +395,20 @@ class CampaignController implements ControllerProviderInterface
         $this->_app['auth.service']();
         
         # Getting Providers
+        $gateway    = $this->getTableGateway();
         $collection = $this->getCollection();
         $request    = $this->getRequest();
         
+        # Validating campaign
+        $campaign = $gateway->getCampaignByKey($key,(int)$this->_app['credentials.service']->id);
+        if (!$campaign) {
+            $response = array('success'=>0,'error'=>'Campaign not found');
+            return $this->_app->json($response,Response::HTTP_OK);
+        }
+        
         # Getting limit/skip params
         $limit = (int)$request->query->get('limit');
-        $skip  = (int)$request->query->get('skip'); 
+        $skip  = (int)$request->query->get('skip');
         
         # Retrieving data from db
         $result = $collection->fetch($key,null,$limit,$skip);
@@ -463,7 +466,7 @@ class CampaignController implements ControllerProviderInterface
         $collection = $this->getCollection();
         
         # Getting campaign
-        $campaign = $gateway->getCampaignByKey($key);
+        $campaign = $gateway->getCampaignByKey($key,(int)$this->_app['credentials.service']->id);
         if (!$campaign) {
             $response = array('success'=>0,'error'=>'Campaign not found');
             return $this->_app->json($response,Response::HTTP_OK);
@@ -524,7 +527,7 @@ class CampaignController implements ControllerProviderInterface
         $collection = $this->getCollection();
         
         # Getting campaign
-        $campaign = $gateway->getCampaignByKey($key);
+        $campaign = $gateway->getCampaignByKey($key,(int)$this->_app['credentials.service']->id);
         if (!$campaign) {
             $response = array('success'=>0,'error'=>'Campaign not found');
             return $this->_app->json($response,Response::HTTP_OK);
@@ -569,7 +572,7 @@ class CampaignController implements ControllerProviderInterface
         $gateway = $this->getTableGateway();
         
         # Getting campaign
-        $campaign = $gateway->getCampaignByKey($key);
+        $campaign = $gateway->getCampaignByKey($key,(int)$this->_app['credentials.service']->id);
         
         # Verifying result
         if ($campaign) {
@@ -598,7 +601,7 @@ class CampaignController implements ControllerProviderInterface
         $gateway = $this->getTableGateway();
         
         # Getting campaign
-        $campaign = $gateway->getCampaignByKey($key);
+        $campaign = $gateway->getCampaignByKey($key,(int)$this->_app['credentials.service']->id);
         
         # Verifying result
         if ($campaign) {
@@ -627,7 +630,7 @@ class CampaignController implements ControllerProviderInterface
         $gateway = $this->getTableGateway();
     
         # Getting campaign
-        $campaign = $gateway->getCampaignByKey($key);
+        $campaign = $gateway->getCampaignByKey($key,(int)$this->_app['credentials.service']->id);
     
         # Verifying result
         if ($campaign) {
@@ -657,7 +660,7 @@ class CampaignController implements ControllerProviderInterface
         $gateway = $this->getTableGateway();
         
         # Getting campaign
-        $campaign = $gateway->getCampaignByKey($key);
+        $campaign = $gateway->getCampaignByKey($key,(int)$this->_app['credentials.service']->id);
         
         # Verifying result
         if ($campaign) {
