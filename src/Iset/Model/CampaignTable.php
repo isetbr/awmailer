@@ -92,13 +92,22 @@ class CampaignTable extends TableGatewayAbstract
      * Get Campaign by ID
      * 
      * @param integer $idcampaign
+     * @param integer $service 
      * @return \Iset\Model\Campaign
      */
-    public function getCampaign($idcampaign)
+    public function getCampaign($idcampaign, $service = null)
     {
-        # Retrieving data from database
+        # Mouting query
     	$query = "SELECT * FROM `" . self::TABLE_NAME . "` WHERE `idcampaign`=?";
-    	$result = $this->tableGateway->fetchAssoc($query,array($idcampaign));
+    	$data = array($idcampaign);
+    	
+    	if (!is_null($service)) {
+    	    $query .= " AND `idservice`=?";
+    	    $data[] = $service;
+    	}
+    	
+    	# Getting data from database
+    	$result = $this->tableGateway->fetchAssoc($query,$data);
     	
     	# Verifying result
     	if ($result) {
@@ -113,13 +122,22 @@ class CampaignTable extends TableGatewayAbstract
      * Get Campaign by Key
      * 
      * @param string $key
+     * @param integer $service
      * @return \Iset\Model\Campaign
      */
-    public function getCampaignByKey($key)
+    public function getCampaignByKey($key, $service = null)
     {
-        # Retrieving data from database
+        # Mouting query
         $query = "SELECT * FROM `" . self::TABLE_NAME . "` WHERE `key`=?";
-        $result = $this->tableGateway->fetchAssoc($query,array($key));
+        $data = array($key);
+        
+        if (!is_null($service)) {
+            $query .= " AND `idservice`=?";
+            $data[] = $service;
+        }
+        
+        # Getting data from database
+        $result = $this->tableGateway->fetchAssoc($query,$data);
          
         # Verifying result
         if ($result) {
