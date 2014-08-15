@@ -24,7 +24,7 @@ namespace Iset\Api\Controller;
 use Silex\Application;
 use Iset\Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\Response;
-use Iset\Model\Service;
+use Iset\Api\Resource\Service;
 use Iset\Model\ServiceTable;
 
 /**

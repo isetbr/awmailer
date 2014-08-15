@@ -24,9 +24,9 @@ namespace Iset\Api\Controller;
 use Silex\Application;
 use Iset\Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\Response;
-use Iset\Model\Campaign;
+use Iset\Api\Resource\Campaign;
+use Iset\Api\Resource\Service;
 use Iset\Model\CampaignTable;
-use Iset\Model\Service;
 use Iset\Model\ServiceTable;
 use Iset\Model\QueueCollection;
 
@@ -72,6 +72,9 @@ class CampaignController implements ControllerProviderInterface
      */
     public function getAll()
     {
+        # Performing authentication
+        $this->_app['auth.service']();
+        
     	return $this->_app->abort(Response::HTTP_NOT_IMPLEMENTED);
     }
     

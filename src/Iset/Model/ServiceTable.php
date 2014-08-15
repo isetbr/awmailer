@@ -22,7 +22,7 @@
 namespace Iset\Model;
 
 use Iset\Silex\Db\TableGatewayAbstract;
-use Iset\Model\Service;
+use Iset\Api\Resource\Service;
 
 /**
  * Service Table Gateway
@@ -70,7 +70,7 @@ class ServiceTable extends TableGatewayAbstract
      * Fetch an service from database
      * 
      * @param string $key
-     * @return \Iset\Model\Service
+     * @return \Iset\Api\Resource\Service
      */
     public function getService($key)
     {
@@ -91,7 +91,7 @@ class ServiceTable extends TableGatewayAbstract
      * Fetch an service from database using service id
      * 
      * @param integer $id
-     * @return boolean
+     * @return \Iset\Api\Resource\Service
      */
     public function getServiceById($id)
     {

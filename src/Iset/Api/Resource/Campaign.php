@@ -19,8 +19,9 @@
  *
  */
 
-namespace Iset\Model;
+namespace Iset\Api\Resource;
 
+use Iset\Resource\AbstractResource;
 use Iset\Silex\Model\ModelInterface;
 use Iset\Silex\Db\TableGatewayAbstract;
 use Iset\Model\CampaignTable;
@@ -30,15 +31,21 @@ use Iset\Model\CampaignTable;
  * 
  * This is a object representation of an Campaign
  * 
- * @package Iset
- * @subpackage Model
- * @namespace Iset\Model
+ * @package Iset\Api
+ * @subpackage Resource
+ * @namespace Iset\Api\Resource
  * @author Lucas Mendes de Freitas <devsdmf>
  * @copyright M4A1 (c) iSET - Internet, Soluções e Tecnologia LTDA.
  *
  */
-class Campaign implements ModelInterface
+class Campaign extends AbstractResource implements ModelInterface
 {
+    /**
+     * The resource name
+     * @var string
+     */
+    const RESOURCE_NAME = 'campaign';
+    
     /**
      * Available status code for campaign
      */
@@ -160,10 +167,12 @@ class Campaign implements ModelInterface
      * The Constructor
      * 
      * @param TableGatewayAbstract $gateway
-     * @return \Iset\Model\Campaign
+     * @return \Iset\Api\Resource\Campaign
      */
     public function __construct(TableGatewayAbstract $gateway = null)
     {
+        parent::__construct($this::RESOURCE_NAME);
+        
         if (!is_null($gateway)) {
             $this->gateway = $gateway;
         }
@@ -195,7 +204,7 @@ class Campaign implements ModelInterface
      * 
      * @param array $data
      * @see \Iset\Silex\Model\ModelInterface::exchangeArray()
-     * @return \Iset\Model\Campaign
+     * @return \Iset\Api\Resource\Campaign
      */
     public function exchangeArray(array $data)
     {

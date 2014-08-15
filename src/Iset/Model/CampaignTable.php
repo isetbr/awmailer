@@ -22,7 +22,7 @@
 namespace Iset\Model;
 
 use Iset\Silex\Db\TableGatewayAbstract;
-use Iset\Model\Campaign;
+use Iset\Api\Resource\Campaign;
 
 /**
  * Campaign Table Gateway
@@ -93,7 +93,7 @@ class CampaignTable extends TableGatewayAbstract
      * 
      * @param integer $idcampaign
      * @param integer $service 
-     * @return \Iset\Model\Campaign
+     * @return \Iset\Api\Resource\Campaign
      */
     public function getCampaign($idcampaign, $service = null)
     {
@@ -123,7 +123,7 @@ class CampaignTable extends TableGatewayAbstract
      * 
      * @param string $key
      * @param integer $service
-     * @return \Iset\Model\Campaign
+     * @return \Iset\Api\Resource\Campaign
      */
     public function getCampaignByKey($key, $service = null)
     {

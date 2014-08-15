@@ -24,7 +24,7 @@ namespace Iset\Api\Controller;
 use Silex\Application;
 use Iset\Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\Response;
-use Iset\Model\IpAddress;
+use Iset\Api\Resource\IpAddress;
 use Iset\Model\IpAddressTable;
 
 /**

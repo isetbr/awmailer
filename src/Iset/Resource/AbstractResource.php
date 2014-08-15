@@ -19,52 +19,47 @@
  *
  */
 
-namespace Iset\Api\Auth;
-
-use Silex\Application;
-use Iset\Model\IpAddressTable;
+namespace Iset\Resource;
 
 /**
- * IpAddress Authentication Provider
+ * Abstract Resource
  * 
- * This is a provider that verify the authentication by caller ip address
+ * This is a abstract class that provides a basic structur for an concrete
+ * resource in API.
  * 
- * @package Iset\Api
- * @subpackage Auth
- * @namespace Iset\Api\Auth
+ * @package Iset
+ * @subpackage Resource
+ * @namespace Iset\Resource
  * @author Lucas Mendes de Freitas <devsdmf>
  * @copyright M4A1 (c) iSET - Internet, Soluções e Tecnologia LTDA.
  *
  */
-class IpAddress
+abstract class AbstractResource
 {
     /**
-     * The instance of IpAddress model
-     * @var IpAddressTable
+     * The resource name
+     * @var string 
      */
-    protected $gateway = null;
+    protected $_resourceName = null;
     
     /**
      * The Constructor
      * 
-     * @param Application $app
+     * @param string $name
      */
-    public function __construct(Application &$app)
+    public function __construct($name)
     {
-        # Initializing gateway
-    	$this->gateway = new IpAddressTable($app);
+        if (is_string($name))
+            $this->_resourceName = $name;
     }
     
     /**
-     * Validate the IpAddress in database
+     * Get the name of resource that it implements
      * 
-     * @param string $ipaddress
-     * @return boolean
+     * @return string
      */
-    public function validate($ipaddress)
+    public function getResourceName()
     {
-        # Getting IpAddress
-        $result = $this->gateway->getIpAddress($ipaddress);
-        return ($result) ? $result : false;
+        return $this->_resourceName;
     }
 }

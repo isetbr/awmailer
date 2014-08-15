@@ -22,7 +22,6 @@
 namespace Iset\Api\Auth;
 
 use Silex\Application;
-use Iset\Silex\Auth\AuthInterface;
 use Iset\Model\ServiceTable;
 
 /**

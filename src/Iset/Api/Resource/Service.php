@@ -19,8 +19,9 @@
  *
  */
 
-namespace Iset\Model;
+namespace Iset\Api\Resource;
 
+use Iset\Resource\AbstractResource;
 use Iset\Silex\Model\ModelInterface;
 use Iset\Silex\Db\TableGatewayAbstract;
 use Iset\Model\ServiceTable;
@@ -31,15 +32,21 @@ use Zend\Validator\Uri as UriValidator;
  *
  * This is a object representation of an Service
  *
- * @package Iset
- * @subpackage Model
- * @namespace Iset\Model
+ * @package Iset\Api
+ * @subpackage Resource
+ * @namespace Iset\Api\Resource
  * @author Lucas Mendes de Freitas <devsdmf>
  * @copyright M4A1 (c) iSET - Internet, Soluções e Tecnologia LTDA.
  *
  */
-class Service implements ModelInterface
+class Service extends AbstractResource implements ModelInterface
 {
+    /**
+     * The resource name
+     * @var string
+     */
+    const RESOURCE_NAME = 'service';
+    
     /**
      * The ID of service
      * @var integer
@@ -80,10 +87,12 @@ class Service implements ModelInterface
      * The Constructor
      * 
      * @param TableGatewayAbstract $gateway
-     * @return \Iset\Model\Service
+     * @return \Iset\Api\Resource\Service
      */
     public function __construct(TableGatewayAbstract $gateway = null)
     {
+        parent::__construct($this::RESOURCE_NAME);
+        
     	if (!is_null($gateway)) {
     	    $this->gateway = $gateway;
     	}
@@ -106,7 +115,7 @@ class Service implements ModelInterface
      * 
      * @param array $data
      * @see \Iset\Silex\Model\ModelInterface::exchangeArray()
-     * @return \Iset\Model\Service
+     * @return \Iset\Api\Resource\Service
      */
     public function exchangeArray(array $data)
     {

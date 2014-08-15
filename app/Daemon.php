@@ -5,7 +5,7 @@ require_once dirname(__FILE__) . '/../vendor/autoload.php';
 require_once dirname(__FILE__) . '/../app/App.php';
 
 # Loading resources
-use Iset\Model\Campaign;
+use Iset\Api\Resource\Campaign;
 use Iset\Model\CampaignTable;
 use Iset\Model\QueueCollection;
 

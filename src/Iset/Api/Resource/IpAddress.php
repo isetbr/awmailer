@@ -19,8 +19,9 @@
  *
  */
 
-namespace Iset\Model;
+namespace Iset\Api\Resource;
 
+use Iset\Resource\AbstractResource;
 use Iset\Silex\Model\ModelInterface;
 use Iset\Silex\Db\TableGatewayAbstract;
 use Zend\Validator\Ip as IpAddressValidator;
@@ -30,15 +31,21 @@ use Zend\Validator\Ip as IpAddressValidator;
  * 
  * This is a object representation of an IpAddress
  * 
- * @package Iset
- * @subpackage Model
- * @namespace Iset\Model
+ * @package Iset\Api
+ * @subpackage Resource
+ * @namespace Iset\Api\Resource
  * @author Lucas Mendes de Freitas <devsdmf>
  * @copyright M4A1 (c) iSET - Internet, Soluções e Tecnologia LTDA.
  *
  */
-class IpAddress implements ModelInterface
+class IpAddress extends AbstractResource implements ModelInterface
 {
+    /**
+     * The resource name
+     * @var string 
+     */
+    const RESOURCE_NAME = 'ipaddress';
+    
     /**
      * The IP address
      * @var string 
@@ -55,10 +62,12 @@ class IpAddress implements ModelInterface
      * The Constructor
      * 
      * @param TableGatewayAbstract $gateway
-     * @return \Iset\Model\IpAddress
+     * @return \Iset\Api\Resource\IpAddress
      */
     public function __construct(TableGatewayAbstract $gateway = null)
     {
+        parent::__construct($this::RESOURCE_NAME);
+        
         if (!is_null($gateway)) {
             $this->gateway = $gateway;
         }
@@ -71,7 +80,7 @@ class IpAddress implements ModelInterface
      * 
      * @param array $data
      * @see \Iset\Silex\Model\ModelInterface::exchangeArray()
-     * @return \Iset\Model\IpAddress
+     * @return \Iset\Api\Resource\IpAddress
      */
     public function exchangeArray(array $data)
     {
