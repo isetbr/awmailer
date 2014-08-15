@@ -24,6 +24,7 @@ namespace Iset\Model;
 use Iset\Silex\Model\ModelInterface;
 use Iset\Silex\Db\TableGatewayAbstract;
 use Iset\Model\ServiceTable;
+use Zend\Validator\Uri as UriValidator;
 
 /**
  * Service
@@ -62,6 +63,12 @@ class Service implements ModelInterface
      * @var string
      */
     private $token = null;
+    
+    /**
+     * The URL that API will send notifications
+     * @var string
+     */
+    public $notification_url = null;
     
     /**
      * The instance of TableGateway
@@ -103,10 +110,11 @@ class Service implements ModelInterface
      */
     public function exchangeArray(array $data)
     {
-        $this->id    = (!empty($data['idservice'])) ? (int)$data['idservice'] : null;
-        $this->name  = (!empty($data['name'])) ? $data['name'] : null;
-        $this->key   = (!empty($data['key'])) ? $data['key'] : null;
-        $this->token = (!empty($data['token'])) ? $data['token'] : null;
+        $this->id               = (!empty($data['idservice'])) ? (int)$data['idservice'] : null;
+        $this->name             = (!empty($data['name'])) ? $data['name'] : null;
+        $this->key              = (!empty($data['key'])) ? $data['key'] : null;
+        $this->token            = (!empty($data['token'])) ? $data['token'] : null;
+        $this->notification_url = (!empty($data['notification_url'])) ? $data['notification_url'] : null;
         
         return $this;
     }
@@ -123,7 +131,8 @@ class Service implements ModelInterface
     	    'id'=>$this->id,
     	    'name'=>$this->name,
     	    'key'=>$this->key,
-    	    'token'=>$this->token
+    	    'token'=>$this->token,
+    	    'notification_url'=>$this->notification_url,
     	);
     	
     	return $data;
@@ -160,6 +169,16 @@ class Service implements ModelInterface
             } else {
                 return array('error'=>'Service token cannot be regenerated.');
             }
+        }
+        
+        # Validating notification URL
+        if (!is_null($this->notification_url)) {
+            $validator = new UriValidator(array('allowRelative'=>false));
+            if (!$validator->isValid($this->notification_url)) {
+                return array('error'=>'The notification url is not a valid URI');
+            }
+        } else {
+            return array('error'=>'A notification url must be specified');
         }
         
         return true;
