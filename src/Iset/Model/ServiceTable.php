@@ -21,7 +21,7 @@
 
 namespace Iset\Model;
 
-use Iset\Silex\Db\TableGatewayAbstract;
+use Iset\Db\TableGatewayAbstract;
 use Iset\Api\Resource\Service;
 
 /**

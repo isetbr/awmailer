@@ -19,7 +19,7 @@
  *
  */
 
-namespace Iset\Silex\Db;
+namespace Iset\Db;
 
 use Silex\Application;
 
@@ -29,9 +29,9 @@ use Silex\Application;
  * This is a abstract class that provides a basic structure for models
  * that performs updates in MySQL databases.
  * 
- * @package Iset\Silex
+ * @package Iset
  * @subpackage Db
- * @namespace Iset\Silex\Db
+ * @namespace Iset\Db
  * @author Lucas Mendes de Freitas <devsdmf>
  * @copyright M4A1 (c) iSET - Internet, Soluções e Tecnologia LTDA.
  *

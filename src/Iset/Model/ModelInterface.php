@@ -19,9 +19,9 @@
  *
  */
 
-namespace Iset\Silex\Model;
+namespace Iset\Model;
 
-use Iset\Silex\Db\TableGatewayAbstract;
+use Iset\Db\TableGatewayAbstract;
 
 /**
  * Model Interface
@@ -29,9 +29,9 @@ use Iset\Silex\Db\TableGatewayAbstract;
  * This is a interface that provides a list of methods that must be
  * implemented by model objects.
  * 
- * @package Iset\Silex
+ * @package Iset
  * @subpackage Model
- * @namespace Iset\Silex\Model
+ * @namespace Iset\Model
  * @author Lucas Mendes de Freitas <devsdmf>
  * @copyright M4A1 (c) iSET - Internet, Soluções e Tecnologia LTDA.
  *

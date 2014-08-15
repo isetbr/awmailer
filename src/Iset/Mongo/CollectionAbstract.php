@@ -19,7 +19,7 @@
  *
  */
 
-namespace Iset\Silex\Mongo;
+namespace Iset\Mongo;
 
 use Silex\Application;
 

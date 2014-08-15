@@ -22,7 +22,7 @@
 namespace Iset\Api\Controller;
 
 use Silex\Application;
-use Iset\Silex\ControllerProviderInterface;
+use Iset\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Iset\Api\Resource\Service;
 use Iset\Model\ServiceTable;
@@ -213,7 +213,7 @@ class ServiceController implements ControllerProviderInterface
     /**
      * Get the Request
      * 
-     * @see \Iset\Silex\ControllerProviderInterface::getRequest()
+     * @see \Iset\ControllerProviderInterface::getRequest()
      * @return \Symfony\Component\HttpFoundation\Request
      */
     public function getRequest()
@@ -224,7 +224,7 @@ class ServiceController implements ControllerProviderInterface
     /**
      * Get the table gateway instance
      * 
-     * @see \Iset\Silex\ControllerProviderInterface::getTableGateway()
+     * @see \Iset\ControllerProviderInterface::getTableGateway()
      * @return \Iset\Model\ServiceTable
      */
     public function getTableGateway()
@@ -252,7 +252,7 @@ class ServiceController implements ControllerProviderInterface
     /**
      * Register all routes with the controller methods
      * 
-     * @see \Iset\Silex\ControllerProviderInterface::register()
+     * @see \Iset\ControllerProviderInterface::register()
      * @return \Silex\ControllerCollection
      */
     public function register()

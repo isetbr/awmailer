@@ -22,8 +22,8 @@
 namespace Iset\Api\Resource;
 
 use Iset\Resource\AbstractResource;
-use Iset\Silex\Model\ModelInterface;
-use Iset\Silex\Db\TableGatewayAbstract;
+use Iset\Model\ModelInterface;
+use Iset\Db\TableGatewayAbstract;
 use Zend\Validator\Ip as IpAddressValidator;
 
 /**
@@ -54,7 +54,7 @@ class IpAddress extends AbstractResource implements ModelInterface
     
     /**
      * The instance of TableGateway
-     * @var \Iset\Silex\Db\TableGatewayAbstract
+     * @var \Iset\Db\TableGatewayAbstract
      */
     private $gateway = null;
     
@@ -79,7 +79,7 @@ class IpAddress extends AbstractResource implements ModelInterface
      * Fill object with an configured associative array
      * 
      * @param array $data
-     * @see \Iset\Silex\Model\ModelInterface::exchangeArray()
+     * @see \Iset\Model\ModelInterface::exchangeArray()
      * @return \Iset\Api\Resource\IpAddress
      */
     public function exchangeArray(array $data)
@@ -92,7 +92,7 @@ class IpAddress extends AbstractResource implements ModelInterface
     /**
      * Get the array representation of object
      * 
-     * @see \Iset\Silex\Model\ModelInterface::asArray()
+     * @see \Iset\Model\ModelInterface::asArray()
      * @return array
      */
     public function asArray()
@@ -103,7 +103,7 @@ class IpAddress extends AbstractResource implements ModelInterface
     /**
      * Validate the IpAddress
      * 
-     * @see \Iset\Silex\Model\ModelInterface::validate()
+     * @see \Iset\Model\ModelInterface::validate()
      * @return mixed
      */
     public function validate()
@@ -120,7 +120,7 @@ class IpAddress extends AbstractResource implements ModelInterface
     /**
      * Save IpAddress
      * 
-     * @see \Iset\Silex\Model\ModelInterface::save()
+     * @see \Iset\Model\ModelInterface::save()
      * @return mixed
      */
     public function save()
@@ -136,7 +136,7 @@ class IpAddress extends AbstractResource implements ModelInterface
     /**
      * Delete IpAddress
      * 
-     * @see \Iset\Silex\Model\ModelInterface::delete()
+     * @see \Iset\Model\ModelInterface::delete()
      * @return mixed
      */
     public function delete()

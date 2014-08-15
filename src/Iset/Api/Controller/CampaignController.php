@@ -22,7 +22,7 @@
 namespace Iset\Api\Controller;
 
 use Silex\Application;
-use Iset\Silex\ControllerProviderInterface;
+use Iset\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Iset\Api\Resource\Campaign;
 use Iset\Api\Resource\Service;
@@ -696,7 +696,7 @@ class CampaignController implements ControllerProviderInterface
     /**
      * Get the Request
      * 
-     * @see \Iset\Silex\ControllerProviderInterface::getRequest()
+     * @see \Iset\ControllerProviderInterface::getRequest()
      * @return \Symfony\Component\HttpFoundation\Request
      */
     public function getRequest()
@@ -707,7 +707,7 @@ class CampaignController implements ControllerProviderInterface
     /**
      * Get the table gateway instance
      * 
-     * @see \Iset\Silex\ControllerProviderInterface::getTableGateway()
+     * @see \Iset\ControllerProviderInterface::getTableGateway()
      * @return \Iset\Model\CampaignTable
      */
     public function getTableGateway()
@@ -749,7 +749,7 @@ class CampaignController implements ControllerProviderInterface
     /**
      * Register all routes with the controller methods
      * 
-     * @see \Iset\Silex\ControllerProviderInterface::register()
+     * @see \Iset\ControllerProviderInterface::register()
      * @return \Silex\ControllerCollection
      */
     public function register()

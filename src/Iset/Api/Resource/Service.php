@@ -22,8 +22,8 @@
 namespace Iset\Api\Resource;
 
 use Iset\Resource\AbstractResource;
-use Iset\Silex\Model\ModelInterface;
-use Iset\Silex\Db\TableGatewayAbstract;
+use Iset\Model\ModelInterface;
+use Iset\Db\TableGatewayAbstract;
 use Iset\Model\ServiceTable;
 use Zend\Validator\Uri as UriValidator;
 
@@ -79,7 +79,7 @@ class Service extends AbstractResource implements ModelInterface
     
     /**
      * The instance of TableGateway
-     * @var \Iset\Silex\Db\TableGatewayAbstract
+     * @var \Iset\Db\TableGatewayAbstract
      */
     private $gateway = null;
     
@@ -114,7 +114,7 @@ class Service extends AbstractResource implements ModelInterface
      * Fill object with an configured associative array
      * 
      * @param array $data
-     * @see \Iset\Silex\Model\ModelInterface::exchangeArray()
+     * @see \Iset\Model\ModelInterface::exchangeArray()
      * @return \Iset\Api\Resource\Service
      */
     public function exchangeArray(array $data)
@@ -131,7 +131,7 @@ class Service extends AbstractResource implements ModelInterface
     /**
      * Get the array representation of object
      * 
-     * @see \Iset\Silex\Model\ModelInterface::asArray()
+     * @see \Iset\Model\ModelInterface::asArray()
      * @return array
      */
     public function asArray()
@@ -150,7 +150,7 @@ class Service extends AbstractResource implements ModelInterface
     /**
      * Validate the Service
      * 
-     * @see \Iset\Silex\Model\ModelInterface::validate()
+     * @see \Iset\Model\ModelInterface::validate()
      * @return mixed
      */
     public function validate()
@@ -196,7 +196,7 @@ class Service extends AbstractResource implements ModelInterface
     /**
      * Save Service
      * 
-     * @see \Iset\Silex\Model\ModelInterface::save()
+     * @see \Iset\Model\ModelInterface::save()
      * @return mixed
      */
     public function save()
@@ -212,7 +212,7 @@ class Service extends AbstractResource implements ModelInterface
     /**
      * Delete Service
      * 
-     * @see \Iset\Silex\Model\ModelInterface::delete()
+     * @see \Iset\Model\ModelInterface::delete()
      * @return mixed
      */
     public function delete()
