@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `campaign`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `campaign` (
   `idcampaign` int(11) NOT NULL AUTO_INCREMENT,
-  `idservice` int(11) DEFAULT NULL,
+  `idservice` int(11) NOT NULL,
   `key` varchar(128) NOT NULL,
   `total_queue` int(11) DEFAULT '0',
   `sent` int(11) DEFAULT '0',
@@ -38,6 +38,7 @@ CREATE TABLE `campaign` (
   `user_headers` int(1) DEFAULT '0',
   `date` date DEFAULT NULL,
   `external` varchar(45) NOT NULL,
+  `additional_info` varchar(250) DEFAULT NULL,
   `pid` int(11) DEFAULT NULL,
   PRIMARY KEY (`idcampaign`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -109,4 +110,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-08-05 11:10:40
+-- Dump completed on 2014-08-15 13:03:35

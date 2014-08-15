@@ -124,15 +124,17 @@ class CampaignController implements ControllerProviderInterface
     	$user_vars    = $request->request->get('user_vars');
     	$user_headers = $request->request->get('user_headers');
     	$external     = $request->request->get('external');
+    	$additional   = $request->request->get('additional_info');
     	
     	# Setting params on object
-    	$campaign->service      = (int)$this->_app['credentials.service']->id;
-    	$campaign->subject      = (!is_null($subject)) ? $subject : null;
-    	$campaign->body         = (!is_null($body)) ? $body : null;
-    	$campaign->headers      = (!is_null($headers)) ? $headers : array();
-    	$campaign->user_vars    = (!is_null($user_vars)) ? $user_vars : 0;
-    	$campaign->user_headers = (!is_null($user_headers)) ? $user_headers : 0;
-    	$campaign->external     = (!is_null($external)) ? $external : null;
+    	$campaign->service         = (int)$this->_app['credentials.service']->id;
+    	$campaign->subject         = (!is_null($subject)) ? $subject : null;
+    	$campaign->body            = (!is_null($body)) ? $body : null;
+    	$campaign->headers         = (!is_null($headers)) ? $headers : array();
+    	$campaign->user_vars       = (!is_null($user_vars)) ? $user_vars : 0;
+    	$campaign->user_headers    = (!is_null($user_headers)) ? $user_headers : 0;
+    	$campaign->external        = (!is_null($external)) ? $external : null;
+    	$campaign->additional_info = (!is_null($additional)) ? $additional : null;
     	
     	# Saving campaign
     	$result = $campaign->save();
@@ -177,13 +179,15 @@ class CampaignController implements ControllerProviderInterface
             $user_vars    = $request->request->get('user_vars');
             $user_headers = $request->request->get('user_headers');
             $external     = $request->request->get('external');
+            $additional   = $request->request->get('additional_info');
             
             # Setting updates in campaign
-            $campaign->subject      = (!empty($subject)) ? $subject : $campaign->subject;
-            $campaign->body         = (!empty($body)) ? $body : $campaign->body;
-            $campaign->user_vars    = (!empty($user_vars)) ? $user_vars : $campaign->user_vars;
-            $campaign->user_headers = (!empty($user_headers)) ? $user_headers : $campaign->user_headers;
-            $campaign->external     = (!empty($external)) ? $external : $campaign->external;
+            $campaign->subject         = (!empty($subject)) ? $subject : $campaign->subject;
+            $campaign->body            = (!empty($body)) ? $body : $campaign->body;
+            $campaign->user_vars       = (!empty($user_vars)) ? $user_vars : $campaign->user_vars;
+            $campaign->user_headers    = (!empty($user_headers)) ? $user_headers : $campaign->user_headers;
+            $campaign->external        = (!empty($external)) ? $external : $campaign->external;
+            $campaign->additional_info = (!empty($additional)) ? $additional : $campaign->additional_info;
             
             # Setting and cleaning headers
             if (is_array($headers)) {

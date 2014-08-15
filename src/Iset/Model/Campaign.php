@@ -139,6 +139,12 @@ class Campaign implements ModelInterface
     public $external = null;
     
     /**
+     * The additional info that can be stored by the service
+     * @var string
+     */
+    public $additional_info = null;
+    
+    /**
      * The internal system PID
      * @var integer
      */
@@ -208,6 +214,7 @@ class Campaign implements ModelInterface
         $this->user_headers = (!empty($data['user_headers'])) ? (int)$data['user_headers'] : 0;
         $this->date = (!empty($data['date'])) ? $data['date'] : date("Y-m-d");
         $this->external = (!empty($data['external'])) ? $data['external'] : null;
+        $this->additional_info = (!empty($data['additional_info'])) ? $data['additional_info'] : null;
         $this->pid = (!empty($data['pid'])) ? $data['pid'] : null;
         
         return $this;
@@ -237,6 +244,7 @@ class Campaign implements ModelInterface
     	    'user_headers'=>$this->user_headers,
     	    'date'=>$this->date,
     	    'external'=>$this->external,
+    	    'additional_info'=>$this->additional_info,
     	    'pid'=>$this->pid,
     	);
     	
@@ -294,6 +302,11 @@ class Campaign implements ModelInterface
         # Validating headers
         if (!is_array($this->headers)) {
             return array('error'=>'Headers must be an array');
+        }
+        
+        # Validating external
+        if (is_null($this->external)) {
+            return array('error'=>'Invalid external identification');
         }
         
     	return true;
