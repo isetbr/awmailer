@@ -5,7 +5,9 @@ require_once dirname(__FILE__) . '/../vendor/autoload.php';
 require_once dirname(__FILE__) . '/../app/App.php';
 
 # Loading resources
+use Iset\Api\Callback;
 use Iset\Api\Resource\Campaign;
+use Iset\Model\ServiceTable;
 use Iset\Model\CampaignTable;
 use Iset\Model\QueueCollection;
 
@@ -20,6 +22,7 @@ $app['monolog.daemon']->addInfo('Initializing application');
 # Initializing gateway
 $gateway = new CampaignTable($app);
 $collection = new QueueCollection($app);
+$serviceGateway = new ServiceTable($app);
 $app['monolog.daemon']->addInfo('Initializing gateways');
 
 # Forking process 
@@ -69,8 +72,26 @@ while (true) {
                 if (!is_null($campaign->pid) && posix_getpgid((int)$campaign->pid) != false) {
                     $command = "kill " . $campaign->pid;
                     exec($command);
+                    
                     # Logging
                     $app['monolog.daemon']->addNotice('Killing process',array('campaign'=>$campaignKey,'PID'=>$campaign->pid));
+                    
+                    # Resolving context
+                    switch ($campaign->status) {
+                        case Campaign::STATUS_PAUSE : 
+                            $context = 'process_paused';
+                            break;
+                        case Campaign::STATUS_STOP :
+                            $context = 'process_stopped';
+                            break;
+                    }
+                    
+                    # Sending callback to the service
+                    $callback = new Callback();
+                    $callback->setService($serviceGateway->getServiceById($campaign->service));
+                    $callback->setResource($campaign);
+                    $callback->send(array('context'=>$context,'key'=>$campaignKey));
+                    unset($callback);
                     continue;
                 }
             }
@@ -118,6 +139,16 @@ while (true) {
                         # Cleaning cache
                         $app['cache']->removeItem($campaignKey);
                         $app['cache']->removeItem($campaignKey . "_previous");
+                        
+                        # Resolving context
+                        $context = ($data['done'] == 1) ? 'process_done' : 'process_error';
+                        
+                        # Sending callback to the service
+                        $callback = new Callback();
+                        $callback->setService($serviceGateway->getServiceById($campaign->service));
+                        $callback->setResource($campaign);
+                        $callback->send(array('context'=>$context,'key'=>$campaignKey));
+                        unset($callback);
                     }
                 } else {
                     # Set previous cache
@@ -129,6 +160,16 @@ while (true) {
             } else {
                 # Set previous cache
                 $app['cache']->setItem($campaignKey . "_previous", json_encode($data));
+                
+                # Verifying if campaign just be started
+                if ($campaign->status = Campaign::STATUS_START && !is_null($campaign->pid)) {
+                    # Sending callback to the service
+                    $callback = new Callback();
+                    $callback->setService($serviceGateway->getServiceById($campaign->service));
+                    $callback->setResource($campaign);
+                    $callback->send(array('context'=>'process_started','key'=>$campaignKey));
+                    unset($callback);
+                }
             }
         } else {
             # Verifying if process is started and not running yet

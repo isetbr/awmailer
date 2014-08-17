@@ -5,7 +5,10 @@ require_once dirname(__FILE__) . '/../vendor/autoload.php';
 require_once dirname(__FILE__) . '/../app/App.php';
 
 # Loading resources
+use Iset\Api\Callback;
 use Iset\Api\Resource\Campaign;
+use Iset\Model\CampaignTable;
+use Iset\Model\QueueCollection;
 
 # Initializing Application
 $app = App::configure();
@@ -14,8 +17,8 @@ $app = App::configure();
 define("PROCESS_TITLE",$app['config']['service']['name']);
 
 # Initializing Campaign table
-$campaignTable = new Iset\Model\CampaignTable($app);
-$queueCollection = new Iset\Model\QueueCollection($app);
+$campaignTable = new CampaignTable($app);
+$queueCollection = new QueueCollection($app);
 
 # Initializing Campaign
 if (isset($_SERVER['argv'][1])) {
