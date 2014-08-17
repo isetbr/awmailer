@@ -22,9 +22,9 @@
 namespace Iset\Api\Controller;
 
 use Silex\Application;
-use Iset\Silex\ControllerProviderInterface;
+use Iset\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\Response;
-use Iset\Model\Service;
+use Iset\Api\Resource\Service;
 use Iset\Model\ServiceTable;
 
 /**
@@ -69,8 +69,9 @@ class ServiceController implements ControllerProviderInterface
         $request = $this->getRequest();
         $service = new Service($this->getTableGateway());
         
-        $service->name = $request->request->get('name');
-        $service->key  = $request->request->get('key');
+        $service->name             = $request->request->get('name');
+        $service->key              = $request->request->get('key');
+        $service->notification_url = $request->request->get('notification_url');
         
         $result = $service->save();
         
@@ -155,11 +156,13 @@ class ServiceController implements ControllerProviderInterface
         
         if ($service) {
             # Getting request params
-            $name = $request->request->get('name');
-            $key  = $request->request->get('key');
+            $name         = $request->request->get('name');
+            $key          = $request->request->get('key');
+            $notification = $request->request->get('notification_url');
             
-            $service->name = (!empty($name) && !is_null($name)) ? $name : $service->name;
-            $service->key  = (!empty($key) && !is_null($key)) ? $key : $service->key;
+            $service->name             = (!empty($name) && !is_null($name)) ? $name : $service->name;
+            $service->key              = (!empty($key) && !is_null($key)) ? $key : $service->key;
+            $service->notification_url = (!empty($notification)) ? $notification : $service->notification_url;
             
             $result = $service->save();
             if ($result === true) {
@@ -210,7 +213,7 @@ class ServiceController implements ControllerProviderInterface
     /**
      * Get the Request
      * 
-     * @see \Iset\Silex\ControllerProviderInterface::getRequest()
+     * @see \Iset\ControllerProviderInterface::getRequest()
      * @return \Symfony\Component\HttpFoundation\Request
      */
     public function getRequest()
@@ -221,7 +224,7 @@ class ServiceController implements ControllerProviderInterface
     /**
      * Get the table gateway instance
      * 
-     * @see \Iset\Silex\ControllerProviderInterface::getTableGateway()
+     * @see \Iset\ControllerProviderInterface::getTableGateway()
      * @return \Iset\Model\ServiceTable
      */
     public function getTableGateway()
@@ -249,7 +252,7 @@ class ServiceController implements ControllerProviderInterface
     /**
      * Register all routes with the controller methods
      * 
-     * @see \Iset\Silex\ControllerProviderInterface::register()
+     * @see \Iset\ControllerProviderInterface::register()
      * @return \Silex\ControllerCollection
      */
     public function register()
