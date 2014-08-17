@@ -26,8 +26,10 @@ use Zend\Config\Reader\Ini as ConfigReader;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Silex\Provider\DoctrineServiceProvider;
+use Silex\Provider\TwigServiceProvider;
+use Silex\Provider\UrlGeneratorServiceProvider;
 use SilexExtension\MongoDbExtension;
-use Iset\Silex\Provider\ZendCacheServiceProvider;
+use Iset\Provider\ZendCacheServiceProvider;
 use Monolog\Logger;
 use Iset\Api\Auth\IpAddress as AuthIpAddress;
 use Iset\Api\Auth\Service as AuthService;
@@ -122,12 +124,12 @@ class App
         });
 		
 		# Doctrine DBAL
-		$kernel->register(new Silex\Provider\DoctrineServiceProvider(), array(
+		$kernel->register(new DoctrineServiceProvider(), array(
             'db.options'=>$kernel['config']['database']['mysql']
 		));
 		
 		# Doctrine Mongodb
-		$kernel->register(new SilexExtension\MongoDbExtension(), array(
+		$kernel->register(new MongoDbExtension(), array(
 			'mongodb.connection'=>array(
 			    'server'=>$kernel['config']['database']['mongo']['dsn'],
 			    'options'=>array(),
@@ -136,7 +138,7 @@ class App
 		));
 		
 		# Zend Cache
-		$kernel->register(new Iset\Silex\Provider\ZendCacheServiceProvider(), array(
+		$kernel->register(new ZendCacheServiceProvider(), array(
 		    'cache.options'=>array(
                 'zendcache'=>$kernel['config']['cache']['zendcache'],
 		        'cache_dir'=>$kernel['cache_path'],
@@ -144,12 +146,12 @@ class App
 		));
 		
 		# Twig Template Engine
-		$kernel->register(new Silex\Provider\TwigServiceProvider(), array(
+		$kernel->register(new TwigServiceProvider(), array(
 		    'twig.path'=>$kernel['view_path'],
 		));
 		
 		# URL Generator
-		$kernel->register(new Silex\Provider\UrlGeneratorServiceProvider());
+		$kernel->register(new UrlGeneratorServiceProvider());
 		
 		# Creating container to perform a authentication
 		$kernel['auth.ipaddress'] = $kernel->protect(function () use ($kernel) {

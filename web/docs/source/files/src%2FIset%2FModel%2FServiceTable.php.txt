@@ -21,8 +21,8 @@
 
 namespace Iset\Model;
 
-use Iset\Silex\Db\TableGatewayAbstract;
-use Iset\Model\Service;
+use Iset\Db\TableGatewayAbstract;
+use Iset\Api\Resource\Service;
 
 /**
  * Service Table Gateway
@@ -70,7 +70,7 @@ class ServiceTable extends TableGatewayAbstract
      * Fetch an service from database
      * 
      * @param string $key
-     * @return \Iset\Model\Service
+     * @return \Iset\Api\Resource\Service
      */
     public function getService($key)
     {
@@ -91,7 +91,7 @@ class ServiceTable extends TableGatewayAbstract
      * Fetch an service from database using service id
      * 
      * @param integer $id
-     * @return boolean
+     * @return \Iset\Api\Resource\Service
      */
     public function getServiceById($id)
     {
@@ -128,8 +128,8 @@ class ServiceTable extends TableGatewayAbstract
     	        # Verifying result
     	        if (count($result) == 0) {
     	            # Mounting query
-    	            $query = "INSERT INTO `" . self::TABLE_NAME . "` (`name`,`key`,`token`) VALUES (?,?,?)";
-    	            $data = array($service->name,$service->key,$service->getToken());
+    	            $query = "INSERT INTO `" . self::TABLE_NAME . "` (`name`,`key`,`token`,`notification_url`) VALUES (?,?,?,?)";
+    	            $data = array($service->name,$service->key,$service->getToken(),$service->notification_url);
     	            
     	            # Inserting
     	            $result = $this->tableGateway->executeUpdate($query,$data);
@@ -153,8 +153,8 @@ class ServiceTable extends TableGatewayAbstract
     	        # Verifying result
     	        if (count($result) == 0) {
     	            # Mouting query
-    	            $query = "UPDATE `" . self::TABLE_NAME . "` SET `name`=?,`key`=? WHERE `idservice`=?";
-    	            $data = array($service->name,$service->key,$service->id);
+    	            $query = "UPDATE `" . self::TABLE_NAME . "` SET `name`=?,`key`=?,`notification_url`=? WHERE `idservice`=?";
+    	            $data = array($service->name,$service->key,$service->notification_url,$service->id);
     	            
     	            # Updating 
     	            $result = $this->tableGateway->executeUpdate($query,$data);
