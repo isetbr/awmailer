@@ -31,7 +31,6 @@ This document covers the core resources you can use to manipulate your services 
 - 403 `Forbidden` - Access denied.
 - 404 `Not Found` - Resource was not found.
 - 405 `Method Not Allowed` - Requested method is not supported for the specified resource.
-- 429 `Too Many Requests` - Exceeded GoodData API limits. Pause requests, wait one minute, and try again. 
 - 503 `Service Unavailable` - The service is temporary unavailable (e.g. scheduled Platform Maintenance). Try again later.
 
 >**Note:** M4A1 API works with json in requests and responses then, all HTTP calls must be include a header *Content-Type: application/json*, otherwise the API will return a HTTP 400 - Bad Request response.
@@ -67,13 +66,13 @@ Retrieve all Services
 + Response 200 (application/json)
 
         [{
-          "name": "First Service", "key": "svc1"
+          "name": "First Service", "key": "svc1", "notification_url": "http://service.com/callback/notifications"
         },
         {
-          "name": "Second Service", "key": "svc2"
+          "name": "Second Service", "key": "svc2", "notification_url": "http://service2.com/callback/notifications"
         },
         {
-          "name": "Third Service", "key":"svc3"
+          "name": "Third Service", "key":"svc3", "notification_url": "http://service3.com/callback/notifications"
         }]
 
 ### POST
@@ -82,12 +81,14 @@ Create a new Service
 + Parameters
     + name (required, string, `Service Name`) ... The Service name
     + key (required, string, `myservicekey`) ... The service key that will used to authenticate your HTTP requests
+    + notification_url (required, string, `http://myservice.com/callback/notification`) ... The callback URL for send API notifications
 
 + Request (application/json)
         
         {
           "name": "Service Name",
-          "key": "myservicekey" 
+          "key": "myservicekey",
+          "notification_url": "http://myservice.com/callback/notifications"
         }
 
 + Response 201 (application/json)
@@ -140,10 +141,15 @@ Update a Service
 + Parameters
     + name (optional, string, `Service Name`) ... The name of service
     + key (optional, string, `myservicekey`) ... The service key that will used to authenticate your HTTP requests
+    + notification_url (optional, string, `http://myservice.com/callback/notification`) ... The callback URL for send API notifications
 
 + Request (application/json)
 
-        { "name": "Service Name", "key": "myservicekey" }
+        {
+          "name": "Service Name",
+          "key": "myservicekey",
+          "notification_url": "http://myservice.com/callback/notification" 
+        }
 
 + Response 200 (application/json)
 
@@ -291,6 +297,7 @@ Create a new campaign
     + user_vars (optional, integer) ... Flag for parse queue with body variables
     + user_headers (optional, integer) ... Flag for set custom headers by each destination
     + external (required, integer) ... The identification of this campaign in client application.
+    + additional_info (optional, string) ... The additional information for client use to indentify the campaign
 
 + Request (application/json)
 
@@ -310,7 +317,8 @@ Create a new campaign
               },
               "user_vars": 1,
               "user_headers": 1,
-              "external": 123
+              "external": 123,
+              "additional_info": "myreferenceinformation"
             }
 
 + Response 201 (application/json)
@@ -366,6 +374,7 @@ Get details of an campaign
           "user_headers": 1,
           "date": "2014-08-05",
           "external": "123",
+          "additional_info": "myreferenceinformation",
           "pid": null,
         }
 
@@ -386,6 +395,7 @@ Update an campaign
     + user_vars (optional, integer) ... Flag for parse queue with body variables
     + user_headers (optional, integer) ... Flag for set custom headers by each destination
     + external (required, integer) ... The identification of this campaign in client application.
+    + additional_info (optional, string) ... The additional information for client use to indentify the campaign
 
 + Request (application/json)
 
@@ -405,7 +415,8 @@ Update an campaign
               },
               "user_vars": 0,
               "user_headers": 0,
-              "external": 456
+              "external": 456,
+              "additional_info": "myreferenceinformation"
             }
 
 + Response 200 (application/json)
@@ -682,8 +693,40 @@ Get status from multiple campaigns
           }
         }
 
+# Group Notifications
+
+The M4A1 can send to any service that uses API notifications about processes events in API.
+
+The notifications resource of API send to notification url of service a HTTP POST request with the following structure:
+
+	{
+	  "resource": "resourcename",
+	  "context": "thecontext"
+	}
+
+See next sections for examples of notifications organized by specific resource:
+
+##Campaign Notifications
+
+The `campaign` resource will notificate you about the following contexts:
+
+- `process_started` - A send process was successfully started
+- `process_paused` - A send process was successfully paused
+- `process_stopped` - A send process was successfully stopped
+- `process_done` - The process was done
+- `process_error` - An error occurred in send process, request logs.
+
+Example:
+	
+	{
+	  "resource": "campaign",
+	  "context": "process_started",
+	  "key": "6c8bff2269a89ef7ec3cf87e72be656f"
+	}
+
 # Group  Changelog
 
+- `v0.4.0-beta:` Refactored some API hierarchy structures and implemented notification callbacks
 - `v0.3.3-beta:` Fixed some security issues in campaign resource and implemented campaign validations
 - `v0.3.2-beta:` The first beta release with minor bugs
 - `v0.3.2-alpha:` Optimised authentication service
