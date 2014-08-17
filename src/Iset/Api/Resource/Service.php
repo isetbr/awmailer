@@ -19,26 +19,34 @@
  *
  */
 
-namespace Iset\Model;
+namespace Iset\Api\Resource;
 
-use Iset\Silex\Model\ModelInterface;
-use Iset\Silex\Db\TableGatewayAbstract;
+use Iset\Resource\AbstractResource;
+use Iset\Model\ModelInterface;
+use Iset\Db\TableGatewayAbstract;
 use Iset\Model\ServiceTable;
+use Zend\Validator\Uri as UriValidator;
 
 /**
  * Service
  *
  * This is a object representation of an Service
  *
- * @package Iset
- * @subpackage Model
- * @namespace Iset\Model
+ * @package Iset\Api
+ * @subpackage Resource
+ * @namespace Iset\Api\Resource
  * @author Lucas Mendes de Freitas <devsdmf>
  * @copyright M4A1 (c) iSET - Internet, Soluções e Tecnologia LTDA.
  *
  */
-class Service implements ModelInterface
+class Service extends AbstractResource implements ModelInterface
 {
+    /**
+     * The resource name
+     * @var string
+     */
+    const RESOURCE_NAME = 'service';
+    
     /**
      * The ID of service
      * @var integer
@@ -64,8 +72,14 @@ class Service implements ModelInterface
     private $token = null;
     
     /**
+     * The URL that API will send notifications
+     * @var string
+     */
+    public $notification_url = null;
+    
+    /**
      * The instance of TableGateway
-     * @var \Iset\Silex\Db\TableGatewayAbstract
+     * @var \Iset\Db\TableGatewayAbstract
      */
     private $gateway = null;
     
@@ -73,10 +87,12 @@ class Service implements ModelInterface
      * The Constructor
      * 
      * @param TableGatewayAbstract $gateway
-     * @return \Iset\Model\Service
+     * @return \Iset\Api\Resource\Service
      */
     public function __construct(TableGatewayAbstract $gateway = null)
     {
+        parent::__construct($this::RESOURCE_NAME);
+        
     	if (!is_null($gateway)) {
     	    $this->gateway = $gateway;
     	}
@@ -98,15 +114,16 @@ class Service implements ModelInterface
      * Fill object with an configured associative array
      * 
      * @param array $data
-     * @see \Iset\Silex\Model\ModelInterface::exchangeArray()
-     * @return \Iset\Model\Service
+     * @see \Iset\Model\ModelInterface::exchangeArray()
+     * @return \Iset\Api\Resource\Service
      */
     public function exchangeArray(array $data)
     {
-        $this->id    = (!empty($data['idservice'])) ? (int)$data['idservice'] : null;
-        $this->name  = (!empty($data['name'])) ? $data['name'] : null;
-        $this->key   = (!empty($data['key'])) ? $data['key'] : null;
-        $this->token = (!empty($data['token'])) ? $data['token'] : null;
+        $this->id               = (!empty($data['idservice'])) ? (int)$data['idservice'] : null;
+        $this->name             = (!empty($data['name'])) ? $data['name'] : null;
+        $this->key              = (!empty($data['key'])) ? $data['key'] : null;
+        $this->token            = (!empty($data['token'])) ? $data['token'] : null;
+        $this->notification_url = (!empty($data['notification_url'])) ? $data['notification_url'] : null;
         
         return $this;
     }
@@ -114,7 +131,7 @@ class Service implements ModelInterface
     /**
      * Get the array representation of object
      * 
-     * @see \Iset\Silex\Model\ModelInterface::asArray()
+     * @see \Iset\Model\ModelInterface::asArray()
      * @return array
      */
     public function asArray()
@@ -123,7 +140,8 @@ class Service implements ModelInterface
     	    'id'=>$this->id,
     	    'name'=>$this->name,
     	    'key'=>$this->key,
-    	    'token'=>$this->token
+    	    'token'=>$this->token,
+    	    'notification_url'=>$this->notification_url,
     	);
     	
     	return $data;
@@ -132,7 +150,7 @@ class Service implements ModelInterface
     /**
      * Validate the Service
      * 
-     * @see \Iset\Silex\Model\ModelInterface::validate()
+     * @see \Iset\Model\ModelInterface::validate()
      * @return mixed
      */
     public function validate()
@@ -162,13 +180,23 @@ class Service implements ModelInterface
             }
         }
         
+        # Validating notification URL
+        if (!is_null($this->notification_url)) {
+            $validator = new UriValidator(array('allowRelative'=>false));
+            if (!$validator->isValid($this->notification_url)) {
+                return array('error'=>'The notification url is not a valid URI');
+            }
+        } else {
+            return array('error'=>'A notification url must be specified');
+        }
+        
         return true;
     }
     
     /**
      * Save Service
      * 
-     * @see \Iset\Silex\Model\ModelInterface::save()
+     * @see \Iset\Model\ModelInterface::save()
      * @return mixed
      */
     public function save()
@@ -184,7 +212,7 @@ class Service implements ModelInterface
     /**
      * Delete Service
      * 
-     * @see \Iset\Silex\Model\ModelInterface::delete()
+     * @see \Iset\Model\ModelInterface::delete()
      * @return mixed
      */
     public function delete()

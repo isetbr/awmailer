@@ -19,7 +19,7 @@
  *
  */
 
-namespace Iset\Silex\Provider;
+namespace Iset\Provider;
 
 use Silex\Application;
 use Silex\ServiceProviderInterface;
@@ -31,9 +31,9 @@ use Zend\Cache\StorageFactory;
  * This is a extension of ControllerProviderInterface provided by Silex framework
  * customized for this application
  *
- * @package Iset\Silex
+ * @package Iset
  * @subpackage Provider
- * @namespace Iset\Silex\Provider
+ * @namespace Iset\Provider
  * @author Lucas Mendes de Freitas <devsdmf>
  * @copyright M4A1 (c) iSET - Internet, Soluções e Tecnologia LTDA.
  *

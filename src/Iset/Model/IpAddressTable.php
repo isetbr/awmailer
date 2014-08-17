@@ -21,8 +21,8 @@
 
 namespace Iset\Model;
 
-use Iset\Silex\Db\TableGatewayAbstract;
-use Iset\Model\IpAddress;
+use Iset\Db\TableGatewayAbstract;
+use Iset\Api\Resource\IpAddress;
 
 /**
  * IpAddress Table Gateway
@@ -70,7 +70,7 @@ class IpAddressTable extends TableGatewayAbstract
      * Fetch an IpAddress from database
      * 
      * @param string $ipaddress
-     * @return \Iset\Model\IpAddress
+     * @return \Iset\Api\Resource\IpAddress
      */
     public function getIpAddress($ipaddress)
     {

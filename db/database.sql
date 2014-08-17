@@ -88,6 +88,7 @@ CREATE TABLE `service` (
   `name` varchar(45) NOT NULL,
   `key` varchar(45) NOT NULL,
   `token` char(80) NOT NULL,
+  `notification_url` varchar(250) NOT NULL,
   PRIMARY KEY (`idservice`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -110,4 +111,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-08-15 13:03:35
+-- Dump completed on 2014-08-15 15:48:00

@@ -22,7 +22,6 @@
 namespace Iset\Api\Auth;
 
 use Silex\Application;
-use Iset\Silex\Auth\AuthInterface;
 use Iset\Model\ServiceTable;
 
 /**
@@ -61,7 +60,7 @@ class Service
      * 
      * @param string $key
      * @param string $token
-     * @return boolean
+     * @return mixed
      */
     public function validate($key,$token)
     {

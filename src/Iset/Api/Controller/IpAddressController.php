@@ -22,9 +22,9 @@
 namespace Iset\Api\Controller;
 
 use Silex\Application;
-use Iset\Silex\ControllerProviderInterface;
+use Iset\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\Response;
-use Iset\Model\IpAddress;
+use Iset\Api\Resource\IpAddress;
 use Iset\Model\IpAddressTable;
 
 /**
@@ -147,7 +147,7 @@ class IpAddressController implements ControllerProviderInterface
     /**
      * Get the Request
      * 
-     * @see \Iset\Silex\ControllerProviderInterface::getRequest()
+     * @see \Iset\ControllerProviderInterface::getRequest()
      * @return \Symfony\Component\HttpFoundation\Request
      */
     public function getRequest()
@@ -158,7 +158,7 @@ class IpAddressController implements ControllerProviderInterface
     /**
      * Get the table gateway instance
      * 
-     * @see \Iset\Silex\ControllerProviderInterface::getTableGateway()
+     * @see \Iset\ControllerProviderInterface::getTableGateway()
      * @return \Iset\Model\IpAddressTable
      */
     public function getTableGateway()
@@ -186,7 +186,7 @@ class IpAddressController implements ControllerProviderInterface
     /**
      * Register all routes with the controller methods
      * 
-     * @see \Iset\Silex\ControllerProviderInterface::register()
+     * @see \Iset\ControllerProviderInterface::register()
      * @return \Silex\ControllerCollection
      */
     public function register()

@@ -19,38 +19,47 @@
  *
  */
 
-namespace Iset\Silex\Db;
-
-use Silex\Application;
+namespace Iset\Resource;
 
 /**
- * Abstract Table Gateway
+ * Abstract Resource
  * 
- * This is a abstract class that provides a basic structure for models
- * that performs updates in MySQL databases.
+ * This is a abstract class that provides a basic structur for an concrete
+ * resource in API.
  * 
- * @package Iset\Silex
- * @subpackage Db
- * @namespace Iset\Silex\Db
+ * @package Iset
+ * @subpackage Resource
+ * @namespace Iset\Resource
  * @author Lucas Mendes de Freitas <devsdmf>
  * @copyright M4A1 (c) iSET - Internet, Soluções e Tecnologia LTDA.
  *
  */
-abstract class TableGatewayAbstract
+abstract class AbstractResource
 {
     /**
-     * An instance of Doctrine DBAL
-     * @var \Doctrine\DBAL\Connection
+     * The resource name
+     * @var string 
      */
-    protected $tableGateway = null;
+    protected $_resourceName = null;
     
     /**
      * The Constructor
      * 
-     * @param Application $app
+     * @param string $name
      */
-    public function __construct(Application &$app)
+    public function __construct($name)
     {
-        $this->tableGateway = &$app['db'];
+        if (is_string($name))
+            $this->_resourceName = $name;
+    }
+    
+    /**
+     * Get the name of resource that it implements
+     * 
+     * @return string
+     */
+    public function getResourceName()
+    {
+        return $this->_resourceName;
     }
 }
