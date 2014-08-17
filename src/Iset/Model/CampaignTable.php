@@ -21,8 +21,8 @@
 
 namespace Iset\Model;
 
-use Iset\Silex\Db\TableGatewayAbstract;
-use Iset\Model\Campaign;
+use Iset\Db\TableGatewayAbstract;
+use Iset\Api\Resource\Campaign;
 
 /**
  * Campaign Table Gateway
@@ -93,7 +93,7 @@ class CampaignTable extends TableGatewayAbstract
      * 
      * @param integer $idcampaign
      * @param integer $service 
-     * @return \Iset\Model\Campaign
+     * @return \Iset\Api\Resource\Campaign
      */
     public function getCampaign($idcampaign, $service = null)
     {
@@ -123,7 +123,7 @@ class CampaignTable extends TableGatewayAbstract
      * 
      * @param string $key
      * @param integer $service
-     * @return \Iset\Model\Campaign
+     * @return \Iset\Api\Resource\Campaign
      */
     public function getCampaignByKey($key, $service = null)
     {
@@ -163,7 +163,7 @@ class CampaignTable extends TableGatewayAbstract
     	    if (is_null($campaign->id)) {
     	        # INSERT
     	        # Mounting query
-    	        $query = "INSERT INTO `" . self::TABLE_NAME . "` (`idservice`,`key`,`total_queue`,`sent`,`fail`,`progress`,`status`,`subject`,`body`,`headers`,`user_vars`,`user_headers`,`date`,`external`,`pid`)  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    	        $query = "INSERT INTO `" . self::TABLE_NAME . "` (`idservice`,`key`,`total_queue`,`sent`,`fail`,`progress`,`status`,`subject`,`body`,`headers`,`user_vars`,`user_headers`,`date`,`external`,`additional_info`,`pid`)  VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	            $data = array(
 	                $campaign->service,
 	                $campaign->getCampaignKey(),
@@ -179,6 +179,7 @@ class CampaignTable extends TableGatewayAbstract
 	                $campaign->user_headers,
 	                date("Y-m-d"),
 	                $campaign->external,
+	                $campaign->additional_info,
 	                $campaign->pid,
 	            );
     	        
@@ -210,6 +211,7 @@ class CampaignTable extends TableGatewayAbstract
     	            `user_headers`=?,
     	            `date`=?,
     	            `external`=?,
+    	            `additional_info`=?,
     	            `pid`=? 
     	            WHERE `idcampaign`=?";
     	        $data = array(
@@ -227,6 +229,7 @@ class CampaignTable extends TableGatewayAbstract
     	            $campaign->user_headers,
     	            date("Y-m-d"),
     	            $campaign->external,
+    	            $campaign->additional_info,
     	            $campaign->pid,
     	            $campaign->id
     	        );

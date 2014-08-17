@@ -19,10 +19,11 @@
  *
  */
 
-namespace Iset\Model;
+namespace Iset\Api\Resource;
 
-use Iset\Silex\Model\ModelInterface;
-use Iset\Silex\Db\TableGatewayAbstract;
+use Iset\Resource\AbstractResource;
+use Iset\Model\ModelInterface;
+use Iset\Db\TableGatewayAbstract;
 use Iset\Model\CampaignTable;
 
 /**
@@ -30,15 +31,21 @@ use Iset\Model\CampaignTable;
  * 
  * This is a object representation of an Campaign
  * 
- * @package Iset
- * @subpackage Model
- * @namespace Iset\Model
+ * @package Iset\Api
+ * @subpackage Resource
+ * @namespace Iset\Api\Resource
  * @author Lucas Mendes de Freitas <devsdmf>
  * @copyright M4A1 (c) iSET - Internet, Soluções e Tecnologia LTDA.
  *
  */
-class Campaign implements ModelInterface
+class Campaign extends AbstractResource implements ModelInterface
 {
+    /**
+     * The resource name
+     * @var string
+     */
+    const RESOURCE_NAME = 'campaign';
+    
     /**
      * Available status code for campaign
      */
@@ -139,6 +146,12 @@ class Campaign implements ModelInterface
     public $external = null;
     
     /**
+     * The additional info that can be stored by the service
+     * @var string
+     */
+    public $additional_info = null;
+    
+    /**
      * The internal system PID
      * @var integer
      */
@@ -146,7 +159,7 @@ class Campaign implements ModelInterface
     
     /**
      * The instance of TableGateway
-     * @var \Iset\Silex\Db\TableGatewayAbstract
+     * @var \Iset\Db\TableGatewayAbstract
      */
     private $gateway = null;
     
@@ -154,10 +167,12 @@ class Campaign implements ModelInterface
      * The Constructor
      * 
      * @param TableGatewayAbstract $gateway
-     * @return \Iset\Model\Campaign
+     * @return \Iset\Api\Resource\Campaign
      */
     public function __construct(TableGatewayAbstract $gateway = null)
     {
+        parent::__construct($this::RESOURCE_NAME);
+        
         if (!is_null($gateway)) {
             $this->gateway = $gateway;
         }
@@ -188,8 +203,8 @@ class Campaign implements ModelInterface
      * Fill object with an configured associative array
      * 
      * @param array $data
-     * @see \Iset\Silex\Model\ModelInterface::exchangeArray()
-     * @return \Iset\Model\Campaign
+     * @see \Iset\Model\ModelInterface::exchangeArray()
+     * @return \Iset\Api\Resource\Campaign
      */
     public function exchangeArray(array $data)
     {
@@ -208,6 +223,7 @@ class Campaign implements ModelInterface
         $this->user_headers = (!empty($data['user_headers'])) ? (int)$data['user_headers'] : 0;
         $this->date = (!empty($data['date'])) ? $data['date'] : date("Y-m-d");
         $this->external = (!empty($data['external'])) ? $data['external'] : null;
+        $this->additional_info = (!empty($data['additional_info'])) ? $data['additional_info'] : null;
         $this->pid = (!empty($data['pid'])) ? $data['pid'] : null;
         
         return $this;
@@ -216,7 +232,7 @@ class Campaign implements ModelInterface
     /**
      * Get the array representation of object
      * 
-     * @see \Iset\Silex\Model\ModelInterface::asArray()
+     * @see \Iset\Model\ModelInterface::asArray()
      * @return array
      */
     public function asArray()
@@ -237,6 +253,7 @@ class Campaign implements ModelInterface
     	    'user_headers'=>$this->user_headers,
     	    'date'=>$this->date,
     	    'external'=>$this->external,
+    	    'additional_info'=>$this->additional_info,
     	    'pid'=>$this->pid,
     	);
     	
@@ -246,7 +263,7 @@ class Campaign implements ModelInterface
     /**
      * Validate the Campaign
      * 
-     * @see \Iset\Silex\Model\ModelInterface::validate()
+     * @see \Iset\Model\ModelInterface::validate()
      * @return mixed
      */
     public function validate()
@@ -296,13 +313,18 @@ class Campaign implements ModelInterface
             return array('error'=>'Headers must be an array');
         }
         
+        # Validating external
+        if (is_null($this->external)) {
+            return array('error'=>'Invalid external identification');
+        }
+        
     	return true;
     }
     
     /**
      * Save Campaign
      * 
-     * @see \Iset\Silex\Model\ModelInterface::save()
+     * @see \Iset\Model\ModelInterface::save()
      * @return mixed
      */
     public function save()
@@ -318,7 +340,7 @@ class Campaign implements ModelInterface
     /**
      * Delete Campaign
      * 
-     * @see \Iset\Silex\Model\ModelInterface::delete()
+     * @see \Iset\Model\ModelInterface::delete()
      * @return mixed
      */
     public function delete()

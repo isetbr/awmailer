@@ -22,8 +22,6 @@
 namespace Iset\Api\Auth;
 
 use Silex\Application;
-use Symfony\Component\HttpFoundation\Response;
-use Iset\Silex\Auth\AuthInterface;
 use Iset\Model\IpAddressTable;
 
 /**
@@ -61,7 +59,7 @@ class IpAddress
      * Validate the IpAddress in database
      * 
      * @param string $ipaddress
-     * @return boolean
+     * @return mixed
      */
     public function validate($ipaddress)
     {

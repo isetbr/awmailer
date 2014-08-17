@@ -19,7 +19,7 @@
  *
  */
 
-namespace Iset\Silex;
+namespace Iset;
 
 use Silex\Application;
 use Silex\ControllerProviderInterface as SilexControllerProviderInterface;
@@ -31,8 +31,7 @@ use Silex\ControllerProviderInterface as SilexControllerProviderInterface;
  * customized for this application 
  * 
  * @package Iset
- * @subpackage Silex
- * @namespace Iset\Silex
+ * @namespace Iset
  * @author Lucas Mendes de Freitas <devsdmf>
  * @copyright M4A1 (c) iSET - Internet, Soluções e Tecnologia LTDA.
  *
@@ -49,7 +48,7 @@ interface ControllerProviderInterface extends SilexControllerProviderInterface
     /**
      * Get the instance of TableGateway
      * 
-     * @return \Iset\Silex\Db\TableGatewayAbstract
+     * @return \Iset\Db\TableGatewayAbstract
      */
     public function getTableGateway();
     

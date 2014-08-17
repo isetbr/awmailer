@@ -19,10 +19,11 @@
  *
  */
 
-namespace Iset\Model;
+namespace Iset\Api\Resource;
 
-use Iset\Silex\Model\ModelInterface;
-use Iset\Silex\Db\TableGatewayAbstract;
+use Iset\Resource\AbstractResource;
+use Iset\Model\ModelInterface;
+use Iset\Db\TableGatewayAbstract;
 use Zend\Validator\Ip as IpAddressValidator;
 
 /**
@@ -30,15 +31,21 @@ use Zend\Validator\Ip as IpAddressValidator;
  * 
  * This is a object representation of an IpAddress
  * 
- * @package Iset
- * @subpackage Model
- * @namespace Iset\Model
+ * @package Iset\Api
+ * @subpackage Resource
+ * @namespace Iset\Api\Resource
  * @author Lucas Mendes de Freitas <devsdmf>
  * @copyright M4A1 (c) iSET - Internet, Soluções e Tecnologia LTDA.
  *
  */
-class IpAddress implements ModelInterface
+class IpAddress extends AbstractResource implements ModelInterface
 {
+    /**
+     * The resource name
+     * @var string 
+     */
+    const RESOURCE_NAME = 'ipaddress';
+    
     /**
      * The IP address
      * @var string 
@@ -47,7 +54,7 @@ class IpAddress implements ModelInterface
     
     /**
      * The instance of TableGateway
-     * @var \Iset\Silex\Db\TableGatewayAbstract
+     * @var \Iset\Db\TableGatewayAbstract
      */
     private $gateway = null;
     
@@ -55,10 +62,12 @@ class IpAddress implements ModelInterface
      * The Constructor
      * 
      * @param TableGatewayAbstract $gateway
-     * @return \Iset\Model\IpAddress
+     * @return \Iset\Api\Resource\IpAddress
      */
     public function __construct(TableGatewayAbstract $gateway = null)
     {
+        parent::__construct($this::RESOURCE_NAME);
+        
         if (!is_null($gateway)) {
             $this->gateway = $gateway;
         }
@@ -70,8 +79,8 @@ class IpAddress implements ModelInterface
      * Fill object with an configured associative array
      * 
      * @param array $data
-     * @see \Iset\Silex\Model\ModelInterface::exchangeArray()
-     * @return \Iset\Model\IpAddress
+     * @see \Iset\Model\ModelInterface::exchangeArray()
+     * @return \Iset\Api\Resource\IpAddress
      */
     public function exchangeArray(array $data)
     {
@@ -83,7 +92,7 @@ class IpAddress implements ModelInterface
     /**
      * Get the array representation of object
      * 
-     * @see \Iset\Silex\Model\ModelInterface::asArray()
+     * @see \Iset\Model\ModelInterface::asArray()
      * @return array
      */
     public function asArray()
@@ -94,7 +103,7 @@ class IpAddress implements ModelInterface
     /**
      * Validate the IpAddress
      * 
-     * @see \Iset\Silex\Model\ModelInterface::validate()
+     * @see \Iset\Model\ModelInterface::validate()
      * @return mixed
      */
     public function validate()
@@ -111,7 +120,7 @@ class IpAddress implements ModelInterface
     /**
      * Save IpAddress
      * 
-     * @see \Iset\Silex\Model\ModelInterface::save()
+     * @see \Iset\Model\ModelInterface::save()
      * @return mixed
      */
     public function save()
@@ -127,7 +136,7 @@ class IpAddress implements ModelInterface
     /**
      * Delete IpAddress
      * 
-     * @see \Iset\Silex\Model\ModelInterface::delete()
+     * @see \Iset\Model\ModelInterface::delete()
      * @return mixed
      */
     public function delete()

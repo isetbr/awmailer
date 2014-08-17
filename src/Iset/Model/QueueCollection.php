@@ -22,7 +22,7 @@
 namespace Iset\Model;
 
 use Silex\Application;
-use Iset\Silex\Mongo\CollectionAbstract;
+use Iset\Mongo\CollectionAbstract;
 
 /**
  * Queue Collection Gateway
