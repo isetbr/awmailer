@@ -113,6 +113,8 @@ class Callback
         
         # Configuring client instance
         $client->setUri($this->_service->notification_url);
+        $client->setHeaders('Auth-Service-Key',$this->_service->key);
+        $client->setHeaders('Auth-Token',$this->_service->getToken());
         $client->setMethod(HttpClient::POST);
         $client->setRawData(json_encode($data));
         
