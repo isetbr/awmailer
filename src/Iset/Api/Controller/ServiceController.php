@@ -208,7 +208,7 @@ class ServiceController implements ControllerProviderInterface
             }
         } else {
             $response = array('success'=>0,'error'=>'Service not found');
-            return $this->_app->json($response,Response::HTTP_OK);
+            return $this->_app->json($response,Response::HTTP_NOT_FOUND);
         }
     }
     

@@ -119,7 +119,7 @@ class IpAddressTable extends TableGatewayAbstract
     	        return array('error'=>'IP Address already allowed');
     	    }
     	} else {
-    	    return array('error'=>'Invalid ip address');
+    	    return array('error'=>'Invalid IP address, see details for more information','details'=>$result['error']);
     	}
     }
     
