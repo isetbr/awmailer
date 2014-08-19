@@ -80,7 +80,8 @@ class ServiceController implements ControllerProviderInterface
             return $this->_app->json($response,Response::HTTP_CREATED);
         } elseif (is_array($result)) {
             $response = array_merge(array('success'=>0),$result);
-            return $this->_app->json($response,Response::HTTP_OK);
+            $code     = (isset($response['details'])) ? Response::HTTP_BAD_REQUEST : Response::HTTP_INTERNAL_SERVER_ERROR;
+            return $this->_app->json($response,$code);
         } else {
             $response = array('success'=>0,'error'=>'Unknow error');
             return $this->_app->json($response,Response::HTTP_INTERNAL_SERVER_ERROR);
@@ -135,7 +136,7 @@ class ServiceController implements ControllerProviderInterface
             return $this->_app->json($response,Response::HTTP_OK);
         } else {
             $response = array('success'=>0,'error'=>'Service not found');
-            return $this->_app->json($response,Response::HTTP_OK);
+            return $this->_app->json($response,Response::HTTP_NOT_FOUND);
         }
     }
     
@@ -170,14 +171,15 @@ class ServiceController implements ControllerProviderInterface
                 return $this->_app->json($response,Response::HTTP_OK);
             } elseif (is_array($result)) {
                 $response = array_merge(array('success'=>0),$result);
-                return $this->_app->json($response,Response::HTTP_OK);
+                $code     = (isset($response['details'])) ? Response::HTTP_BAD_REQUEST : Response::HTTP_INTERNAL_SERVER_ERROR;
+                return $this->_app->json($response,$code);
             } else {
                 $response = array('success'=>0,'error'=>'Unknow error');
                 return $this->_app->json($response,Response::HTTP_INTERNAL_SERVER_ERROR);
             }
         } else {
             $response = array('success'=>0,'error'=>'Service not found');
-            return $this->_app->json($response,Response::HTTP_OK);
+            return $this->_app->json($response,Response::HTTP_NOT_FOUND);
         }
     }
     
