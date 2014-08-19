@@ -440,7 +440,21 @@ class CampaignController implements ControllerProviderInterface
         $skip  = (int)$request->query->get('skip');
         
         # Retrieving data from db
-        $result = $collection->fetch($key,null,$limit,$skip);
+        $stack = $collection->fetch($key,null,$limit,$skip);
+        
+        # Verifying if campaign has custom fields
+        if ($campaign->user_vars == 1  || $campaign->user_headers == 1) {
+            # Parsing result
+            $result = array();
+            
+            # Looping into results for prepare array to response
+            foreach ($stack as $row) {
+                # Saving on result var
+                $result[] = $row['email'];
+            }
+        } else {
+            $result = $stack;
+        }
         
         # Verifying results found
         if (count($result) > 0) {
