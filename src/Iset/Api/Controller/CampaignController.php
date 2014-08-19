@@ -622,7 +622,7 @@ class CampaignController implements ControllerProviderInterface
             # Verifying if campaign isn't done or stopped
             if ($campaign->status == Campaign::STATUS_DONE || $campaign->status == Campaign::STATUS_STOP) {
                 $response = array('success'=>0,'error'=>'Campaing was done or stopped');
-                return $this->_app->json($response,Respone::HTTP_OK);
+                return $this->_app->json($response,Response::HTTP_INTERNAL_SERVER_ERROR);
             } else {
                 # Changing status of campaign
                 $this->changeStatusCampaign($key,Campaign::STATUS_START);
@@ -660,7 +660,7 @@ class CampaignController implements ControllerProviderInterface
                 return new Response(null,Response::HTTP_NO_CONTENT);
             } else {
                 $response = array('success'=>0,'error'=>'Campaign must be started before pause');
-                return new Response($response,Response::HTTP_OK);
+                return new Response($response,Response::HTTP_INTERNAL_SERVER_ERROR);
             }
         } else {
             $response = array('success'=>0,'error'=>'Campaign not found');
@@ -693,8 +693,8 @@ class CampaignController implements ControllerProviderInterface
                 $this->changeStatusCampaign($key,Campaign::STATUS_STOP);
                 return new Response(null,Response::HTTP_NO_CONTENT);
             } else {
-                $response = array('success'=>0,'error'=>'Campaign must be started before pause');
-                return new Response($response,Response::HTTP_OK);
+                $response = array('success'=>0,'error'=>'Campaign must be started before stop');
+                return new Response($response,Response::HTTP_INTERNAL_SERVER_ERROR);
             }
         } else {
             $response = array('success'=>0,'error'=>'Campaign not found');

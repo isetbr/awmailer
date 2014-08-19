@@ -31,6 +31,7 @@ This document covers the core resources you can use to manipulate your services 
 - 403 `Forbidden` - Access denied.
 - 404 `Not Found` - Resource was not found.
 - 405 `Method Not Allowed` - Requested method is not supported for the specified resource.
+- 501 `Method Not Implemented` - The method requested was not implemented yet.
 - 503 `Service Unavailable` - The service is temporary unavailable (e.g. scheduled Platform Maintenance). Try again later.
 
 >**Note:** M4A1 API works with json in requests and responses then, all HTTP calls must be include a header *Content-Type: application/json*, otherwise the API will return a HTTP 400 - Bad Request response.
@@ -48,7 +49,7 @@ In some API methods you will have to send in you HTTP request headers two params
 - `Auth-Service-Key` - Your service key provided on service registration moment.
 - `Auth-Token` - The token returned by API when you register a new service.
 
-If one of these headers are incorrect, the API will return a HTTP 403 - Forbbiden response.
+If one of these headers are incorrect, the API will return a HTTP 401 - Unauthorized response.
 
 # Group Services
 <a id="services"></a>
@@ -99,19 +100,19 @@ Create a new Service
           "token": "MyServiceToken" 
         }
         
-+ Response 200 (application/json)
++ Response 400 (application/json)
 
         {
           "success": 0,
-          "error": "The error message",
-          "details": "The detailed information about error, present only if is a validation error"
+          "error": "Invalid service, see details for more information",
+          "details": "The detailed information about error"
         }
         
 + Response 500 (application/json)
 
         {
           "success": 0,
-          "error": "Unknow error"
+          "error": "The error message"
         }
 
 ## /service/{key}
@@ -127,7 +128,7 @@ Get a Service
           "key": "svc1"
         }
 
-+ Response 200 (application/json)
++ Response 404 (application/json)
 
         {
           "success": 0,
@@ -159,19 +160,26 @@ Update a Service
           "key": "myservicekey"
         }
         
-+ Response 200 (application/json)
++ Response 400 (application/json)
 
         {
           "success": 0,
-          "error": "The error message",
-          "details": "The detailed information about error, present only if is a validation error"
+          "error": "Invalid service, see details for more information",
+          "details": "The detailed information about error"
         }
+        
++ Response 404 (application/json)
+
+		{
+		  "success": 0,
+		  "error": "Service not found"
+		}
         
 + Response 500 (application/json)
 
         {
           "success": 0,
-          "error": "Unknow error"
+          "error": "The error message"
         }
         
 ### DELETE
@@ -187,19 +195,18 @@ Remove a Service
           "success": 1
         }
         
++ Response 404 (application/json)
+
+        {
+          "success": 0,
+          "error": "Service not found"
+        }
 
 + Response 500 (application/json)
 
         {
           "success": 0,
           "error": "Unknow error"
-        }
-        
-+ Response 200 (application/json)
-
-        {
-          "success": 0,
-          "error": "Service not found"
         }
 
 # Group Ip Addresses
@@ -238,18 +245,19 @@ Allow new IP address to consume API
           "success": 1
         }
         
-+ Response 200 (application/json)
++ Response 400 (application/json)
 
         {
           "success": 0,
-          "error": "The error message"
+          "error": "Invalid IP address, see details for more information",
+          "details": "The detailed information about error"
         }
         
 + Response 500 (application/json)
 
         {
           "success": 0,
-          "error": "Unknow error"
+          "error": "The error message"
         }
 
 ## /ipaddress/{ipaddress}
@@ -264,18 +272,18 @@ Revoke access from an IP address
           "success": 1
         }
         
-+ Response 200 (application/json)
++ Response 404 (application/json)
 
         {
           "success": 0,
-          "error": "Ip address not found"
+          "error": "IP address not found"
         }
         
 + Response 500 (application/json)
 
         {
          "success": 0,
-         "error": "Unknow error"
+         "error": "The error message"
         }
 
 # Group Campaigns
@@ -328,19 +336,19 @@ Create a new campaign
           "campaign": "45ad434daaf7bf22e45c8938fb745b45"
         }
         
-+ Response 200 (application/json)
++ Response 400 (application/json)
 
         {
           "success": 0,
-          "error": "The error message",
-          "details": "The detailed error message, present if occured a validation error"
+          "error": "Invalid campaign, see details for more information",
+          "details": "The detailed information about error"
         }
         
 + Response 500 (application/json)
 
         {
           "success": 0,
-          "error": "Unknow error"
+          "error": "The error message"
         }
         
 ## /campaign/{key}
@@ -378,7 +386,7 @@ Get details of an campaign
           "pid": null,
         }
 
-+ Response 200 (application/json)
++ Response 404 (application/json)
 
         {
           "success": 0,
@@ -426,19 +434,19 @@ Update an campaign
           "campaign": "45ad434daaf7bf22e45c8938fb745b45"
         }
         
-+ Response 200 (application/json)
++ Response 400 (application/json)
 
         {
           "success": 0,
-          "error": "The error message",
-          "details": "The detailed information about error, present if occured a validation error"
+          "error": "Invalid campaign, see details for more information",
+          "details": "The detailed information about error"
         }
 
 + Response 500 (application/json)
 
         {
           "success": 0,
-          "error": "Unknow error"
+          "error": "The error message"
         }
         
 ### DELETE
@@ -456,6 +464,27 @@ Remove an campaign
         {
           "success": 1
         }
+
++ Respose 404 (application/json)
+
+		{
+		  "success": 0,
+		  "error": "Campaign not found"
+		}
+
++ Response 409 (application/json)
+
+		{
+		  "success": 0,
+		  "error": "Campaign running or in process"
+		}
+		
++ Response 500 (application/json)
+
+		{
+		  "success": 0,
+		  "error": "The error message"
+		}
 
 ## /campaign/{key}/status
 ### GET
@@ -483,7 +512,7 @@ Get the status information of an campaign
           "cache": 1
         }
         
-+ Response 200 (application/json)
++ Response 404 (application/json)
 
         {
           "success": 0,
@@ -503,45 +532,16 @@ Retrieve the current email queue of an campaign
 
 + Response 200 (application/json)
         
-        ["person1@domain.com","person2@domain.com","person3@domain.com"]
+        ["email1@domain.com","email2@domain.com","email3@domain.com"]
+        
++ Response 204
 
-+ Response 200 (application/json)
++ Response 404 (application/json)
 
-        [
-          {
-            "email" : "person1@domain.com",
-            "vars" : {
-              "MyVar2" : "My Value 2",
-              "MyVar" : "My Value"
-            },
-            "headers" : {
-              "Custom-Header" : "Custom-Value",
-              "Custom-Header2" : "Custom Value 2"
-            }
-          },
-          {
-            "email" : "person2@domain.com",
-            "vars" : {
-              "MyVar2" : "My Value 2",
-              "MyVar" : "My Value"
-            },
-            "headers" : {
-              "Custom-Header" : "Custom-Value",
-              "Custom-Header2" : "Custom Value 2"
-            }
-          },
-          {
-            "email" : "person3@domain.com",
-            "vars" : {
-              "MyVar2" : "My Value 2",
-              "MyVar" : "My Value"
-            },
-            "headers" : {
-              "Custom-Header" : "Custom-Value",
-              "Custom-Header2" : "Custom Value 2"
-            }
-          }
-        ]
+		{
+		  "success": 0,
+		  "error": "Campaign not found"
+		}
 
 ### PUT
 Update an campaign queue
@@ -609,6 +609,20 @@ Update an campaign queue
           "success": 1
         }
 
++ Response 404 (application/json)
+
+		{
+		  "success": 0,
+		  "error": "Campaign not found"
+		}
+		
++ Response 500 (application/json)
+
+		{
+		  "success": 0,
+		  "error": "The error message"
+		}
+
 ## /campaign/{key}/start
 ### POST
 Start a campaign send process
@@ -621,6 +635,20 @@ Start a campaign send process
             Auth-Token: MyServiceToken
 
 + Response 204
+
++ Response 404 (application/json)
+
+		{
+		  "success": 0,
+		  "error": "Campaign not found"
+		}
+
++ Response 500 (application/json)
+
+		{
+		  "success": 0,
+		  "error": "Campaing was done or stopped"
+		}
 
 ## /campaign/{key}/pause
 ### POST
@@ -635,6 +663,20 @@ Pause a campaign send processs
 
 + Response 204
 
++ Response 404 (application/json)
+
+		{
+		  "success": 0,
+		  "error": "Campaign not found"
+		}
+
++ Response 500 (application/json)
+
+		{
+		  "success": 0,
+		  "error": "Campaign must be started before pause"
+		}
+
 ## /campaign/{key}/stop
 ### POST
 Stop a campaign send processs
@@ -647,6 +689,20 @@ Stop a campaign send processs
             Auth-Token: MyServiceToken
 
 + Response 204
+
++ Response 404 (application/json)
+
+		{
+		  "success": 0,
+		  "error": "Campaign not found"
+		}
+		
++ Response 500 (application/json)
+
+		{
+		  "success": 0,
+		  "error": "Campaign must be started before stop"
+		}
 
 ## /campaign/status
 ### POST
@@ -692,6 +748,13 @@ Get status from multiple campaigns
             "error": "Campaign not found"
           }
         }
+        
++ Response 400 (application/json)
+
+		{
+		  "success": 0,
+		  "error": "You must send an array of campaign keys"
+		}
 
 # Group Notifications
 
@@ -726,6 +789,8 @@ Example:
 
 # Group  Changelog
 
+- `v0.4.2-beta:` Fixed HTTP status codes on API requests, overrides default error handler, optimised remove campaign process and removed unnecessary fields on get queue from an campaign
+- `v0.4.1-beta:` Service information sent in notification callbacks and removed session keys from configuration file
 - `v0.4.0-beta:` Refactored some API hierarchy structures and implemented notification callbacks
 - `v0.3.3-beta:` Fixed some security issues in campaign resource and implemented campaign validations
 - `v0.3.2-beta:` The first beta release with minor bugs
