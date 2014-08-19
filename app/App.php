@@ -168,7 +168,7 @@ class App
 		        $kernel['credentials.ipaddress'] = $ipaddress;
 		    } else {
 		        $request = Request::createFromGlobals();
-		        $response = Response::create(null,Response::HTTP_FORBIDDEN);
+		        $response = Response::create(null,Response::HTTP_UNAUTHORIZED);
 		        $kernel['monolog.api.service']($request,$response);
 		        $response->send();
 		        $kernel->terminate($request,$response);
@@ -190,7 +190,7 @@ class App
 		        $kernel['credentials.service'] = $service;
 		    } else {
 		        $request = Request::createFromGlobals();
-		        $response = Response::create(null,Response::HTTP_FORBIDDEN);
+		        $response = Response::create(null,Response::HTTP_UNAUTHORIZED);
 		        $kernel['monolog.api.service']($request,$response);
 		        $response->send();
 		        $kernel->terminate($request,$response);
