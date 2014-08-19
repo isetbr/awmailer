@@ -102,7 +102,7 @@ class CampaignController implements ControllerProviderInterface
             return $this->_app->json($response,Response::HTTP_OK);
         } else {
             $response = array('success'=>0,'error'=>'Campaign not found');
-            return $this->_app->json($response,Response::HTTP_OK);
+            return $this->_app->json($response,Response::HTTP_NOT_FOUND);
         }
     }
     
