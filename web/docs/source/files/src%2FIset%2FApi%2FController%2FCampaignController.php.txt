@@ -102,7 +102,7 @@ class CampaignController implements ControllerProviderInterface
             return $this->_app->json($response,Response::HTTP_OK);
         } else {
             $response = array('success'=>0,'error'=>'Campaign not found');
-            return $this->_app->json($response,Response::HTTP_OK);
+            return $this->_app->json($response,Response::HTTP_NOT_FOUND);
         }
     }
     
@@ -148,7 +148,8 @@ class CampaignController implements ControllerProviderInterface
     	    return $this->_app->json($response,Response::HTTP_CREATED);
     	} elseif (is_array($result)) {
     	    $response = array_merge(array('success'=>0),$result);
-    	    return $this->_app->json($response,Response::HTTP_OK);
+    	    $code     = (isset($response['details'])) ? Response::HTTP_BAD_REQUEST : Response::HTTP_INTERNAL_SERVER_ERROR;
+    	    return $this->_app->json($response,$code);
     	} else {
     	    $response = array('success'=>0,'error'=>'Unknow error');
     	    return $this->_app->json($response,Response::HTTP_INTERNAL_SERVER_ERROR);
@@ -212,14 +213,15 @@ class CampaignController implements ControllerProviderInterface
                 return $this->_app->json($response,Response::HTTP_OK);
             } elseif (is_array($result)) {
                 $response = array_merge(array('success'=>0),$result);
-                return $this->_app->json($response,Response::HTTP_OK);
+                $code     = (isset($response['details'])) ? Response::HTTP_BAD_REQUEST : Response::HTTP_INTERNAL_SERVER_ERROR;
+                return $this->_app->json($response,$code);
             } else {
                 $response = array('success'=>0,'error'=>'Unknow error');
                 return $this->_app->json($response,Response::HTTP_INTERNAL_SERVER_ERROR);
             }
         } else {
             $response = array('success'=>0,'error'=>'Campaign not found');
-            return $this->_app->json($response,Response::HTTP_OK);
+            return $this->_app->json($response,Response::HTTP_NOT_FOUND);
         }
     }
     
@@ -236,17 +238,37 @@ class CampaignController implements ControllerProviderInterface
         
         # Getting providers
         $gateway = $this->getTableGateway();
+        $collection = $this->getCollection();
         
         # Getting campaign
         $campaign = $gateway->getCampaignByKey($key,(int)$this->_app['credentials.service']->id);
         
         # Verifying result
         if ($campaign) {
+            # Verifying campaign status
+            switch ($campaign->status) {
+                case Campaign::STATUS_START : 
+                    $response = array('success'=>0,'error'=>'Campaign running, please stop it first');
+                    return $this->_app->json($response,Response::HTTP_CONFLICT);
+                    break;
+                case Campaign::STATUS_PAUSE :
+                case Campaign::STATUS_STOP :
+                    if ((!is_null($campaign->pid) && posix_getpgid((int)$campaign->pid) != false) ||
+                        ($app['cache']->hasItem($campaign->getCampaignKey()))) {
+                        $response = array('success'=>0,'error'=>'Campaign in process, please try again in a few seconds');
+                        return $this->_app->json($response,Response::HTTP_CONFLICT);
+                    }
+                    break;
+            }
+            
             # Removing campaign
             $result = $campaign->delete();
             
             # Verifying reuslt
             if ($result) {
+                # Removing emails from queue
+                $collection->remove($key);
+                
                 $response = array('success'=>1);
                 return $this->_app->json($response,Response::HTTP_OK);
             } else {
@@ -255,7 +277,7 @@ class CampaignController implements ControllerProviderInterface
             }
         } else {
             $response = array('success'=>0,'error'=>'Campaign not found');
-            return $this->_app->json($response,Response::HTTP_OK);
+            return $this->_app->json($response,Response::HTTP_NOT_FOUND);
         }
     }
     
@@ -314,7 +336,7 @@ class CampaignController implements ControllerProviderInterface
             return $this->_app->json($response,Response::HTTP_OK);
         } else {
             $response = array('success'=>0,'error'=>'Campaign not found');
-            return $this->_app->json($response,Response::HTTP_OK);
+            return $this->_app->json($response,Response::HTTP_NOT_FOUND);
         }
     }
     
@@ -336,7 +358,7 @@ class CampaignController implements ControllerProviderInterface
         $campaigns = (array)$request->request->get('campaigns');
         if (count($campaigns) == 0) {
             $response = array('success'=>0,'error'=>'You must send an array of campaign keys');
-            return $this->_app->json($response,Response::HTTP_OK);
+            return $this->_app->json($response,Response::HTTP_BAD_REQUEST);
         }
         
         # Initializing stack array for store results
@@ -410,7 +432,7 @@ class CampaignController implements ControllerProviderInterface
         $campaign = $gateway->getCampaignByKey($key,(int)$this->_app['credentials.service']->id);
         if (!$campaign) {
             $response = array('success'=>0,'error'=>'Campaign not found');
-            return $this->_app->json($response,Response::HTTP_OK);
+            return $this->_app->json($response,Response::HTTP_NOT_FOUND);
         }
         
         # Getting limit/skip params
@@ -418,7 +440,21 @@ class CampaignController implements ControllerProviderInterface
         $skip  = (int)$request->query->get('skip');
         
         # Retrieving data from db
-        $result = $collection->fetch($key,null,$limit,$skip);
+        $stack = $collection->fetch($key,null,$limit,$skip);
+        
+        # Verifying if campaign has custom fields
+        if ($campaign->user_vars == 1  || $campaign->user_headers == 1) {
+            # Parsing result
+            $result = array();
+            
+            # Looping into results for prepare array to response
+            foreach ($stack as $row) {
+                # Saving on result var
+                $result[] = $row['email'];
+            }
+        } else {
+            $result = $stack;
+        }
         
         # Verifying results found
         if (count($result) > 0) {
@@ -476,7 +512,7 @@ class CampaignController implements ControllerProviderInterface
         $campaign = $gateway->getCampaignByKey($key,(int)$this->_app['credentials.service']->id);
         if (!$campaign) {
             $response = array('success'=>0,'error'=>'Campaign not found');
-            return $this->_app->json($response,Response::HTTP_OK);
+            return $this->_app->json($response,Response::HTTP_NOT_FOUND);
         }
         
         # Getting stack of emails
@@ -537,7 +573,7 @@ class CampaignController implements ControllerProviderInterface
         $campaign = $gateway->getCampaignByKey($key,(int)$this->_app['credentials.service']->id);
         if (!$campaign) {
             $response = array('success'=>0,'error'=>'Campaign not found');
-            return $this->_app->json($response,Response::HTTP_OK);
+            return $this->_app->json($response,Response::HTTP_NOT_FOUND);
         }
         
         # Getting stack from request
@@ -586,7 +622,7 @@ class CampaignController implements ControllerProviderInterface
             # Verifying if campaign isn't done or stopped
             if ($campaign->status == Campaign::STATUS_DONE || $campaign->status == Campaign::STATUS_STOP) {
                 $response = array('success'=>0,'error'=>'Campaing was done or stopped');
-                return $this->_app->json($response,Respone::HTTP_OK);
+                return $this->_app->json($response,Response::HTTP_INTERNAL_SERVER_ERROR);
             } else {
                 # Changing status of campaign
                 $this->changeStatusCampaign($key,Campaign::STATUS_START);
@@ -594,7 +630,7 @@ class CampaignController implements ControllerProviderInterface
             }
         } else {
             $response = array('success'=>0,'error'=>'Campaign not found');
-            return $this->_app->json($response,Response::HTTP_OK);
+            return $this->_app->json($response,Response::HTTP_NOT_FOUND);
         }
     }
     
@@ -617,13 +653,18 @@ class CampaignController implements ControllerProviderInterface
         
         # Verifying result
         if ($campaign) {
-            # Changing status of campaign
-            $this->changeStatusCampaign($key,Campaign::STATUS_PAUSE);
-        
-            return new Response(null,Response::HTTP_NO_CONTENT);
+            # Verifying if campaign already running
+            if ($campaign->status == Campaign::STATUS_START) {
+                # Changing status of campaign
+                $this->changeStatusCampaign($key,Campaign::STATUS_PAUSE);
+                return new Response(null,Response::HTTP_NO_CONTENT);
+            } else {
+                $response = array('success'=>0,'error'=>'Campaign must be started before pause');
+                return new Response($response,Response::HTTP_INTERNAL_SERVER_ERROR);
+            }
         } else {
             $response = array('success'=>0,'error'=>'Campaign not found');
-            return $this->_app->json($response,Response::HTTP_OK);
+            return $this->_app->json($response,Response::HTTP_NOT_FOUND);
         }
     }
     
@@ -646,13 +687,18 @@ class CampaignController implements ControllerProviderInterface
     
         # Verifying result
         if ($campaign) {
-            # Changing status of campaign
-            $this->changeStatusCampaign($key,Campaign::STATUS_STOP);
-        
-            return new Response(null,Response::HTTP_NO_CONTENT);
+            # Verifying if campaign already running
+            if ($campaign->status == Campaign::STATUS_START) {
+                # Changing status of campaign
+                $this->changeStatusCampaign($key,Campaign::STATUS_STOP);
+                return new Response(null,Response::HTTP_NO_CONTENT);
+            } else {
+                $response = array('success'=>0,'error'=>'Campaign must be started before stop');
+                return new Response($response,Response::HTTP_INTERNAL_SERVER_ERROR);
+            }
         } else {
             $response = array('success'=>0,'error'=>'Campaign not found');
-            return $this->_app->json($response,Response::HTTP_OK);
+            return $this->_app->json($response,Response::HTTP_NOT_FOUND);
         }
     }
     

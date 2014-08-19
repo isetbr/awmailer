@@ -153,7 +153,7 @@ class QueueCollection extends CollectionAbstract
         }
         
         # Trying to remove data
-        $result = $this->gateway->findAndRemove($query);
+        $result = $this->gateway->remove($query);
         
         # Verifying result
         if (is_array($result)) {

@@ -168,7 +168,7 @@ class App
 		        $kernel['credentials.ipaddress'] = $ipaddress;
 		    } else {
 		        $request = Request::createFromGlobals();
-		        $response = Response::create(null,Response::HTTP_FORBIDDEN);
+		        $response = Response::create(null,Response::HTTP_UNAUTHORIZED,array('X-Status-Code'=>200));
 		        $kernel['monolog.api.service']($request,$response);
 		        $response->send();
 		        $kernel->terminate($request,$response);
@@ -190,7 +190,7 @@ class App
 		        $kernel['credentials.service'] = $service;
 		    } else {
 		        $request = Request::createFromGlobals();
-		        $response = Response::create(null,Response::HTTP_FORBIDDEN);
+		        $response = Response::create(null,Response::HTTP_UNAUTHORIZED,array('X-Status-Code'=>200));
 		        $kernel['monolog.api.service']($request,$response);
 		        $response->send();
 		        $kernel->terminate($request,$response);
@@ -217,7 +217,7 @@ class App
 			           $data = json_decode($request->getContent(), true);
 			           $request->request->replace(is_array($data) ? $data : array());
 			       } elseif (strstr($request->getRequestUri(),"/api/") !== false) {
-			           $response = Response::create(null,Response::HTTP_BAD_REQUEST);
+			           $response = Response::create(null,Response::HTTP_BAD_REQUEST,array('X-Status-Code'=>200));
 			           $kernel['monolog.api.service']($request,$response);
 			           $response->send();
 			           $kernel->terminate($request,$response);
@@ -227,11 +227,24 @@ class App
 			       # Performing authentication by IpAddress
 			       $kernel['auth.ipaddress']();
 		       });
+		       
+		# Registering after middleware for parse response
+		$kernel->after(function (Request $request, Response $response) {
+		    # Setting status code in response header
+		    $response->headers->add(array('X-Status-Code'=>200));
+		    return $response;
+		});
 		
 		# Finish application flow
-		$kernel->finish(function (Request $request, Response $response) use ($kernel) {
+		$kernel->finish(function (Request $request, Response $response) use ($kernel) {		    
 		    # Logging request
 		    $kernel['monolog.api.service']($request,$response);
+		});
+		
+		# @Override default error handler
+		$kernel->error(function (\Exception $e, $code) use ($kernel) {
+		    $response = array('success'=>0,'message'=>utf8_encode($e->getMessage()));
+		    return $kernel->json($response,$code);
 		});
 		
 		return $kernel;
