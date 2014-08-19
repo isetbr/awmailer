@@ -238,17 +238,37 @@ class CampaignController implements ControllerProviderInterface
         
         # Getting providers
         $gateway = $this->getTableGateway();
+        $collection = $this->getCollection();
         
         # Getting campaign
         $campaign = $gateway->getCampaignByKey($key,(int)$this->_app['credentials.service']->id);
         
         # Verifying result
         if ($campaign) {
+            # Verifying campaign status
+            switch ($campaign->status) {
+                case Campaign::STATUS_START : 
+                    $response = array('success'=>0,'error'=>'Campaign running, please stop it first');
+                    return $this->_app->json($response,Response::HTTP_CONFLICT);
+                    break;
+                case Campaign::STATUS_PAUSE :
+                case Campaign::STATUS_STOP :
+                    if ((!is_null($campaign->pid) && posix_getpgid((int)$campaign->pid) != false) ||
+                        ($app['cache']->hasItem($campaign->getCampaignKey()))) {
+                        $response = array('success'=>0,'error'=>'Campaign in process, please try again in a few seconds');
+                        return $this->_app->json($response,Response::HTTP_CONFLICT);
+                    }
+                    break;
+            }
+            
             # Removing campaign
             $result = $campaign->delete();
             
             # Verifying reuslt
             if ($result) {
+                # Removing emails from queue
+                $collection->remove($key);
+                
                 $response = array('success'=>1);
                 return $this->_app->json($response,Response::HTTP_OK);
             } else {
