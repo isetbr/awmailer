@@ -188,8 +188,8 @@ class CampaignController implements ControllerProviderInterface
             # Setting updates in campaign
             $campaign->subject         = (!empty($subject)) ? $subject : $campaign->subject;
             $campaign->body            = (!empty($body)) ? $body : $campaign->body;
-            $campaign->user_vars       = (!empty($user_vars)) ? $user_vars : $campaign->user_vars;
-            $campaign->user_headers    = (!empty($user_headers)) ? $user_headers : $campaign->user_headers;
+            $campaign->user_vars       = (!is_null($user_vars)) ? (int)$user_vars : $campaign->user_vars;
+            $campaign->user_headers    = (!is_null($user_headers)) ? (int)$user_headers : $campaign->user_headers;
             $campaign->external        = (!empty($external)) ? $external : $campaign->external;
             $campaign->additional_info = (!empty($additional)) ? $additional : $campaign->additional_info;
             
