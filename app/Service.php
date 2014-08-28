@@ -102,8 +102,7 @@ $headers = $campaign->headers;
 
 # Initializing control vars
 # Progress
-$factor = ceil((($campaign->total - ($campaign->sent + $campaign->fail)) / 100));
-$counter = 0;
+$factor = floor((($campaign->total - ($campaign->sent + $campaign->fail)) / 100));
 
 # Queue package size
 $max_package_size = $app['config']['service']['queue']['max_package_size'];
@@ -148,9 +147,6 @@ while (count($queue = $queueCollection->fetch($campaignKey,null,$max_package_siz
         # Sending mail
         $result = mail($destination_email,$subject,$parsed_body,$parsed_headers);
 
-        # Increasing counter
-        $counter++;
-
         # Verifying result and increasing counter
         if ($result) {
             $campaignCache['sent']++;
@@ -159,12 +155,9 @@ while (count($queue = $queueCollection->fetch($campaignKey,null,$max_package_siz
             $campaignCache['fail']++;
             $campaignCache['errors'][] = $destination_email;
         }
-    
-        # Verifying if counter
-        if ($counter == $factor) {
-            $counter = 0;
-            $campaignCache['progress']++;
-        }
+
+        # Increasing progress
+        $campaignCache['progress'] = floor($campaignCache['progress'] + $factor);
     
         # Writing in cache
         $app['cache']->setItem($campaignKey, json_encode($campaignCache));
