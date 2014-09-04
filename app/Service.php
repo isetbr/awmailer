@@ -58,6 +58,21 @@ if (!$queueCollection->hasQueue($campaignKey)) {
     die();
 }
 
+# Initializing logger for process
+$app['monolog.process'] = $app->share(function () use ($app,$campaignKey) {
+    # Creating stream
+    $stream = $app['log_path'] . 'processes/' . $campaignKey . '.log';
+    $handler = new Monolog\Handler\StreamHandler($stream,Monolog\Logger::DEBUG,true,0777);
+
+    # Initializing logger
+    $logger = new Monolog\Logger('process',$handler);
+
+    # Setting stream in service logger
+    $app['monolog.service']->pushHandler($handler);
+    return $logger;
+});
+$app['monolog.service']->addInfo('Initialized logger for process');
+
 # Forking process 
 $pid = pcntl_fork();
 if ($pid) { exit(); }
@@ -99,10 +114,12 @@ if (!$result) {
 $subject = $campaign->subject;
 $message = $campaign->body;
 $headers = $campaign->headers;
+$app['monolog.process']->addInfo('Preparing campaign vars');
 
 # Initializing control vars
 # Progress
 $factor = floor((($campaign->total - ($campaign->sent + $campaign->fail)) / 100));
+$app['monolog.process']->addInfo('Calculated progress factor');
 
 # Queue package size
 $max_package_size = $app['config']['service']['queue']['max_package_size'];
@@ -149,9 +166,11 @@ while (count($queue = $queueCollection->fetch($campaignKey,null,$max_package_siz
 
         # Verifying result and increasing counter
         if ($result) {
+            $app['monolog.process']->addInfo('Email sent',array('destination'=>$destination_email));
             $campaignCache['sent']++;
             $campaignCache['success'][] = $destination_email;
         } else {
+            $app['monolog.process']->addInfo('Email sent error',array('destination'=>$destination_email));
             $campaignCache['fail']++;
             $campaignCache['errors'][] = $destination_email;
         }
