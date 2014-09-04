@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 5.6.20, for osx10.7 (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.17, for osx10.6 (i386)
 --
 -- Host: localhost    Database: m4a1
 -- ------------------------------------------------------
@@ -88,7 +88,7 @@ CREATE TABLE `service` (
   `name` varchar(45) NOT NULL,
   `key` varchar(45) NOT NULL,
   `token` char(80) NOT NULL,
-  `notification_url` varchar(250) NOT NULL,
+  `notification_url` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`idservice`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -111,4 +111,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-08-15 15:48:00
+-- Dump completed on 2014-09-04 16:41:20

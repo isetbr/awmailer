@@ -21,9 +21,11 @@
 
 namespace Iset\Api;
 
+use Silex\Application;
 use Slice\Http\Client as HttpClient;
 use Iset\Resource\AbstractResource;
 use Iset\Api\Resource\Service;
+use Zend\Validator\Uri as UriValidator;
 
 /**
  * Callback 
@@ -41,6 +43,13 @@ use Iset\Api\Resource\Service;
 class Callback
 {
     /**
+     * The Silex Application
+     *
+     * @var \Silex\Application
+     */
+    protected $_app = null;
+
+    /**
      * The Service that will be called
      * @var \Iset\Api\Resource\Service
      */
@@ -54,8 +63,13 @@ class Callback
     
     /**
      * The Constructor
+     *
+     * @param \Silex\Application $app
      */
-    public function __construct(){}
+    public function __construct(Application &$app)
+    {
+        $this->_app = &$app;
+    }
     
     /**
      * Set the service in Callback
@@ -110,9 +124,16 @@ class Callback
         
         # Initializing client
         $client = new HttpClient();
+
+        # Verifying notification url
+        $uri = $this->_service->notification_url;
+        $validator = new UriValidator(array('allowRelative'=>false));
+        if (is_null($uri) || empty($uri) || !$validator->isValid($uri)) {
+            $uri = $this->_app['base_url'] . 'notification/default';
+        }
         
         # Configuring client instance
-        $client->setUri($this->_service->notification_url);
+        $client->setUri($uri);
         $client->setHeaders('Auth-Service-Key',$this->_service->key);
         $client->setHeaders('Auth-Token',$this->_service->getToken());
         $client->setMethod(HttpClient::POST);
@@ -122,7 +143,7 @@ class Callback
         $response = $client->request();
         
         # Verifying response
-        $response = json_decode($response->getBody(),true);
+        $response = json_decode($response->getRawBody(),true);
         if (strtolower($response['result']) == 'ok') {
             return true;
         } else {
