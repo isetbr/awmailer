@@ -82,7 +82,7 @@ Create a new Service
 + Parameters
     + name (required, string, `Service Name`) ... The Service name
     + key (required, string, `myservicekey`) ... The service key that will used to authenticate your HTTP requests
-    + notification_url (required, string, `http://myservice.com/callback/notification`) ... The callback URL for send API notifications
+    + notification_url (optional, string, `http://myservice.com/callback/notification`) ... The callback URL for send API notifications
 
 + Request (application/json)
         
@@ -787,8 +787,15 @@ Example:
 	  "key": "6c8bff2269a89ef7ec3cf87e72be656f"
 	}
 
+## Answering a notification
+
+When API send to you a notification about an event occurred in a resource, after you process this notification in your system, please, print the following statement in the body of request to say to API that the notification has been processed.
+
+    {"result":"ok"}
+
 # Group  Changelog
 
+- `v0.5.0-beta:` Fixed some bugs in API resources, fixed progress counter, removed validation of notification URL and implemented some logs in campaign process, service and daemon.
 - `v0.4.2-beta:` Fixed HTTP status codes on API requests, overrides default error handler, optimised remove campaign process and removed unnecessary fields on get queue from an campaign
 - `v0.4.1-beta:` Service information sent in notification callbacks and removed session keys from configuration file
 - `v0.4.0-beta:` Refactored some API hierarchy structures and implemented notification callbacks
