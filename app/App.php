@@ -208,6 +208,9 @@ class App
 	    $kernel->match('/docs/source/', function () use ($kernel) {
 	        return $kernel->redirect('/docs/source/index.html');
 	    });
+        $kernel->post('/notification/default', function() use ($kernel) {
+            return $kernel->json(array('result'=>'ok'));
+        });
 		
 		# Register controllers
 		$kernel->mount('/api', new ApiController())

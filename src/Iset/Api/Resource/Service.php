@@ -186,8 +186,6 @@ class Service extends AbstractResource implements ModelInterface
             if (!$validator->isValid($this->notification_url)) {
                 return array('error'=>'The notification url is not a valid URI');
             }
-        } else {
-            return array('error'=>'A notification url must be specified');
         }
         
         return true;
