@@ -19,6 +19,11 @@ $app = App::configure();
 $app['monolog.daemon']->addInfo('Initializing Daemon');
 $app['monolog.daemon']->addInfo('Initializing application');
 
+# Setting error handler
+set_error_handler(function ($code, $message, $file, $line) use ($app) {
+    $app['monolog.daemon']->addError('Internal error occurred', array('code'=>$code,'message'=>$message,'file'=>$file,'line'=>$line));
+});
+
 # Initializing gateway
 $gateway = new CampaignTable($app);
 $collection = new QueueCollection($app);
