@@ -16,6 +16,11 @@ $app = App::configure();
 # Initializing Service
 define("PROCESS_TITLE",$app['config']['service']['name']);
 
+# Setting error handler
+set_error_handler(function ($code, $message, $file, $line) use ($app) {
+    $app['monolog.service']->addError('Internal error occurred', array('code'=>$code,'message'=>$message,'file'=>$file,'line'=>$line));
+});
+
 # Initializing Campaign table
 $campaignTable = new CampaignTable($app);
 $queueCollection = new QueueCollection($app);
