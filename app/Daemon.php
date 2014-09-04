@@ -87,7 +87,7 @@ while (true) {
                     }
                     
                     # Sending callback to the service
-                    $callback = new Callback();
+                    $callback = new Callback($app);
                     $callback->setService($serviceGateway->getServiceById($campaign->service));
                     $callback->setResource($campaign);
                     $callback->send(array('context'=>$context,'key'=>$campaignKey));
@@ -144,7 +144,7 @@ while (true) {
                         $context = ($data['done'] == 1) ? 'process_done' : 'process_error';
                         
                         # Sending callback to the service
-                        $callback = new Callback();
+                        $callback = new Callback($app);
                         $callback->setService($serviceGateway->getServiceById($campaign->service));
                         $callback->setResource($campaign);
                         $callback->send(array('context'=>$context,'key'=>$campaignKey));
@@ -164,7 +164,7 @@ while (true) {
                 # Verifying if campaign just be started
                 if ($campaign->status = Campaign::STATUS_START && !is_null($campaign->pid)) {
                     # Sending callback to the service
-                    $callback = new Callback();
+                    $callback = new Callback($app);
                     $callback->setService($serviceGateway->getServiceById($campaign->service));
                     $callback->setResource($campaign);
                     $callback->send(array('context'=>'process_started','key'=>$campaignKey));
