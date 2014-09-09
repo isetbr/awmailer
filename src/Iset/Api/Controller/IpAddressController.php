@@ -205,7 +205,7 @@ class IpAddressController implements ControllerProviderInterface
     	});
     	
     	# Remove ip address from server
-    	$container->delete('/{ipaddress}', function ($ipaddress) {
+    	$container->delete('/{ipaddress}/', function ($ipaddress) {
     		return $this->remove($ipaddress);
     	});
     	
