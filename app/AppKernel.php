@@ -23,6 +23,7 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use Silex\Application;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
@@ -74,5 +75,30 @@ class AppKernel extends Application
         }
 
         return $data;
+    }
+
+    /**
+     * Override the default run method to a prepared method to handle trailing slashes
+     * at the end of URI.
+     * 
+     * @param Request $request The request object
+     */
+    public function run(Request $request = null)
+    {
+        # Verifying if request is null
+        if (is_null($request)) {
+            # Override request uri by the redirect url
+            if (isset($_SERVER['REDIRECT_URL'])) {
+                $_SERVER['REQUEST_URI'] = $_SERVER['REDIRECT_URL'];
+            }
+
+            # Creating a request object from server globals
+            $request = Request::createFromGlobals();
+        }
+
+        # Handling request
+        $response = $this->handle($request);
+        $response->send();
+        $this->terminate($request,$response);
     }
 }
