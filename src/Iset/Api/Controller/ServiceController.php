@@ -280,17 +280,17 @@ class ServiceController implements ControllerProviderInterface
     	});
     	
     	# Get details about service
-    	$container->get('/{key}', function ($key){
+    	$container->get('/{key}/', function ($key){
     		return $this->getOne($key);
     	});
     	
     	# Update a service
-    	$container->put('/{key}', function ($key){
+    	$container->put('/{key}/', function ($key){
     		return $this->update($key);
     	});
     	
     	# Remove a service
-    	$container->delete('/{key}', function ($key){
+    	$container->delete('/{key}/', function ($key){
     		return $this->remove($key);
     	});
     	

@@ -813,52 +813,52 @@ class CampaignController implements ControllerProviderInterface
         });
         
         # Get details from an campaign
-        $container->get('/{key}', function ($key) {
+        $container->get('/{key}/', function ($key) {
         	return $this->getOne($key);
         });
         
         # Update a campaign
-        $container->put('/{key}', function ($key) {
+        $container->put('/{key}/', function ($key) {
         	return $this->update($key);
         });
         
         # Remove a campaign
-        $container->delete('/{key}', function ($key) {
+        $container->delete('/{key}/', function ($key) {
         	return $this->remove($key);
         });
         
         # Get the status of campaign
-        $container->get('/{key}/status', function ($key) {
+        $container->get('/{key}/status/', function ($key) {
         	return $this->getStatus($key);
         });
         
         # Get current queue list from a campaign
-        $container->get('/{key}/queue', function ($key) {
+        $container->get('/{key}/queue/', function ($key) {
         	return $this->getQueue($key);
         });
         
         # Add or remove destinations of queue list from campaign
-        $container->put('/{key}/queue', function ($key) {
+        $container->put('/{key}/queue/', function ($key) {
         	return $this->changeQueue($key);
         });
         
         # Start process
-        $container->post('/{key}/start', function ($key) {
+        $container->post('/{key}/start/', function ($key) {
         	return $this->startCampaign($key);
         });
         
         # Pause process
-        $container->post('/{key}/pause', function ($key) {
+        $container->post('/{key}/pause/', function ($key) {
         	return $this->pauseCampaign($key);
         });
         
         # Stop process
-        $container->post('/{key}/stop', function ($key) {
+        $container->post('/{key}/stop/', function ($key) {
         	return $this->stopCampaign($key);
         });
         
         # Get status from multiple campaigns
-        $container->post('/status', function() {
+        $container->post('/status/', function() {
         	return $this->getMultipleStatus();
         });
         
