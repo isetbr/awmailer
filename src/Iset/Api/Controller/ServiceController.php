@@ -161,9 +161,17 @@ class ServiceController implements ControllerProviderInterface
             $key          = $request->request->get('key');
             $notification = $request->request->get('notification_url');
             
-            $service->name             = (!empty($name) && !is_null($name)) ? $name : $service->name;
-            $service->key              = (!empty($key) && !is_null($key)) ? $key : $service->key;
-            $service->notification_url = (!empty($notification)) ? $notification : $service->notification_url;
+            $service->name = (!empty($name) && !is_null($name)) ? $name : $service->name;
+            $service->key  = (!empty($key) && !is_null($key)) ? $key : $service->key;
+
+            # Verifying if notification_url has sent
+            if ($request->request->has('notification_url')) {
+                if (is_null($notification) || empty($notification)) {
+                    $service->notification_url = null;
+                } else {
+                    $service->notification_url = $notification;
+                }
+            }
             
             $result = $service->save();
             if ($result === true) {
