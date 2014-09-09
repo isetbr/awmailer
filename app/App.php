@@ -215,20 +215,26 @@ class App
 		# Register controllers
 		$kernel->mount('/api', new ApiController())
 		       ->before(function (Request $request) use ($kernel) {
-		           # Validating request content-type
-			       if (0 === strpos($request->headers->get('Content-Type'), 'application/json')) {
-			           $data = json_decode($request->getContent(), true);
-			           $request->request->replace(is_array($data) ? $data : array());
-			       } elseif (strstr($request->getRequestUri(),"/api/") !== false) {
-			           $response = Response::create(null,Response::HTTP_BAD_REQUEST,array('X-Status-Code'=>200));
-			           $kernel['monolog.api.service']($request,$response);
-			           $response->send();
-			           $kernel->terminate($request,$response);
-			           die();
-			       }
+		            # Validating request content-type
+			        if (0 === strpos($request->headers->get('Content-Type'), 'application/json')) {
+			            $data = json_decode($request->getContent(), true);
+			            // Verifying if data is an array
+			            if (is_array($data)) {
+			                $data = $kernel->prepareJsonData($data,false);
+			                $request->request->replace($data);
+			            } else {
+			            	$request->request->replace(array());
+			            }
+			        } elseif (strstr($request->getRequestUri(),"/api/") !== false) {
+			            $response = Response::create(null,Response::HTTP_BAD_REQUEST,array('X-Status-Code'=>200));
+			            $kernel['monolog.api.service']($request,$response);
+			            $response->send();
+			            $kernel->terminate($request,$response);
+			            die();
+			        }
 			       
-			       # Performing authentication by IpAddress
-			       $kernel['auth.ipaddress']();
+			        # Performing authentication by IpAddress
+			        $kernel['auth.ipaddress']();
 		       });
 		       
 		# Registering after middleware for parse response
