@@ -23,6 +23,7 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use Silex\Application;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Application Kernel
@@ -35,4 +36,43 @@ use Silex\Application;
  * @copyright M4A1 (c) iSET - Internet, Soluções e Tecnologia LTDA.
  *
  */
-class AppKernel extends Application{}
+class AppKernel extends Application
+{
+    /**
+     * Override default json method from Silex Application class with prepared data to send
+     * in response.
+     * 
+     * @param array   $data    The response data
+     * @param integer $status  The response status code
+     * @param array   $headers An array of response headers
+     * 
+     * @return JsonResponse
+     */
+    public function json($data = array(), $status = 200, array $headers = array())
+    {
+        // Parsing data with utf8_encode
+        $data = $this->prepareJsonData($data);
+        return parent::json($data,$status,$headers);
+    }
+
+    /**
+     * Recursive function to json data into utf8 encoding
+     * 
+     * @param array $data   The data to be parsed
+     * @param bool  $encode Defaults true to encode or set false to decode data
+     * 
+     * @return array
+     */
+    public function prepareJsonData($data = array(), $encode = true)
+    {
+        foreach ($data as $key => $value) {
+            if (is_array($value)) {
+                $this->prepareJsonData($value,$encode);
+            } else {
+                $data[$key] = ($encode) ? utf8_encode($value) : utf8_decode($value);
+            }
+        }
+
+        return $data;
+    }
+}
