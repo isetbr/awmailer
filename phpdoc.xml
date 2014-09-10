@@ -28,6 +28,7 @@
         <ignore>bin/*</ignore>
         <ignore>db/*</ignore>
         <ignore>docs/*</ignore>
+        <ignore>tests/*</ignore>
         <ignore>vendor/*</ignore>
         <ignore>web/*</ignore>
     </files>
