@@ -12,9 +12,10 @@ if (file_exists(dirname(__DIR__).'/vendor/composer')) {
 
 // Add paths for test source files
 $paths[] = dirname(__FILE__) . '/src';
+$paths[] = dirname(__FILE__) . '/app';
 
 natsort($paths);
-array_unshift($paths, dirname(__DIR__) .'/src');
+array_unshift($paths, dirname(__DIR__) . '/src', dirname(__DIR__) . '/app');
 set_include_path(implode(PATH_SEPARATOR, array_unique($paths)));
 
 /** Autoloader that implements the PSR-0 spec for interoperability between PHP software. */
