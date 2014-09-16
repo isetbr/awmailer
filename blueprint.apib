@@ -1,12 +1,12 @@
 FORMAT: X-1A
 
-HOST: http://m4a1.create4.us/api/
+HOST: http://awmailer.create4.us/api/
 
-#M4A1 - The Awesome Mailer Service
+#AwMailer - The Awesome Mailer Service
 
 # Group Introduction
-The M4A1 is a software developed for provide a mail service which can be used by all services of iSET.
-The proposal of M4A1 is provide a mail tool that runs a daemon as a observer for new services to be triggered, this services runs natively on Linux servers independent of each others.
+The AwMailer is a software developed for provide a mail service which can be used by all services of iSET.
+The proposal of AwMailer is provide a mail tool that runs a daemon as a observer for new services to be triggered, this services runs natively on Linux servers independent of each others.
 
 This document covers the core resources you can use to manipulate your services inside the API that it's based on REST principles.
 
@@ -34,7 +34,7 @@ This document covers the core resources you can use to manipulate your services 
 - 501 `Method Not Implemented` - The method requested was not implemented yet.
 - 503 `Service Unavailable` - The service is temporary unavailable (e.g. scheduled Platform Maintenance). Try again later.
 
->**Note:** M4A1 API works with json in requests and responses then, all HTTP calls must be include a header *Content-Type: application/json*, otherwise the API will return a HTTP 400 - Bad Request response.
+>**Note:** AwMailer API works with json in requests and responses then, all HTTP calls must be include a header *Content-Type: application/json*, otherwise the API will return a HTTP 400 - Bad Request response.
 
 # Group Authentication
 <a id="authentication"></a>
@@ -758,7 +758,7 @@ Get status from multiple campaigns
 
 # Group Notifications
 
-The M4A1 can send to any service that uses API notifications about processes events in API.
+The AwMailer can send to any service that uses API notifications about processes events in API.
 
 The notifications resource of API send to notification url of service a HTTP POST request with the following structure:
 
@@ -805,7 +805,7 @@ When API send to you a notification about an event occurred in a resource, after
 - `v0.3.2-alpha:` Optimised authentication service
 - `v0.3.1-alpha:` Fix issue that cannot be start service logger
 - `v0.3.0-alpha:` Implemented log, logging only daemon/service behaviour and API calls
-- `v0.2.2-alpha:` M4A1 Service uses packages in sent process for reduce memory usage
+- `v0.2.2-alpha:` AwMailer Service uses packages in sent process for reduce memory usage
 - `v0.2.1-alpha:` Fixed some database connection issues in service, daemon e API
 - `v0.2.0-alpha:` Implemented cached results when request the status of an campaign
 - `v0.1.0-alpha:` Fixed database crash using cache to store service processes

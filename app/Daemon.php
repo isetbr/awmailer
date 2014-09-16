@@ -11,9 +11,6 @@ use Iset\Model\ServiceTable;
 use Iset\Model\CampaignTable;
 use Iset\Model\QueueCollection;
 
-# Initializing Service
-define("PROCESS_TITLE",'m4a1d');
-
 # Initialzing Silex Application
 $app = App::configure();
 $app['monolog.daemon']->addInfo('Initializing Daemon');
@@ -182,7 +179,7 @@ while (true) {
                 switch (pcntl_fork()) {
                     case 0 :
                         $args = array($campaignKey);
-                        pcntl_exec(dirname(__FILE__) . "/../bin/m4a1",$args);
+                        pcntl_exec(dirname(__FILE__) . "/../bin/awmailer",$args);
                         $app['monolog.daemon']->addNotice('Starting process',array('campaign'=>$campaignKey,'PID'=>getmypid()));
                         exit(0);
                     default :

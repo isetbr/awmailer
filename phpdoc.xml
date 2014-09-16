@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <phpdoc>
-    <title>M4A1</title>
+    <title>AwMailer</title>
     <parser>
         <default-package-name>Iset</default-package-name><target>.</target>
         <encoding>utf8</encoding>

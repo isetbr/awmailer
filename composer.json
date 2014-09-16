@@ -1,4 +1,13 @@
 {
+    "name": "awmailer",
+    "type": "application",
+    "description": "The awesome mailer service",
+    "authors": [
+        {
+            "name": "Lucas Mendes de Freitas",
+            "email": "devsdmf@gmail.com"
+        }
+    ],
     "require": {
         "silex/silex": "~1.2",
         "doctrine/dbal": "2.2.*",

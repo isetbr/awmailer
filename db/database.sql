@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.6.17, for osx10.6 (i386)
 --
--- Host: localhost    Database: m4a1
+-- Host: localhost    Database: awmailer
 -- ------------------------------------------------------
 -- Server version	5.6.20
 
