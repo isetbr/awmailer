@@ -52,7 +52,7 @@ class Service
     public function __construct(Application &$app)
     {
         # Initializing gateway
-    	$this->gateway = new ServiceTable($app);
+        $this->gateway = new ServiceTable($app);
     }
     
     /**

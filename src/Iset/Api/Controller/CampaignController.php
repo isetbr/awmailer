@@ -75,7 +75,7 @@ class CampaignController implements ControllerProviderInterface
         # Performing authentication
         $this->_app['auth.service']();
         
-    	return $this->_app->abort(Response::HTTP_NOT_IMPLEMENTED);
+        return $this->_app->abort(Response::HTTP_NOT_IMPLEMENTED);
     }
     
     /**
@@ -116,44 +116,44 @@ class CampaignController implements ControllerProviderInterface
         # Performing authentication
         $this->_app['auth.service']();
         
-    	# Getting providers
-    	$request = $this->getRequest();
-    	$campaign = new Campaign($this->getTableGateway());
-    	
-    	# Getting request params
-    	$subject      = $request->request->get('subject');
-    	$body         = $request->request->get('body');
-    	$headers      = $request->request->get('headers');
-    	$user_vars    = $request->request->get('user_vars');
-    	$user_headers = $request->request->get('user_headers');
-    	$external     = $request->request->get('external');
-    	$additional   = $request->request->get('additional_info');
-    	
-    	# Setting params on object
-    	$campaign->service         = (int)$this->_app['credentials.service']->id;
-    	$campaign->subject         = (!is_null($subject)) ? $subject : null;
-    	$campaign->body            = (!is_null($body)) ? $body : null;
-    	$campaign->headers         = (!is_null($headers)) ? $headers : array();
-    	$campaign->user_vars       = (!is_null($user_vars)) ? $user_vars : 0;
-    	$campaign->user_headers    = (!is_null($user_headers)) ? $user_headers : 0;
-    	$campaign->external        = (!is_null($external)) ? $external : null;
-    	$campaign->additional_info = (!is_null($additional)) ? $additional : null;
-    	
-    	# Saving campaign
-    	$result = $campaign->save();
-    	
-    	# Verifying result
-    	if ($result === true) {
-    	    $response = array('success'=>1,'campaign'=>$campaign->getCampaignKey());
-    	    return $this->_app->json($response,Response::HTTP_CREATED);
-    	} elseif (is_array($result)) {
-    	    $response = array_merge(array('success'=>0),$result);
-    	    $code     = (isset($response['details'])) ? Response::HTTP_BAD_REQUEST : Response::HTTP_INTERNAL_SERVER_ERROR;
-    	    return $this->_app->json($response,$code);
-    	} else {
-    	    $response = array('success'=>0,'error'=>'Unknow error');
-    	    return $this->_app->json($response,Response::HTTP_INTERNAL_SERVER_ERROR);
-    	}
+        # Getting providers
+        $request = $this->getRequest();
+        $campaign = new Campaign($this->getTableGateway());
+        
+        # Getting request params
+        $subject      = $request->request->get('subject');
+        $body         = $request->request->get('body');
+        $headers      = $request->request->get('headers');
+        $user_vars    = $request->request->get('user_vars');
+        $user_headers = $request->request->get('user_headers');
+        $external     = $request->request->get('external');
+        $additional   = $request->request->get('additional_info');
+        
+        # Setting params on object
+        $campaign->service         = (int)$this->_app['credentials.service']->id;
+        $campaign->subject         = (!is_null($subject)) ? $subject : null;
+        $campaign->body            = (!is_null($body)) ? $body : null;
+        $campaign->headers         = (!is_null($headers)) ? $headers : array();
+        $campaign->user_vars       = (!is_null($user_vars)) ? $user_vars : 0;
+        $campaign->user_headers    = (!is_null($user_headers)) ? $user_headers : 0;
+        $campaign->external        = (!is_null($external)) ? $external : null;
+        $campaign->additional_info = (!is_null($additional)) ? $additional : null;
+        
+        # Saving campaign
+        $result = $campaign->save();
+        
+        # Verifying result
+        if ($result === true) {
+            $response = array('success'=>1,'campaign'=>$campaign->getCampaignKey());
+            return $this->_app->json($response,Response::HTTP_CREATED);
+        } elseif (is_array($result)) {
+            $response = array_merge(array('success'=>0),$result);
+            $code     = (isset($response['details'])) ? Response::HTTP_BAD_REQUEST : Response::HTTP_INTERNAL_SERVER_ERROR;
+            return $this->_app->json($response,$code);
+        } else {
+            $response = array('success'=>0,'error'=>'Unknow error');
+            return $this->_app->json($response,Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
     
     /**
@@ -353,7 +353,7 @@ class CampaignController implements ControllerProviderInterface
         # Getting providers
         $request = $this->getRequest();
         $gateway = $this->getTableGateway();
-    	
+        
         # Getting request params
         $campaigns = (array)$request->request->get('campaigns');
         if (count($campaigns) == 0) {
@@ -758,11 +758,11 @@ class CampaignController implements ControllerProviderInterface
      */
     public function getTableGateway()
     {
-    	if (is_null($this->gateway)) {
-    	    $this->gateway = new CampaignTable($this->_app);
-    	}
-    	
-    	return $this->gateway;
+        if (is_null($this->gateway)) {
+            $this->gateway = new CampaignTable($this->_app);
+        }
+        
+        return $this->gateway;
     }
     
     /**
@@ -804,62 +804,62 @@ class CampaignController implements ControllerProviderInterface
         
         # Retrieve all campaigns
         $container->get('/', function () {
-        	return $this->getAll();
+            return $this->getAll();
         });
         
         # Create a campaign
         $container->post('/', function () {
-        	return $this->create();
+            return $this->create();
         });
         
         # Get details from an campaign
         $container->get('/{key}/', function ($key) {
-        	return $this->getOne($key);
+            return $this->getOne($key);
         });
         
         # Update a campaign
         $container->put('/{key}/', function ($key) {
-        	return $this->update($key);
+            return $this->update($key);
         });
         
         # Remove a campaign
         $container->delete('/{key}/', function ($key) {
-        	return $this->remove($key);
+            return $this->remove($key);
         });
         
         # Get the status of campaign
         $container->get('/{key}/status/', function ($key) {
-        	return $this->getStatus($key);
+            return $this->getStatus($key);
         });
         
         # Get current queue list from a campaign
         $container->get('/{key}/queue/', function ($key) {
-        	return $this->getQueue($key);
+            return $this->getQueue($key);
         });
         
         # Add or remove destinations of queue list from campaign
         $container->put('/{key}/queue/', function ($key) {
-        	return $this->changeQueue($key);
+            return $this->changeQueue($key);
         });
         
         # Start process
         $container->post('/{key}/start/', function ($key) {
-        	return $this->startCampaign($key);
+            return $this->startCampaign($key);
         });
         
         # Pause process
         $container->post('/{key}/pause/', function ($key) {
-        	return $this->pauseCampaign($key);
+            return $this->pauseCampaign($key);
         });
         
         # Stop process
         $container->post('/{key}/stop/', function ($key) {
-        	return $this->stopCampaign($key);
+            return $this->stopCampaign($key);
         });
         
         # Get status from multiple campaigns
         $container->post('/status/', function() {
-        	return $this->getMultipleStatus();
+            return $this->getMultipleStatus();
         });
         
         return $container;

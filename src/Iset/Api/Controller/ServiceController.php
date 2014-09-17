@@ -254,9 +254,9 @@ class ServiceController implements ControllerProviderInterface
      */
     public function connect(Application $app)
     {
-    	$this->_app = $app;
-    	
-    	return $this->register();
+        $this->_app = $app;
+        
+        return $this->register();
     }
     
     /**
@@ -267,34 +267,34 @@ class ServiceController implements ControllerProviderInterface
      */
     public function register()
     {
-    	$container = $this->_app['controllers_factory'];
-    	
-    	# Retrieve all services
-    	$container->get('/', function (){
-    		return $this->getAll();
-    	});
-    	
-    	# Create a service
-    	$container->post('/', function (){
-    		return $this->create();
-    	});
-    	
-    	# Get details about service
-    	$container->get('/{key}/', function ($key){
-    		return $this->getOne($key);
-    	});
-    	
-    	# Update a service
-    	$container->put('/{key}/', function ($key){
-    		return $this->update($key);
-    	});
-    	
-    	# Remove a service
-    	$container->delete('/{key}/', function ($key){
-    		return $this->remove($key);
-    	});
-    	
-    	return $container;
+        $container = $this->_app['controllers_factory'];
+        
+        # Retrieve all services
+        $container->get('/', function (){
+            return $this->getAll();
+        });
+        
+        # Create a service
+        $container->post('/', function (){
+            return $this->create();
+        });
+        
+        # Get details about service
+        $container->get('/{key}/', function ($key){
+            return $this->getOne($key);
+        });
+        
+        # Update a service
+        $container->put('/{key}/', function ($key){
+            return $this->update($key);
+        });
+        
+        # Remove a service
+        $container->delete('/{key}/', function ($key){
+            return $this->remove($key);
+        });
+        
+        return $container;
     }
     
     /**
@@ -306,7 +306,7 @@ class ServiceController implements ControllerProviderInterface
     public static function factory(Application &$app)
     {
         # Initializing instance
-    	$instance = new self();
-    	return $instance->connect($app);
+        $instance = new self();
+        return $instance->connect($app);
     }
 }

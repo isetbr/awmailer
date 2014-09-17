@@ -237,27 +237,27 @@ class Campaign extends AbstractResource implements ModelInterface
      */
     public function asArray()
     {
-    	$data = array(
-    		'id'=>$this->id,
-    	    'service'=>$this->service,
-    	    'key'=>$this->key,
-    	    'total'=>$this->total,
-    	    'sent'=>$this->sent,
-    	    'fail'=>$this->fail,
-    	    'progress'=>$this->progress,
-    	    'status'=>$this->status,
-    	    'subject'=>$this->subject,
-    	    'body'=>$this->body,
-    	    'headers'=>$this->headers,
-    	    'user_vars'=>$this->user_vars,
-    	    'user_headers'=>$this->user_headers,
-    	    'date'=>$this->date,
-    	    'external'=>$this->external,
-    	    'additional_info'=>$this->additional_info,
-    	    'pid'=>$this->pid,
-    	);
-    	
-    	return $data;
+        $data = array(
+            'id'=>$this->id,
+            'service'=>$this->service,
+            'key'=>$this->key,
+            'total'=>$this->total,
+            'sent'=>$this->sent,
+            'fail'=>$this->fail,
+            'progress'=>$this->progress,
+            'status'=>$this->status,
+            'subject'=>$this->subject,
+            'body'=>$this->body,
+            'headers'=>$this->headers,
+            'user_vars'=>$this->user_vars,
+            'user_headers'=>$this->user_headers,
+            'date'=>$this->date,
+            'external'=>$this->external,
+            'additional_info'=>$this->additional_info,
+            'pid'=>$this->pid,
+        );
+        
+        return $data;
     }
     
     /**
@@ -318,7 +318,7 @@ class Campaign extends AbstractResource implements ModelInterface
             return array('error'=>'Invalid external identification');
         }
         
-    	return true;
+        return true;
     }
     
     /**
@@ -331,10 +331,10 @@ class Campaign extends AbstractResource implements ModelInterface
     {
         $response = $this->gateway->saveCampaign($this);
         if (!is_null($this->id) && !is_array($response)) {
-    	    return true;
-    	} else {
-    	    return $response;
-    	}
+            return true;
+        } else {
+            return $response;
+        }
     }
     
     /**

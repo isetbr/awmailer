@@ -93,11 +93,11 @@ class Service extends AbstractResource implements ModelInterface
     {
         parent::__construct($this::RESOURCE_NAME);
         
-    	if (!is_null($gateway)) {
-    	    $this->gateway = $gateway;
-    	}
-    	
-    	return $this;
+        if (!is_null($gateway)) {
+            $this->gateway = $gateway;
+        }
+        
+        return $this;
     }
     
     /**
@@ -136,15 +136,15 @@ class Service extends AbstractResource implements ModelInterface
      */
     public function asArray()
     {
-    	$data = array(
-    	    'id'=>$this->id,
-    	    'name'=>$this->name,
-    	    'key'=>$this->key,
-    	    'token'=>$this->token,
-    	    'notification_url'=>$this->notification_url,
-    	);
-    	
-    	return $data;
+        $data = array(
+            'id'=>$this->id,
+            'name'=>$this->name,
+            'key'=>$this->key,
+            'token'=>$this->token,
+            'notification_url'=>$this->notification_url,
+        );
+        
+        return $data;
     }
     
     /**
@@ -199,12 +199,12 @@ class Service extends AbstractResource implements ModelInterface
      */
     public function save()
     {
-    	$response = $this->gateway->saveService($this);
-    	if (!is_null($this->id) && !is_array($response)) {
-    	    return true;
-    	} else {
-    	    return $response;
-    	}
+        $response = $this->gateway->saveService($this);
+        if (!is_null($this->id) && !is_array($response)) {
+            return true;
+        } else {
+            return $response;
+        }
     }
     
     /**
@@ -215,13 +215,13 @@ class Service extends AbstractResource implements ModelInterface
      */
     public function delete()
     {
-    	$response = $this->gateway->deleteService($this);
-    	if ($response) {
-    	    unset($this);
-    	    return true;
-    	} else {
-    	    return false;
-    	}
+        $response = $this->gateway->deleteService($this);
+        if ($response) {
+            unset($this);
+            return true;
+        } else {
+            return false;
+        }
     }
     
     /**

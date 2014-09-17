@@ -96,31 +96,31 @@ class IpAddressTable extends TableGatewayAbstract
     public function saveIpAddress(IpAddress &$ipaddress)
     {
         # Validating Ip Address
-    	$result = $ipaddress->validate();
-    	
-    	# Verifying result
-    	if ($result === true) {
-    	    # Verifying if IpAddress exists in database
-    	    $result = $this->getIpAddress($ipaddress->ipaddress);
-    	    
-    	    # Verifying result
-    	    if (!$result) {
-    	        # Inserting
-    	        $query = "INSERT INTO `" . self::TABLE_NAME . "` (`ipaddress`) VALUES (?)";
-    	        $result = $this->tableGateway->executeUpdate($query,array($ipaddress->ipaddress));
-    	        
-    	        # Verifying result
-    	        if ($result == 1) {
-    	            return $ipaddress;
-    	        } else {
-    	            return array('error'=>'An error ocurred at try to insert data in database');
-    	        }
-    	    } else {
-    	        return array('error'=>'IP Address already allowed');
-    	    }
-    	} else {
-    	    return array('error'=>'Invalid IP address, see details for more information','details'=>$result['error']);
-    	}
+        $result = $ipaddress->validate();
+        
+        # Verifying result
+        if ($result === true) {
+            # Verifying if IpAddress exists in database
+            $result = $this->getIpAddress($ipaddress->ipaddress);
+            
+            # Verifying result
+            if (!$result) {
+                # Inserting
+                $query = "INSERT INTO `" . self::TABLE_NAME . "` (`ipaddress`) VALUES (?)";
+                $result = $this->tableGateway->executeUpdate($query,array($ipaddress->ipaddress));
+                
+                # Verifying result
+                if ($result == 1) {
+                    return $ipaddress;
+                } else {
+                    return array('error'=>'An error ocurred at try to insert data in database');
+                }
+            } else {
+                return array('error'=>'IP Address already allowed');
+            }
+        } else {
+            return array('error'=>'Invalid IP address, see details for more information','details'=>$result['error']);
+        }
     }
     
     /**

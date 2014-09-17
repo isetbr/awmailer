@@ -109,12 +109,12 @@ class IpAddress extends AbstractResource implements ModelInterface
     public function validate()
     {
         # Validating ip address
-    	$validator = new IpAddressValidator();
-    	if (!$validator->isValid($this->ipaddress)) {
-    	    return array('error'=>'Invalid ip address');
-    	}
-    	
-    	return true;
+        $validator = new IpAddressValidator();
+        if (!$validator->isValid($this->ipaddress)) {
+            return array('error'=>'Invalid ip address');
+        }
+        
+        return true;
     }
     
     /**
@@ -125,12 +125,12 @@ class IpAddress extends AbstractResource implements ModelInterface
      */
     public function save()
     {
-    	$response = $this->gateway->saveIpAddress($this);
-    	if (!is_null($response) && !is_array($response)) {
-    	    return true;
-    	} else {
-    	    return $response;
-    	}
+        $response = $this->gateway->saveIpAddress($this);
+        if (!is_null($response) && !is_array($response)) {
+            return true;
+        } else {
+            return $response;
+        }
     }
     
     /**

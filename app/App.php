@@ -49,65 +49,65 @@ use Iset\Api\Controller\MainController as ApiController;
  */
 class App
 {
-	/**
-	 * Configure the application instance
-	 * 
-	 * @static
-	 * @return Application
-	 */
-	public static function configure()
-	{
-		# Initializing Kernel
-	    $kernel = new AppKernel();
-	    
-	    # Setting root path
-	    $kernel['root_path'] = dirname(__FILE__) . '/../';
-		
-		# Loading application configuration
-		$reader = new ConfigReader();
-		$kernel['config'] = $reader->fromFile($kernel['root_path'] . 'app/config/application.ini');
-		
-		# Configuring application
-		$kernel['base_url'] = $kernel['config']['general']['base_url'];
-		$kernel['debug']    = ((int)$kernel['config']['general']['debug'] == 1) ? true : false;
-		foreach ($kernel['config']['paths'] as $key => $value) {
-		    $path = $kernel['root_path'] . $value;
-		    $kernel[$key.'_path'] = $path;
-		}
-		
-		# Register providers
-		# Log System
-		$kernel['monolog.factory'] = $kernel->protect(function ($name, array $options = array()) use ($kernel) {
-		    # Initializing logger
-		    $logger = new Logger($name);
-		    
-		    # Parsing handler
-		    switch ($options['handler']) {
-		        case 'StreamHandler' :
-		            # Getting options
-		            $stream = (!is_null($stream = $options['options']['stream'])) ? $kernel['log_path'] . $stream : null;
-		            $level = (!is_null($level = $options['options']['level'])) ? $level : Logger::DEBUG;
-		            
-		            # Initializing handler
-		            $handler = new Monolog\Handler\StreamHandler($stream,$level,true,0777);
-		            break;
-		        default :
-		            return false;
-		            break;
-		    }
-		    
-		    # Setting handler and returning logger
-		    $logger->pushHandler($handler);
-		    return $logger;
-		});
-		
-		# Loop into configuration to create instances of log channels
-		foreach ($kernel['config']['log'] as $channel => $options) {
-		    $kernel['monolog.'.$channel] = $kernel->share(function ($kernel) use ($channel,$options) {
-		        return $kernel['monolog.factory']($channel,$options);
-		    });
-		}
-		
+    /**
+     * Configure the application instance
+     * 
+     * @static
+     * @return Application
+     */
+    public static function configure()
+    {
+        # Initializing Kernel
+        $kernel = new AppKernel();
+        
+        # Setting root path
+        $kernel['root_path'] = dirname(__FILE__) . '/../';
+        
+        # Loading application configuration
+        $reader = new ConfigReader();
+        $kernel['config'] = $reader->fromFile($kernel['root_path'] . 'app/config/application.ini');
+        
+        # Configuring application
+        $kernel['base_url'] = $kernel['config']['general']['base_url'];
+        $kernel['debug']    = ((int)$kernel['config']['general']['debug'] == 1) ? true : false;
+        foreach ($kernel['config']['paths'] as $key => $value) {
+            $path = $kernel['root_path'] . $value;
+            $kernel[$key.'_path'] = $path;
+        }
+        
+        # Register providers
+        # Log System
+        $kernel['monolog.factory'] = $kernel->protect(function ($name, array $options = array()) use ($kernel) {
+            # Initializing logger
+            $logger = new Logger($name);
+            
+            # Parsing handler
+            switch ($options['handler']) {
+                case 'StreamHandler' :
+                    # Getting options
+                    $stream = (!is_null($stream = $options['options']['stream'])) ? $kernel['log_path'] . $stream : null;
+                    $level = (!is_null($level = $options['options']['level'])) ? $level : Logger::DEBUG;
+                    
+                    # Initializing handler
+                    $handler = new Monolog\Handler\StreamHandler($stream,$level,true,0777);
+                    break;
+                default :
+                    return false;
+                    break;
+            }
+            
+            # Setting handler and returning logger
+            $logger->pushHandler($handler);
+            return $logger;
+        });
+        
+        # Loop into configuration to create instances of log channels
+        foreach ($kernel['config']['log'] as $channel => $options) {
+            $kernel['monolog.'.$channel] = $kernel->share(function ($kernel) use ($channel,$options) {
+                return $kernel['monolog.factory']($channel,$options);
+            });
+        }
+        
         # Creating container for log requests in api
         $kernel['monolog.api.service'] = $kernel->protect(function (Request $request, Response $response) use ($kernel){
             # Logging request
@@ -122,140 +122,140 @@ class App
             
             $kernel['monolog.api']->addInfo('API Call',$log_data);
         });
-		
-		# Doctrine DBAL
-		$kernel->register(new DoctrineServiceProvider(), array(
+        
+        # Doctrine DBAL
+        $kernel->register(new DoctrineServiceProvider(), array(
             'db.options'=>$kernel['config']['database']['mysql']
-		));
-		
-		# Doctrine Mongodb
-		$kernel->register(new MongoDbExtension(), array(
-			'mongodb.connection'=>array(
-			    'server'=>$kernel['config']['database']['mongo']['dsn'],
-			    'options'=>array(),
-			    'eventmanager'=>function ($eventmanager) {}
-		    ),
-		));
-		
-		# Zend Cache
-		$kernel->register(new ZendCacheServiceProvider(), array(
-		    'cache.options'=>array(
+        ));
+        
+        # Doctrine Mongodb
+        $kernel->register(new MongoDbExtension(), array(
+            'mongodb.connection'=>array(
+                'server'=>$kernel['config']['database']['mongo']['dsn'],
+                'options'=>array(),
+                'eventmanager'=>function ($eventmanager) {}
+            ),
+        ));
+        
+        # Zend Cache
+        $kernel->register(new ZendCacheServiceProvider(), array(
+            'cache.options'=>array(
                 'zendcache'=>$kernel['config']['cache']['zendcache'],
-		        'cache_dir'=>$kernel['cache_path'],
-		    ),
-		));
-		
-		# Twig Template Engine
-		$kernel->register(new TwigServiceProvider(), array(
-		    'twig.path'=>$kernel['view_path'],
-		));
-		
-		# URL Generator
-		$kernel->register(new UrlGeneratorServiceProvider());
-		
-		# Creating container to perform a authentication
-		$kernel['auth.ipaddress'] = $kernel->protect(function () use ($kernel) {
-		    # Initializing request object
-		    $request = Request::createFromGlobals();
-		    
-		    # Getting user IP address
-		    $ipaddress = $request->getClientIp();
-		    
-		    # Initializing authentication provider
-		    $auth = new AuthIpAddress($kernel);
-		    
-		    if ($ipaddress = $auth->validate($ipaddress)) {
-		        $kernel['credentials.ipaddress'] = $ipaddress;
-		    } else {
-		        $request = Request::createFromGlobals();
-		        $response = Response::create(null,Response::HTTP_UNAUTHORIZED,array('X-Status-Code'=>200));
-		        $kernel['monolog.api.service']($request,$response);
-		        $response->send();
-		        $kernel->terminate($request,$response);
-		        die();
-		    }
-		});
-		$kernel['auth.service'] = $kernel->protect(function () use ($kernel) {
-		    # Initializing request object
-		    $request = Request::createFromGlobals();
-		    
-		    # Getting user auth headers
-		    $auth_service_key = $request->headers->get($kernel['config']['api']['auth_header']['service_key']);
-		    $auth_token       = $request->headers->get($kernel['config']['api']['auth_header']['token']);
-		    
-		     # Initializing authentication provider
-		    $auth = new AuthService($kernel);
-		    
-		    if ($service = $auth->validate($auth_service_key,$auth_token)) {
-		        $kernel['credentials.service'] = $service;
-		    } else {
-		        $request = Request::createFromGlobals();
-		        $response = Response::create(null,Response::HTTP_UNAUTHORIZED,array('X-Status-Code'=>200));
-		        $kernel['monolog.api.service']($request,$response);
-		        $response->send();
-		        $kernel->terminate($request,$response);
-		        die();
-		    }
-		});
-		
-		# Registering basic API routes
-	    $kernel->get('/', function () use ($kernel) {
-	        return $kernel['twig']->render('index.twig');
-	    });
-	    $kernel->match('/docs/api/', function() use ($kernel) {
-	        return $kernel->redirect('/docs/api/index.html');
-	    });
-	    $kernel->match('/docs/source/', function () use ($kernel) {
-	        return $kernel->redirect('/docs/source/index.html');
-	    });
+                'cache_dir'=>$kernel['cache_path'],
+            ),
+        ));
+        
+        # Twig Template Engine
+        $kernel->register(new TwigServiceProvider(), array(
+            'twig.path'=>$kernel['view_path'],
+        ));
+        
+        # URL Generator
+        $kernel->register(new UrlGeneratorServiceProvider());
+        
+        # Creating container to perform a authentication
+        $kernel['auth.ipaddress'] = $kernel->protect(function () use ($kernel) {
+            # Initializing request object
+            $request = Request::createFromGlobals();
+            
+            # Getting user IP address
+            $ipaddress = $request->getClientIp();
+            
+            # Initializing authentication provider
+            $auth = new AuthIpAddress($kernel);
+            
+            if ($ipaddress = $auth->validate($ipaddress)) {
+                $kernel['credentials.ipaddress'] = $ipaddress;
+            } else {
+                $request = Request::createFromGlobals();
+                $response = Response::create(null,Response::HTTP_UNAUTHORIZED,array('X-Status-Code'=>200));
+                $kernel['monolog.api.service']($request,$response);
+                $response->send();
+                $kernel->terminate($request,$response);
+                die();
+            }
+        });
+        $kernel['auth.service'] = $kernel->protect(function () use ($kernel) {
+            # Initializing request object
+            $request = Request::createFromGlobals();
+            
+            # Getting user auth headers
+            $auth_service_key = $request->headers->get($kernel['config']['api']['auth_header']['service_key']);
+            $auth_token       = $request->headers->get($kernel['config']['api']['auth_header']['token']);
+            
+             # Initializing authentication provider
+            $auth = new AuthService($kernel);
+            
+            if ($service = $auth->validate($auth_service_key,$auth_token)) {
+                $kernel['credentials.service'] = $service;
+            } else {
+                $request = Request::createFromGlobals();
+                $response = Response::create(null,Response::HTTP_UNAUTHORIZED,array('X-Status-Code'=>200));
+                $kernel['monolog.api.service']($request,$response);
+                $response->send();
+                $kernel->terminate($request,$response);
+                die();
+            }
+        });
+        
+        # Registering basic API routes
+        $kernel->get('/', function () use ($kernel) {
+            return $kernel['twig']->render('index.twig');
+        });
+        $kernel->match('/docs/api/', function() use ($kernel) {
+            return $kernel->redirect('/docs/api/index.html');
+        });
+        $kernel->match('/docs/source/', function () use ($kernel) {
+            return $kernel->redirect('/docs/source/index.html');
+        });
         $kernel->post('/notification/default', function() use ($kernel) {
             return $kernel->json(array('result'=>'ok'));
         });
-		
-		# Register controllers
-		$kernel->mount('/api', new ApiController())
-		       ->before(function (Request $request) use ($kernel) {
-		            # Validating request content-type
-			        if (0 === strpos($request->headers->get('Content-Type'), 'application/json')) {
-			            $data = json_decode($request->getContent(), true);
-			            // Verifying if data is an array
-			            if (is_array($data)) {
-			                $data = $kernel->prepareJsonData($data,false);
-			                $request->request->replace($data);
-			            } else {
-			            	$request->request->replace(array());
-			            }
-			        } elseif (strstr($request->getRequestUri(),"/api/") !== false) {
-			            $response = Response::create(null,Response::HTTP_BAD_REQUEST,array('X-Status-Code'=>200));
-			            $kernel['monolog.api.service']($request,$response);
-			            $response->send();
-			            $kernel->terminate($request,$response);
-			            die();
-			        }
-			       
-			        # Performing authentication by IpAddress
-			        $kernel['auth.ipaddress']();
-		       });
-		       
-		# Registering after middleware for parse response
-		$kernel->after(function (Request $request, Response $response) {
-		    # Setting status code in response header
-		    $response->headers->add(array('X-Status-Code'=>200));
-		    return $response;
-		});
-		
-		# Finish application flow
-		$kernel->finish(function (Request $request, Response $response) use ($kernel) {		    
-		    # Logging request
-		    $kernel['monolog.api.service']($request,$response);
-		});
-		
-		# @Override default error handler
-		$kernel->error(function (\Exception $e, $code) use ($kernel) {
-		    $response = array('success'=>0,'message'=>utf8_encode($e->getMessage()));
-		    return $kernel->json($response,$code);
-		});
-		
-		return $kernel;
-	}
+        
+        # Register controllers
+        $kernel->mount('/api', new ApiController())
+               ->before(function (Request $request) use ($kernel) {
+                    # Validating request content-type
+                    if (0 === strpos($request->headers->get('Content-Type'), 'application/json')) {
+                        $data = json_decode($request->getContent(), true);
+                        // Verifying if data is an array
+                        if (is_array($data)) {
+                            $data = $kernel->prepareJsonData($data,false);
+                            $request->request->replace($data);
+                        } else {
+                            $request->request->replace(array());
+                        }
+                    } elseif (strstr($request->getRequestUri(),"/api/") !== false) {
+                        $response = Response::create(null,Response::HTTP_BAD_REQUEST,array('X-Status-Code'=>200));
+                        $kernel['monolog.api.service']($request,$response);
+                        $response->send();
+                        $kernel->terminate($request,$response);
+                        die();
+                    }
+                   
+                    # Performing authentication by IpAddress
+                    $kernel['auth.ipaddress']();
+               });
+               
+        # Registering after middleware for parse response
+        $kernel->after(function (Request $request, Response $response) {
+            # Setting status code in response header
+            $response->headers->add(array('X-Status-Code'=>200));
+            return $response;
+        });
+        
+        # Finish application flow
+        $kernel->finish(function (Request $request, Response $response) use ($kernel) {         
+            # Logging request
+            $kernel['monolog.api.service']($request,$response);
+        });
+        
+        # @Override default error handler
+        $kernel->error(function (\Exception $e, $code) use ($kernel) {
+            $response = array('success'=>0,'message'=>utf8_encode($e->getMessage()));
+            return $kernel->json($response,$code);
+        });
+        
+        return $kernel;
+    }
 }

@@ -52,7 +52,7 @@ class IpAddress
     public function __construct(Application &$app)
     {
         # Initializing gateway
-    	$this->gateway = new IpAddressTable($app);
+        $this->gateway = new IpAddressTable($app);
     }
     
     /**

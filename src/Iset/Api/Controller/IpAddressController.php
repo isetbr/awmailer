@@ -164,11 +164,11 @@ class IpAddressController implements ControllerProviderInterface
      */
     public function getTableGateway()
     {
-    	if (is_null($this->gateway)) {
-    	    $this->gateway = new IpAddressTable($this->_app);
-    	}
-    	
-    	return $this->gateway;
+        if (is_null($this->gateway)) {
+            $this->gateway = new IpAddressTable($this->_app);
+        }
+        
+        return $this->gateway;
     }
     
     /**
@@ -179,9 +179,9 @@ class IpAddressController implements ControllerProviderInterface
      */
     public function connect(Application $app)
     {
-    	$this->_app = $app;
-    	
-    	return $this->register();
+        $this->_app = $app;
+        
+        return $this->register();
     }
     
     /**
@@ -192,24 +192,24 @@ class IpAddressController implements ControllerProviderInterface
      */
     public function register()
     {
-    	$container = $this->_app['controllers_factory'];
-    	
-    	# Retrieve all ip address
-    	$container->get('/', function () {
-    		return $this->getAll();
-    	});
-    	
-    	# Allow new ip address in system
-    	$container->post('/', function() {
+        $container = $this->_app['controllers_factory'];
+        
+        # Retrieve all ip address
+        $container->get('/', function () {
+            return $this->getAll();
+        });
+        
+        # Allow new ip address in system
+        $container->post('/', function() {
             return $this->allow();
-    	});
-    	
-    	# Remove ip address from server
-    	$container->delete('/{ipaddress}/', function ($ipaddress) {
-    		return $this->remove($ipaddress);
-    	});
-    	
-    	return $container;
+        });
+        
+        # Remove ip address from server
+        $container->delete('/{ipaddress}/', function ($ipaddress) {
+            return $this->remove($ipaddress);
+        });
+        
+        return $container;
     }
     
     /**
@@ -220,7 +220,7 @@ class IpAddressController implements ControllerProviderInterface
      */
     public static function factory(Application &$app)
     {
-    	$instance = new self();
-    	return $instance->connect($app);
+        $instance = new self();
+        return $instance->connect($app);
     }
 }
