@@ -10,10 +10,10 @@
 [general]
 
 ; This is the base url used in formation of URL's inside of application
-base_url = http://awmailer.localhost/
+base_url = %%API_URL%%
 
 ; This is the debug option, accepted values "On" or "Off"
-debug = On
+debug = Off
 
 ; This section is responsible for define paths of application based on root path
 [paths]
@@ -54,15 +54,15 @@ api.options.level  = 200 ; INFO
 
 ; MySQL database configuration
 mysql.driver   = pdo_mysql
-mysql.host     = localhost
-mysql.user     = awmailer
-mysql.password = awm123
-mysql.dbname   = awmailer
+mysql.host     = %%DB_HOST%%
+mysql.user     = %%DB_USER%%
+mysql.password = %%DB_PASS%%
+mysql.dbname   = %%DB_NAME%%
 mysql.charset  = utf8
 
 ; MongoDB database configuration
-mongo.dsn    = mongodb://localhost
-mongo.dbname = awmailer
+mongo.dsn    = %%MONGODB_HOST%%
+mongo.dbname = %%MONGODB_NAME%%
 
 ; This section is responsible for configure the webservice behavior and
 ; API methods

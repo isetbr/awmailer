@@ -1,6 +1,6 @@
 FORMAT: X-1A
 
-HOST: http://awmailer.create4.us/api/
+HOST: %%API_HOST%%
 
 #AwMailer - The Awesome Mailer Service
 

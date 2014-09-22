@@ -21,8 +21,8 @@
         <template name="clean" />
     </transformations>
     <files>
-        <directory>src</directory>
-        <directory>app</directory>
+        <directory>src/</directory>
+        <directory>app/</directory>
         <ignore>app/Daemon.php</ignore>
         <ignore>app/Service.php</ignore>
         <ignore>bin/*</ignore>

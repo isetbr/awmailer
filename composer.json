@@ -1,7 +1,7 @@
 {
-    "name": "awmailer",
+    "name": "iset\/awmailer",
     "type": "application",
-    "description": "The awesome mailer service",
+    "description": "The Awesome Mailer Service",
     "authors": [
         {
             "name": "Lucas Mendes de Freitas",
@@ -9,25 +9,26 @@
         }
     ],
     "require": {
-        "silex/silex": "~1.2",
-        "doctrine/dbal": "2.2.*",
-        "doctrine/mongodb": "1.1.6",
-        "zendframework/zend-config": "2.3.*",
-        "zendframework/zend-uri": "2.3.*",
-        "zendframework/zend-validator": "2.3.*",
-        "zendframework/zend-cache": "2.3.*",
-        "fate/silex-extensions": "dev-master",
-        "monolog/monolog": "1.10.0",
-        "twig/twig": ">=1.8,<2.0-dev",
-        "symfony/twig-bridge": "~2.3",
-        "slice/http": "1.1.4"
+        "silex\/silex": "~1.2",
+        "doctrine\/dbal": "2.2.*",
+        "doctrine\/mongodb": "1.1.6",
+        "zendframework\/zend-config": "2.3.*",
+        "zendframework\/zend-uri": "2.3.*",
+        "zendframework\/zend-validator": "2.3.*",
+        "zendframework\/zend-cache": "2.3.*",
+        "fate\/silex-extensions": "dev-master",
+        "monolog\/monolog": "1.10.0",
+        "twig\/twig": ">=1.8,<2.0-dev",
+        "symfony\/twig-bridge": "~2.3",
+        "slice\/http": "1.1.4"
     },
     "require-dev": {
-        "phpunit/phpunit": "4.2.*"
+        "phpdocumentor\/phpdocumentor": "2.*",
+        "phpunit\/phpunit": "4.2.*"
     },
     "autoload": {
         "psr-0": {
-            "": "src/"
+            "": "src\/"
         }
     },
     "php": ">=5.4.0"
