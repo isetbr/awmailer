@@ -3,7 +3,10 @@
 .project
 .settings/*
 .idea/*
+app/cache/*
+app/config/application.ini
+app/log/*
 vendor/*
 tmp/*
-app/log/*
-app/cache/*
+web/docs/*
+blueprint.apib

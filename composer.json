@@ -24,7 +24,8 @@
     },
     "require-dev": {
         "phpdocumentor\/phpdocumentor": "2.*",
-        "phpunit\/phpunit": "4.2.*"
+        "phpunit\/phpunit": "4.2.*",
+        "fabpot/php-cs-fixer": "0.5.*"
     },
     "autoload": {
         "psr-0": {
