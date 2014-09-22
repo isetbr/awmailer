@@ -28,10 +28,10 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Application Kernel
- * 
+ *
  * This is a extended version of Silex Application class that provides
  * some customizations for core of application.
- * 
+ *
  * @package App
  * @author Lucas Mendes de Freitas <devsdmf>
  * @copyright AwMailer (c) iSET - Internet, Soluções e Tecnologia LTDA.
@@ -42,26 +42,27 @@ class AppKernel extends Application
     /**
      * Override default json method from Silex Application class with prepared data to send
      * in response.
-     * 
+     *
      * @param array   $data    The response data
      * @param integer $status  The response status code
      * @param array   $headers An array of response headers
-     * 
+     *
      * @return JsonResponse
      */
     public function json($data = array(), $status = 200, array $headers = array())
     {
         // Parsing data with utf8_encode
         $data = $this->prepareJsonData($data);
+
         return parent::json($data,$status,$headers);
     }
 
     /**
      * Recursive function to json data into utf8 encoding
-     * 
+     *
      * @param array $data   The data to be parsed
      * @param bool  $encode Defaults true to encode or set false to decode data
-     * 
+     *
      * @return array
      */
     public function prepareJsonData($data = array(), $encode = true)
@@ -80,7 +81,7 @@ class AppKernel extends Application
     /**
      * Override the default run method to a prepared method to handle trailing slashes
      * at the end of URI.
-     * 
+     *
      * @param Request $request The request object
      */
     public function run(Request $request = null)

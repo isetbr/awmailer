@@ -2,21 +2,21 @@
 
 /**
  * AwMailer - The Awesome Mailer Service
- * 
- * The AwMailer is a software developed for provide a mail service 
+ *
+ * The AwMailer is a software developed for provide a mail service
  * which can be used by all services of iSET.
- * 
- * The proposal of AwMailer is provide a mail tool that runs a daemon 
- * as a observer for new services to be triggered, this services 
+ *
+ * The proposal of AwMailer is provide a mail tool that runs a daemon
+ * as a observer for new services to be triggered, this services
  * runs natively on Linux servers independent of each others.
- * 
- * This is a source code file, part of AwMailer product and this 
- * source code is privately and only iSET and your developers 
+ *
+ * This is a source code file, part of AwMailer product and this
+ * source code is privately and only iSET and your developers
  * can use or distribute it.
- * 
+ *
  * @copyright AwMailer (c) iSET - Internet, Soluções e Tecnologia LTDA.
  * @version $Id$
- * 
+ *
  */
 
 require_once __DIR__ . '/AppKernel.php';
@@ -37,11 +37,11 @@ use Iset\Api\Controller\MainController as ApiController;
 
 /**
  * App
- * 
+ *
  * This is a App class that configures a application environment,
- * initialize service, controllers, routes and all libraries of 
+ * initialize service, controllers, routes and all libraries of
  * system to let application ready for bootstrapping.
- * 
+ *
  * @package App
  * @author Lucas Mendes de Freitas <devsdmf>
  * @copyright AwMailer (c) iSET - Internet, Soluções e Tecnologia LTDA.
@@ -51,7 +51,7 @@ class App
 {
     /**
      * Configure the application instance
-     * 
+     *
      * @static
      * @return Application
      */
@@ -59,35 +59,35 @@ class App
     {
         # Initializing Kernel
         $kernel = new AppKernel();
-        
+
         # Setting root path
         $kernel['root_path'] = dirname(__FILE__) . '/../';
-        
+
         # Loading application configuration
         $reader = new ConfigReader();
         $kernel['config'] = $reader->fromFile($kernel['root_path'] . 'app/config/application.ini');
-        
+
         # Configuring application
         $kernel['base_url'] = $kernel['config']['general']['base_url'];
-        $kernel['debug']    = ((int)$kernel['config']['general']['debug'] == 1) ? true : false;
+        $kernel['debug']    = ((int) $kernel['config']['general']['debug'] == 1) ? true : false;
         foreach ($kernel['config']['paths'] as $key => $value) {
             $path = $kernel['root_path'] . $value;
             $kernel[$key.'_path'] = $path;
         }
-        
+
         # Register providers
         # Log System
         $kernel['monolog.factory'] = $kernel->protect(function ($name, array $options = array()) use ($kernel) {
             # Initializing logger
             $logger = new Logger($name);
-            
+
             # Parsing handler
             switch ($options['handler']) {
                 case 'StreamHandler' :
                     # Getting options
                     $stream = (!is_null($stream = $options['options']['stream'])) ? $kernel['log_path'] . $stream : null;
                     $level = (!is_null($level = $options['options']['level'])) ? $level : Logger::DEBUG;
-                    
+
                     # Initializing handler
                     $handler = new Monolog\Handler\StreamHandler($stream,$level,true,0777);
                     break;
@@ -95,21 +95,22 @@ class App
                     return false;
                     break;
             }
-            
+
             # Setting handler and returning logger
             $logger->pushHandler($handler);
+
             return $logger;
         });
-        
+
         # Loop into configuration to create instances of log channels
         foreach ($kernel['config']['log'] as $channel => $options) {
             $kernel['monolog.'.$channel] = $kernel->share(function ($kernel) use ($channel,$options) {
                 return $kernel['monolog.factory']($channel,$options);
             });
         }
-        
+
         # Creating container for log requests in api
-        $kernel['monolog.api.service'] = $kernel->protect(function (Request $request, Response $response) use ($kernel){
+        $kernel['monolog.api.service'] = $kernel->protect(function (Request $request, Response $response) use ($kernel) {
             # Logging request
             $log_data = array(
                 'method'=>$request->getMethod(),
@@ -119,15 +120,15 @@ class App
                 'token'=>$request->headers->get($kernel['config']['api']['auth_header']['token']),
                 'client-ip'=>$request->getClientIp(),
             );
-            
+
             $kernel['monolog.api']->addInfo('API Call',$log_data);
         });
-        
+
         # Doctrine DBAL
         $kernel->register(new DoctrineServiceProvider(), array(
             'db.options'=>$kernel['config']['database']['mysql']
         ));
-        
+
         # Doctrine Mongodb
         $kernel->register(new MongoDbExtension(), array(
             'mongodb.connection'=>array(
@@ -136,7 +137,7 @@ class App
                 'eventmanager'=>function ($eventmanager) {}
             ),
         ));
-        
+
         # Zend Cache
         $kernel->register(new ZendCacheServiceProvider(), array(
             'cache.options'=>array(
@@ -144,26 +145,26 @@ class App
                 'cache_dir'=>$kernel['cache_path'],
             ),
         ));
-        
+
         # Twig Template Engine
         $kernel->register(new TwigServiceProvider(), array(
             'twig.path'=>$kernel['view_path'],
         ));
-        
+
         # URL Generator
         $kernel->register(new UrlGeneratorServiceProvider());
-        
+
         # Creating container to perform a authentication
         $kernel['auth.ipaddress'] = $kernel->protect(function () use ($kernel) {
             # Initializing request object
             $request = Request::createFromGlobals();
-            
+
             # Getting user IP address
             $ipaddress = $request->getClientIp();
-            
+
             # Initializing authentication provider
             $auth = new AuthIpAddress($kernel);
-            
+
             if ($ipaddress = $auth->validate($ipaddress)) {
                 $kernel['credentials.ipaddress'] = $ipaddress;
             } else {
@@ -178,14 +179,14 @@ class App
         $kernel['auth.service'] = $kernel->protect(function () use ($kernel) {
             # Initializing request object
             $request = Request::createFromGlobals();
-            
+
             # Getting user auth headers
             $auth_service_key = $request->headers->get($kernel['config']['api']['auth_header']['service_key']);
             $auth_token       = $request->headers->get($kernel['config']['api']['auth_header']['token']);
-            
+
              # Initializing authentication provider
             $auth = new AuthService($kernel);
-            
+
             if ($service = $auth->validate($auth_service_key,$auth_token)) {
                 $kernel['credentials.service'] = $service;
             } else {
@@ -197,21 +198,21 @@ class App
                 die();
             }
         });
-        
+
         # Registering basic API routes
         $kernel->get('/', function () use ($kernel) {
             return $kernel['twig']->render('index.twig');
         });
-        $kernel->match('/docs/api/', function() use ($kernel) {
+        $kernel->match('/docs/api/', function () use ($kernel) {
             return $kernel->redirect('/docs/api/index.html');
         });
         $kernel->match('/docs/source/', function () use ($kernel) {
             return $kernel->redirect('/docs/source/index.html');
         });
-        $kernel->post('/notification/default', function() use ($kernel) {
+        $kernel->post('/notification/default', function () use ($kernel) {
             return $kernel->json(array('result'=>'ok'));
         });
-        
+
         # Register controllers
         $kernel->mount('/api', new ApiController())
                ->before(function (Request $request) use ($kernel) {
@@ -232,30 +233,32 @@ class App
                         $kernel->terminate($request,$response);
                         die();
                     }
-                   
+
                     # Performing authentication by IpAddress
                     $kernel['auth.ipaddress']();
                });
-               
+
         # Registering after middleware for parse response
         $kernel->after(function (Request $request, Response $response) {
             # Setting status code in response header
             $response->headers->add(array('X-Status-Code'=>200));
+
             return $response;
         });
-        
+
         # Finish application flow
-        $kernel->finish(function (Request $request, Response $response) use ($kernel) {         
+        $kernel->finish(function (Request $request, Response $response) use ($kernel) {
             # Logging request
             $kernel['monolog.api.service']($request,$response);
         });
-        
+
         # @Override default error handler
         $kernel->error(function (\Exception $e, $code) use ($kernel) {
             $response = array('success'=>0,'message'=>utf8_encode($e->getMessage()));
+
             return $kernel->json($response,$code);
         });
-        
+
         return $kernel;
     }
 }

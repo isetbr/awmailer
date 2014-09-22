@@ -21,13 +21,11 @@
 
 namespace Iset\Resource;
 
-use Iset\Resource\AbstractResource;
-
 /**
  * Resource
- * 
+ *
  * This is a concrete implementation of an resource class
- * 
+ *
  * @package Iset
  * @subpackage Resource
  * @namespace Iset\Resource

@@ -28,11 +28,11 @@ use Iset\Api\Resource\Service;
 use Zend\Validator\Uri as UriValidator;
 
 /**
- * Callback 
- * 
+ * Callback
+ *
  * This is a Callback system of API that perform HTTP requests in notification
  * URL's of services notificating about some events occurred.
- *  
+ *
  * @package Iset
  * @subpackage Api
  * @namespace Iset\Api
@@ -54,13 +54,13 @@ class Callback
      * @var \Iset\Api\Resource\Service
      */
     protected $_service = null;
-    
+
     /**
      * The Resource that callback refers
      * @var \Iset\Resource\AbstractResource
      */
     protected $_resource = null;
-    
+
     /**
      * The Constructor
      *
@@ -70,58 +70,58 @@ class Callback
     {
         $this->_app = &$app;
     }
-    
+
     /**
      * Set the service in Callback
-     * 
+     *
      * @param Service $service
      */
     public function setService(Service $service)
     {
         $this->_service = $service;
     }
-    
+
     /**
      * Get the current callback Service
-     * 
+     *
      * @return \Iset\Api\Resource\Service
      */
     public function getService()
     {
         return $this->_service;
     }
-    
+
     /**
      * Set the resource that callback uses
-     * 
+     *
      * @param AbstractResource $resource
      */
     public function setResource(AbstractResource $resource)
     {
         $this->_resource = $resource;
     }
-    
+
     /**
      * Get the current resource
-     * 
+     *
      * @return \Iset\Resource\AbstractResource
      */
     public function getResource()
     {
         return $this->_resource;
     }
-    
+
     /**
      * Send a callback to the Service
-     * 
-     * @param array $data
+     *
+     * @param  array   $data
      * @return boolean
      */
     public function send(array $data = array())
     {
         # Preparing data to send in callback
         $data = array_merge(array('resource'=>$this->_resource->getResourceName()),$data);
-        
+
         # Initializing client
         $client = new HttpClient();
 
@@ -131,17 +131,17 @@ class Callback
         if (is_null($uri) || empty($uri) || !$validator->isValid($uri)) {
             $uri = $this->_app['base_url'] . 'notification/default';
         }
-        
+
         # Configuring client instance
         $client->setUri($uri);
         $client->setHeaders('Auth-Service-Key',$this->_service->key);
         $client->setHeaders('Auth-Token',$this->_service->getToken());
         $client->setMethod(HttpClient::POST);
         $client->setRawData(json_encode($data));
-        
+
         # Sending callback
         $response = $client->request();
-        
+
         # Verifying response
         $response = json_decode($response->getRawBody(),true);
         if (strtolower($response['result']) == 'ok') {

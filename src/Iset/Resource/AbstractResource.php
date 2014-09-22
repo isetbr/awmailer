@@ -23,10 +23,10 @@ namespace Iset\Resource;
 
 /**
  * Abstract Resource
- * 
+ *
  * This is a abstract class that provides a basic structur for an concrete
  * resource in API.
- * 
+ *
  * @package Iset
  * @subpackage Resource
  * @namespace Iset\Resource
@@ -38,13 +38,13 @@ abstract class AbstractResource
 {
     /**
      * The resource name
-     * @var string 
+     * @var string
      */
     protected $_resourceName = null;
-    
+
     /**
      * The Constructor
-     * 
+     *
      * @param string $name
      */
     public function __construct($name)
@@ -52,10 +52,10 @@ abstract class AbstractResource
         if (is_string($name))
             $this->_resourceName = $name;
     }
-    
+
     /**
      * Get the name of resource that it implements
-     * 
+     *
      * @return string
      */
     public function getResourceName()

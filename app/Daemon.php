@@ -27,7 +27,7 @@ $collection = new QueueCollection($app);
 $serviceGateway = new ServiceTable($app);
 $app['monolog.daemon']->addInfo('Initializing gateways');
 
-# Forking process 
+# Forking process
 $pid = pcntl_fork();
 if ($pid) { exit(); }
 
@@ -38,17 +38,17 @@ $max_repeats = 10;
 $repeated = array();
 
 # Starting daemon
-while (true) {    
-    # Starting connection with database 
+while (true) {
+    # Starting connection with database
     $app['db']->connect();
-    
+
     # Getting active and paused campaigns
     $campaignsActive  = $gateway->getCampaignsByStatus(Campaign::STATUS_START);
     $campaignsPaused  = $gateway->getCampaignsByStatus(Campaign::STATUS_PAUSE);
     $campaignsStopped = $gateway->getCampaignsByStatus(Campaign::STATUS_STOP);
     $campaignsDone    = $gateway->getCampaignsByStatus(Campaign::STATUS_DONE);
     $campaigns = array_merge($campaignsActive,$campaignsPaused,$campaignsStopped);
-    
+
     # Logging
     $app['monolog.daemon']->addNotice(
         'Found campaigns',
@@ -59,35 +59,35 @@ while (true) {
             'done'=>count($campaignsDone),
         )
     );
-    
+
     # Loop into results
     foreach ($campaigns as $campaign) {
         $campaignKey = $campaign->getCampaignKey();
         # Verifying if campaign is in cache
         $result = $app['cache']->hasItem($campaignKey);
-        if ($result) {            
+        if ($result) {
             # Getting data from cache
             $data = json_decode($app['cache']->getItem($campaignKey),true);
-            
+
             # Verifying if status has changed
             if ($campaign->status != Campaign::STATUS_START) {
-                if (!is_null($campaign->pid) && posix_getpgid((int)$campaign->pid) != false) {
+                if (!is_null($campaign->pid) && posix_getpgid((int) $campaign->pid) != false) {
                     $command = "kill " . $campaign->pid;
                     exec($command);
-                    
+
                     # Logging
                     $app['monolog.daemon']->addNotice('Killing process',array('campaign'=>$campaignKey,'PID'=>$campaign->pid));
-                    
+
                     # Resolving context
                     switch ($campaign->status) {
-                        case Campaign::STATUS_PAUSE : 
+                        case Campaign::STATUS_PAUSE :
                             $context = 'process_paused';
                             break;
                         case Campaign::STATUS_STOP :
                             $context = 'process_stopped';
                             break;
                     }
-                    
+
                     # Sending callback to the service
                     $callback = new Callback($app);
                     $callback->setService($serviceGateway->getServiceById($campaign->service));
@@ -97,12 +97,12 @@ while (true) {
                     continue;
                 }
             }
-            
+
             # Verifying if has previous
             if ($app['cache']->hasItem($campaignKey . '_previous')) {
                 # Getting previous
                 $previous = json_decode($app['cache']->getItem($campaignKey . '_previous'),true);
-                
+
                 # Verifying if is modified
                 if ($data == $previous) {
                     # Verifying if repeated was set and increase counter
@@ -110,7 +110,7 @@ while (true) {
                         $repeated[$campaignKey] = 0;
                     }
                     $repeated[$campaignKey]++;
-                    
+
                     # Verifying if data was repeated at max loops
                     if ($repeated[$campaignKey] > $max_repeats || (isset($data['done']) && $data['done'] == 1)) {
                         # Updating campaign statuses
@@ -118,33 +118,33 @@ while (true) {
                         $campaign->fail = $data['fail'];
                         $campaign->progress = $data['progress'];
                         $campaign->pid = null;
-                        
+
                         # Verifying if process is done
                         if ($data['done'] == 1) {
                             $campaign->status = Campaign::STATUS_DONE;
                             $campaign->progress = 100;
                         }
-                        
+
                         # Saving campaign
                         $campaign->save();
-                        
+
                         # Logging
                         $app['monolog.daemon']->addNotice('Updating campaign',array('campaign'=>$campaignKey));
-                        
+
                         # Removing emails from queue
                         foreach ($data['success'] as $index => $email) {
                             if ($collection->remove($campaignKey,$email)) {
                                 unset($data['success'][$index]);
                             }
                         }
-                        
+
                         # Cleaning cache
                         $app['cache']->removeItem($campaignKey);
                         $app['cache']->removeItem($campaignKey . "_previous");
-                        
+
                         # Resolving context
                         $context = ($data['done'] == 1) ? 'process_done' : 'process_error';
-                        
+
                         # Sending callback to the service
                         $callback = new Callback($app);
                         $callback->setService($serviceGateway->getServiceById($campaign->service));
@@ -155,14 +155,14 @@ while (true) {
                 } else {
                     # Set previous cache
                     $app['cache']->setItem($campaignKey . "_previous", json_encode($data));
-                    
+
                     # Restarting counter of repeated cache
                     $repeated[$campaignKey] = 0;
                 }
             } else {
                 # Set previous cache
                 $app['cache']->setItem($campaignKey . "_previous", json_encode($data));
-                
+
                 # Verifying if campaign just be started
                 if ($campaign->status = Campaign::STATUS_START && !is_null($campaign->pid)) {
                     # Sending callback to the service
@@ -188,7 +188,7 @@ while (true) {
             }
         }
     }
-    
+
     # Closing connection with database
     $app['db']->close();
 

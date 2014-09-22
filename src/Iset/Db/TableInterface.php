@@ -21,14 +21,12 @@
 
 namespace Iset\Db;
 
-use Silex\Application;
-
 /**
  * Table Interface
- * 
+ *
  * This is a interface that provides a list of methods that must be
  * implemented by table objects
- * 
+ *
  * @package Iset
  * @subpackage Db
  * @namespace Iset\Db

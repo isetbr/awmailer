@@ -26,9 +26,9 @@ use Iset\Model\IpAddressTable;
 
 /**
  * IpAddress Authentication Provider
- * 
+ *
  * This is a provider that verify the authentication by caller ip address
- * 
+ *
  * @package Iset\Api
  * @subpackage Auth
  * @namespace Iset\Api\Auth
@@ -43,10 +43,10 @@ class IpAddress
      * @var IpAddressTable
      */
     protected $gateway = null;
-    
+
     /**
      * The Constructor
-     * 
+     *
      * @param Application $app
      */
     public function __construct(Application &$app)
@@ -54,17 +54,18 @@ class IpAddress
         # Initializing gateway
         $this->gateway = new IpAddressTable($app);
     }
-    
+
     /**
      * Validate the IpAddress in database
-     * 
-     * @param string $ipaddress
+     *
+     * @param  string $ipaddress
      * @return mixed
      */
     public function validate($ipaddress)
     {
         # Getting IpAddress
         $result = $this->gateway->getIpAddress($ipaddress);
+
         return ($result) ? $result : false;
     }
 }

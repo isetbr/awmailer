@@ -26,10 +26,10 @@ use Silex\ControllerProviderInterface as SilexControllerProviderInterface;
 
 /**
  * Controller Provider Interface
- * 
+ *
  * This is a extension of ControllerProviderInterface provided by Silex framework
- * customized for this application 
- * 
+ * customized for this application
+ *
  * @package Iset
  * @namespace Iset
  * @author Lucas Mendes de Freitas <devsdmf>
@@ -40,30 +40,30 @@ interface ControllerProviderInterface extends SilexControllerProviderInterface
 {
     /**
      * Get the Request service
-     * 
+     *
      * @return \Symfony\Component\HttpFoundation\Request
      */
     public function getRequest();
-    
+
     /**
      * Get the instance of TableGateway
-     * 
+     *
      * @return \Iset\Db\TableGatewayAbstract
      */
     public function getTableGateway();
-    
+
     /**
      * Register all routes with the controller methods
-     * 
+     *
      * @return \Silex\ControllerCollection
      */
     public function register();
-    
+
     /**
      * Static Factory Method
-     * 
+     *
      * This is a static method that provides a configured instance of Controller
-     * 
+     *
      * @param Application $app
      */
     public static function factory(Application &$app);

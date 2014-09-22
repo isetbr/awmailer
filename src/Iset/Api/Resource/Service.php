@@ -24,7 +24,6 @@ namespace Iset\Api\Resource;
 use Iset\Resource\AbstractResource;
 use Iset\Model\ModelInterface;
 use Iset\Db\TableGatewayAbstract;
-use Iset\Model\ServiceTable;
 use Zend\Validator\Uri as UriValidator;
 
 /**
@@ -46,91 +45,91 @@ class Service extends AbstractResource implements ModelInterface
      * @var string
      */
     const RESOURCE_NAME = 'service';
-    
+
     /**
      * The ID of service
      * @var integer
      */
     public $id = null;
-    
+
     /**
      * The name of service
-     * @var string 
+     * @var string
      */
     public $name = null;
-    
+
     /**
      * The key of service
      * @var string
      */
     public $key = null;
-    
+
     /**
      * The Token of service
      * @var string
      */
     private $token = null;
-    
+
     /**
      * The URL that API will send notifications
      * @var string
      */
     public $notification_url = null;
-    
+
     /**
      * The instance of TableGateway
      * @var \Iset\Db\TableGatewayAbstract
      */
     private $gateway = null;
-    
+
     /**
      * The Constructor
-     * 
-     * @param TableGatewayAbstract $gateway
+     *
+     * @param  TableGatewayAbstract       $gateway
      * @return \Iset\Api\Resource\Service
      */
     public function __construct(TableGatewayAbstract $gateway = null)
     {
         parent::__construct($this::RESOURCE_NAME);
-        
+
         if (!is_null($gateway)) {
             $this->gateway = $gateway;
         }
-        
+
         return $this;
     }
-    
+
     /**
      * Get the token of service
-     * 
+     *
      * @return string
      */
     public function getToken()
     {
         return $this->token;
     }
-    
+
     /**
      * Fill object with an configured associative array
-     * 
-     * @param array $data
+     *
+     * @param  array                      $data
      * @see \Iset\Model\ModelInterface::exchangeArray()
      * @return \Iset\Api\Resource\Service
      */
     public function exchangeArray(array $data)
     {
-        $this->id               = (!empty($data['idservice'])) ? (int)$data['idservice'] : null;
+        $this->id               = (!empty($data['idservice'])) ? (int) $data['idservice'] : null;
         $this->name             = (!empty($data['name'])) ? $data['name'] : null;
         $this->key              = (!empty($data['key'])) ? $data['key'] : null;
         $this->token            = (!empty($data['token'])) ? $data['token'] : null;
         $this->notification_url = (!empty($data['notification_url'])) ? $data['notification_url'] : null;
-        
+
         return $this;
     }
-    
+
     /**
      * Get the array representation of object
-     * 
+     *
      * @see \Iset\Model\ModelInterface::asArray()
      * @return array
      */
@@ -143,13 +142,13 @@ class Service extends AbstractResource implements ModelInterface
             'token'=>$this->token,
             'notification_url'=>$this->notification_url,
         );
-        
+
         return $data;
     }
-    
+
     /**
      * Validate the Service
-     * 
+     *
      * @see \Iset\Model\ModelInterface::validate()
      * @return mixed
      */
@@ -161,7 +160,7 @@ class Service extends AbstractResource implements ModelInterface
         } elseif (!is_string($this->name)) {
             return array('error'=>'A service name must be an string');
         }
-        
+
         # Validating service key
         if (is_null($this->key)) {
             return array('error'=>'A service key must be specified');
@@ -170,7 +169,7 @@ class Service extends AbstractResource implements ModelInterface
         } else {
             $this->key = strtolower($this->key);
         }
-        
+
         # Validating token
         if (is_null($this->token)) {
             if (is_null($this->id)) {
@@ -179,7 +178,7 @@ class Service extends AbstractResource implements ModelInterface
                 return array('error'=>'Service token cannot be regenerated.');
             }
         }
-        
+
         # Validating notification URL
         if (!is_null($this->notification_url)) {
             $validator = new UriValidator(array('allowRelative'=>false));
@@ -187,13 +186,13 @@ class Service extends AbstractResource implements ModelInterface
                 return array('error'=>'The notification url is not a valid URI');
             }
         }
-        
+
         return true;
     }
-    
+
     /**
      * Save Service
-     * 
+     *
      * @see \Iset\Model\ModelInterface::save()
      * @return mixed
      */
@@ -206,10 +205,10 @@ class Service extends AbstractResource implements ModelInterface
             return $response;
         }
     }
-    
+
     /**
      * Delete Service
-     * 
+     *
      * @see \Iset\Model\ModelInterface::delete()
      * @return mixed
      */
@@ -218,12 +217,13 @@ class Service extends AbstractResource implements ModelInterface
         $response = $this->gateway->deleteService($this);
         if ($response) {
             unset($this);
+
             return true;
         } else {
             return false;
         }
     }
-    
+
     /**
      * Generate a token for a new service
      */

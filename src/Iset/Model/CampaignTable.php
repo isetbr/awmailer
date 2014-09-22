@@ -26,9 +26,9 @@ use Iset\Api\Resource\Campaign;
 
 /**
  * Campaign Table Gateway
- * 
+ *
  * This is a table gateway provider for Campaign objects
- * 
+ *
  * @package Iset
  * @subpackage Model
  * @namespace Iset\Model
@@ -43,10 +43,10 @@ class CampaignTable extends TableGatewayAbstract
      * @var string
      */
     const TABLE_NAME = 'campaign';
-    
+
     /**
      * Fetch all campaigns from database
-     * 
+     *
      * @return array
      */
     public function fetchAll()
@@ -54,22 +54,22 @@ class CampaignTable extends TableGatewayAbstract
         # Retrieving data from database
         $query = "SELECT * FROM `" . self::TABLE_NAME . "`";
         $result = $this->tableGateway->fetchAll($query);
-        
+
         # Stack for store result
         $stack = array();
-        
+
         foreach ($result as $row) {
             $campaign = new Campaign($this);
             $stack[] = $campaign->exchangeArray($row);
         }
-        
+
         return $stack;
     }
-    
+
     /**
      * Fetch campaigns by status
-     * 
-     * @param integer $status
+     *
+     * @param  integer $status
      * @return array
      */
     public function getCampaignsByStatus($status = Campaign::STATUS_DEFAULT)
@@ -77,22 +77,22 @@ class CampaignTable extends TableGatewayAbstract
         # Retrieving data from database
         $query = "SELECT * FROM `" . self::TABLE_NAME . "` WHERE `status`=?";
         $result = $this->tableGateway->fetchAll($query,array($status));
-        
+
         # Stack for store result
         $stack = array();
         foreach ($result as $row) {
             $campaign = new Campaign($this);
             $stack[] = $campaign->exchangeArray($row);
         }
-        
+
         return $stack;
     }
-    
+
     /**
      * Get Campaign by ID
-     * 
-     * @param integer $idcampaign
-     * @param integer $service 
+     *
+     * @param  integer                     $idcampaign
+     * @param  integer                     $service
      * @return \Iset\Api\Resource\Campaign
      */
     public function getCampaign($idcampaign, $service = null)
@@ -100,29 +100,30 @@ class CampaignTable extends TableGatewayAbstract
         # Mouting query
         $query = "SELECT * FROM `" . self::TABLE_NAME . "` WHERE `idcampaign`=?";
         $data = array($idcampaign);
-        
+
         if (!is_null($service)) {
             $query .= " AND `idservice`=?";
             $data[] = $service;
         }
-        
+
         # Getting data from database
         $result = $this->tableGateway->fetchAssoc($query,$data);
-        
+
         # Verifying result
         if ($result) {
             $campaign = new Campaign($this);
+
             return $campaign->exchangeArray($result);
         } else {
             return false;
         }
     }
-    
+
     /**
      * Get Campaign by Key
-     * 
-     * @param string $key
-     * @param integer $service
+     *
+     * @param  string                      $key
+     * @param  integer                     $service
      * @return \Iset\Api\Resource\Campaign
      */
     public function getCampaignByKey($key, $service = null)
@@ -130,35 +131,36 @@ class CampaignTable extends TableGatewayAbstract
         # Mouting query
         $query = "SELECT * FROM `" . self::TABLE_NAME . "` WHERE `key`=?";
         $data = array($key);
-        
+
         if (!is_null($service)) {
             $query .= " AND `idservice`=?";
             $data[] = $service;
         }
-        
+
         # Getting data from database
         $result = $this->tableGateway->fetchAssoc($query,$data);
-         
+
         # Verifying result
         if ($result) {
             $campaign = new Campaign($this);
+
             return $campaign->exchangeArray($result);
         } else {
             return false;
         }
     }
-    
+
     /**
      * Save an Campaign
-     * 
-     * @param Campaign $campaign
+     *
+     * @param  Campaign $campaign
      * @return mixed
      */
     public function saveCampaign(Campaign &$campaign)
     {
         # Validating service
         $result = $campaign->validate();
-        
+
         if ($result === true) {
             if (is_null($campaign->id)) {
                 # INSERT
@@ -171,7 +173,7 @@ class CampaignTable extends TableGatewayAbstract
                     $campaign->sent,
                     $campaign->fail,
                     $campaign->progress,
-                    $campaign->status, 
+                    $campaign->status,
                     $campaign->subject,
                     $campaign->body,
                     $campaign->getHeadersAsString(),
@@ -182,13 +184,14 @@ class CampaignTable extends TableGatewayAbstract
                     $campaign->additional_info,
                     $campaign->pid,
                 );
-                
+
                 # Inserting
                 $result = $this->tableGateway->executeUpdate($query,$data);
-                
+
                 # Verifying result
                 if ($result == 1) {
                     $campaign->id = $this->tableGateway->lastInsertId();
+
                     return $campaign;
                 } else {
                     return array('error'=>'An error ocourred at try to insert data in database');
@@ -203,7 +206,7 @@ class CampaignTable extends TableGatewayAbstract
                     `sent`=?,
                     `fail`=?,
                     `progress`=?,
-                    `status`=?, 
+                    `status`=?,
                     `subject`=?,
                     `body`=?,
                     `headers`=?,
@@ -212,7 +215,7 @@ class CampaignTable extends TableGatewayAbstract
                     `date`=?,
                     `external`=?,
                     `additional_info`=?,
-                    `pid`=? 
+                    `pid`=?
                     WHERE `idcampaign`=?";
                 $data = array(
                     $campaign->service,
@@ -233,10 +236,10 @@ class CampaignTable extends TableGatewayAbstract
                     $campaign->pid,
                     $campaign->id
                 );
-                
+
                 # Updating
                 $result = $this->tableGateway->executeUpdate($query,$data);
-                
+
                 # Verifying result
                 if ($result == 1) {
                     return $campaign;
@@ -250,11 +253,11 @@ class CampaignTable extends TableGatewayAbstract
             return array('error'=>'Invalid campaign, see details for more information','details'=>$result['error']);
         }
     }
-    
+
     /**
      * Delete an Campaign
-     * 
-     * @param Campaign $campaign
+     *
+     * @param  Campaign $campaign
      * @return boolean
      */
     public function deleteCampaign(Campaign &$campaign)
@@ -262,7 +265,7 @@ class CampaignTable extends TableGatewayAbstract
         # Mounting and executing query
         $query = "DELETE FROM `" . self::TABLE_NAME . "` WHERE `idcampaign`=?";
         $result = $this->tableGateway->executeUpdate($query,array($campaign->id));
-        
+
         # Verifying result
         if ($result == 1) {
             return true;

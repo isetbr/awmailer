@@ -5,7 +5,6 @@ require_once dirname(__FILE__) . '/../vendor/autoload.php';
 require_once dirname(__FILE__) . '/../app/App.php';
 
 # Loading resources
-use Iset\Api\Callback;
 use Iset\Api\Resource\Campaign;
 use Iset\Model\CampaignTable;
 use Iset\Model\QueueCollection;
@@ -36,14 +35,14 @@ $app['monolog.service']->addInfo('Starting service',array('campaign'=>$campaignK
 # Getting campaign
 $campaign = $campaignTable->getCampaignByKey($campaignKey);
 
-# Validaint campaign 
+# Validaint campaign
 if ($campaign) {
     # Verifying if campaign was runing
-    if (!is_null($campaign->pid) && posix_getpgid((int)$campaign->pid) != false) {
+    if (!is_null($campaign->pid) && posix_getpgid((int) $campaign->pid) != false) {
         $app['monolog.service']->addError('Service stopped',array('campaign'=>$campaignKey,'reason'=>'Service already running'));
         die();
     }
-    
+
     # Verify if campaign is in cache
     if ($app['cache']->hasItem($campaignKey)) {
         $app['monolog.service']->addError('Service stopped',array('campaign'=>$campaignKey,'reason'=>'Campaign in cache'));
@@ -71,11 +70,12 @@ $app['monolog.process'] = $app->share(function () use ($app,$campaignKey) {
 
     # Setting stream in service logger
     $app['monolog.service']->pushHandler($handler);
+
     return $logger;
 });
 $app['monolog.service']->addInfo('Initialized logger for process');
 
-# Forking process 
+# Forking process
 $pid = pcntl_fork();
 if ($pid) { exit(); }
 
@@ -108,7 +108,7 @@ $campaignCache = array(
 # Writing campaign in cache
 $result = $app['cache']->setItem($campaignKey, json_encode($campaignCache));
 if (!$result) {
-    $app['monolog.service']->addError('Service crashed',array('campaign'=>$campaignKey,'reason'=>'Cannot initialize campaign cache')); 
+    $app['monolog.service']->addError('Service crashed',array('campaign'=>$campaignKey,'reason'=>'Cannot initialize campaign cache'));
     die();
 }
 
@@ -136,14 +136,14 @@ while (count($queue = $queueCollection->fetch($campaignKey,null,$max_package_siz
             # Getting destination email
             $destination_email = $row['email'];
             $parsed_body = $message;
-    
+
             # Verifying if has vars to parse body
             if ($campaign->user_vars == 1 && is_array($row['vars'])) {
                 foreach ($row['vars'] as $key => $value) {
                     $parsed_body = str_replace('%%' . $key . '%%', $value, $parsed_body);
                 }
             }
-    
+
             # Verifying if has custom headers
             if ($campaign->user_headers == 1 && is_array($row['headers'])) {
                 # Merge campaign headers with user headers
@@ -155,14 +155,14 @@ while (count($queue = $queueCollection->fetch($campaignKey,null,$max_package_siz
             $parsed_body = $message;
             $parsed_headers = $headers;
         }
-    
+
         # Loop into headers to parse the string
         $temporary_headers = array();
         foreach ($parsed_headers as $header_key => $header_value) {
             $temporary_headers[] = $header_key . ': ' .$header_value;
         }
         $parsed_headers = implode("\r\n",$temporary_headers);
-    
+
         # Sending mail
         $result = mail($destination_email,$subject,$parsed_body,$parsed_headers);
 
@@ -179,11 +179,11 @@ while (count($queue = $queueCollection->fetch($campaignKey,null,$max_package_siz
 
         # Increasing progress
         $campaignCache['progress'] = floor($campaignCache['progress'] + $factor);
-    
+
         # Writing in cache
         $app['cache']->setItem($campaignKey, json_encode($campaignCache));
     }
-    
+
     # Increasing skip
     $skip = $skip + $max_package_size;
 }

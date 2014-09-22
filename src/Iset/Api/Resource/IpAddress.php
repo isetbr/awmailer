@@ -28,9 +28,9 @@ use Zend\Validator\Ip as IpAddressValidator;
 
 /**
  * IpAddress
- * 
+ *
  * This is a object representation of an IpAddress
- * 
+ *
  * @package Iset\Api
  * @subpackage Resource
  * @namespace Iset\Api\Resource
@@ -42,56 +42,56 @@ class IpAddress extends AbstractResource implements ModelInterface
 {
     /**
      * The resource name
-     * @var string 
+     * @var string
      */
     const RESOURCE_NAME = 'ipaddress';
-    
+
     /**
      * The IP address
-     * @var string 
+     * @var string
      */
     public $ipaddress = null;
-    
+
     /**
      * The instance of TableGateway
      * @var \Iset\Db\TableGatewayAbstract
      */
     private $gateway = null;
-    
+
     /**
      * The Constructor
-     * 
-     * @param TableGatewayAbstract $gateway
+     *
+     * @param  TableGatewayAbstract         $gateway
      * @return \Iset\Api\Resource\IpAddress
      */
     public function __construct(TableGatewayAbstract $gateway = null)
     {
         parent::__construct($this::RESOURCE_NAME);
-        
+
         if (!is_null($gateway)) {
             $this->gateway = $gateway;
         }
-         
+
         return $this;
     }
-    
+
     /**
      * Fill object with an configured associative array
-     * 
-     * @param array $data
+     *
+     * @param  array                        $data
      * @see \Iset\Model\ModelInterface::exchangeArray()
      * @return \Iset\Api\Resource\IpAddress
      */
     public function exchangeArray(array $data)
     {
         $this->ipaddress = (!empty($data['ipaddress']) && !is_null($data['ipaddress'])) ? $data['ipaddress'] : null;
-        
+
         return $this;
     }
-    
+
     /**
      * Get the array representation of object
-     * 
+     *
      * @see \Iset\Model\ModelInterface::asArray()
      * @return array
      */
@@ -99,10 +99,10 @@ class IpAddress extends AbstractResource implements ModelInterface
     {
         return array('ipaddress'=>$this->ipaddress);
     }
-    
+
     /**
      * Validate the IpAddress
-     * 
+     *
      * @see \Iset\Model\ModelInterface::validate()
      * @return mixed
      */
@@ -113,13 +113,13 @@ class IpAddress extends AbstractResource implements ModelInterface
         if (!$validator->isValid($this->ipaddress)) {
             return array('error'=>'Invalid ip address');
         }
-        
+
         return true;
     }
-    
+
     /**
      * Save IpAddress
-     * 
+     *
      * @see \Iset\Model\ModelInterface::save()
      * @return mixed
      */
@@ -132,10 +132,10 @@ class IpAddress extends AbstractResource implements ModelInterface
             return $response;
         }
     }
-    
+
     /**
      * Delete IpAddress
-     * 
+     *
      * @see \Iset\Model\ModelInterface::delete()
      * @return mixed
      */
@@ -144,6 +144,7 @@ class IpAddress extends AbstractResource implements ModelInterface
         $response = $this->gateway->deleteIpAddress($this);
         if ($response) {
             unset($this);
+
             return true;
         } else {
             return false;

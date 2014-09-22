@@ -43,10 +43,10 @@ class IpAddressTable extends TableGatewayAbstract
      * @var string
      */
     const TABLE_NAME = 'ipaddress';
-    
+
     /**
      * Fetch all ip addresses from database
-     * 
+     *
      * @return array
      */
     public function fetchAll()
@@ -54,22 +54,22 @@ class IpAddressTable extends TableGatewayAbstract
         # Retrieving data from database
         $query = "SELECT * FROM `" . self::TABLE_NAME . "`";
         $result = $this->tableGateway->fetchAll($query);
-         
+
         # Stack for store result
         $stack = array();
-         
+
         foreach ($result as $row) {
             $ipaddress = new IpAddress();
             $stack[] = $ipaddress->exchangeArray($row);
         }
-             
+
         return $stack;
     }
-    
+
     /**
      * Fetch an IpAddress from database
-     * 
-     * @param string $ipaddress
+     *
+     * @param  string                       $ipaddress
      * @return \Iset\Api\Resource\IpAddress
      */
     public function getIpAddress($ipaddress)
@@ -77,38 +77,39 @@ class IpAddressTable extends TableGatewayAbstract
         # Retrieving data from database
         $query = "SELECT * FROM `" . self::TABLE_NAME . "` WHERE `ipaddress`=?";
         $result = $this->tableGateway->fetchAssoc($query,array($ipaddress));
-         
+
         # Verifying result
         if ($result) {
             $ipaddress = new IpAddress($this);
+
             return $ipaddress->exchangeArray($result);
         } else {
             return false;
         }
     }
-    
+
     /**
      * Save an IpAddress
-     * 
-     * @param IpAddress $ipaddress
+     *
+     * @param  IpAddress $ipaddress
      * @return mixed
      */
     public function saveIpAddress(IpAddress &$ipaddress)
     {
         # Validating Ip Address
         $result = $ipaddress->validate();
-        
+
         # Verifying result
         if ($result === true) {
             # Verifying if IpAddress exists in database
             $result = $this->getIpAddress($ipaddress->ipaddress);
-            
+
             # Verifying result
             if (!$result) {
                 # Inserting
                 $query = "INSERT INTO `" . self::TABLE_NAME . "` (`ipaddress`) VALUES (?)";
                 $result = $this->tableGateway->executeUpdate($query,array($ipaddress->ipaddress));
-                
+
                 # Verifying result
                 if ($result == 1) {
                     return $ipaddress;
@@ -122,11 +123,11 @@ class IpAddressTable extends TableGatewayAbstract
             return array('error'=>'Invalid IP address, see details for more information','details'=>$result['error']);
         }
     }
-    
+
     /**
      * Delete an IpAddress
-     * 
-     * @param IpAddress $ipaddress
+     *
+     * @param  IpAddress $ipaddress
      * @return boolean
      */
     public function deleteIpAddress(IpAddress &$ipaddress)
@@ -134,7 +135,7 @@ class IpAddressTable extends TableGatewayAbstract
         # Mounting and executing query
         $query = "DELETE FROM `" . self::TABLE_NAME . "` WHERE `ipaddress`=?";
         $result = $this->tableGateway->executeUpdate($query,array($ipaddress->ipaddress));
-         
+
         # Verifying result
         if ($result == 1) {
             return true;

@@ -42,12 +42,12 @@ class ZendCacheServiceProvider implements ServiceProviderInterface
 {
     /**
      * Register Cache service in application dependency injection container
-     * 
+     *
      * @param Application $app
      * @see \Silex\ServiceProviderInterface::register()
      */
     public function register(Application $app)
-    {           
+    {
         # Defining default cache options
         $app['cache.default_options'] = array(
             'zendcache'=> array(
@@ -60,31 +60,31 @@ class ZendCacheServiceProvider implements ServiceProviderInterface
             ),
             'cache_dir'=>'/tmp/',
         );
-        
+
         # Initializing Service
         $app['cache'] = $app->share(function ($app) {
             # Verifying if user options is defined or use default options
             $app['cache.options'] = (isset($app['cache.options'])) ? $app['cache.options'] : $app['cache.default_options'];
-            
+
             # Initializing Cache Provider
             $cache = StorageFactory::factory($app['cache.options']['zendcache']);
-            
+
             # Set cache directory and permissions
             $cache->setOptions(array(
                 'cache_dir'=>$app['cache.options']['cache_dir'],
                 'dir_permission'=>0777,
-                'file_permission'=>0666,             
+                'file_permission'=>0666,
             ));
-            
+
             return $cache;
         });
     }
-    
+
     /**
      * Bootstrap the application
-     * 
+     *
      * @param Application $app
      * @see \Silex\ServiceProviderInterface::boot()
      */
-    public function boot(Application $app){}
+    public function boot(Application $app) {}
 }

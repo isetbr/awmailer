@@ -26,9 +26,9 @@ use Iset\Mongo\CollectionAbstract;
 
 /**
  * Queue Collection Gateway
- * 
+ *
  * This is a collection gateway for Mail Queue
- * 
+ *
  * @package Iset
  * @subpackage Model
  * @namespace Iset\Model
@@ -43,22 +43,22 @@ class QueueCollection extends CollectionAbstract
      * @var string
      */
     const COLLECTION_NAME = 'mail_queue';
-    
+
     /**
      * The Constructor
-     * 
+     *
      * @param Application $app
      */
     public function __construct(Application &$app)
     {
         parent::__construct($app,self::COLLECTION_NAME);
     }
-    
+
     /**
      * Fetch emails from queue
-     * 
-     * @param string $key
-     * @param string $email
+     *
+     * @param  string $key
+     * @param  string $email
      * @return array
      */
     public function fetch($key, $email = null, $limit = 0, $skip = 0)
@@ -68,23 +68,23 @@ class QueueCollection extends CollectionAbstract
         if (!is_null($email)) {
             $query['email'] = $email;
         }
-        
+
         # Retrieving data from database
         $result = $this->gateway->find($query);
-        
+
         # Limiting results
         if ($limit > 0) {
             $result = $result->limit($limit);
         }
-        
+
         # Skipping results
         if ($skip > 0) {
             $result = $result->skip($skip);
         }
-        
+
         # Converting to associative array
         $result = $result->toArray();
-        
+
         # Treatmenting result
         $stack = array();
         foreach ($result as $id => $row) {
@@ -96,39 +96,40 @@ class QueueCollection extends CollectionAbstract
                 $stack[] = $row['email'];
             }
         }
-        
+
         return $stack;
     }
-    
+
     /**
      * Verify if has any email in campaign queue
-     * 
-     * @param string $key
+     *
+     * @param  string  $key
      * @return boolean
      */
     public function hasQueue($key)
     {
         # Mouting query
         $query = array('campaign'=>$key);
-        
+
         # Retrieving data from database
         $result = $this->gateway->count($query);
-        
-        # Verifying result 
+
+        # Verifying result
+
         return ($result > 0) ? true : false;
     }
-    
+
     /**
      * Save queue in collection
-     * 
-     * @param array $stack
+     *
+     * @param  array   $stack
      * @return boolean
      */
     public function saveStack(array $stack)
     {
         # Inserting stack in collection
         $result = $this->gateway->batchInsert($stack);
-           
+
         # Verifying result
         if ($result['ok'] == 1) {
             return true;
@@ -136,12 +137,12 @@ class QueueCollection extends CollectionAbstract
             return false;
         }
     }
-    
+
     /**
      * Remove emails from queue
-     * 
-     * @param string $key
-     * @param string $email
+     *
+     * @param  string  $key
+     * @param  string  $email
      * @return boolean
      */
     public function remove($key, $email = null)
@@ -151,10 +152,10 @@ class QueueCollection extends CollectionAbstract
         if (!is_null($email)) {
             $query['email'] = $email;
         }
-        
+
         # Trying to remove data
         $result = $this->gateway->remove($query);
-        
+
         # Verifying result
         if (is_array($result)) {
             return true;

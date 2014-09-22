@@ -25,10 +25,10 @@ use Silex\Application;
 
 /**
  * Abstract Table Gateway
- * 
+ *
  * This is a abstract class that provides a basic structure for models
  * that performs updates in MySQL databases.
- * 
+ *
  * @package Iset
  * @subpackage Db
  * @namespace Iset\Db
@@ -43,10 +43,10 @@ abstract class TableGatewayAbstract
      * @var \Doctrine\DBAL\Connection
      */
     protected $tableGateway = null;
-    
+
     /**
      * The Constructor
-     * 
+     *
      * @param Application $app
      */
     public function __construct(Application &$app)

@@ -26,9 +26,9 @@ use Iset\Model\ServiceTable;
 
 /**
  * Service Authentication Provider
- * 
+ *
  * This is a provider that verify the authentication by caller service key and token
- * 
+ *
  * @package Iset\Api
  * @subpackage Auth
  * @namespace Iset\Api\Auth
@@ -43,10 +43,10 @@ class Service
      * @var ServiceTable
      */
     protected $gateway = null;
-    
+
     /**
      * The Constructor
-     * 
+     *
      * @param Application $app
      */
     public function __construct(Application &$app)
@@ -54,19 +54,19 @@ class Service
         # Initializing gateway
         $this->gateway = new ServiceTable($app);
     }
-    
+
     /**
      * Validate the Service Key and Service Token in database
-     * 
-     * @param string $key
-     * @param string $token
+     *
+     * @param  string $key
+     * @param  string $token
      * @return mixed
      */
     public function validate($key,$token)
     {
-        # Getting service 
+        # Getting service
         $service = $this->gateway->getService($key);
-        
+
         if ($service) {
             if ($service->key == strtolower($key) && $service->getToken() == $token) {
                 return $service;

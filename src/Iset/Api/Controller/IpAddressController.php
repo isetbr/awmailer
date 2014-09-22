@@ -46,18 +46,18 @@ class IpAddressController implements ControllerProviderInterface
      * @var \Silex\Application
      */
     protected $_app = null;
-    
+
     /**
      * The instance of TableGateway
      * @var \Iset\Model\IpAddressTable
      */
     protected $gateway = null;
-    
+
     /**
      * The Constructor
      */
-    public function __construct(){}
-    
+    public function __construct() {}
+
     /**
      * Get all ip addresses from database
      * @return \Symfony\Component\HttpFoundation\Response
@@ -66,28 +66,28 @@ class IpAddressController implements ControllerProviderInterface
     {
         # Getting providers
         $gateway = $this->getTableGateway();
-        
+
         # Getting data from gateway
         $results = $gateway->fetchAll();
-        
+
         # Verifying results
         if (count($results) > 0) {
             $response = array();
-            
+
             foreach ($results as $ipaddress) {
                 $ipaddress = $ipaddress->asArray();
                 $response[] = $ipaddress['ipaddress'];
             }
-            
+
             return $this->_app->json($response,Response::HTTP_OK);
         } else {
             return new Response(null,Response::HTTP_NO_CONTENT);
         }
     }
-    
+
     /**
      * Allow a new ip address to perform calls in API
-     * 
+     *
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
     public function allow()
@@ -95,59 +95,65 @@ class IpAddressController implements ControllerProviderInterface
         # Getting providers
         $request = $this->getRequest();
         $ipaddress = new IpAddress($this->getTableGateway());
-        
+
         $ipaddress->ipaddress = $request->request->get('ipaddress');
-        
+
         $result = $ipaddress->save();
-        
+
         if ($result === true) {
             $response = array('success'=>1);
+
             return $this->_app->json($response,Response::HTTP_CREATED);
         } elseif (is_array($result)) {
             $response = array_merge(array('success'=>0),$result);
             $code     = (isset($response['details'])) ? Response::HTTP_BAD_REQUEST : Response::HTTP_INTERNAL_SERVER_ERROR;
+
             return $this->_app->json($response,$code);
         } else {
             $response = array('success'=>0,'error'=>'Unknow error');
+
             return $this->_app->json($response,Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
-    
+
     /**
      * Remove an ip address from database
-     * 
-     * @param string $ipaddress
+     *
+     * @param  string                                         $ipaddress
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
     public function remove($ipaddress)
     {
         # Getting providers
         $gateway = $this->getTableGateway();
-        
+
         # Getting ip address from gateway
         $ipaddress = $gateway->getIpAddress($ipaddress);
-        
+
         # Verifying result
         if ($ipaddress) {
             $result = $ipaddress->delete();
-            
+
             # Verifying result
             if ($result) {
                 $response = array('success'=>1);
+
                 return $this->_app->json($response,Response::HTTP_OK);
             } else {
                 $response = array('success'=>0,'error'=>'Unknow error');
+
                 return $this->_app->json($response,Response::HTTP_INTERNAL_SERVER_ERROR);
             }
         } else {
             $response = array('success'=>0,'error'=>'IP address not found');
+
             return $this->_app->json($response,Response::HTTP_NOT_FOUND);
         }
     }
-    
+
     /**
      * Get the Request
-     * 
+     *
      * @see \Iset\ControllerProviderInterface::getRequest()
      * @return \Symfony\Component\HttpFoundation\Request
      */
@@ -155,10 +161,10 @@ class IpAddressController implements ControllerProviderInterface
     {
         return $this->_app['request'];
     }
-    
+
     /**
      * Get the table gateway instance
-     * 
+     *
      * @see \Iset\ControllerProviderInterface::getTableGateway()
      * @return \Iset\Model\IpAddressTable
      */
@@ -167,60 +173,61 @@ class IpAddressController implements ControllerProviderInterface
         if (is_null($this->gateway)) {
             $this->gateway = new IpAddressTable($this->_app);
         }
-        
+
         return $this->gateway;
     }
-    
+
     /**
      * Returns routes to connect to the given application.
-     * 
+     *
      * @see \Silex\ControllerProviderInterface::connect()
      * @return \Silex\ControllerCollection
      */
     public function connect(Application $app)
     {
         $this->_app = $app;
-        
+
         return $this->register();
     }
-    
+
     /**
      * Register all routes with the controller methods
-     * 
+     *
      * @see \Iset\ControllerProviderInterface::register()
      * @return \Silex\ControllerCollection
      */
     public function register()
     {
         $container = $this->_app['controllers_factory'];
-        
+
         # Retrieve all ip address
         $container->get('/', function () {
             return $this->getAll();
         });
-        
+
         # Allow new ip address in system
-        $container->post('/', function() {
+        $container->post('/', function () {
             return $this->allow();
         });
-        
+
         # Remove ip address from server
         $container->delete('/{ipaddress}/', function ($ipaddress) {
             return $this->remove($ipaddress);
         });
-        
+
         return $container;
     }
-    
+
     /**
      * Provides a configured instance of IpAddressController
-     * 
-     * @param Application $app
+     *
+     * @param  Application                 $app
      * @return \Silex\ControllerCollection
      */
     public static function factory(Application &$app)
     {
         $instance = new self();
+
         return $instance->connect($app);
     }
 }

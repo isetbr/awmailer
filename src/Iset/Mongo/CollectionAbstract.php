@@ -25,9 +25,9 @@ use Silex\Application;
 
 /**
  * Abstract Collection
- * 
+ *
  * This is a abstract class with basic structure of an collection model
- * 
+ *
  * @package Iset\Silex
  * @subpackage Mongo
  * @namespace Iset\Silex\Mongo
@@ -42,10 +42,10 @@ abstract class CollectionAbstract
      * @var \Doctrine\MongoDB\Collection
      */
     protected $gateway = null;
-    
+
     /**
      * The Constructor
-     * 
+     *
      * @param Application $app
      * @param string      $collection
      */
