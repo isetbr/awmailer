@@ -1,0 +1,20 @@
+########################################################################
+#
+# Sample vhost file for apache servers
+# 
+# Please update the specified paths and restart your web sever
+#
+########################################################################
+<VirtualHost *:80>
+    ServerName awmailer.localhost
+    ServerAdmin webmaster@localhost
+
+    DocumentRoot "/path/to/awmailer"
+    <Directory "/path/to/awmailer">
+        Options +Indexes +FollowSymLinks +MultiViews
+        AllowOverride All
+        Order allow,deny
+        Allow from all
+        Require all granted # Only for apache 2.4+
+    </Directory>
+</VirtualHost>
