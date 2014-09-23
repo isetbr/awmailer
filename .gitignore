@@ -6,6 +6,7 @@
 app/cache/*
 app/config/application.ini
 app/log/*
+bin/*
 vendor/*
 tmp/*
 web/docs/*

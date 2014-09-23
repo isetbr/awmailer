@@ -1,10 +1,26 @@
 VERSION = 1.0.0
+AW_BIN = $(shell pwd)/bin
+DAEMON = $(AW_BIN)/awd
+SERVICE = $(AW_BIN)/awmailer
 
 .title:
 	@echo "AwMailer - v$(VERSION)\n"
 
 default: .title
-	@echo "See 'make help' for instructions."
+	@`cd app && mkdir cache && mkdir log && chmod -R 777 cache && chmod -R 777 log && \
+	cd config && cp application.ini.sample application.ini && \
+	cd ../../web/ && mkdir docs && cd docs && mkdir api && mkdir source && cd ../../ && cp blueprint.apib.sample blueprint.apib && \
+	mkdir bin`
+	@echo "attempting to download composer packager."
+	@curl -s http://getcomposer.org/installer | php -- --quiet
+	@echo "installing packages..."
+	@php composer.phar install -v
+	@rm -Rf composer.phar
+	@echo "----------------------------------------------------------------------------"
+	@echo "compiling..."
+	@php .build/compile.php
+	@echo "Success!"
+	@echo "Please update the configuration files then run 'make db'"
 
 help: .title
 	@echo "\t   help: Show this message"
@@ -21,17 +37,11 @@ check: .title
 	@php .build/dependency-checker.php
 
 install: .title
-	@`cd app && mkdir cache && mkdir log && chmod -R 777 cache && chmod -R 777 log && \
-	cd config && cp application.ini.sample application.ini && \
-	cd ../../web/ && mkdir docs && cd docs && mkdir api && mkdir source && cd ../../ && cp blueprint.apib.sample blueprint.apib && \
-	chmod +x bin/awd && chmod +x bin/awmailer`
-	@echo "attempting to download composer packager."
-	@curl -s http://getcomposer.org/installer | php -- --quiet
-	@echo "installing packages..."
-	@php composer.phar install -v
-	@rm -Rf composer.phar
-	@echo "Success!"
-	@echo "Please update the configuration files then run 'make db'"
+	@echo "You may need run this as sudo."
+	`chmod +x $(DAEMON)`
+	`chmod +x $(SERVICE)`
+	`ln -s $(DAEMON) /usr/local/bin/awd`
+	`ln -s $(SERVICE) /usr/local/bin/awmailer`
 
 db: .title
 	@php .build/database.php
@@ -53,9 +63,12 @@ clean: .title
 	@rm -Rf app/cache
 	@rm -Rf app/log
 	@rm -Rf app/config/application.ini
+	@rm -Rf bin
 	@rm -Rf vendor
 	@rm -Rf web/docs
 	@rm -Rf blueprint.apib
+	@rm -Rf /usr/local/bin/awd
+	@rm -Rf /usr/local/bin/awmailer
 	@echo "Success!"
 
 sniff: .title

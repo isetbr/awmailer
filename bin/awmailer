@@ -1,4 +1,0 @@
-#!/usr/bin/php -q
-<?php
-
-require_once dirname(__FILE__) . '/../app/Service.php';
