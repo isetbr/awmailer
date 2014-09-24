@@ -8,8 +8,8 @@ $root_path = dirname(__FILE__) . '/../';
 $config = parse_ini_file($root_path . 'app/config/application.ini',true);
 
 # Getting content of blueprint file
-$blueprint_content = file_get_contents($root_path . 'blueprint.apib');
-$blueprint_content = str_replace("%%API_HOST%%",$config['general']['base_url'] . "api/",$blueprint_content);
+$blueprint_content = file_get_contents($root_path . 'blueprint.md');
+$blueprint_content = str_replace("http://domain.com/api/",$config['general']['base_url'] . "api/",$blueprint_content);
 
 # Opening file
 $handle = fopen($root_path . 'blueprint.apib',"w");

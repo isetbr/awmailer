@@ -1,6 +1,6 @@
 FORMAT: X-1A
 
-HOST: %%API_HOST%%
+HOST: http://domain.com/api/
 
 #AwMailer - The Awesome Mailer Service
 
