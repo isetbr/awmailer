@@ -29,4 +29,4 @@ AwMailer uses 2 database systems, MySQL for store services, ip addresses and cam
 NodeJS and Aglio
 ----------------
 
-AwMailer use the Aglio app (written in NodeJS) to generate the API documentation of the current installation to be accessible by a web browser and used as reference for integration.
+AwMailer use the Aglio app (written in NodeJS) to generate the API documentation of the current installation to be accessible by a web browser and used as reference for integration, the install notes about NodeJS and Aglio you can see [here](support/nodejs-aglio.md)

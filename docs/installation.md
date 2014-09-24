@@ -21,7 +21,7 @@ Make sure that you solve all dependecies and requirements of AwMailer, check the
 
 To download AwMailer you have two options, you can clone this repository and checkout to the tag of version that you wish to install or download the zip file of project, in this guide we will clone this repository, see the codes below:
 
-```
+```shell
 # Go to install dir *
 cd /usr/local
 
@@ -46,7 +46,7 @@ make check
 
 You need to create the MySQL database and users before install the AwMailer, see below how you do this:
 
-```
+```shell
 # Login to MySQL
 mysql -u root -p
 
@@ -87,7 +87,7 @@ mysql> \q
 
 The AwMailer after the first stable release (v1.0.0-stable) gets a Makefile that makes the installation a easy process, then, you only need run the following commands in awmailer install folder.
 
-```
+```shell
 # Assuming that you are in /usr/local/awmailer/
 # Create folders, set permissions, generate binaries and install package dependencies *
 make
@@ -117,7 +117,7 @@ make install
 
 The command below will run the tests in source of application to grants that all is working.
 
-```
+```shell
 # Assuming that you are in /usr/local/awmailer/
 # Make sure that all tests has passed!!
 make test
@@ -135,8 +135,8 @@ After update your vhost file and enable it in your Apache, restart the WebServer
 
 To start the AwMailer daemon, only type the following command on terminal
 
-```
-awd
+```shell
+$ awd
 ```
 
 ## 8. Documentation
@@ -145,14 +145,14 @@ To generate the documentation of your AwMailer instance, you can do this of two 
 
 To do this with the Makefile, make sure that you have solved all dependecies to generate both documentations, and type the following command on terminal:
 
-```
+```shell
 ## Assuming that you are in /usr/local/awmailer/
 make docs
 ```
 
 To generate one of each options you can type the commands below:
 
-```
+```shell
 # To generate the documentation of API only
 rm -Rf web/docs/api/*
 aglio -t slate -i blueprint.apib -o web/docs/api/index.html > /dev/null 2>&1
