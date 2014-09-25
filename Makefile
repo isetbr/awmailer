@@ -9,7 +9,7 @@ SERVICE = $(AW_BIN)/awmailer
 default: .title
 	@`cd app && mkdir cache && mkdir log && chmod -R 777 cache && chmod -R 777 log && \
 	cd config && cp application.ini.sample application.ini && \
-	cd ../../web/ && mkdir docs && cd docs && mkdir api && mkdir source && cd ../../ && cp blueprint.apib.sample blueprint.apib && \
+	cd ../../web/ && mkdir docs && cd docs && mkdir api && mkdir source && cd ../../ && cp blueprint.md blueprint.apib && \
 	mkdir bin`
 	@echo "attempting to download composer packager."
 	@curl -s http://getcomposer.org/installer | php -- --quiet
