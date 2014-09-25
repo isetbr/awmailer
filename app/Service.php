@@ -120,7 +120,6 @@ $app['monolog.process']->addInfo('Preparing campaign vars');
 
 # Initializing control vars
 # Progress
-$factor = floor((($campaign->total - ($campaign->sent + $campaign->fail)) / 100));
 $app['monolog.process']->addInfo('Calculated progress factor');
 
 # Queue package size
@@ -178,7 +177,7 @@ while (count($queue = $queueCollection->fetch($campaignKey,null,$max_package_siz
         }
 
         # Increasing progress
-        $campaignCache['progress'] = floor($campaignCache['progress'] + $factor);
+        $campaignCache['progress'] = floor((($campaignCache['sent'] + $campaignCache['fail'])* 100) / $campaignCache['total']);
 
         # Writing in cache
         $app['cache']->setItem($campaignKey, json_encode($campaignCache));
