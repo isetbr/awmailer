@@ -42,8 +42,8 @@ You can see the sample API documentation of latest release [here](blueprint.md).
 Changelog
 ---------
 
+- `v1.0.1-stable:` Fixed progress routines and binaries generation with a custom ini file
 - `v1.0.0-stable:` First stable release
 - `v0.5.1-beta:` Fixed encoding errors on API requests and responses, fixed notification_url removal and fixed some bugs on API resource routes
-- `v0.5.0-beta:` Fixed some bugs in API resources, fixed progress counter, removed validation of notification URL and implemented some logs in campaign process, service and daemon
 
 See full changelog [here](CHANGELOG.md).
