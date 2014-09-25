@@ -12,7 +12,7 @@ if (file_exists($daemon)) {
 
 $content = <<<EOF
 #!/bin/bash
-php -q -c $root_path/app/config/php-cli.ini $root_path/app/Daemon.php
+php -q -c $root_path/app/config/php-cli.ini $root_path/app/Daemon.php > /dev/null
 EOF;
 $handle = fopen($daemon,"w");
 fwrite($handle,$content);
@@ -24,7 +24,7 @@ if (file_exists($service)) {
 
 $content = <<<EOF
 #!/bin/bash
-php -q -c $root_path/app/config/php-cli.ini $root_path/app/Service.php
+php -q -c $root_path/app/config/php-cli.ini $root_path/app/Service.php > /dev/null
 EOF;
 $handle = fopen($service,"w");
 fwrite($handle,$content);
