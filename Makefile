@@ -8,7 +8,7 @@ SERVICE = $(AW_BIN)/awmailer
 
 default: .title
 	@`cd app && mkdir cache && mkdir log && chmod -R 777 cache && chmod -R 777 log && cd log && mkdir processes && \
-	chmod -R 777 processes && \
+	chmod -R 777 processes && cd ../ &&  \
 	cd config && cp application.ini.sample application.ini && \
 	cd ../../web/ && mkdir docs && cd docs && mkdir api && mkdir source && cd ../../ && cp blueprint.md blueprint.apib && \
 	mkdir bin`
