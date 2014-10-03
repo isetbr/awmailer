@@ -67,7 +67,7 @@ $app['monolog.process'] = $app->share(function () use ($app,$campaignKey) {
     $handler = new Monolog\Handler\StreamHandler($stream,Monolog\Logger::DEBUG,true,0777);
 
     # Initializing logger
-    $logger = new Monolog\Logger('process',$handler);
+    $logger = new Monolog\Logger('process',array($handler));
 
     # Setting stream in service logger
     $app['monolog.service']->pushHandler($handler);
