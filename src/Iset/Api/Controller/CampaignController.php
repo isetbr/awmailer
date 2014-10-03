@@ -459,7 +459,7 @@ class CampaignController implements ControllerProviderInterface
         $stack = $collection->fetch($key,null,$limit,$skip);
 
         # Verifying if campaign has custom fields
-        if ($campaign->user_vars == 1  || $campaign->user_headers == 1) {
+        if ($campaign->user_vars == 1 || $campaign->user_headers == 1) {
             # Parsing result
             $result = array();
 
