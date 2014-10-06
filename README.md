@@ -42,8 +42,8 @@ You can see the sample API documentation of latest release [here](blueprint.md).
 Changelog
 ---------
 
+- `v1.0.3-stable:` Fixed compiler for use PHP cli direct output
 - `v1.0.2-stable:` Fixed Makefile, process logs and minor bugs`
 - `v1.0.1-stable:` Fixed progress routines and binaries generation with a custom ini file
-- `v1.0.0-stable:` First stable release
 
 See full changelog [here](CHANGELOG.md).

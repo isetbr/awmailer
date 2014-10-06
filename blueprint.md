@@ -795,7 +795,8 @@ When API send to you a notification about an event occurred in a resource, after
 
 # Group  Changelog
 
-- `v1.0.2-stable:` Fixed Makefile, process logs and minor bugs`
+- `v1.0.3-stable:` Fixed compiler for use PHP cli direct output
+- `v1.0.2-stable:` Fixed Makefile, process logs and minor bugs
 - `v1.0.1-stable:` Fixed progress routines and binaries generation with a custom ini file
 - `v1.0.0-stable:` First stable release
 - `v0.5.1-beta:` Fixed encoding errors on API requests and responses, fixed notification_url removal and fixed some bugs on API resource routes
