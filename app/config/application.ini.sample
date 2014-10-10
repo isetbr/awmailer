@@ -58,7 +58,7 @@ mysql.host     = localhost
 mysql.user     = user
 mysql.password = password
 mysql.dbname   = awmailer
-mysql.charset  = utf8
+mysql.charset  = UTF8
 
 ; MongoDB database configuration
 mongo.dsn    = mongodb://localhost:27017
