@@ -53,4 +53,17 @@ abstract class TableGatewayAbstract
     {
         $this->tableGateway = &$app['db'];
     }
+
+    /**
+     * Assert if table gateway is connected to the server
+     */
+    public function assertGatewayConnection()
+    {
+        try {
+            $this->tableGateway->query("SELECT 1");
+        } catch (\Exception $e) {
+            $this->tableGateway->close();
+            $this->tableGateway->connect();
+        }
+    }
 }

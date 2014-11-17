@@ -1,4 +1,3 @@
-#!/usr/bin/php
 <?php
 
 # Getting autoload from Composer
@@ -14,6 +13,7 @@ use Iset\Model\QueueCollection;
 
 # Initialzing Silex Application
 $app = App::configure();
+$app->boot();
 $app['monolog.daemon']->addInfo('Initializing Daemon');
 $app['monolog.daemon']->addInfo('Initializing application');
 
@@ -32,7 +32,14 @@ $app['monolog.daemon']->addInfo('Initializing gateways');
 $pid = pcntl_fork();
 if ($pid) { exit(); }
 
-$app['monolog.daemon']->addInfo('Daemon successfully started',array('PID'=>getmypid()));
+# Setting session
+$sess_id = posix_setsid();
+
+# Configuring session
+posix_seteuid(1001);
+posix_setegid(1001);
+
+$app['monolog.daemon']->addInfo('Daemon successfully started',array('PID'=>getmypid(),'SESS_ID'=>$sess_id));
 
 # Initializing control vars
 $max_repeats = 10;
@@ -40,9 +47,6 @@ $repeated = array();
 
 # Starting daemon
 while (true) {
-    # Starting connection with database
-    $app['db']->connect();
-
     # Getting active and paused campaigns
     $campaignsActive  = $gateway->getCampaignsByStatus(Campaign::STATUS_START);
     $campaignsPaused  = $gateway->getCampaignsByStatus(Campaign::STATUS_PAUSE);
@@ -177,21 +181,12 @@ while (true) {
         } else {
             # Verifying if process is started and not running yet
             if ($campaign->status == Campaign::STATUS_START && is_null($campaign->pid)) {
-                switch (pcntl_fork()) {
-                    case 0 :
-                        $args = array($campaignKey);
-                        pcntl_exec(dirname(__FILE__) . "/../bin/awmailer",$args);
-                        $app['monolog.daemon']->addNotice('Starting process',array('campaign'=>$campaignKey,'PID'=>getmypid()));
-                        exit(0);
-                    default :
-                        break;
-                }
+                $app['monolog.daemon']->addNotice('Starting process',array('campaign'=>$campaignKey));
+                $command = 'sudo -u awmailer awmailer ' . $campaignKey . ' > /dev/null 2>&1';
+                exec($command);
             }
         }
     }
-
-    # Closing connection with database
-    $app['db']->close();
 
     # Waiting...
     sleep(5);

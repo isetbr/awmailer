@@ -53,6 +53,7 @@ class ServiceTable extends TableGatewayAbstract
     {
         # Retrieving data from database
         $query = "SELECT * FROM `" . self::TABLE_NAME . "`";
+        $this->assertGatewayConnection();
         $result = $this->tableGateway->fetchAll($query);
 
         # Stack for store result
@@ -76,6 +77,7 @@ class ServiceTable extends TableGatewayAbstract
     {
         # Retrieving data from database
         $query = "SELECT * FROM `" . self::TABLE_NAME . "` WHERE `key`=?";
+        $this->assertGatewayConnection();
         $result = $this->tableGateway->fetchAssoc($query,array($key));
 
         # Verifying result
@@ -98,6 +100,7 @@ class ServiceTable extends TableGatewayAbstract
     {
         # Retrieving data from database
         $query = "SELECT * FROM `" . self::TABLE_NAME . "` WHERE `idservice`=?";
+        $this->assertGatewayConnection();
         $result = $this->tableGateway->fetchAssoc($query,array($id));
 
         # Verifying result
@@ -125,6 +128,7 @@ class ServiceTable extends TableGatewayAbstract
             if (is_null($service->id)) {
                 # INSERT
                 $query = "SELECT * FROM `" . self::TABLE_NAME . "` WHERE `key`=? OR `token`=?";
+                $this->assertGatewayConnection();
                 $result = $this->tableGateway->fetchAll($query,array($service->key,$service->getToken()));
 
                 # Verifying result
@@ -134,10 +138,12 @@ class ServiceTable extends TableGatewayAbstract
                     $data = array($service->name,$service->key,$service->getToken(),$service->notification_url);
 
                     # Inserting
+                    $this->assertGatewayConnection();
                     $result = $this->tableGateway->executeUpdate($query,$data);
 
                     # Verifying result
                     if ($result == 1) {
+                        $this->assertGatewayConnection();
                         $service->id = $this->tableGateway->lastInsertId();
 
                         return $service;
@@ -151,6 +157,7 @@ class ServiceTable extends TableGatewayAbstract
                 # UPDATE
                 # Verifying if key was available
                 $query = "SELECT * FROM `" . self::TABLE_NAME . "` WHERE `key`=? AND `idservice`!=?";
+                $this->assertGatewayConnection();
                 $result = $this->tableGateway->fetchAll($query,array($service->key,$service->id));
 
                 # Verifying result
@@ -160,6 +167,7 @@ class ServiceTable extends TableGatewayAbstract
                     $data = array($service->name,$service->key,$service->notification_url,$service->id);
 
                     # Updating
+                    $this->assertGatewayConnection();
                     $result = $this->tableGateway->executeUpdate($query,$data);
 
                     # Verifying result
@@ -189,6 +197,7 @@ class ServiceTable extends TableGatewayAbstract
     {
         # Mounting and executing query
         $query = "DELETE FROM `" . self::TABLE_NAME . "` WHERE `idservice`=?";
+        $this->assertGatewayConnection();
         $result = $this->tableGateway->executeUpdate($query,array($service->id));
 
         # Verifying result
