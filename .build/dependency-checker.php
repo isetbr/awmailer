@@ -3,6 +3,7 @@
 
 // Performing checks
 check_php();
+check_pcntl();
 check_curl();
 check_mysql();
 check_mongodb();
@@ -64,7 +65,7 @@ function check_mongodb() {
         return true;
     } else {
         echo "ERROR: MongoDB not found, check the requirements document." . PHP_EOL;
-        die;
+        exit(1);
     }
 }
 function check_php() {
@@ -72,5 +73,14 @@ function check_php() {
         return true;
     } else {
         echo "ERROR: AwMailer requires PHP 5.4 or later." . PHP_EOL;
+        exit(1);
+    }
+}
+function check_pcntl() {
+    if (function_exists('pcntl_fork')) {
+        return true;
+    } else {
+        echo "ERROR: PCNTL extension not found, check the requirements document." . PHP_EOL;
+        exit(1);
     }
 }
