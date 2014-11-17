@@ -78,10 +78,7 @@ $app['monolog.service']->addInfo('Initialized logger for process');
 
 # Forking process
 $pid = pcntl_fork();
-if ($pid) {
-    //pcntl_wait($status);
-    exit();
-}
+if ($pid) { exit(); }
 
 # Setting session
 $sess_id = posix_setsid();
