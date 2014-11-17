@@ -12,6 +12,7 @@ use Iset\Model\QueueCollection;
 
 # Initializing Application
 $app = App::configure();
+$app->boot();
 
 # Setting error handler
 set_error_handler(function ($code, $message, $file, $line) use ($app) {
@@ -26,7 +27,7 @@ $queueCollection = new QueueCollection($app);
 if (isset($_SERVER['argv'][1])) {
     $campaignKey = trim(str_replace('> /dev/null','',$_SERVER['argv'][1]));
 } else {
-    # Campaign not found
+    # Campaign key is not set
     die();
 }
 
@@ -78,21 +79,28 @@ $app['monolog.service']->addInfo('Initialized logger for process');
 
 # Forking process
 $pid = pcntl_fork();
-if ($pid) { exit(); }
+if ($pid) {
+    //pcntl_wait($status);
+    exit();
+}
 
-# Re-init application
-$app['db']->close();
-$app['db']->connect();
+# Setting session
+$sess_id = posix_setsid();
+
+# Configuring session
+posix_seteuid(1001);
+posix_setegid(1001);
 
 # Getting PID from child process
-$pid = getmypid();
+$pid = posix_getpid();
 
 # Logging
 $app['monolog.service']->addInfo('Service successfully started',array('campaign'=>$campaignKey,'PID'=>$pid));
 
 # Setting PID on campaign
 $campaign->pid = $pid;
-$campaign->save();
+$campaignTable->assertGatewayConnection();
+$campaignTable->saveCampaign($campaign);
 
 # Initializing campaign cache
 $campaignCache = array(
@@ -196,3 +204,5 @@ $app['cache']->setItem($campaignKey, json_encode($campaignCache));
 
 # Logging
 $app['monolog.service']->addInfo('Service finished',array('campaign'=>$campaignKey));
+
+exit();
