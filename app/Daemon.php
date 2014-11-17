@@ -182,7 +182,7 @@ while (true) {
             # Verifying if process is started and not running yet
             if ($campaign->status == Campaign::STATUS_START && is_null($campaign->pid)) {
                 $app['monolog.daemon']->addNotice('Starting process',array('campaign'=>$campaignKey));
-                $command = 'sudo -u awmailer awmailer ' . $campaignKey . ' > /dev/null &';
+                $command = 'sudo -u awmailer awmailer ' . $campaignKey . ' > /dev/null 2>&1';
                 exec($command);
             }
         }
