@@ -11,3 +11,4 @@ vendor/*
 tmp/*
 web/docs/*
 blueprint.apib
+apigen.neon

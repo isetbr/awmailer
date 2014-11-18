@@ -1,0 +1,21 @@
+extensions:
+	- php
+source:
+	- src
+destination: web/docs/source/
+exclude:
+	- app/
+	- bin/
+	- db/
+	- docs/
+	- support/
+	- tests/
+	- vendor/
+	- web/
+title: AwMailer
+baseUrl: http://domain.com/docs/source/
+accessLevels:
+	- public
+	- protected
+	- private
+tree: true

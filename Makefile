@@ -53,14 +53,13 @@ db: .title
 	@php .build/database.php
 
 docs: .title
-	@echo "generating api documentation..."
 	@rm -Rf web/docs/api/*
 	@rm -Rf web/docs/source/*
-	@php .build/parse-blueprint.php
+	@php .build/parse-docs.php
+	@echo "generating api documentation..."
 	@`aglio -t slate -i blueprint.apib -o web/docs/api/index.html > /dev/null 2>&1`
 	@echo "generating sourcecode documentation..."
-	@`./vendor/bin/phpdoc.php --force > /dev/null 2>&1`
-	@rm -rf phpdoc-cache-* > /dev/null 2>&1
+	@`./vendor/bin/apigen generate > /dev/null 2>&1`
 
 test: .title
 	@php vendor/bin/phpunit --testdox
