@@ -48,6 +48,7 @@ install: .title
 	@`ln -s $(DAEMON) /usr/local/bin/awd`
 	@`ln -s $(SERVICE) /usr/local/bin/awmailer`
 	@`ln -s $(HANDLER) /etc/init.d/awd`
+	@echo "Success!"
 
 db: .title
 	@php .build/database.php
