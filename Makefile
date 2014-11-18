@@ -47,7 +47,7 @@ install: .title
 	@`chmod +x $(HANDLER)`
 	@`ln -s $(DAEMON) /usr/local/bin/awd`
 	@`ln -s $(SERVICE) /usr/local/bin/awmailer`
-	@`ln -s $(HANDLER) /etc/init.d/awd`
+	@`ln -s $(HANDLER) /etc/init.d/awmailer`
 	@echo "Success!"
 
 db: .title

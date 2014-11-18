@@ -104,12 +104,14 @@ running() {
 
 start_daemon() {
     sudo -u $^D_USER awd > /dev/null 2>&1
+    sleep 3
     pgrep awd > $^PIDFILE
 }
 
 stop_daemon() {
-    killall awd
     rm -rf $^PIDFILE
+    sleep 1
+    killall awd
 }
 
 # depending on parameter -- startup, shutdown, restart
@@ -117,20 +119,22 @@ stop_daemon() {
 
 case "$^1" in
     start)
-        # Oracle listener and instance startup
         echo -n "Starting AwMailer Daemon: "
         start_daemon
         echo "OK"
         ;;
     stop)
- 	# Oracle listener and instance shutdown
         echo -n "Shutdown AwMailer Daemon: "
         stop_daemon
         echo "OK"
         ;;
     reload|restart)
-        $^0 stop
-        $^0 start
+        echo -n "Shutdown AwMailer Daemon: "
+        stop_daemon
+        echo "OK \n"
+        echo -n "Starting AwMailer Daemon: "
+        start_daemon
+        echo "OK \n"
         ;;
     *)
         echo "Usage: $^0 start|stop|restart|reload"
