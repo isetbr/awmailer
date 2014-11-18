@@ -103,15 +103,40 @@ running() {
 }
 
 start_daemon() {
-    sudo -u $^D_USER awd > /dev/null 2>&1
-    sleep 3
-    pgrep awd > $^PIDFILE
+    case "$(pgrep awd | wc -w)" in
+        0)
+            sudo -u $^D_USER awd > /dev/null 2>&1
+            sleep 3
+            pgrep awd > $^PIDFILE
+            echo "OK"
+            ;;
+        1)
+            echo "already running."
+            exit 0
+            ;;
+        *)
+            echo "error."
+            exit 1
+    esac
 }
 
 stop_daemon() {
-    rm -rf $^PIDFILE
-    sleep 1
-    killall awd
+    case "$(pgrep awd | wc -w)" in
+        0)
+            echo "not running."
+            exit 0
+            ;;
+        1)
+            rm -rf $^PIDFILE
+            sleep 1
+            killall awd
+            echo "OK"
+            ;;
+        *)
+            echo "error."
+            exit 1
+    esac
+
 }
 
 # depending on parameter -- startup, shutdown, restart
@@ -121,20 +146,16 @@ case "$^1" in
     start)
         echo -n "Starting AwMailer Daemon: "
         start_daemon
-        echo "OK"
         ;;
     stop)
         echo -n "Shutdown AwMailer Daemon: "
         stop_daemon
-        echo "OK"
         ;;
     reload|restart)
         echo -n "Shutdown AwMailer Daemon: "
         stop_daemon
-        echo "OK \n"
         echo -n "Starting AwMailer Daemon: "
         start_daemon
-        echo "OK \n"
         ;;
     *)
         echo "Usage: $^0 start|stop|restart|reload"
