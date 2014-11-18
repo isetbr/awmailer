@@ -1,4 +1,3 @@
-#!/usr/bin/php
 <?php
 
 echo "reading configuration files..." . PHP_EOL;
