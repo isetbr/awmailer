@@ -36,8 +36,9 @@ if ($pid) { exit(); }
 $sess_id = posix_setsid();
 
 # Configuring session
-posix_seteuid(1001);
-posix_setegid(1001);
+define("AW_USER",$app['config']['service']['system']['user']);
+posix_seteuid($app['config']['service']['system']['uid']);
+posix_setegid($app['config']['service']['system']['gid']);
 
 $app['monolog.daemon']->addInfo('Daemon successfully started',array('PID'=>getmypid(),'SESS_ID'=>$sess_id));
 
@@ -182,7 +183,7 @@ while (true) {
             # Verifying if process is started and not running yet
             if ($campaign->status == Campaign::STATUS_START && is_null($campaign->pid)) {
                 $app['monolog.daemon']->addNotice('Starting process',array('campaign'=>$campaignKey));
-                $command = 'sudo -u awmailer awmailer ' . $campaignKey . ' > /dev/null 2>&1';
+                $command = 'sudo -u ' . AW_USER . ' awmailer ' . $campaignKey . ' > /dev/null 2>&1';
                 exec($command);
             }
         }

@@ -84,8 +84,8 @@ if ($pid) { exit(); }
 $sess_id = posix_setsid();
 
 # Configuring session
-posix_seteuid(1001);
-posix_setegid(1001);
+posix_seteuid($app['config']['service']['system']['uid']);
+posix_setegid($app['config']['service']['system']['gid']);
 
 # Getting PID from child process
 $pid = posix_getpid();

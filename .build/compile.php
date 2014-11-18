@@ -41,6 +41,10 @@ if (file_exists($service_handler)) {
     unlink($service_handler);
 }
 
+# Getting application configuration
+$config = parse_ini_file($root_path . '/app/config/application.ini',true);
+$user = $config['service']['system.user'];
+
 $content = <<<EOF
 #!/bin/bash
 #
@@ -65,7 +69,7 @@ $content = <<<EOF
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 DAEMON=$daemon
-D_USER=awmailer
+D_USER=$user
 NAME=awd
 PIDFILE=/var/run/awmailer/$^NAME.pid
 
