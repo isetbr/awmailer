@@ -5,7 +5,7 @@ $root_path = realpath(dirname(__FILE__) . '/../');
 $bin_path = $root_path . '/bin/';
 $daemon = $bin_path . "awd";
 $service = $bin_path . "awmailer";
-$service_handler = $bin_path . "awservice";
+$service_handler = $bin_path . "awmailerctl";
 $php_binary = trim(exec('which php'));
 
 # Removing existing daemon
