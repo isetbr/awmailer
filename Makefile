@@ -2,6 +2,7 @@ VERSION = 1.0.1
 AW_BIN = $(shell pwd)/bin
 DAEMON = $(AW_BIN)/awd
 SERVICE = $(AW_BIN)/awmailer
+HANDLER = $(AW_BIN)/awmailerctl
 
 .title:
 	@echo "AwMailer - v$(VERSION)\n"
@@ -39,10 +40,14 @@ check: .title
 
 install: .title
 	@echo "You may need run this as sudo."
-	`chmod +x $(DAEMON)`
-	`chmod +x $(SERVICE)`
-	`ln -s $(DAEMON) /usr/local/bin/awd`
-	`ln -s $(SERVICE) /usr/local/bin/awmailer`
+	@echo "Installing awmailer binaries..."
+	@`mkdir /var/run/awmailer`
+	@`chmod +x $(DAEMON)`
+	@`chmod +x $(SERVICE)`
+	@`chmod +x $(HANDLER)`
+	@`ln -s $(DAEMON) /usr/local/bin/awd`
+	@`ln -s $(SERVICE) /usr/local/bin/awmailer`
+	@`ln -s $(HANDLER) /etc/init.d/awd`
 
 db: .title
 	@php .build/database.php
@@ -70,6 +75,8 @@ clean: .title
 	@rm -Rf blueprint.apib
 	@rm -Rf /usr/local/bin/awd
 	@rm -Rf /usr/local/bin/awmailer
+	@rm -Rf /etc/init.d/awd
+	@rm -Rf /var/run/awmailer
 	@echo "Success!"
 
 sniff: .title
