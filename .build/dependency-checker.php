@@ -68,6 +68,7 @@ function check_mongodb() {
     }
 }
 function check_php() {
+    echo "checking for php version..." . PHP_EOL;
     if (version_compare(PHP_VERSION,'5.4.0','>')) {
         return true;
     } else {
@@ -76,6 +77,7 @@ function check_php() {
     }
 }
 function check_pcntl() {
+    echo "checking for pcntl extension..." . PHP_EOL;
     if (function_exists('pcntl_fork')) {
         return true;
     } else {
