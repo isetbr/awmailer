@@ -34,8 +34,8 @@ class ServiceTest extends \PHPUnit_Framework_TestCase
      */
     public function testValidate($service)
     {
-        $service->name = 'Foo Service';
-        $service->key = 'foo';
+        $service->name = 'Test service';
+        $service->key = 'test-'.rand(1111,9999);
         $service->notification_url = 'http://domain.com/callback';
         $this->assertTrue($service->validate());
         return $service;
