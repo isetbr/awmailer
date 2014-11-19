@@ -2,8 +2,6 @@
 
 namespace Iset\Api\Resource;
 
-use Iset\Api\Resource\IpAddress;
-
 class IpAddressTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -11,6 +9,7 @@ class IpAddressTest extends \PHPUnit_Framework_TestCase
     {
         $ipaddress = new IpAddress();
         $this->assertInstanceOf('Iset\Api\Resource\IpAddress',$ipaddress);
+
         return $ipaddress;
     }
 
@@ -18,6 +17,7 @@ class IpAddressTest extends \PHPUnit_Framework_TestCase
     {
         $ipaddress = new IpAddress(new \Iset\Model\IpAddressTable(\App::configure()));
         $this->assertInstanceOf('Iset\Api\Resource\IpAddress',$ipaddress);
+
         return $ipaddress;
     }
 
@@ -36,6 +36,7 @@ class IpAddressTest extends \PHPUnit_Framework_TestCase
     {
         $ipaddress->ipaddress = '127.0.1.1';
         $this->assertTrue($ipaddress->validate());
+
         return $ipaddress;
     }
 
@@ -48,6 +49,7 @@ class IpAddressTest extends \PHPUnit_Framework_TestCase
         $result = $ipaddress->validate();
         $this->assertArrayHasKey('error',$result);
         $this->assertEquals('Invalid ip address',$result['error']);
+
         return $ipaddress;
     }
 
@@ -58,6 +60,7 @@ class IpAddressTest extends \PHPUnit_Framework_TestCase
     {
         $ipaddress->exchangeArray(array('ipaddress'=>'127.0.1.1'));
         $this->assertEquals('127.0.1.1',$ipaddress->ipaddress);
+
         return $ipaddress;
     }
 
@@ -75,6 +78,7 @@ class IpAddressTest extends \PHPUnit_Framework_TestCase
     public function testSave($ipaddress)
     {
         $this->assertTrue($ipaddress->save());
+
         return $ipaddress;
     }
 
@@ -93,6 +97,7 @@ class IpAddressTest extends \PHPUnit_Framework_TestCase
     public function testDelete($ipaddress)
     {
         $this->assertTrue($ipaddress->delete());
+
         return $ipaddress;
     }
 

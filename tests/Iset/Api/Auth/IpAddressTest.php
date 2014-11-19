@@ -2,8 +2,6 @@
 
 namespace Iset\Api\Auth;
 
-use Iset\Api\Auth\IpAddress;
-
 class IpAddressTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -11,6 +9,7 @@ class IpAddressTest extends \PHPUnit_Framework_TestCase
     {
         $auth = new IpAddress(\App::configure());
         $this->assertInstanceOf('Iset\Api\Auth\IpAddress',$auth);
+
         return $auth;
     }
 
@@ -27,6 +26,7 @@ class IpAddressTest extends \PHPUnit_Framework_TestCase
         $ipaddress = new \Iset\Api\Resource\IpAddress(new \Iset\Model\IpAddressTable(\App::configure()));
         $ipaddress->ipaddress = '127.0.1.1';
         $this->assertTrue($ipaddress->save());
+
         return $ipaddress;
     }
 

@@ -537,7 +537,7 @@ class CampaignController implements ControllerProviderInterface
         $queue = array();
 
         # Verifying if campaign has user_vars or user_headers
-        if ($campaign->user_vars == 1 || $campaign->user_headers == 1) {
+        if (($campaign->user_vars == 1 || $campaign->user_headers == 1) && is_array($stack[0])) {
             foreach ($stack as $row) {
                 $queue[] = array(
                     'campaign'=>$key,
@@ -546,11 +546,15 @@ class CampaignController implements ControllerProviderInterface
                     'headers'=>(!is_null($row['headers'])) ? $row['headers'] : array(),
                 );
             }
-        } else {
+        } elseif ($campaign->user_vars ==0 && $campaign->user_headers == 0 && is_string($stack[0])) {
             # Loop into stack for create simple queue
             foreach ($stack as $email) {
                 $queue[] = array('campaign'=>$key,'email'=>$email);
             }
+        } else {
+            $response = array('success'=>0,'error'=>'Invalid queue structure, verify your campaign configuration');
+
+            return $this->_app->json($response,Response::HTTP_BAD_REQUEST);
         }
 
         # Inserting queue in collection

@@ -53,6 +53,7 @@ class CampaignTable extends TableGatewayAbstract
     {
         # Retrieving data from database
         $query = "SELECT * FROM `" . self::TABLE_NAME . "`";
+        $this->assertGatewayConnection();
         $result = $this->tableGateway->fetchAll($query);
 
         # Stack for store result
@@ -76,6 +77,7 @@ class CampaignTable extends TableGatewayAbstract
     {
         # Retrieving data from database
         $query = "SELECT * FROM `" . self::TABLE_NAME . "` WHERE `status`=?";
+        $this->assertGatewayConnection();
         $result = $this->tableGateway->fetchAll($query,array($status));
 
         # Stack for store result
@@ -107,6 +109,7 @@ class CampaignTable extends TableGatewayAbstract
         }
 
         # Getting data from database
+        $this->assertGatewayConnection();
         $result = $this->tableGateway->fetchAssoc($query,$data);
 
         # Verifying result
@@ -138,6 +141,7 @@ class CampaignTable extends TableGatewayAbstract
         }
 
         # Getting data from database
+        $this->assertGatewayConnection();
         $result = $this->tableGateway->fetchAssoc($query,$data);
 
         # Verifying result
@@ -186,11 +190,20 @@ class CampaignTable extends TableGatewayAbstract
                 );
 
                 # Inserting
+                $this->assertGatewayConnection();
                 $result = $this->tableGateway->executeUpdate($query,$data);
 
                 # Verifying result
                 if ($result == 1) {
+                    $this->assertGatewayConnection();
                     $campaign->id = $this->tableGateway->lastInsertId();
+
+                    # If the last_insert_id is 0 trying to get the correct
+                    if ($campaign->id == 0) {
+                        $campaign_real = $this->getCampaignByKey($campaign->getCampaignKey());
+                        $campaign->id = $campaign_real->id;
+                        unset($campaign_real);
+                    }
 
                     return $campaign;
                 } else {
@@ -238,6 +251,7 @@ class CampaignTable extends TableGatewayAbstract
                 );
 
                 # Updating
+                $this->assertGatewayConnection();
                 $result = $this->tableGateway->executeUpdate($query,$data);
 
                 # Verifying result
@@ -264,6 +278,7 @@ class CampaignTable extends TableGatewayAbstract
     {
         # Mounting and executing query
         $query = "DELETE FROM `" . self::TABLE_NAME . "` WHERE `idcampaign`=?";
+        $this->assertGatewayConnection();
         $result = $this->tableGateway->executeUpdate($query,array($campaign->id));
 
         # Verifying result

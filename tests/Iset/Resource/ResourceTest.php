@@ -2,8 +2,6 @@
 
 namespace Iset\Resource;
 
-use Iset\Resource\Resource;
-
 class ResourceTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -19,6 +17,7 @@ class ResourceTest extends \PHPUnit_Framework_TestCase
     {
         $resource = new Resource('foo');
         $this->assertInstanceOf('Iset\Resource\AbstractResource',$resource);
+
         return $resource;
     }
 

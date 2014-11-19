@@ -1,7 +1,8 @@
-VERSION = 1.0.1
+VERSION = 1.1.0
 AW_BIN = $(shell pwd)/bin
 DAEMON = $(AW_BIN)/awd
 SERVICE = $(AW_BIN)/awmailer
+HANDLER = $(AW_BIN)/awmailerctl
 
 .title:
 	@echo "AwMailer - v$(VERSION)\n"
@@ -12,15 +13,16 @@ default: .title
 	cd config && cp application.ini.sample application.ini && \
 	cd ../../web/ && mkdir docs && cd docs && mkdir api && mkdir source && cd ../../ && cp blueprint.md blueprint.apib && \
 	mkdir bin`
-	@echo "attempting to download composer packager."
+	@echo "downloading composer..."
 	@curl -s http://getcomposer.org/installer | php -- --quiet
-	@echo "installing packages..."
-	@php composer.phar install -v
+	@echo "installing packages, please wait..."
+	@php composer.phar install --no-progress
 	@rm -Rf composer.phar
-	@echo "----------------------------------------------------------------------------"
-	@echo "compiling..."
+	@echo "Success!\n"
+	@echo "Compiling..."
 	@php .build/compile.php
 	@echo "Success!"
+	@echo "\n"
 	@echo "Please update the configuration files then run 'make db'"
 
 help: .title
@@ -39,23 +41,27 @@ check: .title
 
 install: .title
 	@echo "You may need run this as sudo."
-	`chmod +x $(DAEMON)`
-	`chmod +x $(SERVICE)`
-	`ln -s $(DAEMON) /usr/local/bin/awd`
-	`ln -s $(SERVICE) /usr/local/bin/awmailer`
+	@echo "Installing awmailer binaries..."
+	@`mkdir /var/run/awmailer`
+	@`chmod +x $(DAEMON)`
+	@`chmod +x $(SERVICE)`
+	@`chmod +x $(HANDLER)`
+	@`ln -s $(DAEMON) /usr/local/bin/awd`
+	@`ln -s $(SERVICE) /usr/local/bin/awmailer`
+	@`ln -s $(HANDLER) /etc/init.d/awmailer`
+	@echo "Success!"
 
 db: .title
 	@php .build/database.php
 
 docs: .title
-	@echo "generating api documentation..."
 	@rm -Rf web/docs/api/*
 	@rm -Rf web/docs/source/*
-	@php .build/parse-blueprint.php
+	@php .build/parse-docs.php
+	@echo "generating api documentation..."
 	@`aglio -t slate -i blueprint.apib -o web/docs/api/index.html > /dev/null 2>&1`
 	@echo "generating sourcecode documentation..."
-	@`./vendor/bin/phpdoc.php --force > /dev/null 2>&1`
-	@rm -rf phpdoc-cache-* > /dev/null 2>&1
+	@`./vendor/bin/apigen generate > /dev/null 2>&1`
 
 test: .title
 	@php vendor/bin/phpunit --testdox
@@ -70,8 +76,12 @@ clean: .title
 	@rm -Rf blueprint.apib
 	@rm -Rf /usr/local/bin/awd
 	@rm -Rf /usr/local/bin/awmailer
+	@rm -Rf /etc/init.d/awmailer
+	@rm -Rf /var/run/awmailer
 	@echo "Success!"
 
 sniff: .title
-	@cd ./app/; php ../vendor/bin/php-cs-fixer -v fix --level=all --fixers=indentation,linefeed,trailing_spaces,unused_use,return,php_closing_tag,short_tag,visibility,braces,extra_empty_lines,phpdoc_params,eof_ending,include,controls_spaces,elseif .
-	@cd ./src/; php ../vendor/bin/php-cs-fixer -v fix --level=all --fixers=indentation,linefeed,trailing_spaces,unused_use,return,php_closing_tag,short_tag,visibility,braces,extra_empty_lines,phpdoc_params,eof_ending,include,controls_spaces,elseif .
+	-@`php vendor/bin/php-cs-fixer -q fix --level=all --fixers=indentation,linefeed,trailing_spaces,unused_use,return,php_closing_tag,short_tag,visibility,braces,extra_empty_lines,phpdoc_params,eof_ending,include,controls_spaces,elseif src/ > /dev/null 2>&1`
+	-@`php vendor/bin/php-cs-fixer -q fix --level=all --fixers=indentation,linefeed,trailing_spaces,unused_use,return,php_closing_tag,short_tag,visibility,braces,extra_empty_lines,phpdoc_params,eof_ending,include,controls_spaces,elseif app/ > /dev/null 2>&1`
+	-@`php vendor/bin/php-cs-fixer -q fix --level=all --fixers=indentation,linefeed,trailing_spaces,unused_use,return,php_closing_tag,short_tag,visibility,braces,extra_empty_lines,phpdoc_params,eof_ending,include,controls_spaces,elseif tests/ > /dev/null 2>&1`
+	@echo "Success!"

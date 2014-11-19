@@ -53,6 +53,7 @@ class IpAddressTable extends TableGatewayAbstract
     {
         # Retrieving data from database
         $query = "SELECT * FROM `" . self::TABLE_NAME . "`";
+        $this->assertGatewayConnection();
         $result = $this->tableGateway->fetchAll($query);
 
         # Stack for store result
@@ -76,6 +77,7 @@ class IpAddressTable extends TableGatewayAbstract
     {
         # Retrieving data from database
         $query = "SELECT * FROM `" . self::TABLE_NAME . "` WHERE `ipaddress`=?";
+        $this->assertGatewayConnection();
         $result = $this->tableGateway->fetchAssoc($query,array($ipaddress));
 
         # Verifying result
@@ -108,6 +110,7 @@ class IpAddressTable extends TableGatewayAbstract
             if (!$result) {
                 # Inserting
                 $query = "INSERT INTO `" . self::TABLE_NAME . "` (`ipaddress`) VALUES (?)";
+                $this->assertGatewayConnection();
                 $result = $this->tableGateway->executeUpdate($query,array($ipaddress->ipaddress));
 
                 # Verifying result
@@ -134,6 +137,7 @@ class IpAddressTable extends TableGatewayAbstract
     {
         # Mounting and executing query
         $query = "DELETE FROM `" . self::TABLE_NAME . "` WHERE `ipaddress`=?";
+        $this->assertGatewayConnection();
         $result = $this->tableGateway->executeUpdate($query,array($ipaddress->ipaddress));
 
         # Verifying result

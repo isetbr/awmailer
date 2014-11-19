@@ -2,8 +2,6 @@
 
 namespace Iset\Api\Auth;
 
-use Iset\Api\Auth\Service;
-
 class ServiceTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -11,6 +9,7 @@ class ServiceTest extends \PHPUnit_Framework_TestCase
     {
         $auth = new Service(\App::configure());
         $this->assertInstanceOf('Iset\Api\Auth\Service',$auth);
+
         return $auth;
     }
 
@@ -26,8 +25,9 @@ class ServiceTest extends \PHPUnit_Framework_TestCase
     {
         $service = new \Iset\Api\Resource\Service(new \Iset\Model\ServiceTable(\App::configure()));
         $service->name = 'Test Service';
-        $service->key = 'test';
+        $service->key = 'test-'.rand(1111,9999);
         $this->assertTrue($service->save());
+
         return $service;
     }
 
@@ -41,6 +41,8 @@ class ServiceTest extends \PHPUnit_Framework_TestCase
         $service = func_get_arg(1);
 
         $this->assertInstanceOf('Iset\Api\Resource\Service',$auth->validate($service->key,$service->getToken()));
+
+        # Removing service
         $service->delete();
     }
 

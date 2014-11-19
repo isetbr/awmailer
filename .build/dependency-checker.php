@@ -1,8 +1,9 @@
-#!/usr/bin/php
 <?php
 
 // Performing checks
 check_php();
+check_exec();
+check_pcntl();
 check_curl();
 check_mysql();
 check_mongodb();
@@ -64,13 +65,33 @@ function check_mongodb() {
         return true;
     } else {
         echo "ERROR: MongoDB not found, check the requirements document." . PHP_EOL;
-        die;
+        exit(1);
     }
 }
 function check_php() {
+    echo "checking for php version..." . PHP_EOL;
     if (version_compare(PHP_VERSION,'5.4.0','>')) {
         return true;
     } else {
         echo "ERROR: AwMailer requires PHP 5.4 or later." . PHP_EOL;
+        exit(1);
+    }
+}
+function check_pcntl() {
+    echo "checking for pcntl extension..." . PHP_EOL;
+    if (function_exists('pcntl_fork')) {
+        return true;
+    } else {
+        echo "ERROR: PCNTL extension not found, check the requirements document." . PHP_EOL;
+        exit(1);
+    }
+}
+function check_exec() {
+    echo "checking for exec extension..." . PHP_EOL;
+    if (function_exists('exec')) {
+        return true;
+    } else {
+        echo "ERROR: exec function is disabled, please enable it to do the installation, you can deactivate after it." . PHP_EOL;
+        exit(1);
     }
 }

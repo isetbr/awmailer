@@ -3,7 +3,6 @@
 namespace Iset\Model;
 
 use Iset\Api\Resource\IpAddress;
-use Iset\Model\IpAddressTable;
 
 class IpAddressTableTest extends \PHPUnit_Framework_TestCase
 {
@@ -21,6 +20,7 @@ class IpAddressTableTest extends \PHPUnit_Framework_TestCase
         $app = \App::configure();
         $gateway = new IpAddressTable($app);
         $this->assertInstanceOf('Iset\Model\IpAddressTable',$gateway);
+
         return $gateway;
     }
 
@@ -32,6 +32,7 @@ class IpAddressTableTest extends \PHPUnit_Framework_TestCase
         $ipaddress = new IpAddress();
         $ipaddress->ipaddress = '127.0.1.1';
         $this->assertInstanceOf('Iset\Api\Resource\IpAddress',$gateway->saveIpAddress($ipaddress));
+
         return $ipaddress;
     }
 
@@ -70,7 +71,7 @@ class IpAddressTableTest extends \PHPUnit_Framework_TestCase
         $this->assertInternalType('array',$gateway->fetchAll());
     }
 
-    /** 
+    /**
      * @depends testInitialize
      * @depends testSaveNewIpAddress
      */
@@ -98,6 +99,7 @@ class IpAddressTableTest extends \PHPUnit_Framework_TestCase
         $gateway = func_get_arg(0);
         $ipaddress = func_get_arg(1);
         $this->assertTrue($gateway->deleteIpAddress($ipaddress));
+
         return $ipaddress;
     }
 

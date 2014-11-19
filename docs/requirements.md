@@ -7,7 +7,8 @@ Operating Systems
 - Debian
 - Ubuntu
 - CentOS
-- MacOSX
+
+or any other linux distro.
 
 PHP
 ---
@@ -15,11 +16,14 @@ PHP
 AwMailer requires PHP 5.4 or later with the following extensions compiled and enabled:
 
 - Process Control (PCNTL)
+- POSIX functions
 - PDO with MySQL driver
 - MongoDB
-- XSL**
 
-** XSL is used only if you need to generate the documentation of source code using PHPdocumentor.
+Mailing Service
+---------------
+
+You will need a mailing service configured in your PHP, such as postfix, exim or any other.
 
 Databases
 ---------

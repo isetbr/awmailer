@@ -26,7 +26,8 @@
         "phpdocumentor\/phpdocumentor": "2.*",
         "phpunit\/phpunit": "4.2.*",
         "fabpot/php-cs-fixer": "0.5.*",
-        "phpmd/phpmd" : "@stable"
+        "phpmd/phpmd" : "@stable",
+        "apigen/apigen": "4.0.0-RC1"
     },
     "autoload": {
         "psr-0": {

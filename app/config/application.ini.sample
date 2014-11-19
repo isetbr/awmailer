@@ -84,5 +84,10 @@ zendcache.plugins.exception_handler.throw_exceptions = Off
 ; This section is responsible for configure cache options of application
 [service]
 
+; The system user created to run the daemon and services
+system.user = awmailer
+system.uid  = XXXX
+system.gid  = XXXX
+
 ; The max package size to send mails in a loop
 queue.max_package_size = 1000
