@@ -3,7 +3,6 @@
 namespace Iset\Model;
 
 use Iset\Api\Resource\Service;
-use Iset\Model\ServiceTable;
 
 class ServiceTableTest extends \PHPUnit_Framework_TestCase
 {
@@ -23,6 +22,7 @@ class ServiceTableTest extends \PHPUnit_Framework_TestCase
         $app = \App::configure();
         $gateway = new ServiceTable($app);
         $this->assertInstanceOf('Iset\Model\ServiceTable',$gateway);
+
         return $gateway;
     }
 
@@ -36,6 +36,7 @@ class ServiceTableTest extends \PHPUnit_Framework_TestCase
         $service->key  = self::TEST_SERVICE_KEY;
         $service->notification_url = 'http://foo.com/callback';
         $this->assertInstanceOf('Iset\Api\Resource\Service',$gateway->saveService($service));
+
         return $service;
     }
 

@@ -2,8 +2,6 @@
 
 namespace Iset\Api\Resource;
 
-use Iset\Api\Resource\Service;
-
 class ServiceTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -11,6 +9,7 @@ class ServiceTest extends \PHPUnit_Framework_TestCase
     {
         $service = new Service();
         $this->assertInstanceOf('Iset\Api\Resource\Service',$service);
+
         return $service;
     }
 
@@ -18,6 +17,7 @@ class ServiceTest extends \PHPUnit_Framework_TestCase
     {
         $service = new Service(new \Iset\Model\ServiceTable(\App::configure()));
         $this->assertInstanceOf('Iset\Api\Resource\Service',$service);
+
         return $service;
     }
 
@@ -34,14 +34,15 @@ class ServiceTest extends \PHPUnit_Framework_TestCase
      */
     public function testValidate($service)
     {
-        $service->name = 'Foo Service';
-        $service->key = 'foo';
+        $service->name = 'Test service';
+        $service->key = 'test-'.rand(1111,9999);
         $service->notification_url = 'http://domain.com/callback';
         $this->assertTrue($service->validate());
+
         return $service;
     }
 
-    /** 
+    /**
      * @depends testInitialize
      */
     public function testValidateFailWithoutName($service)
@@ -140,6 +141,7 @@ class ServiceTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Foo Service',$service->name);
         $this->assertEquals('foo',$service->key);
         $this->assertEquals('http://domain.com/callback',$service->notification_url);
+
         return $service;
     }
 
@@ -162,6 +164,7 @@ class ServiceTest extends \PHPUnit_Framework_TestCase
         $service->notification_url = 'http://domain.com/callback';
 
         $this->assertTrue($service->save());
+
         return $service;
     }
 
@@ -178,6 +181,7 @@ class ServiceTest extends \PHPUnit_Framework_TestCase
     public function testDelete($service)
     {
         $this->assertTrue($service->delete());
+
         return $service;
     }
 

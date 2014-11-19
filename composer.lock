@@ -1995,12 +1995,12 @@
             "version": "v0.5.7",
             "source": {
                 "type": "git",
-                "url": "https://github.com/fabpot/PHP-CS-Fixer.git",
+                "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer.git",
                 "reference": "29477d018cb78549a3f96656a36b93e99e1edbaf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/PHP-CS-Fixer/zipball/29477d018cb78549a3f96656a36b93e99e1edbaf",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/29477d018cb78549a3f96656a36b93e99e1edbaf",
                 "reference": "29477d018cb78549a3f96656a36b93e99e1edbaf",
                 "shasum": ""
             },

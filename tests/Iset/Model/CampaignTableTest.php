@@ -3,7 +3,6 @@
 namespace Iset\Model;
 
 use Iset\Api\Resource\Campaign;
-use Iset\Model\CampaignTable;
 
 class CampaignTableTest extends \PHPUnit_Framework_TestCase
 {
@@ -21,6 +20,7 @@ class CampaignTableTest extends \PHPUnit_Framework_TestCase
         $app = \App::configure();
         $gateway = new CampaignTable($app);
         $this->assertInstanceOf('Iset\Model\CampaignTable',$gateway);
+
         return $gateway;
     }
 
@@ -84,7 +84,7 @@ class CampaignTableTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Iset\Api\Resource\Campaign',$gateway->getCampaign($campaign->id,$campaign->service));
     }
 
-    /** 
+    /**
      * @depends testInitialize
      */
     public function testGetNonexistentCampaign($gateway)

@@ -553,6 +553,7 @@ class CampaignController implements ControllerProviderInterface
             }
         } else {
             $response = array('success'=>0,'error'=>'Invalid queue structure, verify your campaign configuration');
+
             return $this->_app->json($response,Response::HTTP_BAD_REQUEST);
         }
 

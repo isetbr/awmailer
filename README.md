@@ -21,8 +21,8 @@ Features
 Requirements
 ------------
 
-- Debian/Ubuntu/MacOSX or others OS's based on Linux/Unix distros
-- Apache 2.2+
+- Debian/Ubuntu or others OS's based on Linux/Unix distros
+- Apache 2.4+
 - PHP 5.4+
 - MySQL 5.5+
 - MongoDB 1.5+
@@ -42,8 +42,4 @@ You can see the sample API documentation of latest release [here](blueprint.md).
 Changelog
 ---------
 
-- `v1.0.3-stable:` Fixed compiler for use PHP cli direct output
-- `v1.0.2-stable:` Fixed Makefile, process logs and minor bugs`
-- `v1.0.1-stable:` Fixed progress routines and binaries generation with a custom ini file
-
-See full changelog [here](CHANGELOG.md).
+See changelog [here](CHANGELOG.md).

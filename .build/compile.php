@@ -7,6 +7,14 @@ $daemon = $bin_path . "awd";
 $service = $bin_path . "awmailer";
 $service_handler = $bin_path . "awmailerctl";
 $php_binary = trim(exec('which php'));
+$app_config = parse_ini_file($root_path . '/app/config/application.ini',true);
+$user = $app_config['service']['system.user'];
+$php_ini = php_ini_loaded_file();
+$ini_dest = $root_path . '/app/config/runtime.ini';
+
+/////////////////////////////////////////
+// COMPILING AWMAILER DAEMON
+/////////////////////////////////////////
 
 # Removing existing daemon
 if (file_exists($daemon)) {
@@ -14,7 +22,7 @@ if (file_exists($daemon)) {
 }
 
 $content = <<<EOF
-#!$php_binary -q
+#!$php_binary -qc$ini_dest
 <?php require_once("$root_path/app/Daemon.php");
 EOF;
 $handle = fopen($daemon,"w");
@@ -22,13 +30,17 @@ fwrite($handle,$content);
 fclose($handle);
 unset($content);
 
+/////////////////////////////////////////
+// COMPILING AWMAILER SERVICE
+/////////////////////////////////////////
+
 # Removing existing service
 if (file_exists($service)) {
     unlink($service);
 }
 
 $content = <<<EOF
-#!$php_binary -q
+#!$php_binary -qc$ini_dest
 <?php require_once("$root_path/app/Service.php");
 EOF;
 $handle = fopen($service,"w");
@@ -41,9 +53,9 @@ if (file_exists($service_handler)) {
     unlink($service_handler);
 }
 
-# Getting application configuration
-$config = parse_ini_file($root_path . '/app/config/application.ini',true);
-$user = $config['service']['system.user'];
+/////////////////////////////////////////
+// COMPILING AWMAILER SERVICE HANDLER
+/////////////////////////////////////////
 
 $content = <<<EOF
 #!/bin/bash
@@ -103,13 +115,40 @@ running() {
 }
 
 start_daemon() {
-    sudo -u $^D_USER awd > /dev/null 2>&1
-    pgrep awd > $^PIDFILE
+    case "$(pgrep awd | wc -w)" in
+        0)
+            sudo -u $^D_USER awd > /dev/null 2>&1
+            sleep 3
+            pgrep awd > $^PIDFILE
+            echo "OK"
+            ;;
+        1)
+            echo "already running."
+            exit 0
+            ;;
+        *)
+            echo "error."
+            exit 1
+    esac
 }
 
 stop_daemon() {
-    killall awd
-    rm -rf $^PIDFILE
+    case "$(pgrep awd | wc -w)" in
+        0)
+            echo "not running."
+            exit 0
+            ;;
+        1)
+            rm -rf $^PIDFILE
+            sleep 1
+            killall awd
+            echo "OK"
+            ;;
+        *)
+            echo "error."
+            exit 1
+    esac
+
 }
 
 # depending on parameter -- startup, shutdown, restart
@@ -117,20 +156,18 @@ stop_daemon() {
 
 case "$^1" in
     start)
-        # Oracle listener and instance startup
         echo -n "Starting AwMailer Daemon: "
         start_daemon
-        echo "OK"
         ;;
     stop)
- 	# Oracle listener and instance shutdown
         echo -n "Shutdown AwMailer Daemon: "
         stop_daemon
-        echo "OK"
         ;;
     reload|restart)
-        $^0 stop
-        $^0 start
+        echo -n "Shutdown AwMailer Daemon: "
+        stop_daemon
+        echo -n "Starting AwMailer Daemon: "
+        start_daemon
         ;;
     *)
         echo "Usage: $^0 start|stop|restart|reload"
@@ -146,3 +183,15 @@ $handle = fopen($service_handler,"w");
 fwrite($handle,$content);
 fclose($handle);
 unset($content);
+
+/////////////////////////////////////////
+// COMPILING AWMAILER CUSTOM INI FILE
+/////////////////////////////////////////
+$ini_content = file_get_contents($php_ini);
+preg_match("/(.*?(\bdisable_functions\b)[^$\n]*)/",$ini_content,$matches);
+$ini_content = str_replace($matches[0],'disable_functions =',$ini_content);
+
+$handle = fopen($ini_dest,'w');
+fwrite($handle,$ini_content);
+fclose($handle);
+unset($ini_content);

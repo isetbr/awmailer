@@ -198,6 +198,13 @@ class CampaignTable extends TableGatewayAbstract
                     $this->assertGatewayConnection();
                     $campaign->id = $this->tableGateway->lastInsertId();
 
+                    # If the last_insert_id is 0 trying to get the correct
+                    if ($campaign->id == 0) {
+                        $campaign_real = $this->getCampaignByKey($campaign->getCampaignKey());
+                        $campaign->id = $campaign_real->id;
+                        unset($campaign_real);
+                    }
+
                     return $campaign;
                 } else {
                     return array('error'=>'An error ocourred at try to insert data in database');
