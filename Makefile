@@ -76,7 +76,7 @@ clean: .title
 	@rm -Rf blueprint.apib
 	@rm -Rf /usr/local/bin/awd
 	@rm -Rf /usr/local/bin/awmailer
-	@rm -Rf /etc/init.d/awd
+	@rm -Rf /etc/init.d/awmailer
 	@rm -Rf /var/run/awmailer
 	@echo "Success!"
 
