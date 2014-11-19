@@ -20,7 +20,7 @@ set_include_path(implode(PATH_SEPARATOR, array_unique($paths)));
 
 /** Autoloader that implements the PSR-0 spec for interoperability between PHP software. */
 spl_autoload_register(
-    function($className) {
+    function ($className) {
         static $composerClassmap;
         if (!isset($composerClassmap) && file_exists(dirname(__DIR__).'/vendor/composer'))
                $composerClassmap = require dirname(__DIR__).'/vendor/composer/autoload_classmap.php';

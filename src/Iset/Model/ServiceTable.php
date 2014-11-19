@@ -144,7 +144,7 @@ class ServiceTable extends TableGatewayAbstract
                     # Verifying result
                     if ($result == 1) {
                         $this->assertGatewayConnection();
-                        $service->id = (int)$this->tableGateway->lastInsertId();
+                        $service->id = (int) $this->tableGateway->lastInsertId();
 
                         # If the last_insert_id is 0 trying to get the correct
                         if ($service->id == 0) {

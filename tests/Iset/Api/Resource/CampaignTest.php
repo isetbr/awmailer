@@ -2,8 +2,6 @@
 
 namespace Iset\Api\Resource;
 
-use Iset\Api\Resource\Campaign;
-
 class CampaignTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -11,6 +9,7 @@ class CampaignTest extends \PHPUnit_Framework_TestCase
     {
         $campaign = new Campaign();
         $this->assertInstanceOf('Iset\Api\Resource\Campaign',$campaign);
+
         return $campaign;
     }
 
@@ -18,6 +17,7 @@ class CampaignTest extends \PHPUnit_Framework_TestCase
     {
         $campaign = new Campaign(new \Iset\Model\CampaignTable(\App::configure()));
         $this->assertInstanceOf('Iset\Api\Resource\Campaign',$campaign);
+
         return $campaign;
     }
 
@@ -43,7 +43,7 @@ class CampaignTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($campaign->validate());
     }
 
-    /** 
+    /**
      * @depends testInitialize
      */
     public function testValidateFailWithoutService($campaign)
@@ -243,10 +243,11 @@ class CampaignTest extends \PHPUnit_Framework_TestCase
     public function testDelete($campaign)
     {
         $this->assertTrue($campaign->delete());
+
         return $campaign;
     }
 
-    /** 
+    /**
      * @depends testDelete
      */
     public function testDeleteFail($campaign)

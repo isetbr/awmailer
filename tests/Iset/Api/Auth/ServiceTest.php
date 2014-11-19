@@ -9,6 +9,7 @@ class ServiceTest extends \PHPUnit_Framework_TestCase
     {
         $auth = new Service(\App::configure());
         $this->assertInstanceOf('Iset\Api\Auth\Service',$auth);
+
         return $auth;
     }
 
@@ -26,6 +27,7 @@ class ServiceTest extends \PHPUnit_Framework_TestCase
         $service->name = 'Test Service';
         $service->key = 'test-'.rand(1111,9999);
         $this->assertTrue($service->save());
+
         return $service;
     }
 

@@ -2,8 +2,6 @@
 
 namespace Iset\Provider;
 
-use Iset\Provider\ZendCacheServiceProvider;
-
 class ZendCacheServiceProviderTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -11,6 +9,7 @@ class ZendCacheServiceProviderTest extends \PHPUnit_Framework_TestCase
     {
         $service = new ZendCacheServiceProvider();
         $this->assertInstanceOf('Iset\Provider\ZendCacheServiceProvider', $service);
+
         return $service;
     }
 
@@ -39,6 +38,7 @@ class ZendCacheServiceProviderTest extends \PHPUnit_Framework_TestCase
         $app = new \Silex\Application();
         $service->register($app);
         $this->assertInstanceOf('Zend\Cache\Storage\Adapter\Filesystem',$app['cache']);
+
         return $app;
     }
 }
