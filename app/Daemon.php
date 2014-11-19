@@ -34,12 +34,13 @@ if ($pid) { exit(); }
 
 # Setting session
 $sess_id = posix_setsid();
+$pid = posix_getpid();
 
 # Configuring session
 posix_seteuid($app['config']['service']['system']['uid']);
 posix_setegid($app['config']['service']['system']['gid']);
 
-$app['monolog.daemon']->addInfo('Daemon successfully started',array('PID'=>getmypid(),'SESS_ID'=>$sess_id));
+$app['monolog.daemon']->addInfo('Daemon successfully started',array('PID'=>$pid,'SESS_ID'=>$sess_id));
 
 # Initializing control vars
 $max_repeats = 10;
