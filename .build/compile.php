@@ -188,7 +188,8 @@ unset($content);
 // COMPILING AWMAILER CUSTOM INI FILE
 /////////////////////////////////////////
 $ini_content = file_get_contents($php_ini);
-preg_replace("/(.*?(\bdisable_functions\b)[^$\n]*)/","disable_functions =".PHP_EOL,$ini_content,1);
+preg_match("/(.*?(\bdisable_functions\b)[^$\n]*)/",$ini_content,$matches);
+$ini_content = str_replace($matches[0],'disable_functions =',$ini_content);
 
 $handle = fopen($ini_dest,'w');
 fwrite($handle,$ini_content);
