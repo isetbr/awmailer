@@ -2,6 +2,7 @@
 
 // Performing checks
 check_php();
+check_exec();
 check_pcntl();
 check_curl();
 check_mysql();
@@ -82,6 +83,15 @@ function check_pcntl() {
         return true;
     } else {
         echo "ERROR: PCNTL extension not found, check the requirements document." . PHP_EOL;
+        exit(1);
+    }
+}
+function check_exec() {
+    echo "checking for exec extension..." . PHP_EOL;
+    if (function_exists('exec')) {
+        return true;
+    } else {
+        echo "ERROR: exec function is disabled, please enable it to do the installation, you can deactivate after it." . PHP_EOL;
         exit(1);
     }
 }
