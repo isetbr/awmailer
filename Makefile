@@ -81,5 +81,7 @@ clean: .title
 	@echo "Success!"
 
 sniff: .title
-	@cd ./app/; php ../vendor/bin/php-cs-fixer -v fix --level=all --fixers=indentation,linefeed,trailing_spaces,unused_use,return,php_closing_tag,short_tag,visibility,braces,extra_empty_lines,phpdoc_params,eof_ending,include,controls_spaces,elseif .
-	@cd ./src/; php ../vendor/bin/php-cs-fixer -v fix --level=all --fixers=indentation,linefeed,trailing_spaces,unused_use,return,php_closing_tag,short_tag,visibility,braces,extra_empty_lines,phpdoc_params,eof_ending,include,controls_spaces,elseif .
+	-@`php vendor/bin/php-cs-fixer -q fix --level=all --fixers=indentation,linefeed,trailing_spaces,unused_use,return,php_closing_tag,short_tag,visibility,braces,extra_empty_lines,phpdoc_params,eof_ending,include,controls_spaces,elseif src/ > /dev/null 2>&1`
+	-@`php vendor/bin/php-cs-fixer -q fix --level=all --fixers=indentation,linefeed,trailing_spaces,unused_use,return,php_closing_tag,short_tag,visibility,braces,extra_empty_lines,phpdoc_params,eof_ending,include,controls_spaces,elseif app/ > /dev/null 2>&1`
+	-@`php vendor/bin/php-cs-fixer -q fix --level=all --fixers=indentation,linefeed,trailing_spaces,unused_use,return,php_closing_tag,short_tag,visibility,braces,extra_empty_lines,phpdoc_params,eof_ending,include,controls_spaces,elseif tests/ > /dev/null 2>&1`
+	@echo "Success!"
