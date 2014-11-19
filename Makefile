@@ -13,15 +13,16 @@ default: .title
 	cd config && cp application.ini.sample application.ini && \
 	cd ../../web/ && mkdir docs && cd docs && mkdir api && mkdir source && cd ../../ && cp blueprint.md blueprint.apib && \
 	mkdir bin`
-	@echo "attempting to download composer packager."
+	@echo "downloading composer..."
 	@curl -s http://getcomposer.org/installer | php -- --quiet
-	@echo "installing packages..."
-	@php composer.phar install -v
+	@echo "installing packages, please wait..."
+	@php composer.phar install --no-progress
 	@rm -Rf composer.phar
-	@echo "----------------------------------------------------------------------------"
-	@echo "compiling..."
-	@php .build/compile.php
-	@echo "Success!"
+	@echo "Success!\n"
+	@echo "Compiling..."
+    @php .build/compile.php
+    @echo "Success!"
+    @echo "\n"
 	@echo "Please update the configuration files then run 'make db'"
 
 help: .title
