@@ -5,33 +5,48 @@ Overview
 --------
 
 1. Packages / Dependencies
-2. Downloading and checkout
-3. Database
-4. Installing and Configuring
-5. Tests
-6. Web Server
-7. Starting services
-8. Documentation
+2. System Users
+3. Downloading and checkout
+4. Database
+5. Installing and Configuring
+6. Tests
+7. Web Server
+8. Starting services
+9. Documentation
 
 ## 1. Packages / Dependencies
 
-Make sure that you solve all dependecies and requirements of AwMailer, check the document of [requirements](requirements.md) to help you with that you have to do before install AwMailer.
+Make sure that you solve all dependencies and requirements of AwMailer, check the document of [requirements](requirements.md) to help you with that you have to do before install AwMailer.
 
-## 2. Downloading and checkout
+## 2. System Users
 
-To download AwMailer you have two options, you can clone this repository and checkout to the tag of version that you wish to install or download the zip file of project, in this guide we will clone this repository, see the codes below:
+To run AwMailer correctly without and tts instance opened you need to create an system user that will be used by the application.
+
+```shell
+# Create the user
+adduser --disabled-login --gecos -M 'AwMailer' awmailer
+
+# Get the uid and gid
+id awmailer
+```
+
+Don't forget this username (awmailer) and your uid and gid, you will need this later.
+
+## 3. Downloading and checkout
+
+To download AwMailer you have two options, you can clone this repository and checkout to the tag of version that you wish to install or download the zip file of project, in this guide we will clone this repository, see the commands below:
 
 ```shell
 # Go to install dir *
 cd /usr/local
 
 # Clone the repository
-git clone git@192.168.0.14:devsdmf/awmailer.git awmailer
+git clone git@gitrepo:devsdmf/awmailer.git awmailer
 
 # Go to awmailer directory
 cd awmailer/
 
-# Checkout to the version that you wish to install, e.g. v1.0.0-stable
+# Checkout to the version that you wish to install, e.g. v1.1.0-stable
 git checkout tags/vX.Y.Z-release
 
 # Check for dependecies **
@@ -42,7 +57,7 @@ make check
 
 ** If you get a error on aglio and you don't wish the documentation of API acessible in a browser, you can ignore this.
 
-## 3. Database
+## 4. Database
 
 You need to create the MySQL database and users before install the AwMailer, see below how you do this:
 
@@ -83,7 +98,7 @@ mysql> \q
 # Done!
 ```
 
-## 4. Installing and Configuring
+## 5. Installing and Configuring
 
 The AwMailer after the first stable release (v1.0.0-stable) gets a Makefile that makes the installation a easy process, then, you only need run the following commands in awmailer install folder.
 
@@ -99,6 +114,9 @@ make
 # - mysql.dbname
 # - mongo.dsn
 # - mongo.dbname
+# - system.user ***
+# - system.uid
+# - system.gid
 vim app/config/application.ini
 
 # Save the file and exit
@@ -111,19 +129,21 @@ make install
 ```
 
 \* If you get a error of XSL library not found and you don't wish to generate the documentation of source-code, you need to remove the dependency of PHPdocumentor of `composer.json` file and delete the `composer.lock` file.
+
 ** Remember to use the database settings configure in the past section, on the mongodb, don't worry, the installer will create the database and configure it for you, you only need to update this fields if your connection params are different from default.
 
-## 5. Tests
+*** Don't forget to configure these three field, it's the most important section!
+
+## 6. Tests
 
 The command below will run the tests in source of application to grants that all is working.
 
 ```shell
-# Assuming that you are in /usr/local/awmailer/
 # Make sure that all tests has passed!!
 make test
 ```
 
-## 6. Web Server
+## 7. Web Server
 
 Now you need to configure your web server to turn the API available to consume, the AwMailer carry with it a sample vhost file to you configure the instance of awmailer on a Apache Web Server, you can find it in the support folder at root folder of application. 
 
@@ -131,22 +151,21 @@ Don't forget to update the paths and the ServerName of vhost.
 
 After update your vhost file and enable it in your Apache, restart the WebServer, the API is now accessible.
 
-## 7. Starting Services
+## 8. Starting Services
 
-To start the AwMailer daemon, only type the following command on terminal
+The version 1.1.0 of AwMailer includes a service handler that is installed in the system, so, you can handle it normally.
 
 ```shell
-$ awd
+$ service awmailer start
 ```
 
-## 8. Documentation
+## 9. Documentation
 
 To generate the documentation of your AwMailer instance, you can do this of two ways, the first is to generate the API and Sourcecode documentation using the Makefile, the two way is manually generate on of each options.
 
 To do this with the Makefile, make sure that you have solved all dependecies to generate both documentations, and type the following command on terminal:
 
 ```shell
-## Assuming that you are in /usr/local/awmailer/
 make docs
 ```
 
@@ -159,5 +178,5 @@ aglio -t slate -i blueprint.apib -o web/docs/api/index.html > /dev/null 2>&1
 
 # To generate the documentation of sourcecode only
 rm -Rf web/docs/source/*
-./vendor/bin/phpdoc.php --force > /dev/null 2>&1
+./vendor/bin/apigen generate > /dev/null 2>&1
 ```
