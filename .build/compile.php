@@ -22,7 +22,7 @@ if (file_exists($daemon)) {
 }
 
 $content = <<<EOF
-#!$php_binary -q
+#!$php_binary -qc$ini_dest
 <?php require_once("$root_path/app/Daemon.php");
 EOF;
 $handle = fopen($daemon,"w");
@@ -40,7 +40,7 @@ if (file_exists($service)) {
 }
 
 $content = <<<EOF
-#!$php_binary -q
+#!$php_binary -qc$ini_dest
 <?php require_once("$root_path/app/Service.php");
 EOF;
 $handle = fopen($service,"w");
