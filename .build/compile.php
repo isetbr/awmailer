@@ -7,6 +7,14 @@ $daemon = $bin_path . "awd";
 $service = $bin_path . "awmailer";
 $service_handler = $bin_path . "awmailerctl";
 $php_binary = trim(exec('which php'));
+$app_config = parse_ini_file($root_path . '/app/config/application.ini',true);
+$user = $app_config['service']['system.user'];
+$php_ini = php_ini_loaded_file();
+$ini_dest = $root_path . '/app/config/runtime.ini';
+
+/////////////////////////////////////////
+// COMPILING AWMAILER DAEMON
+/////////////////////////////////////////
 
 # Removing existing daemon
 if (file_exists($daemon)) {
@@ -21,6 +29,10 @@ $handle = fopen($daemon,"w");
 fwrite($handle,$content);
 fclose($handle);
 unset($content);
+
+/////////////////////////////////////////
+// COMPILING AWMAILER SERVICE
+/////////////////////////////////////////
 
 # Removing existing service
 if (file_exists($service)) {
@@ -41,9 +53,9 @@ if (file_exists($service_handler)) {
     unlink($service_handler);
 }
 
-# Getting application configuration
-$config = parse_ini_file($root_path . '/app/config/application.ini',true);
-$user = $config['service']['system.user'];
+/////////////////////////////////////////
+// COMPILING AWMAILER SERVICE HANDLER
+/////////////////////////////////////////
 
 $content = <<<EOF
 #!/bin/bash
@@ -171,3 +183,14 @@ $handle = fopen($service_handler,"w");
 fwrite($handle,$content);
 fclose($handle);
 unset($content);
+
+/////////////////////////////////////////
+// COMPILING AWMAILER CUSTOM INI FILE
+/////////////////////////////////////////
+$ini_content = file_get_contents($php_ini);
+preg_replace("/(.*?(\bdisable_functions\b)[^$\n]*)/","disable_functions =".PHP_EOL,$ini_content,1);
+
+$handle = fopen($ini_dest,'w');
+fwrite($handle,$ini_content);
+fclose($handle);
+unset($ini_content);
