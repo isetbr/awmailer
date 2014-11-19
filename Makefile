@@ -20,9 +20,9 @@ default: .title
 	@rm -Rf composer.phar
 	@echo "Success!\n"
 	@echo "Compiling..."
-    @php .build/compile.php
-    @echo "Success!"
-    @echo "\n"
+	@php .build/compile.php
+	@echo "Success!"
+	@echo "\n"
 	@echo "Please update the configuration files then run 'make db'"
 
 help: .title
