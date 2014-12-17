@@ -10,7 +10,7 @@
 [general]
 
 ; This is the base url used in formation of URL's inside of application
-base_url = http://awmailer.localhost/
+base_url = http://localhost:8000/
 
 ; This is the debug option, accepted values "On" or "Off"
 debug = Off
