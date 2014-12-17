@@ -70,6 +70,7 @@ clean: .title
 	@rm -Rf app/cache
 	@rm -Rf app/log
 	@rm -Rf app/config/application.ini
+	@rm -Rf app/config/runtime.ini
 	@rm -Rf bin
 	@rm -Rf vendor
 	@rm -Rf web/docs
