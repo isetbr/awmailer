@@ -5,6 +5,7 @@
 .idea/*
 app/cache/*
 app/config/application.ini
+app/config/runtime.ini
 app/log/*
 bin/*
 vendor/*
