@@ -183,7 +183,7 @@ class CampaignController implements ControllerProviderInterface
             # Getting request params
             $subject      = $request->request->get('subject');
             $body         = $request->request->get('body');
-            $headers      = $request->request->get('headers');
+            $headers      = array_change_key_case($request->request->get('headers'));
             $user_vars    = $request->request->get('user_vars');
             $user_headers = $request->request->get('user_headers');
             $external     = $request->request->get('external');
