@@ -1,4 +1,4 @@
-VERSION = 1.1.0
+VERSION = 1.1.1
 AW_BIN = $(shell pwd)/bin
 DAEMON = $(AW_BIN)/awd
 SERVICE = $(AW_BIN)/awmailer

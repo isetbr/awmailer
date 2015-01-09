@@ -1,5 +1,8 @@
 CHANGELOG
 =========
+- `v1.1.1-stable:`
+    * Fixed Return-Path bug that prevent invalid mails to return to the specified bounce mail
+    * Turned all header keys to lowercase
 - `v1.1.0-stable:`
     * Added information messages in make script
     * Compiling binaries with dynamic php binary path
