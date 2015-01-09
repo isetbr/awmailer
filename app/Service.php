@@ -151,24 +151,24 @@ while (count($queue = $queueCollection->fetch($campaignKey,null,$max_package_siz
             # Verifying if has custom headers
             if ($campaign->user_headers == 1 && is_array($row['headers'])) {
                 # Merge campaign headers with user headers
-                $parsed_headers = array_merge($headers,$row['headers']);
+                $current_headers = array_merge($headers,$row['headers']);
             }
         } else {
             # Simple queue
             $destination_email = $row;
             $parsed_body = $message;
-            $parsed_headers = $headers;
+            $current_headers = $headers;
         }
 
         # Loop into headers to parse the string
         $temporary_headers = array();
-        foreach ($parsed_headers as $header_key => $header_value) {
+        foreach ($current_headers as $header_key => $header_value) {
             $temporary_headers[] = $header_key . ': ' .$header_value;
         }
         $parsed_headers = implode("\r\n",$temporary_headers);
 
         # Sending mail
-        $result = mail($destination_email,$subject,$parsed_body,$parsed_headers);
+        $result = mail($destination_email,$subject,$parsed_body,$parsed_headers,(isset($current_headers['return-path'])) ? '-f' . $current_headers['return-path'] : '');
 
         # Verifying result and increasing counter
         if ($result) {
