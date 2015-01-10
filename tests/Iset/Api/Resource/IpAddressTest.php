@@ -5,6 +5,15 @@ namespace Iset\Api\Resource;
 class IpAddressTest extends \PHPUnit_Framework_TestCase
 {
 
+    protected $_app = null;
+    protected $_gateway = null;
+
+    public function setUp()
+    {
+        $this->_app = \App::configure();
+        $this->_gateway = new \Iset\Model\IpAddressTable($this->_app);
+    }
+
     public function testInitialize()
     {
         $ipaddress = new IpAddress();
@@ -15,7 +24,7 @@ class IpAddressTest extends \PHPUnit_Framework_TestCase
 
     public function testInitializeWithTableGateway()
     {
-        $ipaddress = new IpAddress(new \Iset\Model\IpAddressTable(\App::configure()));
+        $ipaddress = new IpAddress($this->_gateway);
         $this->assertInstanceOf('Iset\Api\Resource\IpAddress',$ipaddress);
 
         return $ipaddress;
