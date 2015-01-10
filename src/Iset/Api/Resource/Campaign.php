@@ -309,7 +309,7 @@ class Campaign extends AbstractResource implements ModelInterface
 
         # Validating headers and treatment headers
         if (is_array($this->headers)) {
-            $this->headers = array_change_key_case($headers);
+            $this->headers = array_change_key_case($this->headers,CASE_LOWER);
         } else {
             return array('error'=>'Headers must be an array');
         }
