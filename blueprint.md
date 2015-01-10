@@ -795,6 +795,7 @@ When API send to you a notification about an event occurred in a resource, after
 
 # Group  Changelog
 
+- `v1.1.1-stable:` Fixed Return-Path bug that prevent invalid mails to return to the specified bounce mail
 - `v1.1.0-stable:` A lot of improvements in daemon, service and resources, recommended version to use in production
 - `v1.0.3-stable:` Fixed compiler for use PHP cli direct output
 - `v1.0.2-stable:` Fixed Makefile, process logs and minor bugs

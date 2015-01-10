@@ -5,6 +5,15 @@ namespace Iset\Api\Resource;
 class CampaignTest extends \PHPUnit_Framework_TestCase
 {
 
+    protected $_app = null;
+    protected $_gateway = null;
+
+    public function setUp()
+    {
+        $this->_app = \App::configure();
+        $this->_gateway = new \Iset\Model\CampaignTable($this->_app);
+    }
+
     public function testInitialize()
     {
         $campaign = new Campaign();
@@ -15,7 +24,7 @@ class CampaignTest extends \PHPUnit_Framework_TestCase
 
     public function testInitializeWithTableGateway()
     {
-        $campaign = new Campaign(new \Iset\Model\CampaignTable(\App::configure()));
+        $campaign = new Campaign($this->_gateway);
         $this->assertInstanceOf('Iset\Api\Resource\Campaign',$campaign);
 
         return $campaign;
@@ -232,7 +241,7 @@ class CampaignTest extends \PHPUnit_Framework_TestCase
 
     public function testSaveFail()
     {
-        $campaign = new Campaign(new \Iset\Model\CampaignTable(\App::configure()));
+        $campaign = new Campaign($this->_gateway);
         $result = $campaign->save();
         $this->assertArrayHasKey('error',$result);
     }

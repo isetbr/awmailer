@@ -5,6 +5,15 @@ namespace Iset\Api\Resource;
 class ServiceTest extends \PHPUnit_Framework_TestCase
 {
 
+    protected $_app = null;
+    protected $_gateway = null;
+
+    public function setUp()
+    {
+        $this->_app = \App::configure();
+        $this->_gateway = new \Iset\Model\ServiceTable($this->_app);
+    }
+
     public function testInitialize()
     {
         $service = new Service();
@@ -15,7 +24,7 @@ class ServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testInitializeWithTableGateway()
     {
-        $service = new Service(new \Iset\Model\ServiceTable(\App::configure()));
+        $service = new Service($this->_gateway);
         $this->assertInstanceOf('Iset\Api\Resource\Service',$service);
 
         return $service;
@@ -170,7 +179,7 @@ class ServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testSaveFail()
     {
-        $service = new Service(new \Iset\Model\ServiceTable(\App::configure()));
+        $service = new Service($this->_gateway);
         $result = $service->save();
         $this->assertArrayHasKey('error',$result);
     }
