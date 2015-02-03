@@ -98,7 +98,7 @@ Vagrant.configure(2) do |config|
     sudo npm -g install aglio >> /dev/null
     echo "CONFIGURING HTTP ENVIRONMENT"
     sudo rm -rf /var/www >> /dev/null
-    sudo ln -s /vargrant /var/www >> /dev/null
+    sudo ln -s /vagrant/web /var/www >> /dev/null
     sudo service apache2 restart
     echo "EVERYTHING CONFIGURED! READY TO TEST!"
   SHELL
