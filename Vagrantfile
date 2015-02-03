@@ -72,10 +72,10 @@ Vagrant.configure(2) do |config|
     sudo apt-get update >> /dev/null
     echo "UPGRADIN LIBRARIES"
     sudo apt-get upgrade >> /dev/null
-    echo "INSTALLING LAMP"
-    sudo apt-get install -y apache2 php5 php5-dev php-pear mysql-client mysql-server >> /dev/null
     echo "INSTALLING CURL"
     sudo apt-get install -y curl >> /dev/null
+    echo "INSTALLING LAMP"
+    sudo apt-get install -y apache2 php5 php5-dev php-pear php5-curl mysql-client mysql-server >> /dev/null
     echo "INSTALLING NODEJS"
     curl -sL https://deb.nodesource.com/setup | sudo bash - >> /dev/null
     sudo apt-get install -y nodejs >> /dev/null
