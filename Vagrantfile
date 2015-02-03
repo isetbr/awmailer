@@ -82,23 +82,23 @@ Vagrant.configure(2) do |config|
     echo "INSTALLING PCNTL"
     sudo mkdir /tmp/phpsrc && cd /tmp/phpsrc && sudo apt-get source php5 && cd /tmp/phpsrc/php5-*/ext/pcntl && sudo phpize && sudo ./configure && sudo make && sudo make install && sudo echo "extension=pcntl.so" | sudo tee --append /etc/php5/conf.d/pcntl.ini && cd ; >> /dev/null
     echo "INSTALLING MONGODB"
-    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10 > /dev/null
+    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10 >> /dev/null
     sudo echo 'deb http://downloads-distro.mongodb.org/repo/debian-sysvinit dist 10gen' | sudo tee /etc/apt/sources.list.d/mongodb.list >> /dev/null
     sudo apt-get update >> /dev/null
-    sudo apt-get install -y mongodb-org-server mongodb-org-mongos mongodb-org-shell > /dev/null
+    sudo apt-get install -y mongodb-org-server mongodb-org-mongos mongodb-org-shell >> /dev/null
     sudo service mongod start >> /dev/null
     echo "INSTALLING MONGODB PHP DRIVER"
     sudo apt-get -y install php-mongo >> /dev/null
     sudo mkdir /tmp/mongodrv && cd /tmp/mongodrv && sudo wget http://pecl.php.net/get/mongo-1.5.8.tgz && sudo tar -zxvf mongo-1.5.8.tgz && cd mongo-* && sudo phpize && sudo ./configure && sudo make && sudo make install && sudo echo "extension=mongo.so" | sudo tee --append /etc/php5/conf.d/mongo.ini && cd ; >> /dev/null
     echo "RESTARTING SERVICES"
-    sudo service apache2 restart > /dev/null
-    sudo service mysql restart > /dev/null
-    sudo service mongod restart > /dev/null
+    sudo service apache2 restart >> /dev/null
+    sudo service mysql restart >> /dev/null
+    sudo service mongod restart >> /dev/null
     echo "INSTALLING AGLIO"
-    sudo npm -g install aglio > /dev/null
+    sudo npm -g install aglio >> /dev/null
     echo "CONFIGURING HTTP ENVIRONMENT"
-    sudo rm -rf /var/www
-    sudo ln -s /vargrant /var/www
+    sudo rm -rf /var/www >> /dev/null
+    sudo ln -s /vargrant /var/www >> /dev/null
     sudo service apache2 restart
     echo "EVERYTHING CONFIGURED! READY TO TEST!"
   SHELL
