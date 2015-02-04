@@ -1,5 +1,9 @@
 CHANGELOG
 =========
+- `v1.2.0-stable:`
+    * Added status resource in API
+    * Added notification by email when the status resource detects that API is down
+    * Added configuration option to set a custom delay of daemon loop (default 5)
 - `v1.1.1-stable:`
     * Fixed Return-Path bug that prevent invalid mails to return to the specified bounce mail
     * Turned all header keys to lowercase

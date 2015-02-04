@@ -170,10 +170,10 @@ Update a Service
         
 + Response 404 (application/json)
 
-		{
-		  "success": 0,
-		  "error": "Service not found"
-		}
+        {
+          "success": 0,
+          "error": "Service not found"
+        }
         
 + Response 500 (application/json)
 
@@ -467,24 +467,24 @@ Remove an campaign
 
 + Respose 404 (application/json)
 
-		{
-		  "success": 0,
-		  "error": "Campaign not found"
-		}
+        {
+          "success": 0,
+          "error": "Campaign not found"
+        }
 
 + Response 409 (application/json)
 
-		{
-		  "success": 0,
-		  "error": "Campaign running or in process"
-		}
-		
+        {
+          "success": 0,
+          "error": "Campaign running or in process"
+        }
+
 + Response 500 (application/json)
 
-		{
-		  "success": 0,
-		  "error": "The error message"
-		}
+        {
+          "success": 0,
+          "error": "The error message"
+        }
 
 ## /campaign/{key}/status
 ### GET
@@ -538,10 +538,10 @@ Retrieve the current email queue of an campaign
 
 + Response 404 (application/json)
 
-		{
-		  "success": 0,
-		  "error": "Campaign not found"
-		}
+        {
+          "success": 0,
+          "error": "Campaign not found"
+        }
 
 ### PUT
 Update an campaign queue
@@ -611,17 +611,17 @@ Update an campaign queue
 
 + Response 404 (application/json)
 
-		{
-		  "success": 0,
-		  "error": "Campaign not found"
-		}
-		
+        {
+          "success": 0,
+          "error": "Campaign not found"
+        }
+
 + Response 500 (application/json)
 
-		{
-		  "success": 0,
-		  "error": "The error message"
-		}
+        {
+          "success": 0,
+          "error": "The error message"
+        }
 
 ## /campaign/{key}/start
 ### POST
@@ -638,17 +638,17 @@ Start a campaign send process
 
 + Response 404 (application/json)
 
-		{
-		  "success": 0,
-		  "error": "Campaign not found"
-		}
+        {
+          "success": 0,
+          "error": "Campaign not found"
+        }
 
 + Response 500 (application/json)
 
-		{
-		  "success": 0,
-		  "error": "Campaing was done or stopped"
-		}
+        {
+          "success": 0,
+          "error": "Campaing was done or stopped"
+        }
 
 ## /campaign/{key}/pause
 ### POST
@@ -665,17 +665,17 @@ Pause a campaign send processs
 
 + Response 404 (application/json)
 
-		{
-		  "success": 0,
-		  "error": "Campaign not found"
-		}
+    {
+      "success": 0,
+      "error": "Campaign not found"
+    }
 
 + Response 500 (application/json)
 
-		{
-		  "success": 0,
-		  "error": "Campaign must be started before pause"
-		}
+    {
+      "success": 0,
+      "error": "Campaign must be started before pause"
+    }
 
 ## /campaign/{key}/stop
 ### POST
@@ -692,17 +692,17 @@ Stop a campaign send processs
 
 + Response 404 (application/json)
 
-		{
-		  "success": 0,
-		  "error": "Campaign not found"
-		}
-		
+    {
+      "success": 0,
+      "error": "Campaign not found"
+    }
+    
 + Response 500 (application/json)
 
-		{
-		  "success": 0,
-		  "error": "Campaign must be started before stop"
-		}
+    {
+      "success": 0,
+      "error": "Campaign must be started before stop"
+    }
 
 ## /campaign/status
 ### POST
@@ -751,10 +751,26 @@ Get status from multiple campaigns
         
 + Response 400 (application/json)
 
-		{
-		  "success": 0,
-		  "error": "You must send an array of campaign keys"
-		}
+    {
+      "success": 0,
+      "error": "You must send an array of campaign keys"
+    }
+
+# Group Status
+
+## /status
+### GET
+Get the currently API status
+
++ Request (application/json)
+
++ Response 200 (text/html)
+
+    API is running correctly
+        
++ Response 503
+
+    API is down, please contact the administrator
 
 # Group Notifications
 
@@ -762,10 +778,10 @@ The AwMailer can send to any service that uses API notifications about processes
 
 The notifications resource of API send to notification url of service a HTTP POST request with the following structure:
 
-	{
-	  "resource": "resourcename",
-	  "context": "thecontext"
-	}
+  {
+    "resource": "resourcename",
+    "context": "thecontext"
+  }
 
 See next sections for examples of notifications organized by specific resource:
 
@@ -780,12 +796,12 @@ The `campaign` resource will notificate you about the following contexts:
 - `process_error` - An error occurred in send process, request logs.
 
 Example:
-	
-	{
-	  "resource": "campaign",
-	  "context": "process_started",
-	  "key": "6c8bff2269a89ef7ec3cf87e72be656f"
-	}
+  
+  {
+    "resource": "campaign",
+    "context": "process_started",
+    "key": "6c8bff2269a89ef7ec3cf87e72be656f"
+  }
 
 ## Answering a notification
 
@@ -795,6 +811,7 @@ When API send to you a notification about an event occurred in a resource, after
 
 # Group  Changelog
 
+- `v1.2.0-stable:` Added resource status to get the current status of API daemon with notifications by email and configurable delay of daemon loop
 - `v1.1.1-stable:` Fixed Return-Path bug that prevent invalid mails to return to the specified bounce mail
 - `v1.1.0-stable:` A lot of improvements in daemon, service and resources, recommended version to use in production
 - `v1.0.3-stable:` Fixed compiler for use PHP cli direct output
