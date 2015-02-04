@@ -67,6 +67,11 @@ class StatusController implements ControllerProviderInterface
 
         $diff = $now->diff($last_update);
         if ($diff->s > 5) {
+            # notification emails
+            mail($this->_app['config']['api']['notification']['emails'],
+                 'AwMailer Tango Down',
+                 'Daemon not running, verified at ' . $now->format(\DateTime::ISO8601),
+                 "Content-Type: text/plain\r\nX-Priority: 1 (Higuest)\r\nImportance: High\r\n");
             $response = new Response(null,Response::HTTP_SERVICE_UNAVAILABLE);
         } else {
             $response = new Response(null,Response::HTTP_OK);

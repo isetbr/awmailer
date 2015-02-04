@@ -72,6 +72,9 @@ mongo.dbname = awmailer
 auth_header.service_key  = Auth-Service-Key
 auth_header.token        = Auth-Token
 
+; The email addresses that will receive email notifications from API status
+notification.emails = notifications@domain.com
+
 ; This section is responsbile for configure cache options of application
 [cache]
 
