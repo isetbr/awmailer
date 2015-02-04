@@ -47,7 +47,7 @@ class StatusController implements ControllerProviderInterface
     /**
      * The Constructor
      */
-    public function __construct(){}
+    public function __construct() {}
 
     /**
      * Verify if daemon is running an return the current status
@@ -66,7 +66,7 @@ class StatusController implements ControllerProviderInterface
         $now = new \DateTime();
 
         $diff = $now->diff($last_update);
-        if ($diff->s > (int)$this->_app['config']['service']['daemon']['delay']) {
+        if ($diff->s > (int) $this->_app['config']['service']['daemon']['delay']) {
             # notification emails
             mail($this->_app['config']['api']['notification']['emails'],
                  'AwMailer Tango Down',
@@ -94,7 +94,7 @@ class StatusController implements ControllerProviderInterface
     /**
      * Not implemented
      */
-    public function getTableGateway(){}
+    public function getTableGateway() {}
 
     /**
      * Returns routes to connect to the given application.
