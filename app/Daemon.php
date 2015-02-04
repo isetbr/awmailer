@@ -43,7 +43,7 @@ posix_setegid($app['config']['service']['system']['gid']);
 $app['monolog.daemon']->addInfo('Daemon successfully started',array('PID'=>$pid,'SESS_ID'=>$sess_id));
 
 # Initializing control vars
-$loop_delay = (int)$app['config']['service']['daemon']['delay'];
+$loop_delay = (int) $app['config']['service']['daemon']['delay'];
 $max_repeats = 10;
 $repeated = array();
 
