@@ -46,7 +46,7 @@ git clone git@gitrepo:devsdmf/awmailer.git awmailer
 # Go to awmailer directory
 cd awmailer/
 
-# Checkout to the version that you wish to install, e.g. v1.1.0-stable
+# Checkout to the version that you wish to install, e.g. v1.2.0-stable
 git checkout tags/vX.Y.Z-release
 
 # Check for dependecies **
@@ -128,8 +128,6 @@ make db
 make install
 ```
 
-\* If you get a error of XSL library not found and you don't wish to generate the documentation of source-code, you need to remove the dependency of PHPdocumentor of `composer.json` file and delete the `composer.lock` file.
-
 ** Remember to use the database settings configure in the past section, on the mongodb, don't worry, the installer will create the database and configure it for you, you only need to update this fields if your connection params are different from default.
 
 *** Don't forget to configure these three field, it's the most important section!
@@ -163,7 +161,7 @@ $ service awmailer start
 
 To generate the documentation of your AwMailer instance, you can do this of two ways, the first is to generate the API and Sourcecode documentation using the Makefile, the two way is manually generate on of each options.
 
-To do this with the Makefile, make sure that you have solved all dependecies to generate both documentations, and type the following command on terminal:
+To do this with the Makefile, make sure that you have solved all dependencies to generate both documentations, and type the following command on terminal:
 
 ```shell
 make docs

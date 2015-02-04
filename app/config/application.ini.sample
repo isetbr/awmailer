@@ -10,7 +10,7 @@
 [general]
 
 ; This is the base url used in formation of URL's inside of application
-base_url = http://awmailer.localhost/
+base_url = http://localhost:8000/
 
 ; This is the debug option, accepted values "On" or "Off"
 debug = Off
@@ -72,6 +72,9 @@ mongo.dbname = awmailer
 auth_header.service_key  = Auth-Service-Key
 auth_header.token        = Auth-Token
 
+; The email addresses that will receive email notifications from API status
+notification.emails = notifications@domain.com
+
 ; This section is responsbile for configure cache options of application
 [cache]
 
@@ -83,6 +86,9 @@ zendcache.plugins.exception_handler.throw_exceptions = Off
 
 ; This section is responsible for configure cache options of application
 [service]
+
+; The delay of the daemon loop
+daemon.delay = 5
 
 ; The system user created to run the daemon and services
 system.user = awmailer

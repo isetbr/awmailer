@@ -75,6 +75,7 @@ class MainController implements ControllerProviderInterface
         $controllers->mount('/service', ServiceController::factory($this->_app));
         $controllers->mount('/campaign', CampaignController::factory($this->_app));
         $controllers->mount('/ipaddress', IpAddressController::factory($this->_app));
+        $controllers->mount('/status', StatusController::factory($this->_app));
 
         return $controllers;
     }
