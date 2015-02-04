@@ -66,7 +66,7 @@ class StatusController implements ControllerProviderInterface
         $now = new \DateTime();
 
         $diff = $now->diff($last_update);
-        if ($diff->s > 5) {
+        if ($diff->s > (int)$this->_app['config']['service']['daemon']['delay']) {
             # notification emails
             mail($this->_app['config']['api']['notification']['emails'],
                  'AwMailer Tango Down',

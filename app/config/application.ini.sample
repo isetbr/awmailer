@@ -87,6 +87,9 @@ zendcache.plugins.exception_handler.throw_exceptions = Off
 ; This section is responsible for configure cache options of application
 [service]
 
+; The delay of the daemon loop
+daemon.delay = 5
+
 ; The system user created to run the daemon and services
 system.user = awmailer
 system.uid  = XXXX
